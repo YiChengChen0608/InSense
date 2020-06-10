@@ -16,9 +16,6 @@ const Nav = () => {
           <a href='javascript:;' role='button'><FiShoppingCart /></a>
         </div>
       </nav>
-      <div className="test">
-
-      </div>
     </>
   )
 }
