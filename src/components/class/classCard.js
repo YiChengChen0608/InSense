@@ -13,7 +13,7 @@ const ClassCard = (props) => {
           <p>{props.date}</p>
           <FiShare2 className='share-icon' />
         </div>
-        <p className='card-name'>{props.className}</p>
+        <p className='card-name'>{props.Name}</p>
         <a className='card-btn text-center' href='javascript:;' role='button'>參加</a>
       </div>
     </>
