@@ -4,8 +4,9 @@
   max-width: 380px;
   min-height: 330px;
   padding: 16px;
-  margin: 8px;
+  margin: 16px 32px;
   border: 1px solid $main-gray;
+  flex-grow: 1;
   .card-img{
     width: 100%;
     object-fit: cover;
