@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import 'normalize.css'
+import Nav from './components/nav'
+import ClassCard from './components/class/classCard'
+import classImg from './images/class1.jpg'
+import Footer from './components/footer'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Nav />
+      <ClassCard src={classImg} date={'2020/12/31'} className={'LFP 客製化香水課程預約'} />
+      <Footer />
+    </>
   );
 }
 
