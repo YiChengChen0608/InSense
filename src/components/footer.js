@@ -4,7 +4,9 @@ import '../styles/footer.scss'
 const Footer = () => {
   return (
     <>
-      <p className='footer'>InSense Perfume — Copyright © 2000-2020</p>
+      <footer className='footer'>
+        <p>InSense Perfume — Copyright © 2000-2020</p>
+      </footer>
     </>
   )
 }
