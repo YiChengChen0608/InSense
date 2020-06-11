@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiShare2 } from 'react-icons/fi'
-import '../../styles/class/classCard.scss'
+import '../../styles/class/classList/classCard.scss'
 
 const ClassCard = (props) => {
   return (

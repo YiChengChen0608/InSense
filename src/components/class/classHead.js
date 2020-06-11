@@ -1,8 +1,8 @@
 import React from 'react'
 import classBaner from '../../images/classBanner.jpeg'
-import '../../styles/class/classHead.scss'
+import '../../styles/class/classList/classHead.scss'
 
-const ClassHead = () => {
+const ClassHead = (props) => {
   return (
     <>
       <div className='class-head d-flex align-items-center'>
@@ -10,9 +10,9 @@ const ClassHead = () => {
           <img className='object-fit-cover' src={classBaner} />
         </div>
         <div className='headRight'>
-          <p className='headTitle'>課程體驗</p>
-          <p className='headContent'>InSense提供客製化香水<br />
-            體驗課程，與您一起感受香氛</p>
+          <p className='headTitle'>{props.title}</p>
+          <p className='headContent'>{props.content}</p>
+          <p className='headContent'>{props.content2}</p>
         </div>
       </div>
     </>
