@@ -2,7 +2,7 @@ import React from "react";
 import { FiShare2 } from "react-icons/fi";
 import "../../styles/class/classCard.scss";
 
-const ClassCard = (props) => {
+const ProductList = (props) => {
     return (
         <>
             <div className="card-wrapper">
