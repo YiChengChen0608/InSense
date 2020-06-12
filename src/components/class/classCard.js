@@ -1,6 +1,6 @@
 import React from "react";
 import { FiShare2 } from "react-icons/fi";
-import "../../styles/class/classCard.scss";
+import "../../styles/class/classList/classCard.scss";
 
 const ClassCard = (props) => {
     return (
@@ -13,7 +13,7 @@ const ClassCard = (props) => {
                     <p>{props.date}</p>
                     <FiShare2 className="share-icon" />
                 </div>
-                <p className="card-name">{props.className}</p>
+                <p className="card-name">{props.Name}</p>
                 <a
                     className="card-btn text-center"
                     href="javascript:;"
