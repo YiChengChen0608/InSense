@@ -1,25 +1,42 @@
+/* variable area */
+
 $main-blue : #6381A8;
 $main-light-blue : #ACC5E1;
 $main-sky-blue : #828FB6;
 $main-white : #F5F5F5;
+$sub-white : #FFFFFF;
 $main-gray : #E6E6E6;
 $main-black : #555555;
 $main-orange : #F7B66C;
 $main-scarlet : #D94F06;
 
+/* css property */
+
 .d-flex{
-  display: flex;
+  display : flex;
+}
+.flex-wrap{
+  flex-wrap: wrap;
 }
 .text-center{
-  text-align: center;
+  text-align : center;
 }
 .justify-content-center{
-  justify-content: center;
+  justify-content : center;
 }
 .justify-content-between{
-  justify-content: space-between;
+  justify-content : space-between;
 }
 .align-items-center{
-  align-items: center;
+  align-items : center;
+}
+.object-fit-cover{
+  object-fit : cover;
 }
 
+/* share style */
+
+.container{
+  margin:0 auto;
+  max-width: 1140px;
+}
