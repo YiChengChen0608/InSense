@@ -1,13 +1,14 @@
 import React from 'react'
 import 'normalize.css'
 import Nav from './components/Nav'
-import MyAccountSideBar from './components/MyAccountSideBar'
 import Footer from './components/Footer'
+import MyClassPage from './pages/class/MyClassPage'
+
 function App() {
   return (
     <>
       <Nav />
-      <MyAccountSideBar />
+      <MyClassPage />
       <Footer />
     </>
   );
