@@ -3,7 +3,7 @@ import '../../styles/class/classDetail/detailFooter.scss'
 
 const DetailFooter = () => {
   return (
-    <div className='container'>
+    <>
       <p className='reservation-date'>預約日期：2020/12/01</p>
       <div className='reservation-wrapper d-flex'>
         <select>
@@ -26,7 +26,7 @@ const DetailFooter = () => {
         </select>
       </div>
       <a className='reservation-btn text-center' href='javascript:;' role='button'>預約</a>
-    </div>
+    </>
   )
 }
 

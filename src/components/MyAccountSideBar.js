@@ -3,7 +3,7 @@ import '../styles/myAccountSideBar.scss'
 
 const MyAccountSideBar = () => {
   return (
-    <div>
+    <div className='side-bar-wrapper'>
       <h2>我的帳戶</h2>
       <ul className='accountMenu'>
         <li>帳戶資訊</li>
