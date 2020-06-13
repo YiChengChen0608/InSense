@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { FiMenu, FiSearch, FiUser, FiShoppingCart } from 'react-icons/fi'
 import '../styles/nav.scss'
 
