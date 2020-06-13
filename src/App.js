@@ -1,14 +1,14 @@
 import React from "react";
 import "normalize.css";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
-import MyClassPage from "./pages/class/MyClassPage";
+import Nav from "./components/nav";
+import Footer from "./components/footer";
+import ItemList from "./pages/item/itemList";
 
 function App() {
     return (
         <>
             <Nav />
-            <MyClassPage />
+            <ItemList />
             <Footer />
         </>
     );
