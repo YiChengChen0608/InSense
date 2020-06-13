@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/myAccountSideBar.scss'
+import '../styles/accountSideBar.scss'
 
-const MyAccountSideBar = () => {
+const AccountSideBar = () => {
   return (
     <div className='side-bar-wrapper'>
       <h2>我的帳戶</h2>
@@ -19,4 +19,4 @@ const MyAccountSideBar = () => {
   )
 }
 
-export default MyAccountSideBar
+export default AccountSideBar
