@@ -19,9 +19,19 @@
       color:$main-blue;
     }
     .headContent{
-      font-size: 20px;
       color:$main-blue;
-      line-height: 24px;
+      line-height: 16px;
+    }
+  }
+}
+
+@media (max-width:768px){
+  .class-head{
+    .headLeft{
+      width: 100%;
+    }
+    .headRight{
+      padding-bottom:0;
     }
   }
 }
