@@ -1,0 +1,32 @@
+@import "../../style.scss";
+
+.card-wrapper {
+    max-width: 250px;
+    padding: 8px;
+    // border: 1px solid $main-gray;
+    flex-grow: 1;
+    .card-img {
+        width: 100%;
+        object-fit: cover;
+        img {
+            width: 100%;
+        }
+    }
+
+    .saved-icon {
+        display: none;
+        font-size: 24px;
+        color: $main-sky-blue;
+    }
+}
+.card-wrapper:hover {
+    .saved-icon {
+        display: block;
+    }
+}
+.card-content {
+    font-size: 14px;
+}
+.card-name {
+    margin: 0;
+}
