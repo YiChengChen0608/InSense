@@ -28,3 +28,20 @@
   font-size: 18px;
   margin: 40px 0 ;
 }
+
+@media (max-width:768px){
+  .reservation-date{
+    text-align: center;
+  }
+
+  .reservation-wrapper{
+    select{
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }
+
+  .reservation-btn{
+    margin: 40px auto;
+  }
+}
