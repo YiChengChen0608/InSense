@@ -1,6 +1,6 @@
-import React from 'react'
-import '../../styles/class/myClass/myClass.scss'
-const MyClassItem = (props) => {
+import React from 'react';
+import '../../styles/class/myClass/classes.scss'
+const ClassItem = (props) => {
   return (
     <div className='d-flex class-item text-center'>
       <p>{props.classInfo.date}</p>
@@ -13,4 +13,4 @@ const MyClassItem = (props) => {
   )
 }
 
-export default MyClassItem
+export default ClassItem

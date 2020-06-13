@@ -4,7 +4,7 @@ import "../../styles/class/classList/classHead.scss";
 const ClassHead = (props) => {
     return (
         <>
-            <div className="class-head d-flex align-items-center">
+            <div className="class-head d-flex flex-wrap align-items-center">
                 <div className="headLeft">
                     <img className="object-fit-cover" src={props.src} />
                 </div>
