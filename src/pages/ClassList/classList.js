@@ -1,10 +1,10 @@
 import React from 'react';
-import ClassHead from '../../components/class/classHead'
+import ClassHead from '../../components/ClassHead/classHead'
 import classBanner from '../../images/classBanner.jpeg'
-import ClassCard from '../../components/class/classCard'
+import ClassCard from '../../components/ClassCard/classCard'
 import classImg from '../../images/class1.jpg'
 import MainContainer from '../../components/mainContainer'
-import '../../styles/class/classList/classList.scss'
+import './classList.scss'
 const ClassList = () => {
   return (
     <>

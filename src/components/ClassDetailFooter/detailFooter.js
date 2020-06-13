@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/class/classDetail/detailFooter.scss'
+import React from 'react'
+import './detailFooter.scss'
 
 const DetailFooter = () => {
   return (

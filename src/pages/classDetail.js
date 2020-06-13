@@ -1,9 +1,9 @@
 import React from 'react';
-import ClassHead from '../../components/class/classHead'
-import classImg from '../../images/class1.jpg'
-import MainContainer from '../../components/mainContainer'
-import DetailContent from '../../components/class/detailContent'
-import DetailFooter from '../../components/class/detailFooter'
+import ClassHead from '../components/ClassHead/classHead'
+import classImg from '../images/class1.jpg'
+import MainContainer from '../components/mainContainer'
+import DetailContent from '../components/ClassDetailContent/detailContent'
+import DetailFooter from '../components/ClassDetailFooter/detailFooter'
 
 const ClassDetail = () => {
   const storeInfo = {

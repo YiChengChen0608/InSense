@@ -1,13 +1,17 @@
 import React from 'react'
 import 'normalize.css'
-import Nav from './components/nav'
-import ClassDetail from './pages/class/classDetail'
-import Footer from './components/footer'
+import Nav from './components/Nav/nav'
+import Footer from './components/Footer/footer'
+import MainContent from './components/mainContent'
+import ClassDetail from './pages/classDetail'
+
 function App() {
   return (
     <>
       <Nav />
-      <ClassDetail />
+      <MainContent>
+        <ClassDetail />
+      </MainContent>
       <Footer />
     </>
   );
