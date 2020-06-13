@@ -16,6 +16,7 @@
   }
   .card-content{
       font-size: 18px;
+      color:$main-black;
     .share-icon{
       font-size: 24px;
       color:$main-sky-blue;
@@ -26,6 +27,7 @@
   .card-name{
     margin: 0;
     margin-bottom:16px;
+    color:$main-black;
   }
 
   .card-btn{
@@ -34,5 +36,11 @@
     text-decoration: none;
     border:1px solid $main-scarlet;
     padding:8px 0;
+  }
+}
+
+@media (max-width:768px){
+  .card-wrapper{
+    margin:16px 0;
   }
 }
