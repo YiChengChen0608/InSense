@@ -43,8 +43,12 @@ $Libre :'Libre Baskerville', serif;
 
 /* share style */
 
+.main-container{
+  min-height: 100%;
+  flex-direction: column;
+}
 .contain{
-  min-height: calc(100vh - 100px);
+  flex-grow: 1;
 }
 
 .container{
