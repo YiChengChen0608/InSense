@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import '../../styles/class/classDetail/detailFooter.scss'
 
 const DetailFooter = () => {

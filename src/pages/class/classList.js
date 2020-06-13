@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import ClassHead from '../../components/class/ClassHead'
 import classBanner from '../../images/classBanner.jpeg'
 import ClassCard from '../../components/class/ClassCard'

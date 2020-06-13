@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import '../../styles/class/myClass/myClass.scss'
 const MyClassItem = (props) => {
   return (
