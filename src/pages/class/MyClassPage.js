@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Container from '../../components/Container'
 import MyAccountSideBar from '../../components/MyAccountSideBar'
 import MyClass from '../../components/class/MyClass'
