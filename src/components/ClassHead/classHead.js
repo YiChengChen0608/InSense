@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/class/classList/classHead.scss'
+import React from 'react'
+import './classHead.scss'
 
 const ClassHead = (props) => {
   return (

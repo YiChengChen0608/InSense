@@ -1,4 +1,5 @@
-@import '../../style.scss';
+@import '../../styles/style.scss';
+
 
 .class-head{
   width: 100%;
@@ -29,6 +30,7 @@
   .class-head{
     .headLeft{
       width: 100%;
+      height: auto;
     }
     .headRight{
       padding-bottom:0;

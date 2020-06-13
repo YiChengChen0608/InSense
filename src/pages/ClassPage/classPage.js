@@ -1,8 +1,8 @@
 import React from 'react';
 import MainContainer from '../../components/mainContainer'
-import AccountSideBar from '../../components/accountSideBar'
-import Classes from '../../components/class/classes'
-import '../../styles/class/myClass/classPage.scss'
+import AccountSideBar from '../../components/AccountSideBar/accountSideBar'
+import Classes from '../../components/Classes/classes'
+import './classPage.scss'
 
 const ClassPage = () => {
   return (

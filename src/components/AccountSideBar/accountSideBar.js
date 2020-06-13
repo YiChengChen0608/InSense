@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/accountSideBar.scss'
+import React from 'react'
+import './accountSideBar.scss'
 
 const AccountSideBar = () => {
   return (

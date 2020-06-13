@@ -1,5 +1,6 @@
-import React from 'react';
-import '../../styles/class/myClass/classes.scss'
+import React from 'react'
+import '../components/Classes/classes'
+
 const ClassItem = (props) => {
   return (
     <div className='d-flex class-item text-center'>

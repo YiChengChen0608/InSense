@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../styles/class/classDetail/detailContent.scss'
+import React from 'react'
+import './detailContent.scss'
 
 const DetailContent = (props) => {
   return (
