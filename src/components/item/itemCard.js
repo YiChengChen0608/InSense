@@ -10,10 +10,11 @@ const ItemCard = (props) => {
                 <div className="card-img">
                     <img src={props.src} />
                 </div>
-                <p className="card-name">{props.Name}</p>
-                <div className="card-content d-flex justify-content-between align-items-center"></div>
-                <p className="card-price">{props.Price}</p>
-                <FiBookmark className="saved-icon" />
+                <div className="card-content d-flex justify-content-evenly align-items-center">
+                    <p className="card-name text-center">{props.Name}</p>
+                    <FiBookmark className="saved-icon" />
+                </div>
+                <p className="card-price text-center">{props.Price}</p>
             </div>
         </>
     );
