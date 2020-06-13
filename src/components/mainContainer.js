@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/style.scss'
 
-const Container = (props) => {
+const mainContainer = (props) => {
   return (
     <div className={`${props.otherClass} container`}>
       {props.children}
@@ -9,4 +9,4 @@ const Container = (props) => {
   )
 }
 
-export default Container
+export default mainContainer

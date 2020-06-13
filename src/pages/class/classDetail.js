@@ -1,7 +1,7 @@
 import React from 'react';
 import ClassHead from '../../components/class/classHead'
 import classImg from '../../images/class1.jpg'
-import Container from '../../components/container'
+import MainContainer from '../../components/mainContainer'
 import DetailContent from '../../components/class/detailContent'
 import DetailFooter from '../../components/class/detailFooter'
 
@@ -23,10 +23,10 @@ const ClassDetail = () => {
   return (
     <>
       <ClassHead title={'LFP 客製化香水課程預約'} src={classImg} />
-      <Container>
+      <MainContainer>
         <DetailContent info={storeInfo} service={classService} description={classDescription} />
         <DetailFooter />
-      </Container>
+      </MainContainer>
     </>
   )
 }

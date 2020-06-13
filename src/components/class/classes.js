@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../styles/class/myClass/myClass.scss'
-import MyClassItem from './myClassItem'
-const MyClass = () => {
+import '../../styles/class/myClass/classes.scss'
+import ClassItem from './classItem'
+const Classes = () => {
   const myClass = {
     date: '2020/12/31',
     time: '14:00',
@@ -14,8 +14,8 @@ const MyClass = () => {
   return (
     <div className='class-wrapper'>
       <div className='change-btn d-flex'>
-        <a href='javascript:;' role='button'>已報名</a>
-        <a href='javascript:;' role='button'>課程紀錄</a>
+        <a href='' role='button'>已報名</a>
+        <a href='' role='button'>課程紀錄</a>
       </div>
       <div className='d-flex class-item text-center'>
         <p>日期</p>
@@ -25,17 +25,14 @@ const MyClass = () => {
         <p>課程單價</p>
         <p>報名人數</p>
       </div>
-      <MyClassItem classInfo={myClass} />
-      <MyClassItem classInfo={myClass} />
-      <MyClassItem classInfo={myClass} />
-      <MyClassItem classInfo={myClass} />
-      <MyClassItem classInfo={myClass} />
-      <MyClassItem classInfo={myClass} />
-
-
-
+      <ClassItem classInfo={myClass} />
+      <ClassItem classInfo={myClass} />
+      <ClassItem classInfo={myClass} />
+      <ClassItem classInfo={myClass} />
+      <ClassItem classInfo={myClass} />
+      <ClassItem classInfo={myClass} />
     </div>
   )
 }
 
-export default MyClass
+export default Classes
