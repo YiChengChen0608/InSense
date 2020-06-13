@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/class/myClass/myClass.scss'
-import MyClassItem from '../class/MyClassItem'
+import MyClassItem from './myClassItem'
 const MyClass = () => {
   const myClass = {
     date: '2020/12/31',

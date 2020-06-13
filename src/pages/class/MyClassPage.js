@@ -1,7 +1,7 @@
 import React from 'react';
-import Container from '../../components/Container'
-import MyAccountSideBar from '../../components/MyAccountSideBar'
-import MyClass from '../../components/class/MyClass'
+import Container from '../../components/container'
+import MyAccountSideBar from '../../components/myAccountSideBar'
+import MyClass from '../../components/class/myClass'
 import '../../styles/class/myClass/myClassPage.scss'
 
 const MyClassPage = () => {
