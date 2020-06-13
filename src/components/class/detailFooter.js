@@ -25,7 +25,7 @@ const DetailFooter = () => {
           <option value="18">18:00</option>
         </select>
       </div>
-      <a className='reservation-btn text-center' href='javascript:;' role='button'>預約</a>
+      <a className='reservation-btn text-center' href='' role='button'>預約</a>
     </>
   )
 }
