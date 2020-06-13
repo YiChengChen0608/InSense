@@ -2,13 +2,13 @@ import React from 'react'
 import 'normalize.css'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import MyClassPage from './pages/class/MyClassPage'
+import ClassList from './pages/class/ClassList'
 
 function App() {
   return (
     <>
       <Nav />
-      <MyClassPage />
+      <ClassList />
       <Footer />
     </>
   );
