@@ -39,4 +39,5 @@ $main-scarlet : #D94F06;
 .container{
   margin:0 auto;
   max-width: 1140px;
+  min-height: calc(100vh - 100px);
 }

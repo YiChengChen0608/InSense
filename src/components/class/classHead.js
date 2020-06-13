@@ -1,5 +1,4 @@
 import React from "react";
-import classBaner from "../../images/byredo-banner.png";
 import "../../styles/class/classList/classHead.scss";
 
 const ClassHead = (props) => {
@@ -7,7 +6,7 @@ const ClassHead = (props) => {
         <>
             <div className="class-head d-flex align-items-center">
                 <div className="headLeft">
-                    <img className="object-fit-cover" src={classBaner} />
+                    <img className="object-fit-cover" src={props.src} />
                 </div>
                 <div className="headRight">
                     <p className="headTitle">{props.title}</p>
