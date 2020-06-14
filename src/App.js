@@ -3,16 +3,17 @@ import 'normalize.css'
 import Nav from './components/Nav/nav'
 import Footer from './components/Footer/footer'
 import MainContent from './components/mainContent'
-import LandingPage from './components/LandingPage/landingPage'
-import IndexNewProduct from './components/IndexNewProduct/indexNewProduct'
+import IndexPage from './pages/indexPage'
+
+
 
 function App() {
+
   return (
     <>
       <Nav />
       <MainContent>
-        <LandingPage />
-        <IndexNewProduct />
+        <IndexPage />
       </MainContent>
       <Footer />
     </>
