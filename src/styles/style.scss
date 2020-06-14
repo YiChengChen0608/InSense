@@ -1,40 +1,61 @@
 /* variable area */
 
-$main-blue : #6381A8;
-$main-light-blue : #ACC5E1;
-$main-sky-blue : #828FB6;
-$main-white : #F5F5F5;
-$sub-white : #FFFFFF;
-$main-gray : #E6E6E6;
-$main-black : #555555;
-$main-orange : #F7B66C;
-$main-scarlet : #D94F06;
+$main-blue: #6381a8;
+$main-light-blue: #acc5e1;
+$main-sky-blue: #828fb6;
+$main-white: #f5f5f5;
+$sub-white: #ffffff;
+$main-gray: #e6e6e6;
+$main-black: #555555;
+$main-orange: #f7b66c;
+$main-scarlet: #d94f06;
 
+/* font*/
+$Roboto: "Roboto", "Noto Sans TC", sans-serif;
+$Libre: "Libre Baskerville", serif;
+
+* {
+    font-family: $Roboto;
+}
 /* css property */
 
-.d-flex{
-  display : flex;
+.d-flex {
+    display: flex;
 }
-.flex-wrap{
-  flex-wrap: wrap;
+.flex-wrap {
+    flex-wrap: wrap;
 }
-.text-center{
-  text-align : center;
+.text-center {
+    text-align: center;
 }
-.justify-content-center{
-  justify-content : center;
+.justify-content-center {
+    justify-content: center;
 }
-.justify-content-between{
-  justify-content : space-between;
+.justify-content-between {
+    justify-content: space-between;
 }
-.align-items-center{
-  align-items : center;
+.justify-content-around {
+    justify-content: space-around;
 }
-.object-fit-cover{
-  object-fit : cover;
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.align-items-center {
+    align-items: center;
+}
+.object-fit-cover {
+    object-fit: cover;
 }
 
 /* share style */
+
+.main-container{
+  min-height: 100%;
+  flex-direction: column;
+}
+.contain{
+  flex-grow: 1;
+}
 
 .container{
   margin:0 auto;

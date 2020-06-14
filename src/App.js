@@ -1,13 +1,17 @@
 import React from 'react'
 import 'normalize.css'
-import Nav from './components/Nav'
-import MyAccountSideBar from './components/MyAccountSideBar'
-import Footer from './components/Footer'
+import Nav from './components/Nav/nav'
+import Footer from './components/Footer/footer'
+import MainContent from './components/mainContent'
+import ClassDetail from './pages/classDetail'
+
 function App() {
   return (
     <>
       <Nav />
-      <MyAccountSideBar />
+      <MainContent>
+        <ClassDetail />
+      </MainContent>
       <Footer />
     </>
   );
