@@ -3,10 +3,8 @@ import '../styles/style.scss'
 
 const MainContent = (props) => {
   return (
-    <div className='main-container d-flex'>
-      <div className='contain'>
-        {props.children}
-      </div>
+    <div className='main-container'>
+      {props.children}
     </div>
   )
 }
