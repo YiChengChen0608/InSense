@@ -8,7 +8,9 @@ const IndexProductIntroL = (props) => {
         <p>{props.intro}</p>
       </div>
       <div className='d-flex product-content-container'>
-        <img src={props.src} />
+        <div className='img-container'>
+          <img src={props.src} />
+        </div>
         <div>
           <p className="sub-intro">代表作：</p>
           <h3>{props.subTitle}</h3>
