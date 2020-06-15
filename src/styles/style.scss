@@ -49,16 +49,18 @@ $Libre: "Libre Baskerville", serif;
 .object-fit-cover {
     object-fit: cover;
 }
-
+.position-relative{
+  position: relative;
+}
+.position-absolute{
+  position: absolute;
+}
 /* share style */
 
 .main-container{
-  min-height: 100%;
-  flex-direction: column;
+  min-height: calc(100vh - 100px);
 }
-.contain{
-  flex-grow: 1;
-}
+
 
 .container{
   margin:0 auto;
