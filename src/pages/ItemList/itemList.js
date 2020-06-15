@@ -1,6 +1,6 @@
 import React from "react";
 import ItemHead from "../../components/ItemHead/itemHead";
-import ItemFilter from "../../components/ItemFilter/itemFilter";
+// import ItemFilter from "../../components/ItemFilter/itemFilter";
 import itemBanner from "../../images/byredo-banner.png";
 import MyBreadcrumb from "../../components/myBreadCrumb";
 import MainContainer from "../../components/mainContainer";
@@ -18,7 +18,7 @@ const ItemList = () => {
     return (
         <>
             <ItemHead src={itemBanner} />
-            <ItemFilter />
+            {/* <ItemFilter /> */}
             <MainContainer otherClass="item-list-container d-flex flex-wrap justify-content-center">
                 <ItemCard
                     src={itemImg1}

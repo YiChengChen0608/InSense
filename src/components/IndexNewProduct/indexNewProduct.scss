@@ -1,0 +1,13 @@
+@import '../../styles/style.scss';
+
+  .new-product-container{
+    margin: 36px 0;
+    >p{
+      font-size: 32px;
+    }
+    div{
+      .icon-style{
+        font-size: 32px;
+      }
+    }
+  }

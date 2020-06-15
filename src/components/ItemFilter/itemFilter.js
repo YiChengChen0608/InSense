@@ -6,42 +6,25 @@ import { withRouter } from "react-router-dom";
 const ItemFilter = (props) => {
     return (
         <>
-           <aside>
-            <div class="leaving">
-                <label for="aside-toggle">
-                <FiX className="" />   
-                </label> 
-            </div>
-            <div class="form-row">
-                <div class="col">
-                    <div class="form-group">
-                        <input id="search" type="text" class="form-control">
-                        <label for="search" class="float-title">Search</label>
+            <section className="filter-bar">
+                <div className="filter-wrapper">
+                    <div className="filter-bar-element">
+                        <button className="filter-bar-opener" label="Filter">
+                            Filter
+                        </button>
+                        <section className="filter filter-bar-layer layer-opened">
+                            <div className="filter-layer layer">
+                                <div className="filter-layer-header">
+                                    <button className="close-icon">
+                                        <FiX className="close-icon" />
+                                    </button>
+                                    <h2></h2>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <button type="button" class="search">
-                        
-                    </button>
-                </div>
-            </div>
-            <div>
-                <div class="custom-control custom-radio custom-control-inline mr-5">
-                    <input type="radio" id="Woman" name="gender" class="custom-control-input">
-                    <label class="custom-control-label" for="Woman">Woman</label>
-                </div>
-    
-                <div class="custom-control custom-radio custom-control-inline ml-5">
-                    <input type="radio" id="Man" name="gender" class="custom-control-input">
-                    <label class="custom-control-label" for="Man">Man</label>
-                </div>
-
-                <div class="custom-control custom-radio custom-control-inline ml-5">
-                    <input type="radio" id="All" name="gender" class="custom-control-input">
-                    <label class="custom-control-label" for="All">All</label>
-                </div>
-            </div>
-        </aside>
+            </section>
         </>
     );
 };
