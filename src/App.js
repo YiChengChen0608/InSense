@@ -1,25 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
 import "normalize.css";
-import Nav from "./components/nav";
-import Footer from "./components/footer";
-
-import ItemList from "./pages/item/itemList";
+import Nav from "./components/Nav/nav";
+import Footer from "./components/Footer/footer";
+import MainContent from "./components/mainContent";
+import ItemList from "./pages/ItemList/itemList";
 
 function App() {
     return (
-        <Router>
-            <>
-                <Nav />
-                <Switch>
-                    <Route path="/itemlist/:brand">
-                        <ItemList />
-                    </Route>
-                </Switch>
-                <Footer />
-            </>
-        </Router>
+        <>
+            <Nav />
+            <MainContent>
+                <ItemList />
+            </MainContent>
+            <Footer />
+        </>
     );
 }
 
