@@ -16,7 +16,9 @@ const IndexProductIntroR = (props) => {
           </div>
           <a className='text-center' role='button'>立即選購</a>
         </div>
-        <img src={props.src} />
+        <div className='img-container'>
+          <img src={props.src} />
+        </div>
       </div>
     </div>
   )

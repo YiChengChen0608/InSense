@@ -1,47 +1,106 @@
 import React, { useState, useEffect } from 'react'
-import { FiMenu, FiSearch, FiUser, FiShoppingCart, FiX } from 'react-icons/fi'
+import { FiMenu, FiSearch, FiUser, FiShoppingCart, FiX, FiChevronRight } from 'react-icons/fi'
 import './nav.scss'
-
+import IndexMenuItem from '../IndexMenuItem/indexMenuItem'
+import IndexMenuSideBar from '../IndexMenuSideBar/indexMenuSideBar'
 const Nav = () => {
+  const [subMenu, setSubMenu] = useState([])
+  // test info
+  const menuItem = [
+    { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
+    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'inside' }
+  ]
+  const brandItem = [
+    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+    , { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+  ]
+  const bodyItem = [
+    { itemName: '代理品牌', name: 'brand' }, { itemName: '代理品牌', name: 'brand' }
+  ]
+  const selfItem = [
+    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'BYREDO', name: 'byredo' }
+  ]
+  const insideItem = [
+    { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+  ]
 
-  let leftClickBtn = (event) => {
-    document.querySelector('.burger-item').classList.remove('burger-close')
-    document.querySelector('.burger-item').classList.add('burger-open')
+  //  event handler
+
+  let changeSubMenu = (name) => {
+    setSubMenu(name)
+    document.querySelector('.sub-menu').style['left'] = '288px'
+  }
+  let leftSideBar = (event) => {
+    switch (event.currentTarget.dataset.name) {
+      case 'menu':
+        document.querySelector('.menu-item').classList.remove('burger-close')
+        document.querySelector('.menu-item').classList.add('burger-open')
+        document.querySelector('.sub-menu').style['left'] = '0'
+        break
+      case 'search':
+        document.querySelector('.search-block').classList.remove('burger-close')
+        document.querySelector('.search-block').classList.add('burger-open')
+        break
+      case 'brand':
+        changeSubMenu(brandItem)
+        break
+      case 'body':
+        changeSubMenu(bodyItem)
+        break
+      case 'self':
+        changeSubMenu(selfItem)
+        break
+      case 'inside':
+        changeSubMenu(insideItem)
+        break
+    }
   }
 
   let burgerClose = (event) => {
-    document.querySelector('.burger-item').classList.remove('burger-open')
-    document.querySelector('.burger-item').classList.add('burger-close')
+    document.querySelector('.menu-item').classList.remove('burger-open')
+    document.querySelector('.menu-item').classList.add('burger-close')
+    document.querySelector('.search-block').classList.remove('burger-open')
+    document.querySelector('.search-block').classList.add('burger-close')
+    document.querySelector('.sub-menu').style['left'] = '-288px'
   }
 
   useEffect(() => {
-
-  }, [])
+  })
 
   return (
     <>
       <nav className='nav d-flex justify-content-between align-items-center'>
-        <div className='position-absolute burger-item d-flex align-items-center justify-content-around'>
-          <div className='menu-item position-absolute d-flex align-items-center'>
-            <span className='burger-close' onClick={burgerClose}><FiX /></span>
+        {/* Menu  */}
+        <div className='position-absolute menu-item d-flex align-items-center justify-content-around'>
+          <div className='menu-title position-absolute d-flex align-items-center'>
+            <span className='menu-close' onClick={burgerClose}><FiX /></span>
             <p className='menu-char'>MENU</p>
           </div>
           <ul>
-            <li>代理品牌</li>
-            <li>身體保養</li>
-            <li>個人香氛</li>
-            <li>居家生活</li>
-            <li>尋找禮物</li>
-            <li>體驗課程</li>
+            {menuItem.map((item, index) => {
+              return <IndexMenuItem menuItem={item} key={index} func={leftSideBar} />
+            })}
           </ul>
           <ul>
-            <li>關於我們</li>
-            <li>幫助中心</li>
+            <li className='d-flex align-items-center'><FiChevronRight className='chevron-right' />關於我們</li>
+            <li className='d-flex align-items-center'><FiChevronRight className='chevron-right' />幫助中心</li>
           </ul>
         </div>
+        <IndexMenuSideBar array={subMenu} />
+        {/* Search */}
+        <div className='position-absolute search-block'>
+          <div className='search-title position-absolute d-flex align-items-center'>
+            <span className='menu-close' onClick={burgerClose}><FiX /></span>
+            <p className='menu-char'>Search</p>
+          </div>
+          <div className='d-flex serach-input position-absolute'>
+            <input type='text' placeholder='search' />
+            <FiSearch />
+          </div>
+        </div>
         <div className='leftItem'>
-          <a onClick={leftClickBtn} role='button'><FiMenu /></a>
-          <a onClick='' role='button'><FiSearch /></a>
+          <a onClick={leftSideBar} role='button' data-name='menu'><FiMenu /></a>
+          <a onClick={leftSideBar} role='button' data-name='search'><FiSearch /></a>
         </div>
         <p>InSense</p>
         <div className='rightItem'>
