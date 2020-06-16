@@ -1,7 +1,7 @@
 import React from "react";
 import ItemHead from "../../components/ItemHead/itemHead";
 import itemBanner from "../../images/byredo-banner.png";
-import MyBreadcrumb from "../../components/myBreadCrumb";
+// import MyBreadcrumb from "../../components/myBreadCrumb";
 import ItemCard from "../../components/ItemCard/itemCard";
 import itemImg1 from "../../images/P0001.png";
 import itemImg2 from "../../images/P0002.png";
