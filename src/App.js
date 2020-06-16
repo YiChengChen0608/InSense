@@ -1,14 +1,18 @@
 import React from 'react'
 import {Provider} from "react-redux"
 import 'normalize.css'
-import Nav from './components/nav'
-import Footer from './components/footer'
-import ClassDetail from './pages/class/classDetail'
+import Nav from './components/Nav/nav'
+import Footer from './components/Footer/footer'
+import MainContent from './components/mainContent'
+import IndexPage from './pages/indexPage'
 function App() {
+
   return (
     <>
       <Nav />
-      <ClassDetail />
+      <MainContent>
+        <IndexPage />
+      </MainContent>
       <Footer />
     </>
   );
