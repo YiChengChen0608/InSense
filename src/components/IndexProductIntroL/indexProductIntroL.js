@@ -9,7 +9,7 @@ const IndexProductIntroL = (props) => {
       </div>
       <div className='d-flex product-content-container'>
         <div className='img-container'>
-          <img src={props.src} />
+          <img className={props.imgBright ? props.imgBright : ''} src={props.src} />
         </div>
         <div>
           <p className="sub-intro">代表作：</p>
