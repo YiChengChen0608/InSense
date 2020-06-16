@@ -1,5 +1,6 @@
 import React from "react";
 import "./itemHead.scss";
+import { withRouter } from "react-router-dom";
 
 const ItemHead = (props) => {
     return (
@@ -16,4 +17,4 @@ const ItemHead = (props) => {
     );
 };
 
-export default ItemHead;
+export default withRouter(ItemHead);
