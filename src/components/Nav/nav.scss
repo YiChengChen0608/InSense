@@ -103,11 +103,14 @@
         }
       }
     }
-    .burger-open{
+    .left-side-bar-open{
       left:0;
     }
-    .burger-close{
-      left:-288px;
+    .left-sub-menu-open{
+      left:288px;
+    }
+    .right-side-bar-open {
+      right: 0;
     }
     div{
       a{
