@@ -1,0 +1,39 @@
+@import '../../styles/style.scss';
+
+
+.class-head{
+  width: 100%;
+  .headLeft{
+    width: 60%;
+    height: 400px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .headRight{
+    padding-left: 24px;
+    padding-bottom : 72px;
+    .headTitle{
+      font-size: 28px;
+      padding-bottom: 24px;
+      color:$main-blue;
+    }
+    .headContent{
+      color:$main-blue;
+      line-height: 16px;
+    }
+  }
+}
+
+@media (max-width:768px){
+  .class-head{
+    .headLeft{
+      width: 100%;
+      height: auto;
+    }
+    .headRight{
+      padding-bottom:0;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../styles/style.scss';
+
+.index-subscribe-container{
+  margin:0 auto;
+  padding:32px 0;
+  p{
+    font-size: 20px;
+    color:$main-black;
+  }
+  input{
+    width: 20%;
+    border: 0;
+    border-bottom: 1px solid $main-black;
+    &::placeholder{
+      text-align: center;
+    }
+  }
+  a{
+    display: block;
+    max-width: 190px;
+    min-height: 50px;
+    border:1px solid $main-blue;
+    line-height: 50px;
+    font-size: 20px;
+    color: $main-blue;
+    margin: 32px auto;
+  }
+}

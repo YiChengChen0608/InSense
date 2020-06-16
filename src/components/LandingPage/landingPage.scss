@@ -1,0 +1,34 @@
+@import '../../styles/style.scss';
+
+.landing-page-container{
+  position: relative;
+  width: 100%;
+  height: 50vw;
+  object-fit: cover;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  .landing-page-content{
+    z-index: 0;
+    position: absolute;
+    left:50%;
+    top:45%;
+    transform: translate(-50%,-50%);
+    color:$sub-white;
+    text-align: center;
+    >p{
+      font-size: 56px;
+      margin:0;
+      margin-top: 28px;
+    }
+    .landing-page-subContent{
+      margin-top:56px;
+      padding-top:56px;
+      p{
+        margin:0;
+        margin-bottom:16px;
+      }
+    }
+  }
+}

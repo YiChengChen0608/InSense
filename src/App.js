@@ -1,19 +1,50 @@
-import React from 'react'
-import 'normalize.css'
-import Nav from './components/nav'
-import ClassCard from './components/class/classCard'
-import classImg from './images/class1.jpg'
-import Footer from './components/footer'
+import React from "react";
 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "normalize.css";
+
+//模板
+import Nav from "./components/Nav/nav";
+import Footer from "./components/Footer/footer";
+import MainContent from "./components/mainContent";
+
+//內頁
+import IndexPage from "./pages/indexPage";
+import ClassDetail from "./pages/classDetail";
+import ItemList from "./pages/ItemList/itemList";
+import ClassPage from "./pages/ClassPage/classPage";
+import ClassList from "./pages/ClassList/classList";
 
 function App() {
   return (
-    <>
-      <Nav />
-      <ClassCard src={classImg} date={'2020/12/31'} className={'LFP 客製化香水課程預約'} />
-      <Footer />
-    </>
+    <Router>
+      <>
+        <Nav />
+        <MainContent>
+          <Switch>
+            <Route path="/classlist">
+              <ClassList />
+            </Route>
+            <Route path="/itemlist">
+              <ItemList />
+            </Route>
+            <Route path="/classdetail">
+              <ClassDetail />
+            </Route>
+            <Route path="/account">
+              <Route path="/account/classpage">
+                <ClassPage />
+              </Route>
+            </Route>
+            <Route path="/">
+              <IndexPage />
+            </Route>
+          </Switch>
+        </MainContent>
+        <Footer />
+      </>
+    </Router>
   );
-}
 
+}
 export default App;
