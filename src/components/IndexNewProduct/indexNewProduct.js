@@ -27,6 +27,11 @@ const IndexNewProduct = () => {
       name: 'BYREDO 逝去之愛香氛蠟燭',
       price: 'NT$ 2200',
       src: newest3
+    },
+    {
+      name: 'BYREDO 逝去之愛香氛蠟燭',
+      price: 'NT$ 2200',
+      src: newest3
     }
   ]
 

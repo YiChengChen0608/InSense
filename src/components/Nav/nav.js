@@ -8,21 +8,19 @@ const Nav = () => {
   // test info
   const menuItem = [
     { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
-    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'inside' }
+    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' }
   ]
   const brandItem = [
-    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
-    , { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+    , { itemName: 'Jo Malone London', name: 'jomalonelondon' }, { itemName: 'LeLabo', name: 'lelabo' }
   ]
   const bodyItem = [
-    { itemName: '代理品牌', name: 'brand' }, { itemName: '代理品牌', name: 'brand' }
+    { itemName: '沐浴清潔', name: '' }, { itemName: '乳液與保養油', name: '' }, { itemName: '手部保養', name: '' }
   ]
   const selfItem = [
-    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'BYREDO', name: 'byredo' }
+    { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
   ]
-  const insideItem = [
-    { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
-  ]
+
 
   //  event handler
 
@@ -49,9 +47,6 @@ const Nav = () => {
         break
       case 'self':
         changeSubMenu(selfItem)
-        break
-      case 'inside':
-        changeSubMenu(insideItem)
         break
     }
   }

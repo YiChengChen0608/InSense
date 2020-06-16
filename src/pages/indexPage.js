@@ -21,7 +21,8 @@ const IndexPage = () => {
     subTitle: 'CHANEL GABRIELLE 嘉柏麗香水',
     subContent: `香奈兒嘉柏麗香水由四種花朵組成純粹的花香調：
                 帶著異國情調的馥郁茉莉花、綻放明亮果香調的依蘭依蘭，
-                加上清新璀璨的橙花，以及充滿女人味的格拉斯晚香玉。`
+                加上清新璀璨的橙花，以及充滿女人味的格拉斯晚香玉。`,
+    imgBright: 'img-bright'
   }
   const productInfo2 = {
     src: productImg2,
@@ -57,7 +58,8 @@ const IndexPage = () => {
       <IndexNewProduct />
       <IndexFragranceBanner />
       <IndexProductIntroL title={productInfo1.title} intro={productInfo1.intro}
-        src={productInfo1.src} subTitle={productInfo1.subTitle} subContent={productInfo1.subContent} />
+        src={productInfo1.src} subTitle={productInfo1.subTitle} subContent={productInfo1.subContent}
+        imgBright={productInfo1.imgBright} />
       <IndexProductIntroR title={productInfo2.title} intro={productInfo2.intro}
         src={productInfo2.src} subTitle={productInfo2.subTitle} subContent={productInfo2.subContent} />
       <IndexProductIntroL title={productInfo3.title} intro={productInfo3.intro}

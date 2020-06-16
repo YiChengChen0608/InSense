@@ -3,17 +3,17 @@ import "normalize.css";
 import Nav from "./components/Nav/nav";
 import Footer from "./components/Footer/footer";
 import MainContent from "./components/mainContent";
-import ItemList from "./pages/ItemList/itemList";
+import IndexPage from "./pages/indexPage";
 
 function App() {
-    return (
-        <>
-            <Nav />
-            <MainContent>
-                <ItemList />
-            </MainContent>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Nav />
+      <MainContent>
+        <IndexPage />
+      </MainContent>
+      <Footer />
+    </>
+  );
 }
 export default App;
