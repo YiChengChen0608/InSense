@@ -12,17 +12,20 @@
             width: 100%;
         }
     }
-
-    .saved-icon {
-        display: none;
-        font-size: 24px;
-        color: $main-sky-blue;
-    }
 }
-.card-wrapper:hover {
-    .saved-icon {
-        display: block;
-    }
+
+.hover-wrapper {
+    max-width: 250px;
+    font-size: 14px;
+    position: relative;
+}
+
+.hover-wrapper .saved-icon {
+    position: absolute;
+    top: 50px;
+    left: -58px;
+    font-size: 20px;
+    color: $main-orange;
 }
 .card-content {
     font-size: 14px;

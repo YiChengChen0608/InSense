@@ -1,21 +1,20 @@
-import React from 'react'
-import {Provider} from "react-redux"
-import 'normalize.css'
-import Nav from './components/Nav/nav'
-import Footer from './components/Footer/footer'
-import MainContent from './components/mainContent'
-import IndexPage from './pages/indexPage'
-function App() {
+import React from "react";
+import "normalize.css";
+import Nav from "./components/Nav/nav";
+import Footer from "./components/Footer/footer";
+import MainContent from "./components/mainContent";
+import ItemList from "./pages/ItemList/itemList";
 
-  return (
-    <>
-      <Nav />
-      <MainContent>
-        <IndexPage />
-      </MainContent>
-      <Footer />
-    </>
-  );
+function App() {
+    return (
+        <>
+            <Nav />
+            <MainContent>
+                <ItemList />
+            </MainContent>
+            <Footer />
+        </>
+    );
 }
 
 export default App;
