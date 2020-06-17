@@ -33,21 +33,20 @@ const IndexNewProduct = () => {
         <MainContainer>
             <div className="text-center new-product-container">
                 <p>最新商品</p>
-                <div className="d-flex align-items-center justify-content-center">
+                <div className="d-flex  align-items-center justify-content-center">
                     <FiChevronLeft className="icon-style" />
-                    {ItemCardInfo.map((info, index) => {
-                        return (
-                            <ItemCard
-                                key={index}
-                                Name={info.name}
-                                Price={info.price}
-                                src={info.src}
-                            />
-                        );
-                    })}
-                    {/* <ItemCard Name={'BYREDO 吉普賽之水淡香精'} Price={'NT$ 3900'} src={newest1} />
-          <ItemCard Name={'diptyque 磨砂護膚潔手液'} Price={'NT$ 2000'} src={newest2} />
-          <ItemCard Name={'BYREDO 逝去之愛香氛蠟燭'} Price={'NT$ 2200'} src={newest3} /> */}
+                    <div className="d-flex">
+                        {ItemCardInfo.map((info, index) => {
+                            return (
+                                <ItemCard
+                                    key={index}
+                                    Name={info.name}
+                                    Price={info.price}
+                                    src={info.src}
+                                />
+                            );
+                        })}
+                    </div>
                     <FiChevronRight className="icon-style" />
                 </div>
             </div>

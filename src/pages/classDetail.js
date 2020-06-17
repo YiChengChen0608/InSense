@@ -26,7 +26,7 @@ const ClassDetail = () => {
         <>
             <ClassHead
                 title={"LFP 客製化香水課程預約"}
-                src="/images/banner/class1.jpg"
+                src={"/images/banner/class1.jpg"}
             />
             <MainContainer>
                 <DetailContent
