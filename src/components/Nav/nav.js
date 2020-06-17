@@ -31,28 +31,28 @@ const Nav = ({ location }) => {
   ]
 
   //  event handler
-
   let SideBar = (event) => {
     switch (event.currentTarget.dataset.name) {
-      case 'brand':
-        setSubMenu(brandItem)
-        setSubMenuToggle(true)
-        break
-      case 'body':
-        setSubMenu(bodyItem)
-        setSubMenuToggle(true)
-        break
-      case 'self':
-        setSubMenu(selfItem)
-        setSubMenuToggle(true)
-        break
+      case "brand":
+        setSubMenu(brandItem);
+        setSubMenuToggle(true);
+        break;
+      case "body":
+        setSubMenu(bodyItem);
+        setSubMenuToggle(true);
+        break;
+      case "self":
+        setSubMenu(selfItem);
+        setSubMenuToggle(true);
+        break;
     }
-  }
-
+  };
   let closeLeftSideBar = () => {
-    setSubMenuToggle(false)
-    setBurgerToggle(false)
-  }
+    setSubMenuToggle(false);
+    setBurgerToggle(false);
+  };
+
+
 
   useEffect(() => {
     window.addEventListener('scroll', function () {
@@ -61,7 +61,6 @@ const Nav = ({ location }) => {
   }, [])
 
   return (
-
     <>
       {(() => {
         console.log("render")
