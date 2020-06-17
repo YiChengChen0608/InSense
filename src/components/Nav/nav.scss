@@ -10,6 +10,7 @@
   z-index: 1;
   top:0;
   left: 0;
+  transition: .5s;
     &.scroll-down{
       background-image: none;
       background: rgba(130, 143, 182,.9);
@@ -23,9 +24,9 @@
       height: 100vh;
       overflow: scroll;
       transition: .5s;
+      color: $main-black;
       .menu-title{
         width: 100%;
-        color:$main-black;
         left: 0;
         top:0;
         height: 60px;
@@ -41,28 +42,27 @@
           margin-left: 8px;
           font-weight: 200;
         }
-        ul {
-            list-style: none;
-            color: $main-black;
-            padding: 0;
-            margin: 0;
-            line-height: 36px;
-            li {
-                margin: 12px 0;
-                width: 144px;
-                margin-right: 24px;
-                padding-left: 20px;
-                cursor: pointer;
-                .chevron-right {
-                    width: 0;
-                    transition: 0.5s;
-                }
-                &:hover .chevron-right {
-                    width: 32px;
-                }
-            }
-        }
       }
+      ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          line-height: 36px;
+          li {
+              margin: 12px 0;
+              width: 144px;
+              margin-right: 24px;
+              padding-left: 20px;
+              cursor: pointer;
+              .chevron-right {
+                  width: 0;
+                  transition: 0.5s;
+              }
+              &:hover .chevron-right {
+                  width: 32px;
+              }
+          }
+        }
     }
     .search-block {
         top: 0;

@@ -62,9 +62,6 @@ const Nav = ({ location }) => {
 
   return (
     <>
-      {(() => {
-        console.log("render")
-      })()}
       <nav className={`${location.pathname === '/' ? 'position-fix' : 'position-sticky'} nav d-flex justify-content-between align-items-center ${scrollTop ? "scroll-down" : ""}`}>
         {/* Menu  */}
         <div className={`position-absolute menu-item d-flex align-items-center justify-content-around ${burgerToggle ? 'left-side-bar-open' : ''}`}>
