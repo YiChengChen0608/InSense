@@ -3,6 +3,7 @@ import ClassHead from "../components/ClassHead/classHead";
 import MainContainer from "../components/mainContainer";
 import DetailContent from "../components/ClassDetailContent/detailContent";
 import DetailFooter from "../components/ClassDetailFooter/detailFooter";
+import { withRouter } from "react-router-dom";
 
 const ClassDetail = () => {
     const storeInfo = {
@@ -26,7 +27,7 @@ const ClassDetail = () => {
         <>
             <ClassHead
                 title={"LFP 客製化香水課程預約"}
-                src={"/images/banner/class1.jpg"}
+                src={"/images/class/class1.jpg"}
             />
             <MainContainer>
                 <DetailContent
@@ -40,4 +41,4 @@ const ClassDetail = () => {
     );
 };
 
-export default ClassDetail;
+export default withRouter(ClassDetail);
