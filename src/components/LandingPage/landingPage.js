@@ -1,21 +1,20 @@
-import React from 'react'
-import LandingPageImg from '../../images/mainpic03.jpg'
+import React from "react";
 import { FiChevronDown } from "react-icons/fi";
-import './landingPage.scss'
+import "./landingPage.scss";
 const LandingPage = () => {
-  return (
-    <div className='landing-page-container'>
-      <img src={LandingPageImg} />
-      <div className='landing-page-content'>
-        <p>SENSE OF ELEGANCE</p>
-        <p>SENSE OF FRAGRANCE</p>
-        <div className='landing-page-subContent'>
-          <p>Discover More</p>
-          <FiChevronDown />
+    return (
+        <div className="landing-page-container">
+            <img src="/images/banner/mainpic03.jpg" />
+            <div className="landing-page-content">
+                <p class="slogan1">SENSE OF ELEGANCE</p>
+                <p class="slogan2">SENSE OF FRAGRANCE</p>
+                <div className="landing-page-subContent">
+                    <p>Discover More</p>
+                    <FiChevronDown />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
-}
+    );
+};
 
-export default LandingPage
+export default LandingPage;

@@ -1,34 +1,49 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 
-.landing-page-container{
-  position: relative;
-  width: 100%;
-  height: 50vw;
-  object-fit: cover;
-  img{
+.landing-page-container {
+    position: relative;
     width: 100%;
-    height: 100%;
-  }
-  .landing-page-content{
-    z-index: 0;
-    position: absolute;
-    left:50%;
-    top:45%;
-    transform: translate(-50%,-50%);
-    color:$sub-white;
-    text-align: center;
-    >p{
-      font-size: 56px;
-      margin:0;
-      margin-top: 28px;
+    height: 56vw;
+    object-fit: cover;
+    img {
+        width: 100%;
+        height: 100%;
     }
-    .landing-page-subContent{
-      margin-top:56px;
-      padding-top:56px;
-      p{
-        margin:0;
-        margin-bottom:16px;
-      }
+    .landing-page-content {
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(200, 200, 200, 0.5);
+        z-index: 0;
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        transform: translate(-50%, -50%);
+        color: $sub-white;
+        text-align: center;
+        > p {
+            width: 700px;
+            text-align: center;
+            font-size: 50px;
+            font-family: $Frank;
+            color: rgb(53, 53, 53);
+            margin: 0;
+            margin-top: 28px;
+        }
+        .slogan1 {
+            margin: 20vw auto 30px;
+        }
+
+        .slogan2 {
+            margin: 1vw auto 0;
+        }
+        .landing-page-subContent {
+            margin-top: 56px;
+            padding-top: 56px;
+            p {
+                margin: 0;
+                margin-bottom: 16px;
+            }
+        }
     }
-  }
 }

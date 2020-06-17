@@ -1,19 +1,19 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 
-.banner-container{
-  position: relative;
-  width: 95%;
-  min-height: 600px;
-  margin:36px auto;
-  background: url('../../images/perfume-main-pic.jpeg');
-  background-size: cover;
-  div{
-    position: absolute;
-    left: 50%;
-    top:30%;
-    color:$main-black;
-    .banner-title{
-      font-size: 32px;
+.banner-container {
+    position: relative;
+    width: 95%;
+    min-height: 600px;
+    margin: 36px auto;
+    background: url("/images/banner/perfume-main-pic.jpeg");
+    background-size: cover;
+    div {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        color: $main-black;
+        .banner-title {
+            font-size: 32px;
+        }
     }
-  }
 }
