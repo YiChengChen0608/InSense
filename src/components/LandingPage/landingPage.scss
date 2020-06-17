@@ -20,31 +20,36 @@
     h1 {
         width: 700px;
         text-align: center;
-        font-size: 46px;
+        font-size: 45px;
+        font-weight: 300;
         font-style: normal;
         font-family: $Frank;
-        font-weight: 100;
+        line-height: 1em;
+        letter-spacing: 3px;
     }
     // .logo {
     //     font-family: $Libre;
     //     font-weight: 300;
     // }
     .slogan1 {
-        margin: 20vw auto 30px;
+        color: rgb(37, 37, 37);
+        margin: 18vw auto 30px;
         // margin: 30px auto;
     }
 
     .slogan2 {
-        margin: 1vw auto 0;
+        color: rgb(37, 37, 37);
+        margin: 2vw auto 10px;
     }
     .discover {
-        color: rgb(53, 53, 53);
+        color: rgb(46, 46, 46);
         cursor: pointer;
         bottom: 200px;
-        margin: 5% auto;
+        margin: 6% auto;
         width: 400px;
         p {
             margin: 3% 0;
+            font-size: 18px;
         }
         @keyframes discover {
             0% {

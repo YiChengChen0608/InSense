@@ -9,7 +9,7 @@ const IndexNewProduct = () => {
     const ItemCardInfo = [
         {
             name: "BYREDO 吉普賽之水淡香精",
-            price: "NT$ 3900",
+            price: "NT$ 6200",
             src: "/images/banner/newest1.png",
         },
         {
@@ -32,7 +32,9 @@ const IndexNewProduct = () => {
     return (
         <MainContainer>
             <div className="text-center new-product-container">
-                <p>最新商品</p>
+                <h1 className="d-flex justify-content-center align-items-center">
+                    <span>最新商品</span>
+                </h1>
                 <div className="d-flex  align-items-center justify-content-center">
                     <FiChevronLeft className="icon-style" />
                     <div className="d-flex">

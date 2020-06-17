@@ -20,6 +20,10 @@ $Frank: "Frank Ruhl Libre", serif;
 }
 /* css property */
 
+body{
+  overflow-x: hidden;
+}
+
 .d-flex {
     display: flex;
 }
@@ -58,6 +62,12 @@ $Frank: "Frank Ruhl Libre", serif;
 }
 .position-absolute {
     position: absolute;
+}
+.position-fix{
+  position: fixed;
+}
+.position-sticky{
+  position: sticky;
 }
 /* share style */
 
