@@ -5,13 +5,15 @@ import IndexMenuItem from '../IndexMenuItem/indexMenuItem'
 import IndexMenuSideBar from '../IndexMenuSideBar/indexMenuSideBar'
 import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
 import IndexLogin from '../IndexLogin/indexLogin'
+import { withRouter } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ location }) => {
   const [subMenu, setSubMenu] = useState([])
   const [burgerToggle, setBurgerToggle] = useState(false)
   const [subMenuToggle, setSubMenuToggle] = useState(false)
   const [searchToggle, setSearchToggle] = useState(false)
   const [userToggle, setUserToggle] = useState(false)
+  const [scrollTop, setScrollTop] = useState(false)
   // test info
   const menuItem = [
     { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
@@ -27,7 +29,6 @@ const Nav = () => {
   const selfItem = [
     { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
   ]
-
 
   //  event handler
 
@@ -53,9 +54,19 @@ const Nav = () => {
     setBurgerToggle(false)
   }
 
+  useEffect(() => {
+    window.addEventListener('scroll', function () {
+      this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false)
+    })
+  }, [])
+
   return (
+
     <>
-      <nav className='nav d-flex justify-content-between align-items-center'>
+      {(() => {
+        console.log("render")
+      })()}
+      <nav className={`${location.pathname === '/' ? 'position-fix' : 'position-sticky'} nav d-flex justify-content-between align-items-center ${scrollTop ? "scroll-down" : ""}`}>
         {/* Menu  */}
         <div className={`position-absolute menu-item d-flex align-items-center justify-content-around ${burgerToggle ? 'left-side-bar-open' : ''}`}>
           <div className='menu-title position-absolute d-flex align-items-center'>
@@ -96,10 +107,9 @@ const Nav = () => {
           <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser /></a>
           <a onClick='' role='button'><FiShoppingCart /></a>
         </div>
-
-      </nav>
+      </nav >
     </>
   )
 }
 
-export default Nav
+export default withRouter(Nav)
