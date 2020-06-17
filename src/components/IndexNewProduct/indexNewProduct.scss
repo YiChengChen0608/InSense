@@ -1,9 +1,29 @@
 @import '../../styles/style.scss';
 
   .new-product-container{
-    margin: 36px 0;
-    >p{
+    margin: 36px 0px;
+    >h1{
       font-size: 32px;
+      color: $main-black;
+      &::before{
+        content: "";
+        display: block;
+        width: 60px;
+        height: 1px;
+        background:$main-black ;
+      }
+      &::after{
+        content: "";
+        display: block;
+        width: 60px;
+        height: 1px;
+        background:$main-black ;
+      }
+      span{
+        font-weight: 300;
+        margin: 0 20px;
+        
+      }
     }
     div{
       .icon-style{
@@ -11,3 +31,4 @@
       }
     }
   }
+  

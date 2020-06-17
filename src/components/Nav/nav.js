@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { FiMenu, FiSearch, FiUser, FiShoppingCart, FiX, FiChevronRight } from 'react-icons/fi'
+import { Link, withRouter } from "react-router-dom";
 import './nav.scss'
 import IndexMenuItem from '../IndexMenuItem/indexMenuItem'
 import IndexMenuSideBar from '../IndexMenuSideBar/indexMenuSideBar'
 import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
 import IndexLogin from '../IndexLogin/indexLogin'
-import { withRouter } from "react-router-dom";
+import IndexShoppingCart from '../IndexShoppingCart/indexShoppingCart'
 
 const Nav = ({ location }) => {
   const [subMenu, setSubMenu] = useState([])
@@ -20,7 +21,7 @@ const Nav = ({ location }) => {
     { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' }
   ]
   const brandItem = [
-    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+    { itemName: 'BYREDO', name: 'byredo', pathUrl: '/itemlist' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
     , { itemName: 'Jo Malone London', name: 'jomalonelondon' }, { itemName: 'LeLabo', name: 'lelabo' }
   ]
   const bodyItem = [
@@ -60,9 +61,10 @@ const Nav = ({ location }) => {
     })
   }, [])
 
+
   return (
     <>
-      <nav className={`${location.pathname === '/' ? 'position-fix' : 'position-sticky'} nav d-flex justify-content-between align-items-center ${scrollTop ? "scroll-down" : ""}`}>
+      <nav className={`${location.pathname === '/' ? 'position-fix' : 'position-sticky'} nav d-flex justify-content-between align-items-center ${scrollTop || location.pathname !== "/" ? "scroll-down" : ""}`}>
         {/* Menu  */}
         <div className={`position-absolute menu-item d-flex align-items-center justify-content-around ${burgerToggle ? 'left-side-bar-open' : ''}`}>
           <div className='menu-title position-absolute d-flex align-items-center'>
@@ -95,7 +97,7 @@ const Nav = ({ location }) => {
           <a onClick={() => setBurgerToggle(true)} role='button'><FiMenu /></a>
           <a onClick={() => setSearchToggle(true)} role='button' data-name='search'><FiSearch /></a>
         </div>
-        <p>InSense</p>
+        <p className='index-nav-title'>InSense</p>
         <IndexRightSideBar btnClose={() => setUserToggle(false)} state={userToggle}>
           <IndexLogin />
         </IndexRightSideBar>

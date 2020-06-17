@@ -1,1 +1,23 @@
 @import '../../styles/style.scss';
+
+.index-shopping-cart-container{
+  width: 100%;
+  .index-shopping-cart-title{
+    width: 100%;
+    line-height: 16px;
+    text-align: center;
+    color:$main-blue;
+    padding:32px 0;
+    border-bottom: 1px solid $main-black;
+
+  }
+  a{
+    display: block;
+    max-width: 240px;
+    min-height: 60px;
+    background: $main-orange;
+    line-height: 60px;
+    font-size: 20px;
+    color: $main-black;
+  }
+}

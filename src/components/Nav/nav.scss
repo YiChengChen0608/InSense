@@ -6,19 +6,19 @@
   background-image: linear-gradient(to bottom,rgba(205,211,235,.8) 5%,rgba(169,184,225,0) 50%);
   background-color: rgba(255,255,255,0);
   font-size: 18px;
-  color:$main-white;
   z-index: 1;
   top:0;
   left: 0;
   transition: .5s;
     &.scroll-down{
       background-image: none;
-      background: rgba(130, 143, 182,.9);
+      background: $main-sky-blue;
+      opacity: .9;
     }
     .menu-item{
       flex-direction: column;
       top:0;
-      background: $main-white;
+      background: $sub-white;
       left:-288px;
       width: 288px;
       height: 100vh;
@@ -106,24 +106,11 @@
             }
         }
     }
-    .left-side-bar-open {
-        left: 0;
-    }
-    .left-sub-menu-open {
-        left: 288px;
-    }
-    .right-side-bar-open {
-        right: 0;
-    }
-    div {
-        a {
-            padding: 16px;
-            color: $main-white;
-            cursor: pointer;
-        }
-    }
     .leftItem {
         a {
+          padding: 16px;
+          color: $sub-white;
+          cursor: pointer;
             &:first-child {
                 padding-left: 24px;
             }
@@ -131,13 +118,27 @@
     }
     .rightItem {
         a {
+          padding: 16px;
+          color: $sub-white;
+          cursor: pointer;
             &:nth-child(2) {
                 padding-right: 24px;
             }
         }
     }
-    > p {
+    .index-nav-title {
         font-size: 32px;
         font-family: $Libre;
+        color: $sub-white;
+    }
+    // changing state
+    .left-side-bar-open {
+      left: 0;
+    }
+    .left-sub-menu-open {
+        left: 288px;
+    }
+    .right-side-bar-open {
+        right: 0;
     }
   }
