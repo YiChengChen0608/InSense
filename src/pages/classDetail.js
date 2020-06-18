@@ -1,6 +1,5 @@
 import React from 'react';
 import ClassHead from '../components/ClassHead/classHead'
-import classImg from '../images/class1.jpg'
 import MainContainer from '../components/mainContainer'
 import DetailContent from '../components/ClassDetailContent/detailContent'
 import DetailFooter from '../components/ClassDetailFooter/detailFooter'
@@ -22,7 +21,7 @@ const ClassDetail = () => {
   }
   return (
     <>
-      <ClassHead title={'LFP 客製化香水課程預約'} src={classImg} />
+      <ClassHead title={'LFP 客製化香水課程預約'} src={'/images/banner/class1.jpg'} />
       <MainContainer>
         <DetailContent info={storeInfo} service={classService} description={classDescription} />
         <DetailFooter />

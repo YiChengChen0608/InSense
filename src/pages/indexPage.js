@@ -7,24 +7,17 @@ import IndexProductIntroR from '../components/IndexProductIntroR/indexProductInt
 import IndexNewClass from '../components/IndexNewClass/indexNewClass'
 import IndexSubscribe from '../components/IndexSubscribe/indexSubscribe'
 
-import productImg1 from '../images/floral.jpg'
-import productImg2 from '../images/woody.png'
-import productImg3 from '../images/fresh.png'
-import productImg4 from '../images/spicy.png'
-import classImg from '../images/class-main.jpg'
-
 const IndexPage = () => {
   const productInfo1 = {
-    src: productImg1,
     title: '花香調',
     intro: '花香調是浪漫的代表，好比是1990 年代的經典即興慢調。',
     subTitle: 'CHANEL GABRIELLE 嘉柏麗香水',
     subContent: `香奈兒嘉柏麗香水由四種花朵組成純粹的花香調：
                 帶著異國情調的馥郁茉莉花、綻放明亮果香調的依蘭依蘭，
-                加上清新璀璨的橙花，以及充滿女人味的格拉斯晚香玉。`
+                加上清新璀璨的橙花，以及充滿女人味的格拉斯晚香玉。`,
+    imgBright: 'img-bright'
   }
   const productInfo2 = {
-    src: productImg2,
     title: '木質香調',
     intro: '冷冽的木質香，迷離而不失親切感，可作為中性氣味，成為近年最受歡迎的時髦香氣。',
     subTitle: 'BYREDO 北國之春淡香精',
@@ -35,7 +28,6 @@ const IndexPage = () => {
   }
 
   const productInfo3 = {
-    src: productImg3,
     title: '小清新',
     intro: '小清新系香水結合了花香、柑橘和果香，彷彿新鮮空氣湧入令人精神為之一振。',
     subTitle: 'Le Labo BERGAMOT 22 淡香精',
@@ -43,7 +35,6 @@ const IndexPage = () => {
     清新、乾淨、充滿活力、彷彿具有輕盈的氣泡感。 `
   }
   const productInfo4 = {
-    src: productImg4,
     title: '辛辣溫暖香調',
     intro: '以琥珀、香草和沒藥等名貴成分為主，散發出懷舊醉人的特殊香氣。',
     subTitle: 'Jo Malone London 黑琥珀與野薑花',
@@ -57,14 +48,15 @@ const IndexPage = () => {
       <IndexNewProduct />
       <IndexFragranceBanner />
       <IndexProductIntroL title={productInfo1.title} intro={productInfo1.intro}
-        src={productInfo1.src} subTitle={productInfo1.subTitle} subContent={productInfo1.subContent} />
+        src={'/images/banner/floral.jpg'} subTitle={productInfo1.subTitle} subContent={productInfo1.subContent}
+        imgBright={productInfo1.imgBright} />
       <IndexProductIntroR title={productInfo2.title} intro={productInfo2.intro}
-        src={productInfo2.src} subTitle={productInfo2.subTitle} subContent={productInfo2.subContent} />
+        src={'/images/banner/woody.png'} subTitle={productInfo2.subTitle} subContent={productInfo2.subContent} />
       <IndexProductIntroL title={productInfo3.title} intro={productInfo3.intro}
-        src={productInfo3.src} subTitle={productInfo3.subTitle} subContent={productInfo3.subContent} />
+        src={'/images/banner/fresh.png'} subTitle={productInfo3.subTitle} subContent={productInfo3.subContent} />
       <IndexProductIntroR title={productInfo4.title} intro={productInfo4.intro}
-        src={productInfo4.src} subTitle={productInfo4.subTitle} subContent={productInfo4.subContent} />
-      <IndexNewClass src={classImg} />
+        src={'/images/banner/spicy.png'} subTitle={productInfo4.subTitle} subContent={productInfo4.subContent} />
+      <IndexNewClass src={'/images/banner/class-main.jpg'} />
       <IndexSubscribe />
     </>
   )

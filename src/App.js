@@ -23,7 +23,7 @@ function App() {
         <MainContent>
           <Switch>
             <Route path="/classlist">
-              <ClassList />
+                <ClassList />
             </Route>
             <Route path="/itemlist">
               <ItemList />
@@ -45,7 +45,6 @@ function App() {
       </>
     </Router>
   );
-
 }
 
 export default App;
