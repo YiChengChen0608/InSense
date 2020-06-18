@@ -8,15 +8,9 @@ import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
 import IndexLogin from '../IndexLogin/indexLogin'
 import IndexShoppingCart from '../IndexShoppingCart/indexShoppingCart'
 
+
 const Nav = ({ location }) => {
   // state change
-  const [subMenu, setSubMenu] = useState([])
-  const [burgerToggle, setBurgerToggle] = useState(false)
-  const [subMenuToggle, setSubMenuToggle] = useState(false)
-  const [searchToggle, setSearchToggle] = useState(false)
-  const [userToggle, setUserToggle] = useState(false)
-  const [cartToggle, setCartToggle] = useState(false)
-  const [scrollTop, setScrollTop] = useState(false)
   // test info
   const menuItem = [
     { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
@@ -32,41 +26,14 @@ const Nav = ({ location }) => {
   const selfItem = [
     { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
   ]
-  const cartItem = [
-    {
-      imgName: 'P0001',
-      brand: 'Byredo',
-      name: 'Slow Dance 詩性既視淡香精',
-      size: '50ml',
-      qty: 2,
-      price: 4400,
-    },
-    {
-      imgName: 'P0002',
-      brand: 'Byredo',
-      name: 'Slow Dance 詩性既視淡香精',
-      size: '50ml',
-      qty: 3,
-      price: 4400,
-    },
-    {
-      imgName: 'P0003',
-      brand: 'Byredo',
-      name: 'Slow Dance 詩性既視淡香精',
-      size: '50ml',
-      qty: 4,
-      price: 4400,
-    },
-    {
-      imgName: 'P0004',
-      brand: 'Byredo',
-      name: 'Slow Dance 詩性既視淡香精',
-      size: '50ml',
-      qty: 5,
-      price: 4400,
-    }
-  ]
 
+  const [subMenu, setSubMenu] = useState([])
+  const [burgerToggle, setBurgerToggle] = useState(false)
+  const [subMenuToggle, setSubMenuToggle] = useState(false)
+  const [searchToggle, setSearchToggle] = useState(false)
+  const [userToggle, setUserToggle] = useState(false)
+  const [cartToggle, setCartToggle] = useState(false)
+  const [scrollTop, setScrollTop] = useState(false)
   //  event handler
   let SideBar = (event) => {
     switch (event.currentTarget.dataset.name) {
@@ -85,12 +52,13 @@ const Nav = ({ location }) => {
     }
   };
 
+
+
   useEffect(() => {
     window.addEventListener('scroll', function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false)
     })
   }, [])
-
 
   return (
     <>
@@ -129,7 +97,7 @@ const Nav = ({ location }) => {
         </div>
         <p className='index-nav-title'>InSense</p>
         <IndexRightSideBar btnClose={() => setUserToggle(false) || setCartToggle(false)} state={userToggle || cartToggle}>
-          {userToggle ? <IndexLogin /> : cartToggle ? <IndexShoppingCart cartItem={cartItem} /> : ''}
+          {userToggle ? <IndexLogin /> : cartToggle ? <IndexShoppingCart /> : ''}
         </IndexRightSideBar>
         <div className='rightItem'>
           <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser /></a>
