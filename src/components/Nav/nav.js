@@ -9,11 +9,13 @@ import IndexLogin from '../IndexLogin/indexLogin'
 import IndexShoppingCart from '../IndexShoppingCart/indexShoppingCart'
 
 const Nav = ({ location }) => {
+  // state change
   const [subMenu, setSubMenu] = useState([])
   const [burgerToggle, setBurgerToggle] = useState(false)
   const [subMenuToggle, setSubMenuToggle] = useState(false)
   const [searchToggle, setSearchToggle] = useState(false)
   const [userToggle, setUserToggle] = useState(false)
+  const [cartToggle, setCartToggle] = useState(false)
   const [scrollTop, setScrollTop] = useState(false)
   // test info
   const menuItem = [
@@ -29,6 +31,40 @@ const Nav = ({ location }) => {
   ]
   const selfItem = [
     { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
+  ]
+  const cartItem = [
+    {
+      imgName: 'P0001',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 2,
+      price: 4400,
+    },
+    {
+      imgName: 'P0002',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 3,
+      price: 4400,
+    },
+    {
+      imgName: 'P0003',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 4,
+      price: 4400,
+    },
+    {
+      imgName: 'P0004',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 5,
+      price: 4400,
+    }
   ]
 
   //  event handler
@@ -48,12 +84,6 @@ const Nav = ({ location }) => {
         break;
     }
   };
-  let closeLeftSideBar = () => {
-    setSubMenuToggle(false);
-    setBurgerToggle(false);
-  };
-
-
 
   useEffect(() => {
     window.addEventListener('scroll', function () {
@@ -68,7 +98,7 @@ const Nav = ({ location }) => {
         {/* Menu  */}
         <div className={`position-absolute menu-item d-flex align-items-center justify-content-around ${burgerToggle ? 'left-side-bar-open' : ''}`}>
           <div className='menu-title position-absolute d-flex align-items-center'>
-            <span onClick={() => closeLeftSideBar()}><FiX /></span>
+            <span onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}><FiX /></span>
             <p className='menu-char'>MENU</p>
           </div>
           <ul>
@@ -98,12 +128,12 @@ const Nav = ({ location }) => {
           <a onClick={() => setSearchToggle(true)} role='button' data-name='search'><FiSearch /></a>
         </div>
         <p className='index-nav-title'>InSense</p>
-        <IndexRightSideBar btnClose={() => setUserToggle(false)} state={userToggle}>
-          <IndexLogin />
+        <IndexRightSideBar btnClose={() => setUserToggle(false) || setCartToggle(false)} state={userToggle || cartToggle}>
+          {userToggle ? <IndexLogin /> : cartToggle ? <IndexShoppingCart cartItem={cartItem} /> : ''}
         </IndexRightSideBar>
         <div className='rightItem'>
           <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser /></a>
-          <a onClick='' role='button'><FiShoppingCart /></a>
+          <a onClick={() => setCartToggle(true)} role='button'><FiShoppingCart /></a>
         </div>
       </nav >
     </>
