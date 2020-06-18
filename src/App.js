@@ -14,6 +14,7 @@ import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
+import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
             </Route>
             <Route path="/classdetail">
               <ClassDetail />
+            </Route>
+            <Route path="/signIn">
+              <SignIn />
             </Route>
             <Route path="/account">
               <Route path="/account/classpage">
