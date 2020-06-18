@@ -36,6 +36,12 @@
         text-decoration: none;
         border: 1px solid $main-scarlet;
         padding: 8px 0;
+        cursor: pointer;
+        &:hover{
+          color:$sub-white;
+          border: 1px solid $main-orange;
+          background: $main-orange;
+        }
     }
 }
 

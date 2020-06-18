@@ -1,8 +1,8 @@
 import React from "react";
 import "./itemCard.scss";
-import { FiBookmark } from "react-icons/fi";
 import { withRouter } from "react-router-dom";
-import SavedItems from "../savedItems";
+import { FiBookmark } from "react-icons/fi";
+import SavedItems from "../SavedItems/savedItems";
 
 const ItemCard = (props) => {
     return (
@@ -16,8 +16,13 @@ const ItemCard = (props) => {
                 </div>
                 <p className="card-price text-center">{props.Price}</p>
             </div>
-            <div className="hover-wrapper">
-                <FiBookmark className="saved-icon" />
+            <div className="saved-btn">
+                <SavedItems
+                    className="saved-icon"
+                    id={props.id}
+                    itemWishList={props.itemWishList}
+                    setitemWishList={props.setitemWishList}
+                />
             </div>
         </>
     );
