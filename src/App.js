@@ -14,6 +14,7 @@ import ItemList from "./pages/ItemList/itemList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
+import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
   return (
@@ -23,13 +24,16 @@ function App() {
         <MainContent>
           <Switch>
             <Route path="/classlist">
-              <ClassList />
+                <ClassList />
             </Route>
             <Route path="/itemlist">
               <ItemList />
             </Route>
             <Route path="/classdetail">
               <ClassDetail />
+            </Route>
+            <Route path="/signIn">
+              <SignIn />
             </Route>
             <Route path="/account">
               <Route path="/account/classpage">

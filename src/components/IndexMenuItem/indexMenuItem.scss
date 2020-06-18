@@ -1,0 +1,21 @@
+@import "../../styles/style.scss";
+
+.menu-link {
+    text-decoration: none;
+    color: $main-black;
+}
+.sub-menu-li {
+    margin: 12px 0;
+    width: 184px;
+    margin-right: 24px;
+    padding-left: 20px;
+    cursor: pointer;
+
+    .chevron-right {
+        width: 0;
+        transition: 0.5s;
+    }
+    &:hover .chevron-right {
+        width: 32px;
+    }
+}

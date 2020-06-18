@@ -3,8 +3,8 @@
 .card-wrapper {
     max-width: 250px;
     padding: 8px;
-    // border: 1px solid $main-gray;
     flex-grow: 1;
+    border: 0;
     .card-img {
         width: 100%;
         object-fit: cover;
@@ -22,7 +22,7 @@
 
 .hover-wrapper .saved-icon {
     position: absolute;
-    top: 50px;
+    top: 36px;
     left: -58px;
     font-size: 20px;
     color: $main-orange;

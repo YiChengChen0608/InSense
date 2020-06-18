@@ -1,11 +1,12 @@
-import React from 'react'
-import { FiShare2 } from 'react-icons/fi'
-import './classCard.scss'
+import React from "react";
+import { FiShare2 } from "react-icons/fi";
+import { Link } from 'react-router-dom'
+import "./classCard.scss";
 
 const ClassCard = (props) => {
   return (
     <>
-      <div className="card-wrapper">
+      <div className="class-card-wrapper">
         <div className="card-img">
           <img src={props.src} />
         </div>
@@ -14,13 +15,12 @@ const ClassCard = (props) => {
           <FiShare2 className="share-icon" />
         </div>
         <p className="card-name">{props.Name}</p>
-        <a
+        <Link to='/classdetail'
           className="card-btn text-center"
-          href="javascript:;"
           role="button"
         >
           參加
-                </a>
+        </Link>
       </div>
     </>
   );

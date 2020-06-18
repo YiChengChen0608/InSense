@@ -83,10 +83,14 @@ const Registration = (props) => {
               </div>
             </div>
             <div className="registration-grid-item">
-              <div className="registration-item"></div>
+              <div className="registration-item">
+
+              </div>
             </div>
             <div className="registration-grid-item">
-              <div className="registration-item"></div>
+              <div className="registration-item">
+                  
+              </div>
             </div>
             <div className="registration-grid-item">
               <div className="registration-item"></div>

@@ -15,11 +15,16 @@ $title-font-size: 32px;
 /* font*/
 $Roboto: "Roboto", "Noto Sans TC", sans-serif;
 $Libre: "Libre Baskerville", serif;
+$Frank: "Frank Ruhl Libre", serif;
 
 * {
   font-family: $Roboto;
 }
 /* css property */
+
+body{
+  overflow-x: hidden;
+}
 
 .d-flex {
   display: flex;
@@ -32,7 +37,10 @@ $Libre: "Libre Baskerville", serif;
   flex-wrap: wrap;
 }
 .flex-grow {
-  flex-grow: 1;
+    flex-grow: 1;
+}
+.flex-direction-column {
+    flex-direction: column;
 }
 .text-center {
   text-align: center;
@@ -56,18 +64,24 @@ $Libre: "Libre Baskerville", serif;
   object-fit: cover;
 }
 .position-relative {
-  position: relative;
+    position: relative;
 }
 .position-absolute {
-  position: absolute;
+    position: absolute;
+}
+.position-fix{
+  position: fixed;
+}
+.position-sticky{
+  position: sticky;
 }
 /* share style */
 
 .main-container {
-  min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
 }
 
 .container {
-  margin: 0 auto;
-  max-width: 1140px;
+    margin: 0 auto;
+    max-width: 1140px;
 }

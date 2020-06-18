@@ -1,0 +1,47 @@
+@import '../../styles/style.scss';
+
+.loginHeader{
+  flex-direction: column;
+  color:$main-black;
+  p{
+    font-size: 20px;
+  }
+  input{
+    width: 260px;
+    border: 0;
+    border-bottom: 1px solid $main-black;
+    background: transparent;
+    padding:16px 0;
+  }
+}
+
+.loginFooter{
+  a{
+    display: block;
+    cursor: pointer;
+    &:nth-child(1){
+      width: 260px;
+      min-height: 20px;
+      font-size: 20px;
+      line-height: 30px;
+      background: $main-blue;
+      margin: 16px 0;
+      padding: 8px;
+      color:$main-white
+    }
+    &:nth-child(2){
+      width: 260px;
+      min-height: 20px;
+      font-size: 20px;
+      line-height: 30px;
+      color:$main-blue;
+      border:1px solid $main-blue;
+      margin: 16px 0 8px;
+      padding: 8px;
+    }
+    &:nth-child(3){
+      color:$main-black;
+      text-decoration: underline;
+    }
+  }
+}
