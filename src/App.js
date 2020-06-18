@@ -13,6 +13,7 @@ import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
+import Registration from "./pages/Registration/registration";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
             <Route path="/account">
               <Route path="/account/classpage">
                 <ClassPage />
+              </Route>
+              <Route path="/account/registration">
+                <Registration />
               </Route>
             </Route>
             <Route path="/">

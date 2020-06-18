@@ -21,14 +21,14 @@ function Counter() {
       <button
         onClick={() => {
           setCount(count + 1);
-          fetch("http://localhost:3001/echo", {
-            method: "POST",
-            credentials: "include",
-          })
-            .then((r) => r.json())
-            .then((obj) => {
-              console.log(obj);
-            });
+          // fetch("http://localhost:3001/echo", {
+          //   method: "POST",
+          //   credentials: "include",
+          // })
+          //   .then((r) => r.json())
+          //   .then((obj) => {
+          //     console.log(obj);
+          //   });
           console.log("count", count);
         }}
       >

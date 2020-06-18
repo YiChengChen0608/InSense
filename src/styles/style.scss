@@ -9,58 +9,65 @@ $main-gray: #e6e6e6;
 $main-black: #555555;
 $main-orange: #f7b66c;
 $main-scarlet: #d94f06;
+$title-font-weight: 300;
+$title-font-size: 32px;
 
 /* font*/
 $Roboto: "Roboto", "Noto Sans TC", sans-serif;
 $Libre: "Libre Baskerville", serif;
 
 * {
-    font-family: $Roboto;
+  font-family: $Roboto;
 }
 /* css property */
 
 .d-flex {
-    display: flex;
+  display: flex;
+}
+
+.display-none {
+  display: none;
 }
 .flex-wrap {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .flex-grow {
   flex-grow: 1;
 }
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 .justify-content-center {
-    justify-content: center;
+  justify-content: center;
 }
 .justify-content-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 .justify-content-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 .justify-content-evenly {
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 .align-items-center {
-    align-items: center;
+  align-items: center;
 }
 .object-fit-cover {
-    object-fit: cover;
+  object-fit: cover;
 }
-
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
 /* share style */
 
-.main-container{
-  min-height: 100%;
-  flex-direction: column;
-}
-.contain{
-  flex-grow: 1;
+.main-container {
+  min-height: calc(100vh - 100px);
 }
 
-.container{
-  margin:0 auto;
+.container {
+  margin: 0 auto;
   max-width: 1140px;
 }

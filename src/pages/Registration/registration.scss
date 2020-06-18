@@ -1,0 +1,36 @@
+@import "../../styles/style.scss";
+
+.registration-container {
+  width: 640px;
+  margin: auto;
+  .registration-title {
+    font-weight: $title-font-weight;
+    font-size: $title-font-size;
+  }
+  .registration-grid-item {
+    .registration-item {
+      h4 {
+        font-size: 14px;
+        margin: 12px 0;
+        font-weight: 200;
+      }
+      .registration-gender-select {
+        .registration-select-circle {
+          width: 18px;
+          height: 18px;
+          font-weight: 100;
+        }
+        label {
+          cursor: pointer;
+          p {
+            font-weight: 200;
+            margin: 0 18px 0 6px;
+          }
+        }
+      }
+      .MuiFormControl-marginNormal {
+        margin: 0;
+      }
+    }
+  }
+}
