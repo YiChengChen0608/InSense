@@ -1,12 +1,18 @@
-import React from 'react'
-import './indexSubscribe.scss'
+import React from "react";
+import "./indexSubscribe.scss";
+import { Link } from "react-router-dom";
+
 const indexSubscribe = () => {
   return (
-    <div className='index-subscribe-container text-center'>
+    <div className="index-subscribe-container text-center">
       <p>訂閱我們</p>
-      <input type='text' placeholder='your email address*' />
-      <a role='button'>SUBSCRIBE</a>
+      <div>
+        <input type="text" placeholder="your email address*" />
+      </div>
+      <Link className="button-link" role="button">
+        SUBSCRIBE
+            </Link>
     </div>
-  )
-}
-export default indexSubscribe
+  );
+};
+export default indexSubscribe;

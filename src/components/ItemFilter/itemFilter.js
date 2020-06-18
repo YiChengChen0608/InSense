@@ -18,8 +18,12 @@ const ItemFilter = (props) => {
                                     <button className="close-icon">
                                         <FiX className="close-icon" />
                                     </button>
-                                    <h2></h2>
+                                    <h2>Filter</h2>
                                 </div>
+                                <div className="filter-content">
+                                    <h3 className="filter-title">Category</h3>
+                                </div>
+                                <section className="category-filter"></section>
                             </div>
                         </section>
                     </div>

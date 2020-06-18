@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { FiMenu, FiSearch, FiUser, FiShoppingCart, FiX, FiChevronRight } from 'react-icons/fi'
+import { Link, withRouter } from "react-router-dom";
 import './nav.scss'
 import IndexMenuItem from '../IndexMenuItem/indexMenuItem'
 import IndexMenuSideBar from '../IndexMenuSideBar/indexMenuSideBar'
-const Nav = () => {
+import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
+import IndexLogin from '../IndexLogin/indexLogin'
+import IndexShoppingCart from '../IndexShoppingCart/indexShoppingCart'
+
+const Nav = ({ location }) => {
+  // state change
   const [subMenu, setSubMenu] = useState([])
+  const [burgerToggle, setBurgerToggle] = useState(false)
+  const [subMenuToggle, setSubMenuToggle] = useState(false)
+  const [searchToggle, setSearchToggle] = useState(false)
+  const [userToggle, setUserToggle] = useState(false)
+  const [cartToggle, setCartToggle] = useState(false)
+  const [scrollTop, setScrollTop] = useState(false)
   // test info
   const menuItem = [
     { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
     { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' }
   ]
   const brandItem = [
-    { itemName: 'BYREDO', name: 'byredo' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
+    { itemName: 'BYREDO', name: 'byredo', pathUrl: '/itemlist' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
     , { itemName: 'Jo Malone London', name: 'jomalonelondon' }, { itemName: 'LeLabo', name: 'lelabo' }
   ]
   const bodyItem = [
@@ -20,60 +32,78 @@ const Nav = () => {
   const selfItem = [
     { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
   ]
-
+  const cartItem = [
+    {
+      imgName: 'P0001',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 2,
+      price: 4400,
+    },
+    {
+      imgName: 'P0002',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 3,
+      price: 4400,
+    },
+    {
+      imgName: 'P0003',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 4,
+      price: 4400,
+    },
+    {
+      imgName: 'P0004',
+      brand: 'Byredo',
+      name: 'Slow Dance 詩性既視淡香精',
+      size: '50ml',
+      qty: 5,
+      price: 4400,
+    }
+  ]
 
   //  event handler
-
-  let changeSubMenu = (name) => {
-    setSubMenu(name)
-    document.querySelector('.sub-menu').style['left'] = '288px'
-  }
-  let leftSideBar = (event) => {
+  let SideBar = (event) => {
     switch (event.currentTarget.dataset.name) {
-      case 'menu':
-        document.querySelector('.menu-item').classList.remove('burger-close')
-        document.querySelector('.menu-item').classList.add('burger-open')
-        document.querySelector('.sub-menu').style['left'] = '0'
-        break
-      case 'search':
-        document.querySelector('.search-block').classList.remove('burger-close')
-        document.querySelector('.search-block').classList.add('burger-open')
-        break
-      case 'brand':
-        changeSubMenu(brandItem)
-        break
-      case 'body':
-        changeSubMenu(bodyItem)
-        break
-      case 'self':
-        changeSubMenu(selfItem)
-        break
+      case "brand":
+        setSubMenu(brandItem);
+        setSubMenuToggle(true);
+        break;
+      case "body":
+        setSubMenu(bodyItem);
+        setSubMenuToggle(true);
+        break;
+      case "self":
+        setSubMenu(selfItem);
+        setSubMenuToggle(true);
+        break;
     }
-  }
-
-  let burgerClose = (event) => {
-    document.querySelector('.menu-item').classList.remove('burger-open')
-    document.querySelector('.menu-item').classList.add('burger-close')
-    document.querySelector('.search-block').classList.remove('burger-open')
-    document.querySelector('.search-block').classList.add('burger-close')
-    document.querySelector('.sub-menu').style['left'] = '-288px'
-  }
+  };
 
   useEffect(() => {
-  })
+    window.addEventListener('scroll', function () {
+      this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false)
+    })
+  }, [])
+
 
   return (
     <>
-      <nav className='nav d-flex justify-content-between align-items-center'>
+      <nav className={`${location.pathname === '/' ? 'position-fix' : 'position-sticky'} nav d-flex justify-content-between align-items-center ${scrollTop || location.pathname !== "/" ? "scroll-down" : ""}`}>
         {/* Menu  */}
-        <div className='position-absolute menu-item d-flex align-items-center justify-content-around'>
+        <div className={`position-absolute menu-item d-flex align-items-center justify-content-around ${burgerToggle ? 'left-side-bar-open' : ''}`}>
           <div className='menu-title position-absolute d-flex align-items-center'>
-            <span className='menu-close' onClick={burgerClose}><FiX /></span>
+            <span onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}><FiX /></span>
             <p className='menu-char'>MENU</p>
           </div>
           <ul>
             {menuItem.map((item, index) => {
-              return <IndexMenuItem menuItem={item} key={index} func={leftSideBar} />
+              return <IndexMenuItem menuItem={item} key={index} changeState={(e) => SideBar(e)} />
             })}
           </ul>
           <ul>
@@ -81,11 +111,11 @@ const Nav = () => {
             <li className='d-flex align-items-center'><FiChevronRight className='chevron-right' />幫助中心</li>
           </ul>
         </div>
-        <IndexMenuSideBar array={subMenu} />
+        <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
         {/* Search */}
-        <div className='position-absolute search-block'>
+        <div className={`position-absolute search-block ${searchToggle ? 'left-side-bar-open' : ''}`}>
           <div className='search-title position-absolute d-flex align-items-center'>
-            <span className='menu-close' onClick={burgerClose}><FiX /></span>
+            <span onClick={() => setSearchToggle(false)}><FiX /></span>
             <p className='menu-char'>Search</p>
           </div>
           <div className='d-flex serach-input position-absolute'>
@@ -94,17 +124,20 @@ const Nav = () => {
           </div>
         </div>
         <div className='leftItem'>
-          <a onClick={leftSideBar} role='button' data-name='menu'><FiMenu /></a>
-          <a onClick={leftSideBar} role='button' data-name='search'><FiSearch /></a>
+          <a onClick={() => setBurgerToggle(true)} role='button'><FiMenu /></a>
+          <a onClick={() => setSearchToggle(true)} role='button' data-name='search'><FiSearch /></a>
         </div>
-        <p>InSense</p>
+        <p className='index-nav-title'>InSense</p>
+        <IndexRightSideBar btnClose={() => setUserToggle(false) || setCartToggle(false)} state={userToggle || cartToggle}>
+          {userToggle ? <IndexLogin /> : cartToggle ? <IndexShoppingCart cartItem={cartItem} /> : ''}
+        </IndexRightSideBar>
         <div className='rightItem'>
-          <a onClick='' role='button'><FiUser /></a>
-          <a onClick='' role='button'><FiShoppingCart /></a>
+          <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser /></a>
+          <a onClick={() => setCartToggle(true)} role='button'><FiShoppingCart /></a>
         </div>
-      </nav>
+      </nav >
     </>
   )
 }
 
-export default Nav
+export default withRouter(Nav)

@@ -1,34 +1,82 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 
-.landing-page-container{
-  position: relative;
-  width: 100%;
-  height: 50vw;
-  object-fit: cover;
-  img{
+/* main picture */
+.main-picture figure {
+    margin: 0;
+    height: 56vw;
+}
+
+.main-picture figure img {
     width: 100%;
     height: 100%;
-  }
-  .landing-page-content{
-    z-index: 0;
-    position: absolute;
-    left:50%;
-    top:45%;
-    transform: translate(-50%,-50%);
-    color:$sub-white;
-    text-align: center;
-    >p{
-      font-size: 56px;
-      margin:0;
-      margin-top: 28px;
+    object-fit: cover;
+    object-position: bottom;
+}
+.landing-page-content {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(200, 200, 200, 0.5);
+    h1 {
+        width: 700px;
+        text-align: center;
+        font-size: 45px;
+        font-weight: 300;
+        font-style: normal;
+        font-family: $Frank;
+        line-height: 1em;
+        letter-spacing: 3px;
     }
-    .landing-page-subContent{
-      margin-top:56px;
-      padding-top:56px;
-      p{
-        margin:0;
-        margin-bottom:16px;
-      }
+    // .logo {
+    //     font-family: $Libre;
+    //     font-weight: 300;
+    // }
+    .slogan1 {
+        color: rgb(37, 37, 37);
+        margin: 18vw auto 30px;
+        // margin: 30px auto;
     }
-  }
+
+    .slogan2 {
+        color: rgb(37, 37, 37);
+        margin: 2vw auto 10px;
+    }
+    .discover {
+        color: rgb(46, 46, 46);
+        cursor: pointer;
+        bottom: 200px;
+        margin: 6% auto;
+        width: 400px;
+        p {
+            margin: 3% 0;
+            font-size: 18px;
+        }
+        @keyframes discover {
+            0% {
+                margin: 3% 0;
+            }
+
+            15% {
+                margin: 5% 0;
+            }
+
+            40% {
+                margin: 3% 0;
+            }
+
+            55% {
+                margin: 5% 0;
+            }
+
+            80% {
+                margin: 3% 0;
+            }
+        }
+        .discover-arrow {
+            animation: discover 1.8s linear 1s infinite;
+        }
+    }
+    .discover:hover {
+        color: $sub-white;
+    }
 }

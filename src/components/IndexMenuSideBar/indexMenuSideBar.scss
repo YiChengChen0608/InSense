@@ -3,13 +3,13 @@
 .sub-menu{
   flex-direction: column;
   top:0;
-  background: $main-white;
+  background: $sub-white;
   left:-288px;
   width: 288px;
   height: 100vh;
   z-index: -1;
   overflow: scroll;
-  transition: .5s;
+  transition: .3s;
   ul{
     list-style: none;
     color:$main-black;
