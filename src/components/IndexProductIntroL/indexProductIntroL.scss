@@ -59,13 +59,15 @@
                     line-height: 36px;
                 }
             }
-            a {
+            .button-link  {
                 display: block;
                 max-width: 240px;
                 min-height: 60px;
                 background: $main-orange;
                 line-height: 60px;
                 font-size: 20px;
+                text-decoration: none;
+                color: $main-black;
             }
         }
     }
