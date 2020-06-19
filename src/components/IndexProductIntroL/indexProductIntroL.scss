@@ -4,7 +4,7 @@
     width: 95%;
     min-height: 600px;
     margin: 32px auto;
-    background: $main-gray;
+    background: rgba(230, 230, 230, 0.6);
     color: $main-black;
     .product-title-container {
         padding: 16px 0;
@@ -39,7 +39,7 @@
             }
             h3 {
                 font-size: 26px;
-                font-weight: 400;
+                font-weight: 500;
             }
             .button-link {
                 text-decoration: none;
@@ -48,7 +48,7 @@
         }
         > div {
             width: 50%;
-            padding: 60px 40px;
+            padding: 60px 20px;
             .sub-intro {
                 font-size: 20px;
             }
@@ -59,7 +59,7 @@
                     line-height: 36px;
                 }
             }
-            .button-link  {
+            .button-link {
                 display: block;
                 max-width: 240px;
                 min-height: 60px;
