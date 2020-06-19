@@ -3,19 +3,19 @@ import { FiShare2 } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 import "./classCard.scss";
 
-const ClassCard = (props) => {
+const ClassCard = ({ src, date, Name, classid }) => {
   return (
     <>
       <div className="class-card-wrapper">
         <div className="card-img">
-          <img src={props.src} />
+          <img src={src} />
         </div>
         <div className="card-content d-flex justify-content-between align-items-center">
-          <p>{props.date}</p>
+          <p>{date}</p>
           <FiShare2 className="share-icon" />
         </div>
-        <p className="card-name">{props.Name}</p>
-        <Link to='/classdetail'
+        <p className="card-name">{Name}</p>
+        <Link to={`/classdetail/${classid}`}
           className="card-btn text-center"
           role="button"
         >
