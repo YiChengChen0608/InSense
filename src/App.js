@@ -24,12 +24,12 @@ function App() {
         <MainContent>
           <Switch>
             <Route path="/classlist">
-                <ClassList />
+              <ClassList />
             </Route>
             <Route path="/itemlist">
               <ItemList />
             </Route>
-            <Route path="/classdetail">
+            <Route path="/classdetail/:classid?">
               <ClassDetail />
             </Route>
             <Route path="/signIn">

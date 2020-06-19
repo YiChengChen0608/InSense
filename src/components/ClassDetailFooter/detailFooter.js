@@ -1,10 +1,10 @@
 import React from 'react'
 import './detailFooter.scss'
 
-const DetailFooter = () => {
+const DetailFooter = ({ date }) => {
   return (
     <>
-      <p className='reservation-date'>預約日期：2020/12/01</p>
+      <p className='reservation-date'>預約日期：{date}</p>
       <div className='reservation-wrapper d-flex'>
         <select>
           <option value="" disabled selected hidden>預約人數</option>
@@ -25,7 +25,7 @@ const DetailFooter = () => {
           <option value="18">18:00</option>
         </select>
       </div>
-      <a className='reservation-btn text-center' href='' role='button'>預約</a>
+      <a className='reservation-btn text-center' role='button'>預約</a>
     </>
   )
 }

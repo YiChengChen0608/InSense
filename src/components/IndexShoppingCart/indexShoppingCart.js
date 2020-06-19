@@ -48,7 +48,6 @@ const IndexShoppingCart = () => {
 
   const remove = (id) => {
     let index = newCartItem.findIndex(item => item.id === id)
-    console.log(index)
     if (index !== -1) {
       const newArray = [...newCartItem]
       newArray.splice(index, 1)
@@ -58,7 +57,6 @@ const IndexShoppingCart = () => {
 
   return (
     <div className='index-shopping-cart-container d-flex flex-direction-column align-items-center' >
-      {(() => console.log("render cart"))()}
       <p className='index-shopping-cart-title'>購物車</p>
       <div className='index-shopping-cart-content'>
         {newCartItem ? newCartItem.map((info, index) => <IndexShoppingCartItem key={index} info={info} remove={remove} />) : <p className='text-center'>no items</p>}
