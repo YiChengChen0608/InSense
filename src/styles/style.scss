@@ -22,7 +22,7 @@ $Frank: "Frank Ruhl Libre", serif;
 }
 /* css property */
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -37,10 +37,10 @@ body{
   flex-wrap: wrap;
 }
 .flex-grow {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 .flex-direction-column {
-    flex-direction: column;
+  flex-direction: column;
 }
 .text-center {
   text-align: center;
@@ -60,28 +60,31 @@ body{
 .align-items-center {
   align-items: center;
 }
+.align-items-end {
+  align-items: flex-end;
+}
 .object-fit-cover {
   object-fit: cover;
 }
 .position-relative {
-    position: relative;
+  position: relative;
 }
 .position-absolute {
-    position: absolute;
+  position: absolute;
 }
-.position-fix{
+.position-fix {
   position: fixed;
 }
-.position-sticky{
+.position-sticky {
   position: sticky;
 }
 /* share style */
 
 .main-container {
-    min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
 }
 
 .container {
-    margin: 0 auto;
-    max-width: 1140px;
+  margin: 0 auto;
+  max-width: 1140px;
 }

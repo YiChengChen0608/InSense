@@ -1,0 +1,33 @@
+@import "../../styles/style.scss";
+
+.address-container {
+  .MuiFormControl-root {
+    margin: 0;
+    .MuiInputBase-root {
+      border-right: 1px solid $main-black;
+    }
+  }
+  .MuiFormControl-root:nth-child(1) {
+    label {
+      padding-left: 6px;
+    }
+    .MuiSelect-root {
+      padding-left: 6px;
+    }
+    min-width: 87px;
+  }
+  .MuiFormControl-root:nth-child(2) {
+    label {
+      padding-left: 12px;
+    }
+    .MuiSelect-root {
+      padding-left: 12px;
+    }
+  }
+  .group {
+      flex-grow: 1;
+    .form-input {
+      padding: 6px 0 7px 0;
+    }
+  }
+}
