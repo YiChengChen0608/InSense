@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "normalize.css";
 
@@ -14,6 +13,7 @@ import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
+import Registration from "./pages/Registration/registration";
 import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
@@ -38,6 +38,9 @@ function App() {
             <Route path="/account">
               <Route path="/account/classpage">
                 <ClassPage />
+              </Route>
+              <Route path="/account/registration">
+                <Registration />
               </Route>
             </Route>
             <Route path="/">

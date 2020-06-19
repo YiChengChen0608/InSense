@@ -9,6 +9,8 @@ $main-gray: #e6e6e6;
 $main-black: #555555;
 $main-orange: #f7b66c;
 $main-scarlet: #d94f06;
+$title-font-weight: 300;
+$title-font-size: 32px;
 
 /* font*/
 $Roboto: "Roboto", "Noto Sans TC", sans-serif;
@@ -16,7 +18,7 @@ $Libre: "Libre Baskerville", serif;
 $Frank: "Frank Ruhl Libre", serif;
 
 * {
-    font-family: $Roboto;
+  font-family: $Roboto;
 }
 /* css property */
 
@@ -25,10 +27,14 @@ body{
 }
 
 .d-flex {
-    display: flex;
+  display: flex;
+}
+
+.display-none {
+  display: none;
 }
 .flex-wrap {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .flex-grow {
     flex-grow: 1;
@@ -37,25 +43,25 @@ body{
     flex-direction: column;
 }
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 .justify-content-center {
-    justify-content: center;
+  justify-content: center;
 }
 .justify-content-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 .justify-content-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 .justify-content-evenly {
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 .align-items-center {
-    align-items: center;
+  align-items: center;
 }
 .object-fit-cover {
-    object-fit: cover;
+  object-fit: cover;
 }
 .position-relative {
     position: relative;
