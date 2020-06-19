@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormInput from '../../components/FormInput/FormInput';
 
+
 import './FormSignIn.scss';
 
 class FormSignIn extends React.Component {
@@ -11,6 +12,7 @@ class FormSignIn extends React.Component {
         this.state ={
             email:'',
             password: ''
+            
         }
     }
 
@@ -48,7 +50,7 @@ class FormSignIn extends React.Component {
                    required/>
                   
 
-                   {/* <input type="submit" value="Submit Form"/> */}
+               
                 </form>
             </div>
         )
