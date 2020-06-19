@@ -16,7 +16,6 @@
     li {
       padding: 10px 0;
       margin: 4px 0;
-      cursor: pointer;
       font-size: 18px;
       font-weight: 300;
       .icon {
@@ -24,12 +23,19 @@
         margin-left: 6px;
         transition: 0.2s;
       }
-      p {
-        margin: 0;
-        // line-height: 32px;
+      .account-link {
+        padding-right: 36px;
+        cursor: pointer;
+        color: $main-black;
+        text-decoration: none;
+        p {
+          margin: 0;
+          // line-height: 32px;
+        }
       }
     }
-    li:hover {
+    .account-link:hover {
+      color: $main-blue;
       .icon {
         width: 18px;
       }
