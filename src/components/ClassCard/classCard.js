@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import "./classCard.scss";
 
 const ClassCard = ({ src, date, Name, classid }) => {
+
   return (
     <>
       <div className="class-card-wrapper">
