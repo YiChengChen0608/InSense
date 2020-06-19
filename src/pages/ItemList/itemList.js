@@ -6,22 +6,31 @@ import MyBreadcrumb from "../../components/myBreadCrumb";
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
-import ItemCardData from "./itemCard.data";
+// import ItemCardData from "./itemCard.data";
 const ItemList = () => {
-    const [itemCardData, setItemCardData] = useState(ItemCardData);
+    const [itemCardData, setItemCardData] = useState({});
     const [itemWishList, setitemWishList] = useState([]);
 
+    const fetchCardData = async () => {
+        const res = await fetch("/data/itemCard-data.json");
+        const data = await res.json();
+        return data;
+    };
     // console.log(itemCardData);
     useEffect(() => {
-        console.log(itemWishList);
-    });
+        (async () => {
+            const cardData = await fetchCardData();
+            setItemCardData(cardData);
+        })();
+    }, []);
 
     return (
         <>
             <ItemHead src="/images/banner/byredo-banner.png" />
             {/* <ItemFilter /> */}
             <MainContainer otherClass="item-list-container d-flex flex-wrap ">
-                {itemCardData[0].items.map((el, index) => {
+                {}
+                {/* {itemCardData[0].items.map((el, index) => {
                     return (
                         <ItemCard
                             id={el.id}
@@ -32,7 +41,7 @@ const ItemList = () => {
                             setitemWishList={setitemWishList}
                         />
                     );
-                })}
+                })} */}
             </MainContainer>
         </>
     );

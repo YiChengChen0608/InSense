@@ -17,41 +17,43 @@ import Registration from "./pages/Registration/registration";
 import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
-  return (
-    <Router>
-      <>
-        <Nav />
-        <MainContent>
-          <Switch>
-            <Route path="/classlist">
-              <ClassList />
-            </Route>
-            <Route path="/itemlist">
-              <ItemList />
-            </Route>
-            <Route path="/classdetail/:classid?">
-              <ClassDetail />
-            </Route>
-            <Route path="/signIn">
-              <SignIn />
-            </Route>
-            <Route path="/account">
-              <Route path="/account/classpage">
-                <ClassPage />
-              </Route>
-              <Route path="/account/registration">
-                <Registration />
-              </Route>
-            </Route>
-            <Route path="/">
-              <IndexPage />
-            </Route>
-          </Switch>
-        </MainContent>
-        <Footer />
-      </>
-    </Router>
-  );
+    return (
+        <Router>
+            <>
+                <Nav />
+                <MainContent>
+                    <Switch>
+                        <Route path="/classlist">
+                            <ClassList />
+                        </Route>
+                        <Route path="/itemlist">
+                            <Route path="/itemlist/:brandName?">
+                                <ItemList />
+                            </Route>
+                        </Route>
+                        <Route path="/classdetail/:classid?">
+                            <ClassDetail />
+                        </Route>
+                        <Route path="/signIn">
+                            <SignIn />
+                        </Route>
+                        <Route path="/account">
+                            <Route path="/account/classpage">
+                                <ClassPage />
+                            </Route>
+                            <Route path="/account/registration">
+                                <Registration />
+                            </Route>
+                        </Route>
+                        <Route path="/">
+                            <IndexPage />
+                        </Route>
+                    </Switch>
+                </MainContent>
+                <Footer />
+            </>
+        </Router>
+    );
 }
 
 export default App;
