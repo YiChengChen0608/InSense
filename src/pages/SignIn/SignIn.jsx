@@ -1,7 +1,7 @@
 import React from 'react';
 import './SignIn.scss';
 import FormSignIn from "../../components/FormSignIn/FormSignIn ";
-import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import SubmitButton from '../../components/SubmitButton/submitButton';
 
 const SignIn = () => (
     <div className="SignIn-page">

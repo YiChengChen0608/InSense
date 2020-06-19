@@ -31,8 +31,6 @@ class FormSignIn extends React.Component {
     render(){
         return(
             <div className="sign-in">
-           
-              
                 <form onSubmit={this.handleSubmit}>
                    <FormInput 
                    type='email'
