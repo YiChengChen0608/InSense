@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MainContainer from "../mainContainer";
 import ItemCard from "../ItemCard/itemCard";
 import { FiChevronLeft } from "react-icons/fi";
@@ -6,26 +6,32 @@ import { FiChevronRight } from "react-icons/fi";
 import "./indexNewProduct.scss";
 
 const IndexNewProduct = () => {
+    const [itemCardData, setItemCardData] = useState([]);
+    const [itemWishList, setitemWishList] = useState([]);
     const ItemCardInfo = [
         {
-            name: "BYREDO 吉普賽之水淡香精",
-            price: "NT$ 6200",
-            src: "/images/banner/newest1.png",
+            itemId: "P0006",
+            itemName: "BYREDO 吉普賽之水淡香精",
+            itemPrice: "NT$ 6200",
+            itemimg: "/images/banner/newest1.png",
         },
         {
-            name: "diptyque 磨砂護膚潔手液",
-            price: "NT$ 2000",
-            src: "/images/banner/newest2.png",
+            itemId: "P0058",
+            itemName: "diptyque 磨砂護膚潔手液",
+            itemPrice: "NT$ 2000",
+            itemimg: "/images/banner/newest2.png",
         },
         {
-            name: "BYREDO 逝去之愛香氛蠟燭",
-            price: "NT$ 2200",
-            src: "/images/banner/newest3.png",
+            itemId: "P0027",
+            itemName: "BYREDO 逝去之愛香氛蠟燭",
+            itemPrice: "NT$ 2200",
+            itemimg: "/images/banner/newest3.png",
         },
         {
-            name: "Le Labo ANOTHER 13淡香精 ",
-            price: "NT$ 4000",
-            src: "/images/banner/newest4.png",
+            itemId: "P0093",
+            itemName: "Le Labo ANOTHER 13 淡香精 ",
+            itemPrice: "NT$ 5000",
+            itemimg: "/images/banner/newest4.png",
         },
     ];
 
@@ -42,9 +48,12 @@ const IndexNewProduct = () => {
                             return (
                                 <ItemCard
                                     key={index}
-                                    Name={info.name}
-                                    Price={info.price}
-                                    src={info.src}
+                                    itemId={info.itemId}
+                                    itemName={info.itemName}
+                                    itemPrice={info.itemPrice}
+                                    itemimg={info.itemimg}
+                                    itemWishList={itemWishList}
+                                    setitemWishList={setitemWishList}
                                 />
                             );
                         })}

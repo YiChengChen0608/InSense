@@ -1,36 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { withRouter, useParams, Link } from "react-router-dom";
 import ItemHead from "../../components/ItemHead/itemHead";
-// import ItemFilter from "../../components/ItemFilter/itemFilter";
-// import itemBanner from "../../images/byredo-banner.png";
 import MyBreadcrumb from "../../components/myBreadCrumb";
+// import ItemFilter from "../../components/ItemFilter/itemFilter";
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 // import ItemCardData from "./itemCard.data";
-const ItemList = () => {
-    const [itemCardData, setItemCardData] = useState({});
+const ItemList = (props) => {
+    const [itemCardData, setItemCardData] = useState([]);
+    const [itemHeadData, setItemHeadData] = useState([]);
     const [itemWishList, setitemWishList] = useState([]);
+    //拿到網址上的 ":brandName"參數
+    const brand = useParams().brandName;
 
-    const fetchCardData = async () => {
-        const res = await fetch("/data/itemCard-data.json");
+    //僅做擷取資料用途
+    const fetchCardData = useCallback(async (brand) => {
+        // const brand = "chanel";
+        // console.log(brand);
+        const res = await fetch(
+            `http://localhost:3001/itemlist/brand/${brand}`
+        );
         const data = await res.json();
+        console.log("data", data);
         return data;
-    };
-    // console.log(itemCardData);
+    }, []);
+
     useEffect(() => {
         (async () => {
-            const cardData = await fetchCardData();
+            //1. 獲得資料data
+            const rawData = await fetchCardData(brand);
+            const headData = rawData[0]; //標題資料
+            const cardData = rawData[1]; //卡片資料
+            setItemHeadData(headData);
             setItemCardData(cardData);
+            console.log("cardData", cardData);
         })();
-    }, []);
+        console.log("born");
+    }, [brand]);
+
+    useEffect(() => {
+        console.log(itemWishList);
+    }, [itemWishList]);
 
     return (
         <>
-            <ItemHead src="/images/banner/byredo-banner.png" />
+            <ItemHead
+                Banner={`http://localhost:3001/images/banner/${
+                    itemHeadData.length ? itemHeadData[0].brandbanner : ""
+                }.png`}
+                Name={itemHeadData.length ? itemHeadData[0].brandName : ""}
+                Discription={
+                    itemHeadData.length ? itemHeadData[0].brandDiscription : ""
+                }
+            />
             {/* <ItemFilter /> */}
-            <MainContainer otherClass="item-list-container d-flex flex-wrap ">
-                {}
-                {/* {itemCardData[0].items.map((el, index) => {
+            <MainContainer>
+                <div className="item-list-container d-flex flex-wrap justify-content-center">
+                    {itemCardData.length
+                        ? itemCardData.map((el, index) => {
+                              return (
+                                  <ItemCard
+                                      itemId={el.itemId}
+                                      itemimg={`http://localhost:3001/images/items/${el.itemimg}.png`}
+                                      itemName={el.itemName}
+                                      itemPrice={`NT$ ${el.itemPrice}`}
+                                      itemWishList={itemWishList}
+                                      setitemWishList={setitemWishList}
+                                  />
+                              );
+                          })
+                        : ""}
+                    {/* {itemCardData[0].items.map((el, index) => {
                     return (
                         <ItemCard
                             id={el.id}
@@ -42,9 +83,10 @@ const ItemList = () => {
                         />
                     );
                 })} */}
+                </div>
             </MainContainer>
         </>
     );
 };
 
-export default ItemList;
+export default withRouter(ItemList);
