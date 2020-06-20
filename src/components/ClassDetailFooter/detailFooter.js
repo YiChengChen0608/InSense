@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 
 const DetailFooter = ({ date }) => {
 
-  const popUp = ({ name = true, gender, }) => {
+  const popUp = ({ name, gender, }) => {
     Swal.fire({
       title: name ? `感謝Eric 先生的預約` : '預約失敗',
       icon: name ? 'success' : 'error',
@@ -12,11 +12,11 @@ const DetailFooter = ({ date }) => {
         `<p>人數：2<br/>
          日期：${date}<br/>
          時間：14:00<br/></p>
-        `: '<br/>請先做登入在做預約的服務<br/>',
+        `: '<br/>請先登入在做預約的服務<br/>',
       showCloseButton: true,
       focusConfirm: false,
       confirmButtonText:
-        '<i class="fa fa-thumbs-up"></i> 查看預約',
+        name ? '<i class="fa fa-thumbs-up"></i> 查看預約' : '請先登入',
       customClass: {
         popup: 'popup-class',
         title: 'title-class',
