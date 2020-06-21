@@ -27,7 +27,12 @@ function App() {
               <ClassList />
             </Route>
             <Route path="/itemlist">
-              <ItemList />
+              <Route path="/itemlist/brand/:brandName?">
+                <ItemList />
+              </Route>
+              <Route path="/itemlist/categories/:categoryName?">
+                <ItemList />
+              </Route>
             </Route>
             <Route path="/classdetail/:classid">
               <ClassDetail />
