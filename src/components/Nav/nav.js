@@ -14,7 +14,8 @@ const Nav = ({ location }) => {
   // test info
   const menuItem = [
     { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
-    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' }
+    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' },
+    { itemName: '體驗課程', name: 'class', pathUrl: '/classlist' }
   ]
   const brandItem = [
     { itemName: 'BYREDO', name: 'byredo', pathUrl: '/itemlist' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }

@@ -6,17 +6,21 @@ const DetailContent = ({ storeInfo }) => {
     <ul className='detail-content-wrapper'>
       <li>門市資訊
           <ul>
-          <li>{storeInfo.title}<br />{storeInfo.address}<br />{storeInfo.phone}</li>
+          <li>門市名稱：{storeInfo.shopName}<br />門市地址：{storeInfo.shopAddress}<br />聯絡電話：{storeInfo.shopPhone}</li>
         </ul>
       </li>
       <li>香水定價
-          <ul>
-          <li>{storeInfo.price}<br />{storeInfo.info}</li>
+        <ul>
+          <li>價格：{storeInfo.classPrice}</li>
         </ul>
       </li>
       <li>客製化香水說明
-        <ul>
-          <li>{storeInfo.content}</li>
+        <ul className='class-content'>
+          <li>{storeInfo.classContent}</li>
+          {storeInfo.classContent1 !== 'null' ? <li>{storeInfo.classContent1}</li> : ''}
+          {storeInfo.classContent2 !== 'null' ? <li>{storeInfo.classContent2}</li> : ''}
+          {storeInfo.classContent3 !== 'null' ? <li>{storeInfo.classContent3}</li> : ''}
+          {storeInfo.classContent4 !== 'null' ? <li>{storeInfo.classContent4}</li> : ''}
         </ul>
       </li>
       <li>注意事項
