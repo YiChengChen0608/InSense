@@ -8,4 +8,4 @@ export default combineReducers ({
     user: userReducer
 });
 
-//import in store.js
+//imported in store.js
