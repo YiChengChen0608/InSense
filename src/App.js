@@ -35,7 +35,7 @@ function App() {
                         <Route path="/itemdetail/:itemid?">
                             <ItemDetails />
                         </Route>
-                        <Route path="/classdetail/:classid?">
+                        <Route path="/classdetail/:classid">
                             <ClassDetail />
                         </Route>
                         <Route path="/signIn">

@@ -81,8 +81,6 @@ const Classes = () => {
   const [allClassSelected, setAllClassSelected] = useState(false)
   const [classes, setClasses] = useState(myClass)
 
-
-
   const changeSelectHandler = (e) => {
     switch (e.target.dataset.select) {
       case 'myClass':
