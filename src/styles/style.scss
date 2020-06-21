@@ -9,6 +9,8 @@ $main-gray: #e6e6e6;
 $main-black: #555555;
 $main-orange: #f7b66c;
 $main-scarlet: #d94f06;
+$title-font-weight: 300;
+$title-font-size: 32px;
 
 /* font*/
 $Roboto: "Roboto", "Noto Sans TC", sans-serif;
@@ -20,12 +22,16 @@ $Frank: "Frank Ruhl Libre", serif;
 }
 /* css property */
 
-body{
-  overflow-x: hidden;
+body {
+    overflow-x: hidden;
 }
 
 .d-flex {
     display: flex;
+}
+
+.display-none {
+    display: none;
 }
 .flex-wrap {
     flex-wrap: wrap;
@@ -35,6 +41,9 @@ body{
 }
 .flex-direction-column {
     flex-direction: column;
+}
+.flex-direction-row {
+    flex-direction: row;
 }
 .text-center {
     text-align: center;
@@ -63,16 +72,17 @@ body{
 .position-absolute {
     position: absolute;
 }
-.position-fix{
-  position: fixed;
+.position-fix {
+    position: fixed;
 }
-.position-sticky{
-  position: sticky;
+.position-sticky {
+    position: sticky;
 }
 /* share style */
 
 .main-container {
     min-height: calc(100vh - 100px);
+    margin-bottom: 80px;
 }
 
 .container {

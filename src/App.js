@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "normalize.css";
 
@@ -14,41 +13,50 @@ import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
+import Registration from "./pages/Registration/registration";
 import SignIn from "./pages/SignIn/SignIn";
 
 function App() {
-  return (
-    <Router>
-      <>
-        <Nav />
-        <MainContent>
-          <Switch>
-            <Route path="/classlist">
-                <ClassList />
-            </Route>
-            <Route path="/itemlist">
-              <ItemList />
-            </Route>
-            <Route path="/classdetail">
-              <ClassDetail />
-            </Route>
-            <Route path="/signIn">
-              <SignIn />
-            </Route>
-            <Route path="/account">
-              <Route path="/account/classpage">
-                <ClassPage />
-              </Route>
-            </Route>
-            <Route path="/">
-              <IndexPage />
-            </Route>
-          </Switch>
-        </MainContent>
-        <Footer />
-      </>
-    </Router>
-  );
+    return (
+        <Router>
+            <>
+                <Nav />
+                <MainContent>
+                    <Switch>
+                        <Route path="/classlist">
+                            <ClassList />
+                        </Route>
+                        <Route path="/itemlist">
+                            <Route path="/itemlist/brand/:brandName?">
+                                <ItemList />
+                            </Route>
+                            <Route path="/itemlist/categories/:categoryName?">
+                                <ItemList />
+                            </Route>
+                        </Route>
+                        <Route path="/classdetail/:classid?">
+                            <ClassDetail />
+                        </Route>
+                        <Route path="/signIn">
+                            <SignIn />
+                        </Route>
+                        <Route path="/account">
+                            <Route path="/account/classpage">
+                                <ClassPage />
+                            </Route>
+                            <Route path="/account/registration">
+                                <Registration />
+                            </Route>
+                        </Route>
+                        <Route path="/">
+                            <IndexPage />
+                        </Route>
+                    </Switch>
+                </MainContent>
+                <Footer />
+            </>
+        </Router>
+    );
 }
 
 export default App;

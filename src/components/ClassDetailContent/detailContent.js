@@ -1,25 +1,22 @@
 import React from 'react'
 import './detailContent.scss'
 
-const DetailContent = (props) => {
+const DetailContent = ({ storeInfo }) => {
   return (
     <ul className='detail-content-wrapper'>
       <li>門市資訊
           <ul>
-          <li>{props.info.title}<br />{props.info.address}<br />{props.info.phone}</li>
+          <li>{storeInfo.title}<br />{storeInfo.address}<br />{storeInfo.phone}</li>
         </ul>
       </li>
       <li>香水定價
           <ul>
-          <li>{props.service.price}<br />{props.service.info}</li>
+          <li>{storeInfo.price}<br />{storeInfo.info}</li>
         </ul>
       </li>
       <li>客製化香水說明
-          <ul>
-          <li>{props.description.content1}<br />
-            {props.description.content2}<br />
-            {props.description.content3}
-          </li>
+        <ul>
+          <li>{storeInfo.content}</li>
         </ul>
       </li>
       <li>注意事項
