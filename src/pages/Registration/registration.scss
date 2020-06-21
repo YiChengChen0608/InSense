@@ -22,6 +22,7 @@
     border-radius: 0;
     color: $main-scarlet;
     width: 150px;
+    margin-bottom: 36px;
   }
   .registration-button:hover {
     background-color: $main-scarlet;
@@ -64,7 +65,7 @@
         .address-container {
           .group {
             .form-input {
-              padding: 6px 0 7px 0;
+              padding: 6px 0 7px 6px;
             }
           }
         }

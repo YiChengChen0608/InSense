@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Address = () => {
+const Address = (props) => {
   //縣市區
   const [cities, setCities] = useState([]);
   const [address, setAddress] = useState("");
@@ -36,17 +36,28 @@ const Address = () => {
   const addressChange = (event) => {
     switch (event.target.name) {
       case "citiesSelected":
+        props.setCities && props.setCities(cities[event.target.value].CityName);
         setCitiesSelected(event.target.value);
         break;
       case "districtsSelected":
+        props.setDistricts &&
+          props.setDistricts(
+            cities[citiesSelected].AreaList[event.target.value].AreaName
+          );
+        props.setPostCode &&
+          props.setPostCode(
+            cities[citiesSelected].AreaList[event.target.value].ZipCode
+          );
         setDistrictsSelected(event.target.value);
         break;
       case "address":
+        props.setAddress && props.setAddress(event.target.value);
         setAddress(event.target.value);
         break;
       default:
         break;
     }
+    console.log(props);
   };
 
   //取得縣市資料
@@ -54,6 +65,8 @@ const Address = () => {
     const response = await fetch(
       "https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json"
     );
+
+    // console.log(response)
     const obj = await response.json();
 
     // console.log(obj);
@@ -64,7 +77,7 @@ const Address = () => {
   useEffect(() => {
     (async () => {
       let cities = await getCities();
-        // console.log("cities", cities);
+      console.log("cities", cities);
       setCities(cities);
     })();
   }, []);
@@ -98,7 +111,11 @@ const Address = () => {
         >
           {citiesSelected !== "" ? (
             cities[citiesSelected].AreaList.map((el, index) => {
-              return <MenuItem value={el.ZipCode}>{el.AreaName}</MenuItem>;
+              return (
+                <MenuItem value={index}>
+                  {el.ZipCode} {el.AreaName}
+                </MenuItem>
+              );
             })
           ) : (
             <MenuItem value="">未選縣市</MenuItem>

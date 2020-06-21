@@ -36,6 +36,10 @@ const Registration = (props) => {
   const [emailConfirmed, setEmailConfirmed] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmed, setPasswordConfirmed] = useState("");
+  const [cities, setCities] = useState("");
+  const [districts, setDistricts] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [address, setAddress] = useState("");
 
   //確認
   const [confirm, setConfirm] = useState(false);
@@ -80,12 +84,56 @@ const Registration = (props) => {
     }
   };
 
+  //聲明確認
   const confirmChange = () => {
     setConfirm(!confirm);
   };
 
+  const registrationSent = async () => {
+    const data = {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      gender: gender,
+      cities: cities,
+      districts: districts,
+      address: address,
+      postCode: postCode,
+      birthday: selectedDate.toLocaleDateString().split("/").join("-"),
+    };
+
+    const response = await fetch("http://localhost:3001/users/registration", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    const obj = await response.json();
+
+    console.log(obj);
+  };
+
   useEffect(() => {
     // console.log("changed", cities.length);
+    
+    // console.log(
+    //   "selectedDate",
+    //   selectedDate.toLocaleDateString().split("/").join("-")
+    // );
+    // console.log("gender", gender);
+    // console.log("firstName", firstName);
+    // console.log("lastName", lastName);
+    // console.log("email", email);
+    // console.log("emailConfirmed", emailConfirmed);
+    // console.log("password", password);
+    // console.log("passwordConfirmed", passwordConfirmed);
+    // console.log("cities", cities);
+    // console.log("districts", districts);
+    // console.log("postCode", postCode);
+    // console.log("address", address);
   });
 
   return (
@@ -236,7 +284,12 @@ const Registration = (props) => {
             {/* 地址 */}
             <div className="registration-grid-item registration-grid-address">
               <div className="registration-item">
-                <Address />
+                <Address
+                  setCities={setCities}
+                  setDistricts={setDistricts}
+                  setAddress={setAddress}
+                  setPostCode={setPostCode}
+                />
               </div>
             </div>
           </div>
@@ -251,7 +304,11 @@ const Registration = (props) => {
             </p>
           </div>
           <div className="">
-            <Button className="registration-button" variant="outlined">
+            <Button
+              className="registration-button"
+              variant="outlined"
+              onClick={registrationSent}
+            >
               註冊
             </Button>
           </div>
