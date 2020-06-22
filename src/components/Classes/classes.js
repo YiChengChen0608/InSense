@@ -1,100 +1,70 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './classes.scss'
 import ClassItem from '../classItem'
 
 const Classes = () => {
-  const myClass = [{
-    date: '2020/12/31',
-    time: '14:00',
-    category: '香水',
-    name: 'LFP 客製化香水',
-    price: 1500,
-    people: 2
-  }, {
-    date: '2020/12/31',
-    time: '14:00',
-    category: '香水',
-    name: 'LFP 客製化香水',
-    price: 1500,
-    people: 2
-  }, {
-    date: '2020/12/31',
-    time: '14:00',
-    category: '香水',
-    name: 'LFP 客製化香水',
-    price: 1500,
-    people: 2
-  }, {
-    date: '2020/12/31',
-    time: '14:00',
-    category: '香水',
-    name: 'LFP 客製化香水',
-    price: 1500,
-    people: 2
-  }]
-  const allMyClass = [
-    {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    }, {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    }, {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    }, {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    }, {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    }, {
-      date: '2020/12/31',
-      time: '14:00',
-      category: '香水',
-      name: 'LFP 客製化香水',
-      price: 1500,
-      people: 2
-    },
-  ]
+  const [myClassList, setMyClassList] = useState([])
+  const [allClassList, setAllClassList] = useState([])
   const [myClassSelected, setMyClassSelected] = useState(true)
   const [allClassSelected, setAllClassSelected] = useState(false)
-  const [classes, setClasses] = useState(myClass)
+  const [classes, setClasses] = useState([])
 
   const changeSelectHandler = (e) => {
     switch (e.target.dataset.select) {
       case 'myClass':
         setMyClassSelected(true)
         setAllClassSelected(false)
-        setClasses(myClass)
+        setClasses(myClassList)
         break
       case 'allClass':
         setAllClassSelected(true)
         setMyClassSelected(false)
-        setClasses(allMyClass)
+        setClasses(allClassList)
         break
     }
   }
+
+  const fetchMyClassData = async () => {
+    const userInfo = {
+      userId: 'U0001'
+    }
+    const res = await fetch('http://localhost:3002/users/classlist',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+      })
+
+    const data = await res.json()
+    return data
+  }
+  const fetchAllClassDate = async () => {
+    const userInfo = {
+      userId: 'U0001'
+    }
+    const res = await fetch('http://localhost:3002/users/allclasslist',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+      })
+    const data = await res.json()
+    return data
+  }
+
+  useEffect(() => {
+    (async () => {
+      const classData = await fetchMyClassData()
+      const allClassData = await fetchAllClassDate()
+      setMyClassList(classData)
+      setAllClassList(allClassData)
+      setClasses(classData)
+    })()
+  }, [])
 
 
   return (
