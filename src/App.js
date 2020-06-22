@@ -11,6 +11,7 @@ import MainContent from "./components/mainContent";
 import IndexPage from "./pages/indexPage";
 import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
+import ItemDetails from "./pages/ItemDetails/itemDetails";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
@@ -27,14 +28,14 @@ function App() {
                             <ClassList />
                         </Route>
                         <Route path="/itemlist">
-                            <Route path="/itemlist/brand/:brandName?">
-                                <ItemList />
-                            </Route>
-                            <Route path="/itemlist/categories/:categoryName?">
+                            <Route path="/itemlist/:brandOrCategory/:Name">
                                 <ItemList />
                             </Route>
                         </Route>
-                        <Route path="/classdetail/:classid?">
+                        <Route path="/itemdetail/:itemid?">
+                            <ItemDetails />
+                        </Route>
+                        <Route path="/classdetail/:classid">
                             <ClassDetail />
                         </Route>
                         <Route path="/signIn">

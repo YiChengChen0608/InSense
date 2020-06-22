@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './detailFooter.scss'
 import Swal from 'sweetalert2'
 
-const DetailFooter = ({ date }) => {
+const DetailFooter = ({ classTime }) => {
 
   const popUp = ({ name, gender, }) => {
     Swal.fire({
@@ -10,7 +10,7 @@ const DetailFooter = ({ date }) => {
       icon: name ? 'success' : 'error',
       html: name ?
         `<p>人數：2<br/>
-         日期：${date}<br/>
+         日期：${classTime}<br/>
          時間：14:00<br/></p>
         `: '<br/>請先登入在做預約的服務<br/>',
       showCloseButton: true,
@@ -30,10 +30,10 @@ const DetailFooter = ({ date }) => {
 
   return (
     <>
-      <p className='reservation-date'>預約日期：{date}</p>
+      <p className='reservation-date'>預約日期：{classTime}</p>
       <div className='reservation-wrapper d-flex'>
-        <select>
-          <option value="" disabled selected hidden>預約人數</option>
+        <select defaultValue={'DEFAULT'}>
+          <option value="DEFAULT" disabled hidden>預約人數</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -41,8 +41,8 @@ const DetailFooter = ({ date }) => {
           <option value="5">5</option>
           <option value="6">6</option>
         </select>
-        <select>
-          <option value="" disabled selected hidden>預約時間</option>
+        <select defaultValue={'DEFAULT'}>
+          <option value="DEFAULT" disabled hidden>預約時間</option>
           <option value="13">13:00</option>
           <option value="14">14:00</option>
           <option value="15">15:00</option>
