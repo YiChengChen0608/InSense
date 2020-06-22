@@ -1,3 +1,5 @@
+@import "../../styles/style.scss";
+
 .cart-icon {
     width: 45px;
     height: 45px;
@@ -6,17 +8,20 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-  
+    margin-right: 20px;
+    
     .shopping-icon {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
+      color: $sub-white;
     }
   
     .item-count {
       position: absolute;
       font-size: 10px;
       font-weight: bold;
-      bottom: 12px;
+      bottom: 32px;
+      color:$sub-white;
     }
   }
   

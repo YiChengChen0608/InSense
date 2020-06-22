@@ -15,6 +15,10 @@ import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
+//import CartIcon to replace FiShoppingCart
+import CartIcon from '../CartIcon/cartIcon';
+import CartDropdwon from '../CartDropdown/cartDropdown';
+
 const Nav = ({ location }) => {
   // state change
   // test info
@@ -146,7 +150,9 @@ const Nav = ({ location }) => {
           </a>
         </div>
         <p className="index-nav-title">InSense</p>
-        <IndexRightSideBar
+        
+        
+        {/* <IndexRightSideBar
           btnClose={() =>
             setUserToggle(false) || setCartToggle(false)
           }
@@ -171,8 +177,10 @@ const Nav = ({ location }) => {
           <a onClick={() => setCartToggle(true)} role="button">
             <FiShoppingCart />
           </a>
-        </div>
+        </div> */}
+        <CartIcon />
       </nav>
+      <CartDropdwon />
     </>
   );
 };
