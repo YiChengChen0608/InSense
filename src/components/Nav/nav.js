@@ -16,10 +16,11 @@ import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
 //import CartIcon to replace FiShoppingCart
+import {connect} from 'react-redux'; 
 import CartIcon from '../CartIcon/cartIcon';
 import CartDropdwon from '../CartDropdown/cartDropdown';
 
-const Nav = ({ location }) => {
+const Nav = ({ location , hidden}) => {
   // state change
   // test info
   const menuItem = [
@@ -138,11 +139,9 @@ const Nav = ({ location }) => {
           </div>
         </div>
         <div className="leftItem">
-          {/* 漢堡 */}
           <a onClick={() => setBurgerToggle(true)} role="button">
             <FiMenu />
           </a>
-          {/* 搜尋 */}
           <a
             onClick={() => setSearchToggle(true)}
             role="button"
@@ -169,7 +168,6 @@ const Nav = ({ location }) => {
               )}
         </IndexRightSideBar>
         <div className="rightItem">
-          {/* 會員登入 */}
           <a
             onClick={() => setUserToggle(true)}
             role="button"
@@ -177,16 +175,23 @@ const Nav = ({ location }) => {
           >
             <FiUser />
           </a>
-          {/* 購物車 */}
           <a onClick={() => setCartToggle(true)} role="button">
             <FiShoppingCart />
           </a>
         </div> */}
+        {/* new cart by peggy */}
         <CartIcon />
-      </nav>
+      </nav>{
+        hidden? null:
       <CartDropdwon />
+      }
     </>
   );
 };
+
+const mapStateToProps = ({user: {currentUser}, cart:{ hidden}}) =>({
+  currentUser,
+  hidden
+})
 
 export default withRouter(Nav);
