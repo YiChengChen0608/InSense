@@ -1,19 +1,12 @@
-import { BURGER_TOGGLE, CART_TOGGLE, SEARCH_TOGGLE, USER_TOGGLE } from '../action-types'
-const NAV_BTN_INITIAL_STATE = false
+import { USER_TOGGLE } from '../action-types'
 
 
-const navReducer = (state = NAV_BTN_INITIAL_STATE, action) => {
+const navReducer = (state = false, action) => {
   switch (action.type) {
-    case BURGER_TOGGLE:
-      return NAV_BTN_INITIAL_STATE = action.payload
-    case CART_TOGGLE:
-      return NAV_BTN_INITIAL_STATE = action.payload
-    case SEARCH_TOGGLE:
-      return NAV_BTN_INITIAL_STATE = action.payload
     case USER_TOGGLE:
-      return NAV_BTN_INITIAL_STATE = action.payload
+      return state = true
     default:
-      return state
+      return false
   }
 }
 
