@@ -20,14 +20,49 @@ import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 
 
 function App() {
-  return (
-    <Router>
-      <>
-        <FaqAccordion />
-        <Footer />
-      </>
-    </Router>
-  );
+    return (
+        <Router>
+            <>
+                <Nav />
+                <MainContent>
+                    <Switch>
+                        <Route path="/classlist">
+                            <ClassList />
+                        </Route>
+                        <Route path="/FaqAccordion">
+                            <FaqAccordion />
+                        </Route>
+                        <Route path="/itemlist">
+                            <Route path="/itemlist/:brandOrCategory/:Name">
+                                <ItemList />
+                            </Route>
+                        </Route>
+                        <Route path="/itemdetail/:itemid?">
+                            <ItemDetails />
+                        </Route>
+                        <Route path="/classdetail/:classid">
+                            <ClassDetail />
+                        </Route>
+                        <Route path="/signIn">
+                            <SignIn />
+                        </Route>
+                        <Route path="/account">
+                            <Route path="/account/classpage">
+                                <ClassPage />
+                            </Route>
+                            <Route path="/account/registration">
+                                <Registration />
+                            </Route>
+                        </Route>
+                        <Route path="/">
+                            <IndexPage />
+                        </Route>
+                    </Switch>
+                </MainContent>
+                <Footer />
+            </>
+        </Router>
+    );
 }
 
 export default App;

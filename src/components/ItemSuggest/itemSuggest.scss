@@ -1,28 +1,29 @@
 @import "../../styles/style.scss";
 
-.new-product-container {
+.suggest-container {
     height: 65vh;
-    margin: 80px auto;
+    margin: 40px auto;
     > h1 {
-        font-size: 32px;
+        font-size: 26px;
         color: $main-black;
         &::before {
             content: "";
             display: block;
-            width: 60px;
+            width: 40px;
             height: 1px;
             background: $main-black;
         }
         &::after {
             content: "";
             display: block;
-            width: 60px;
+            width: 40px;
             height: 1px;
             background: $main-black;
         }
         span {
             font-weight: 300;
-            margin: 20px;
+            letter-spacing: 1px;
+            margin: 10px;
         }
     }
     div {

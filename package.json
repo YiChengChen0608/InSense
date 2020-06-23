@@ -11,10 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.14.0",
-<<<<<<< HEAD
-=======
     "moment": "^2.27.0",
->>>>>>> 631d797f820437cc6593095924233a4a481ba207
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",

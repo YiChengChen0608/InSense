@@ -28,7 +28,7 @@ const Classes = () => {
     const userInfo = {
       userId: 'U0001'
     }
-    const res = await fetch('http://localhost:3002/users/classlist',
+    const res = await fetch('http://localhost:3030/users/classlist',
       {
         method: 'POST',
         headers: {
@@ -44,7 +44,7 @@ const Classes = () => {
     const userInfo = {
       userId: 'U0001'
     }
-    const res = await fetch('http://localhost:3002/users/allclasslist',
+    const res = await fetch('http://localhost:3030/users/allclasslist',
       {
         method: 'POST',
         headers: {
