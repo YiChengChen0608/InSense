@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import SubmitButton from '../SubmitButton/submitButton';
 import { addItem } from '../../Redux/cart/cartAction';
-
-
-import './collection-item.styles.scss';
+import './collectionItem.scss';
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;

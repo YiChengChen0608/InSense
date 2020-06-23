@@ -17,7 +17,7 @@ import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from './pages/shop/shop.component';
-import SignIn from "./pages/SignIn/SignIn";
+// import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 
 
@@ -49,7 +49,7 @@ function App() {
                         <Route path="/testUI">
                             <TestUI />
                         </Route>
-                        <Route path="/shop">
+                        <Route path="/Shop">
                             <ShopPage />
                         </Route>
                         <Route path="/account">
