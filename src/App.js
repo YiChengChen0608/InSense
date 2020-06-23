@@ -16,6 +16,7 @@ import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import TestUI from "./pages/TestUI/testUI";
+import ShopPage from './pages/shop/shop.component';
 
 function App() {
     return (
@@ -40,6 +41,9 @@ function App() {
                         </Route>
                         <Route path="/testUI">
                             <TestUI />
+                        </Route>
+                        <Route path="/shop">
+                            <ShopPage />
                         </Route>
                         <Route path="/account">
                             <Route path="/account/classpage">

@@ -11,15 +11,31 @@
     font-family: $Roboto;
     font-weight: 300;
     border: none;
-    cursor: pointer;
     background-color: white;
     color: #d94f06;
     border: 1px solid #d94f06;
+    cursor: pointer;
+    display:flex;
+    justify-content: center;
   
     &:hover {
       background-color: #d94f06;
       color: white;
       border: none;
     }
+
+    &.inverted {
+      background-color: #d94f06;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: white;
+        color: #d94f06;
+        border: 1px solid #d94f06; 
+      }
+    }
+
+
   }
   

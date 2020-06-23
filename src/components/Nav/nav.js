@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import {
   FiMenu,
   FiSearch,
-  FiUser,
-  FiShoppingCart,
   FiX,
+  FiUser,
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
-import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
-import IndexLogin from "../IndexLogin/indexLogin";
-import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
+import IndexLogin from '../IndexLogin/indexLogin'
+
 
 //import CartIcon to replace FiShoppingCart
 import {connect} from 'react-redux'; 
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../Redux/cart/cartSelectors';
+// import { selectCurrentUser } from '../../redux/user/userSelectors';
 import CartIcon from '../CartIcon/cartIcon';
 import CartDropdwon from '../CartDropdown/cartDropdown';
 
@@ -151,47 +153,33 @@ const Nav = ({ location , hidden}) => {
           </a>
         </div>
         <p className="index-nav-title">InSense</p>
-        
-        
-        {/* <IndexRightSideBar
-          btnClose={() =>
-            setUserToggle(false) || setCartToggle(false)
-          }
-          state={userToggle || cartToggle}
-        >
-          {userToggle ? (
-            <IndexLogin />
-          ) : cartToggle ? (
-            <IndexShoppingCart />
-          ) : (
-                ""
-              )}
+        <IndexRightSideBar btnClose={() => setUserToggle(false)} state={userToggle}>
+          <IndexLogin />
         </IndexRightSideBar>
-        <div className="rightItem">
-          <a
-            onClick={() => setUserToggle(true)}
-            role="button"
-            data-name="user"
-          >
-            <FiUser />
-          </a>
-          <a onClick={() => setCartToggle(true)} role="button">
-            <FiShoppingCart />
-          </a>
-        </div> */}
-        {/* new cart by peggy */}
-        <CartIcon />
+        <div className='rightItem'>
+          <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser/></a>
+        </div>
+        <CartIcon onClick={() => setCartToggle(true)} role='button'/>
       </nav>{
-        hidden? null:
+        hidden ? null:
       <CartDropdwon />
       }
     </>
   );
 };
 
-const mapStateToProps = ({user: {currentUser}, cart:{ hidden}}) =>({
-  currentUser,
-  hidden
-})
 
-export default withRouter(Nav);
+
+
+const mapStateToProps = createStructuredSelector({
+  // currentUser: selectCurrentUser,
+  hidden: selectCartHidden
+});
+
+//Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
+const compose = (f, g) => x => f(g(x));
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(Nav);
