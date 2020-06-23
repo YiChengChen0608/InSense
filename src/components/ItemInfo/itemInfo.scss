@@ -1,0 +1,99 @@
+@import "../../styles/style.scss";
+
+.item-info-container {
+    max-width: 570px;
+    height: 570px;
+    margin: 16px 0 16px 8px;
+    padding: 8px;
+    flex-grow: 1;
+    // border: darkblue solid 1px;
+    .item-info {
+        max-width: 550px;
+        height: 550px;
+        margin: auto;
+        // border: darkseagreen 1px solid;
+        h2 {
+            color: $main-black;
+            font-weight: 300;
+            text-align: center;
+        }
+        .size-label-container {
+            // .size-title {
+            //     font-weight: 300;
+            //     font-size: 12px;
+            //     margin-top: 56px;
+            // }
+            .size-label {
+                color: $main-black;
+                font-weight: 300;
+                font-size: 18px;
+                // border: $main-black solid 1px;
+                // display: inline-block;
+                cursor: pointer;
+                padding: 8px 20px;
+                text-align: center;
+            }
+        }
+        .price-wrapper {
+            h3 {
+                color: $main-black;
+                font-weight: 400;
+                font-size: 18px;
+                text-align: right;
+                padding-right: 20px;
+            }
+        }
+        .add-item-wrapper {
+            .qty {
+                margin: 10px;
+                p {
+                    color: $main-black;
+                    font-size: 14px;
+                    padding-left: 20px;
+                    margin-bottom: 10px;
+                }
+                .qty-control {
+                    color: $main-black;
+                    height: 40px;
+                    .minus {
+                        font-size: 20px;
+                        padding: 8px 16px;
+                    }
+                    .plus {
+                        font-size: 20px;
+                        padding: 8px 16px;
+                    }
+                    .qty-input {
+                        width: 60px;
+                        height: 26px;
+                        border: solid 1px black;
+                    }
+                }
+            }
+            .item-add-cart {
+                padding-top: 36px;
+                .btn-cart {
+                    width: 200px;
+                    height: 50px;
+                    font-size: 18px;
+                    font-weight: 300;
+                    letter-spacing: 1px;
+                    border: transparent;
+                    background-color: $main-orange;
+                    color: $main-black;
+                }
+            }
+        }
+        .item-discription-container {
+            // max-height: 490px;
+            height: 250px;
+            // border: rgb(218, 32, 32) solid 1px;
+            color: $main-black;
+            padding: 0 20px;
+            margin: 32px 0;
+            line-height: 32px;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+    }
+}
