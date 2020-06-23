@@ -199,4 +199,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

@@ -26,7 +26,7 @@ export const userLogInAsync = (userEmail, userPassword) => {
 
     const response = await fetch(request);
     const obj = await response.json();
-    // console.log("obj", obj);
+    console.log("obj", obj);
 
     //更動redux state
     dispatch({
