@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import {
   FiMenu,
   FiSearch,
@@ -12,27 +14,36 @@ import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
+import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
-const Nav = ({ location }) => {
+const Nav = ({ location, user }) => {
   // state change
   // test info
   const menuItem = [
-    { itemName: '代理品牌', name: 'brand' }, { itemName: '身體保養', name: 'body' },
-    { itemName: '個人香氛', name: 'self' }, { itemName: '室內香氣', name: 'indoor' },
-    { itemName: '體驗課程', name: 'class', pathUrl: '/classlist' }
-  ]
+    { itemName: "代理品牌", name: "brand" },
+    { itemName: "身體保養", name: "body" },
+    { itemName: "個人香氛", name: "self" },
+    { itemName: "室內香氣", name: "indoor" },
+    { itemName: "體驗課程", name: "class", pathUrl: "/classlist" },
+  ];
   const brandItem = [
-    { itemName: 'BYREDO', name: 'byredo', pathUrl: '/itemlist' }, { itemName: 'CHANEL', name: 'chanel' }, { itemName: 'DIPTYQUE', name: 'diptyque' }
-    , { itemName: 'Jo Malone London', name: 'jomalonelondon' }, { itemName: 'LeLabo', name: 'lelabo' }
-  ]
+    { itemName: "BYREDO", name: "byredo", pathUrl: "/itemlist" },
+    { itemName: "CHANEL", name: "chanel" },
+    { itemName: "DIPTYQUE", name: "diptyque" },
+    { itemName: "Jo Malone London", name: "jomalonelondon" },
+    { itemName: "LeLabo", name: "lelabo" },
+  ];
   const bodyItem = [
-    { itemName: '沐浴清潔', name: '' }, { itemName: '乳液與保養油', name: '' }, { itemName: '手部保養', name: '' }
-  ]
+    { itemName: "沐浴清潔", name: "" },
+    { itemName: "乳液與保養油", name: "" },
+    { itemName: "手部保養", name: "" },
+  ];
   const selfItem = [
-    { itemName: '香水', name: '' }, { itemName: '髮香噴霧與隨身香水', name: '' }
-  ]
+    { itemName: "香水", name: "" },
+    { itemName: "髮香噴霧與隨身香水", name: "" },
+  ];
 
   const [subMenu, setSubMenu] = useState([]);
   const [burgerToggle, setBurgerToggle] = useState(false);
@@ -69,25 +80,20 @@ const Nav = ({ location }) => {
     <>
       <nav
         className={`${
-          location.pathname === "/"
-            ? "position-fix"
-            : "position-sticky"
-          } nav d-flex justify-content-between align-items-center ${
+          location.pathname === "/" ? "position-fix" : "position-sticky"
+        } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-          }`}
+        }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
-              onClick={() =>
-                setBurgerToggle(false) ||
-                setSubMenuToggle(false)
-              }
+              onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}
             >
               <FiX />
             </span>
@@ -107,12 +113,12 @@ const Nav = ({ location }) => {
           <ul>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-                            關於我們
-                        </li>
+              關於我們
+            </li>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-                            幫助中心
-                        </li>
+              幫助中心
+            </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -120,7 +126,7 @@ const Nav = ({ location }) => {
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -149,18 +155,20 @@ const Nav = ({ location }) => {
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
-          btnClose={() =>
-            setUserToggle(false) || setCartToggle(false)
-          }
+          btnClose={() => setUserToggle(false) || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
           {userToggle ? (
-            <IndexLogin />
+            user.logInStatus ? (
+              <AccountRightBar />
+            ) : (
+              <IndexLogin />
+            )
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
-                ""
-              )}
+            ""
+          )}
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
@@ -181,4 +189,14 @@ const Nav = ({ location }) => {
   );
 };
 
-export default withRouter(Nav);
+const mapStateToProps = (store) => {
+  return { user: store.user };
+};
+
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({}, dispatch);
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

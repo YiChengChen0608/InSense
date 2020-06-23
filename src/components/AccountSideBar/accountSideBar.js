@@ -1,7 +1,8 @@
 import React from "react";
 import "./accountSideBar.scss";
 import { FiChevronRight } from "react-icons/fi";
-import { Link , NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const AccountSideBar = () => {
   return (
@@ -15,7 +16,10 @@ const AccountSideBar = () => {
           </Link>
         </li>
         <li className="d-flex align-item-center">
-          <Link to="/account/classpage" className="d-flex align-item-center account-link">
+          <Link
+            to="/account/classpage"
+            className="d-flex align-item-center account-link"
+          >
             <FiChevronRight className="icon" />
             <p>我的課程</p>
           </Link>
@@ -51,10 +55,7 @@ const AccountSideBar = () => {
           </Link>
         </li>
         <li className="d-flex align-item-center">
-          <Link to="" className="d-flex align-item-center account-link">
-            <FiChevronRight className="icon" />
-            <p>登出</p>
-          </Link>
+          <Button>登出</Button>
         </li>
       </ul>
     </div>
