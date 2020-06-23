@@ -13,13 +13,12 @@ import { userToggleFunc, closeSideBar } from '../../Redux/nav/navAction'
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
-<<<<<<< HEAD
-import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar'
-import IndexLogin from '../IndexLogin/indexLogin'
+
+import IndexRightSideBar from '../IndexRightSideBar/indexRightSideBar';
+import IndexLogin from '../IndexLogin/indexLogin';
 
 
 //import CartIcon to replace FiShoppingCart
-import {connect} from 'react-redux'; 
 import { createStructuredSelector } from 'reselect';
 import { selectCartHidden } from '../../Redux/cart/cartSelectors';
 import { selectCurrentUser } from '../../redux/user/userSelectors';
