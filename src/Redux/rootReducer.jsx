@@ -3,11 +3,13 @@
 import { combineReducers } from 'redux';
 import testReducer from './test/testReducer';
 import userReducer from './user/userReducer';
+import navReducer from './nav/navReducer'
 
 
-export default combineReducers ({
-    test: testReducer,
-    user: userReducer
+export default combineReducers({
+  test: testReducer,
+  user: userReducer,
+  nav: navReducer
 });
 
 //imported in store.js

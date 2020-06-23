@@ -10,6 +10,11 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
+
+//Redux
+import { checkLogin } from "../../Redux/user/userAction";
+import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
+
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
@@ -18,10 +23,14 @@ import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
-//Redux
-import { checkLogin } from "../../Redux/user/userAction";
-
-const Nav = ({ location, user, checkLogin }) => {
+const Nav = ({
+  location,
+  user,
+  userToggleFunc,
+  closeSideBar,
+  userToggle,
+  checkLogin,
+}) => {
   // state change
   // test info
   const menuItem = [
@@ -52,7 +61,6 @@ const Nav = ({ location, user, checkLogin }) => {
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [subMenuToggle, setSubMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
-  const [userToggle, setUserToggle] = useState(false);
   const [cartToggle, setCartToggle] = useState(false);
   const [scrollTop, setScrollTop] = useState(false);
   //  event handler
@@ -162,7 +170,7 @@ const Nav = ({ location, user, checkLogin }) => {
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
-          btnClose={() => setUserToggle(false) || setCartToggle(false)}
+          btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
           {userToggle ? (
@@ -179,7 +187,7 @@ const Nav = ({ location, user, checkLogin }) => {
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
-          <a onClick={() => setUserToggle(true)} role="button" data-name="user">
+          <a onClick={() => userToggleFunc()} role="button" data-name="user">
             <FiUser />
           </a>
           {/* 購物車 */}
@@ -193,13 +201,16 @@ const Nav = ({ location, user, checkLogin }) => {
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user };
+  return { user: store.user, userToggle: store.nav };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ checkLogin }, dispatch);
+  return bindActionCreators(
+    { userToggleFunc, closeSideBar, checkLogin },
+    dispatch
+  );
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
