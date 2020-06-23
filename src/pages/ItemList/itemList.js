@@ -8,12 +8,12 @@ import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 // import ItemCardData from "./itemCard.data";
 const ItemList = (props) => {
-    const [itemCardData, setItemCardData] = useState([]);
-    const [itemHeadData, setItemHeadData] = useState([]);
-    const [itemWishList, setitemWishList] = useState([]);
-    //拿到網址上的 ":brandName"參數
-    const brandOrCategory = useParams().brandOrCategory;
-    const name = useParams().Name;
+  const [itemCardData, setItemCardData] = useState([]);
+  const [itemHeadData, setItemHeadData] = useState([]);
+  const [itemWishList, setitemWishList] = useState([]);
+  //拿到網址上的 ":brandName"參數
+  const brandOrCategory = useParams().brandOrCategory;
+  const name = useParams().Name;
 
     //僅做擷取資料用途
     const fetchCardData = useCallback(async (brandOrCategory, name) => {
@@ -27,23 +27,23 @@ const ItemList = (props) => {
         return data;
     }, []);
 
-    useEffect(() => {
-        (async () => {
-            //1. 獲得資料data
-            const rawData = await fetchCardData(brandOrCategory, name);
-            const headData = rawData[0]; //標題資料
-            const cardData = rawData[1]; //卡片資料
-            setItemHeadData(headData);
-            setItemCardData(cardData);
-            console.log("cardData", cardData);
-            console.log("headData", headData);
-        })();
-        console.log("born");
-    }, [brandOrCategory, name]);
+  useEffect(() => {
+    (async () => {
+      //1. 獲得資料data
+      const rawData = await fetchCardData(brandOrCategory, name);
+      const headData = rawData[0]; //標題資料
+      const cardData = rawData[1]; //卡片資料
+      setItemHeadData(headData);
+      setItemCardData(cardData);
+      console.log("cardData", cardData);
+      console.log("headData", headData);
+    })();
+    console.log("born");
+  }, [brandOrCategory, name]);
 
-    useEffect(() => {
-        console.log(itemWishList);
-    }, [itemWishList]);
+  useEffect(() => {
+    console.log(itemWishList);
+  }, [itemWishList]);
 
     return (
         <>
@@ -103,10 +103,10 @@ const ItemList = (props) => {
                         />
                     );
                 })} */}
-                </div>
-            </MainContainer>
-        </>
-    );
+        </div>
+      </MainContainer>
+    </>
+  );
 };
 
 export default withRouter(ItemList);
