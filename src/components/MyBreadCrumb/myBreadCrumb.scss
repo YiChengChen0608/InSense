@@ -1,0 +1,10 @@
+@import "../../styles/style.scss";
+.breadcrumb-wrapper {
+    max-width: 1140px;
+    height: 40px;
+    padding: 14px 24px;
+    border: crimson solid 1px;
+    .breadcrumb-item {
+        list-style: none;
+    }
+}
