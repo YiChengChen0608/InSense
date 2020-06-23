@@ -4,9 +4,14 @@ import "./itemImg.scss";
 const ItemImg = (props) => {
     return (
         <>
-            <div className="item-gallery">
-                <div className="detail-img">
-                    <img src={props.itemimg} />
+            <div className="item-gallery-container">
+                <div className="item-gallery">
+                    <div className="detail-img-big">
+                        <img src={props.itemimg} />
+                    </div>
+                    <div className="detail-img-small">
+                        <img src={props.itemimg} />
+                    </div>
                 </div>
             </div>
         </>

@@ -31,34 +31,8 @@ const Nav = ({ location }) => {
     { itemName: '沐浴清潔', name: '' }, { itemName: '乳液與保養油', name: '' }, { itemName: '手部保養', name: '' }
   ]
   const selfItem = [
-    { itemName: '香水', name: '' }, { itemName: '髮香噴霧', name: '' }, { itemName: '隨身香水', name: '' }
+    { itemName: '香水', name: '' }, { itemName: '髮香噴霧與隨身香水', name: '' }
   ]
-
-  const [subMenu, setSubMenu] = useState([])
-  const [burgerToggle, setBurgerToggle] = useState(false)
-  const [subMenuToggle, setSubMenuToggle] = useState(false)
-  const [searchToggle, setSearchToggle] = useState(false)
-  const [userToggle, setUserToggle] = useState(false)
-  const [cartToggle, setCartToggle] = useState(false)
-  const [scrollTop, setScrollTop] = useState(false)
-  //  event handler
-  let SideBar = (event) => {
-    switch (event.currentTarget.dataset.name) {
-      case "brand":
-        setSubMenu(brandItem);
-        setSubMenuToggle(true);
-        break;
-      case "body":
-        setSubMenu(bodyItem);
-        setSubMenuToggle(true);
-        break;
-      case "self":
-        setSubMenu(selfItem);
-        setSubMenuToggle(true);
-        break;
-    }
-  };
-
 
   const [subMenu, setSubMenu] = useState([]);
   const [burgerToggle, setBurgerToggle] = useState(false);
