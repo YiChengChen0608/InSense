@@ -14,7 +14,37 @@ const AccountRightBar = (props) => {
   const { user, userLogOutAsync } = props;
 
   const handleLogOut = () => {
-    userLogOutAsync()
+    (async () => {
+      const logOut = { success: false };
+
+      //到後端判斷
+      try {
+        const request = new Request("http://localhost:3030/users/logout", {
+          method: "POST",
+          credentials: "include",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+
+        const response = await fetch(request);
+        const obj = await response.json();
+        console.log("obj", obj);
+
+        //更改logOut
+        logOut.success = true;
+      } catch (e) {
+        console.log(e);
+
+        //錯誤資訊
+        logOut.errorMessage = e;
+      }
+      
+      if (logOut.success) userLogOutAsync();
+      console.log(logOut.errorMessage)
+
+    })();
   };
 
   return (

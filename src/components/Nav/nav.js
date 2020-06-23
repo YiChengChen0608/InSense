@@ -18,7 +18,10 @@ import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
-const Nav = ({ location, user }) => {
+//Redux
+import { checkLogin } from "../../Redux/user/userAction";
+
+const Nav = ({ location, user, checkLogin }) => {
   // state change
   // test info
   const menuItem = [
@@ -74,6 +77,10 @@ const Nav = ({ location, user }) => {
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
     });
+    console.log("born");
+
+    //一開始載入網頁，驗證身份
+    checkLogin();
   }, []);
 
   return (
@@ -172,11 +179,7 @@ const Nav = ({ location, user }) => {
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
-          <a
-            onClick={() => setUserToggle(true)}
-            role="button"
-            data-name="user"
-          >
+          <a onClick={() => setUserToggle(true)} role="button" data-name="user">
             <FiUser />
           </a>
           {/* 購物車 */}
@@ -196,7 +199,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ checkLogin }, dispatch);
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
