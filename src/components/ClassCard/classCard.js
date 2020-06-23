@@ -9,7 +9,7 @@ const ClassCard = ({ classImg, classTime, className, classId }) => {
     <>
       <div className="class-card-wrapper">
         <div className="card-img">
-          <img src={`http://localhost:3002/images/class/${classImg}.png`} />
+          <img src={`http://localhost:3030/images/class/${classImg}.png`} />
         </div>
         <div className="card-content d-flex justify-content-between align-items-center">
           <p>{classTime}</p>
