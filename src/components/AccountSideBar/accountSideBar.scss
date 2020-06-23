@@ -1,0 +1,44 @@
+@import "../../styles/style.scss";
+
+.side-bar-wrapper {
+  width: 20%;
+  h2 {
+    color: $main-blue;
+    margin: 0;
+    font-weight: 300;
+    font-size: 28px;
+  }
+  .accountMenu {
+    list-style: none;
+    color: $main-blue;
+    padding: 0;
+    margin: 20px 0;
+    li {
+      padding: 10px 0;
+      margin: 4px 0;
+      font-size: 18px;
+      font-weight: 300;
+      .icon {
+        width: 0;
+        margin-left: 6px;
+        transition: 0.2s;
+      }
+      .account-link {
+        padding-right: 36px;
+        cursor: pointer;
+        color: $main-black;
+        text-decoration: none;
+        p {
+          margin: 0;
+          // line-height: 32px;
+        }
+      }
+    }
+    .account-link:hover {
+      color: $main-blue;
+      .icon {
+        width: 18px;
+      }
+    }
+  }
+}

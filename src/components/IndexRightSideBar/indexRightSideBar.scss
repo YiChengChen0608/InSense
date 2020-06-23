@@ -1,0 +1,25 @@
+@import '../../styles/style.scss';
+
+.right-side-bar{
+  flex-direction: column;
+  width: 424px;
+  height: 100vh;
+  background: $sub-white;
+  top:0;
+  right:-424px;
+  overflow: scroll;
+  transition: .5s;
+  .menu-title{
+    width: 100%;
+    color:$main-black;
+    left: 0;
+    top:0;
+    height: 60px;
+    font-weight: bold;
+    span{
+      font-size: 24px;
+      padding:16px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import '../../styles/style.scss';
+
+$hunderdPercent: 100%;
+
+
+.class-wrapper{
+  max-width: 800px;
+  width: 80%;
+}
+
+.change-btn{
+  border-bottom: 1px solid $main-black;
+  a{
+    display: block;
+    text-decoration: none;
+    background: $main-gray;
+    color:$main-black;
+    padding:12px 16px;
+    &:nth-child(1){
+      background: $main-orange;
+    }
+  }
+}
+
+.class-item{
+  border-bottom: 1px solid $main-black;
+  justify-content: space-around;
+  p{
+    width: $hunderdPercent / 6 ;
+    // flex-grow: 1;
+  }
+}

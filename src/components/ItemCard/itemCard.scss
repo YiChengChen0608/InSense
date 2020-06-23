@@ -1,0 +1,28 @@
+@import "../../styles/style.scss";
+
+.card-wrapper {
+    max-width: 250px;
+    padding: 8px;
+    flex-grow: 1;
+    border: 0;
+    .card-img {
+        width: 100%;
+        object-fit: cover;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.saved-btn {
+    max-width: 250px;
+    font-size: 14px;
+    position: relative;
+}
+
+.card-content {
+    font-size: 14px;
+}
+.card-name {
+    margin: 0;
+}

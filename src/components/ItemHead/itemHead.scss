@@ -1,0 +1,20 @@
+@import "../../styles/style.scss";
+
+.item-head-banner {
+    width: 100%;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+.brand-name {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.brand-content {
+    text-align: center;
+    font-weight: 300;
+    // margin: 4px 0;
+}
