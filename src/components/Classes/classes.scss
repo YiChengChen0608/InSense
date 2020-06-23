@@ -16,15 +16,17 @@ $hunderdPercent: 100%;
     background: $main-gray;
     color:$main-black;
     padding:12px 16px;
-    &:nth-child(1){
-      background: $main-orange;
-    }
+    cursor: pointer;
+  }
+  .btn-selected{
+    background: $main-orange;
   }
 }
 
 .class-item{
   border-bottom: 1px solid $main-black;
   justify-content: space-around;
+  color:$main-black;
   p{
     width: $hunderdPercent / 6 ;
     // flex-grow: 1;

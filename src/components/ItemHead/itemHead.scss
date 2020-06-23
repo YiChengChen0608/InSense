@@ -1,5 +1,8 @@
 @import "../../styles/style.scss";
 
+.item-head {
+    margin-bottom: 2.8%;
+}
 .item-head-banner {
     width: 100%;
     img {
@@ -11,6 +14,7 @@
     font-size: 28px;
     text-align: center;
     font-weight: 300;
+    margin: 4% 0 2%;
 }
 
 .brand-content {
@@ -18,3 +22,6 @@
     font-weight: 300;
     // margin: 4px 0;
 }
+
+// @media
+// max-width: 250px;

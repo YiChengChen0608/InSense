@@ -1,0 +1,17 @@
+@import "../../styles/style.scss";
+
+.item-gallery {
+    max-width: 580px;
+    margin: 16px 8px 16px;
+    padding: 8px;
+    flex-grow: 1;
+    border: 0;
+    background-color: cornflowerblue;
+    .detail-img {
+        width: 100%;
+        object-fit: cover;
+        img {
+            width: 100%;
+        }
+    }
+}
