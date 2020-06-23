@@ -1,0 +1,57 @@
+@import "../../styles/style.scss";
+
+.right-bar-wrapper {
+  position: absolute;
+  top: 10vh;
+  width: 60%;
+  h2 {
+    color: $main-blue;
+    margin: 0;
+    font-weight: 300;
+    font-size: 24px;
+  }
+  .menu-bar {
+    .accountMenu {
+      list-style: none;
+      color: $main-blue;
+      padding: 0;
+      margin: 20px 0;
+      li {
+        padding: 1vh 0;
+        margin: 1vh 0;
+        font-size: 18px;
+        font-weight: 300;
+        .icon {
+          width: 0;
+          margin-left: 6px;
+          transition: 0.2s;
+        }
+        .account-link {
+          padding-right: 36px;
+          cursor: pointer;
+          color: $main-black;
+          text-decoration: none;
+          p {
+            margin: 0;
+            // line-height: 32px;
+          }
+        }
+        button {
+          width: 100%;
+          border: 1px solid $main-black;
+          border-radius: 0;
+          font-weight: 300;
+          font-size: 16px;
+          padding: 4px 0;
+          margin: 10px 0
+        }
+      }
+      .account-link:hover {
+        color: $main-blue;
+        .icon {
+          width: 18px;
+        }
+      }
+    }
+  }
+}

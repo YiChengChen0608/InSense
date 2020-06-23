@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 function Counter() {
   const [count, setCount] = useState(0);
 
+  // console.log("aaaa");
+
   useEffect(() => {
     console.log("start");
     fetch("http://localhost:3001/echo", {
@@ -12,8 +14,14 @@ function Counter() {
       .then((r) => r.json())
       .then((obj) => {
         console.log(obj);
+        console.log(456);
+        
       });
   }, []);
+
+  useEffect(() => {
+    console.log("changed");
+  });
 
   return (
     <div>
@@ -21,14 +29,14 @@ function Counter() {
       <button
         onClick={() => {
           setCount(count + 1);
-          // fetch("http://localhost:3001/echo", {
-          //   method: "POST",
-          //   credentials: "include",
-          // })
-          //   .then((r) => r.json())
-          //   .then((obj) => {
-          //     console.log(obj);
-          //   });
+          fetch("http://localhost:3001/echo", {
+            method: "POST",
+            credentials: "include",
+          })
+            .then((r) => r.json())
+            .then((obj) => {
+              console.log(obj);
+            });
           console.log("count", count);
         }}
       >
