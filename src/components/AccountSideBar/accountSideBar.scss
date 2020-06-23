@@ -33,6 +33,15 @@
           // line-height: 32px;
         }
       }
+      button {
+        width: 30%;
+        border: 1px solid $main-black;
+        border-radius: 0;
+        font-weight: 300;
+        font-size: 16px;
+        padding: 4px 0;
+        margin: 10px 0
+      }
     }
     .account-link:hover {
       color: $main-blue;
