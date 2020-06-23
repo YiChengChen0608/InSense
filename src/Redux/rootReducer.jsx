@@ -3,16 +3,18 @@
 import { combineReducers } from 'redux';
 import testReducer from './test/testReducer';
 import userReducer from './user/userReducer';
+
 import cartReducer from './cart/cartReducer';
+import navReducer from './nav/navReducer';
 
 export default combineReducers ({
-<<<<<<< HEAD
     user: userReducer,
-    cart: cartReducer
-=======
+    cart: cartReducer,
     test: testReducer,
-    user: userReducer
->>>>>>> 631d797f820437cc6593095924233a4a481ba207
+    nav: navReducer
 });
+
+
+
 
 //imported in store.js

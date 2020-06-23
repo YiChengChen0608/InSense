@@ -9,6 +9,7 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
+import { userToggleFunc, closeSideBar } from '../../Redux/nav/navAction'
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
@@ -32,8 +33,12 @@ import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
+<<<<<<< HEAD
 const Nav = ({ location, user }) => {
 >>>>>>> 631d797f820437cc6593095924233a4a481ba207
+=======
+const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
+>>>>>>> 5d712789d7b272f280c8b419e8c7bb28dcf0ab02
   // state change
   // test info
   const menuItem = [
@@ -64,7 +69,6 @@ const Nav = ({ location, user }) => {
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [subMenuToggle, setSubMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
-  const [userToggle, setUserToggle] = useState(false);
   const [cartToggle, setCartToggle] = useState(false);
   const [scrollTop, setScrollTop] = useState(false);
   //  event handler
@@ -96,15 +100,15 @@ const Nav = ({ location, user }) => {
       <nav
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
-        } nav d-flex justify-content-between align-items-center ${
+          } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-        }`}
+          }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
@@ -141,7 +145,7 @@ const Nav = ({ location, user }) => {
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -172,24 +176,43 @@ const Nav = ({ location, user }) => {
           <IndexLogin />
 =======
         <IndexRightSideBar
-          btnClose={() => setUserToggle(false) || setCartToggle(false)}
+          btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
           {userToggle ? (
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-              <IndexLogin />
-            )
+                <IndexLogin />
+              )
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
+<<<<<<< HEAD
             ""
           )}
 >>>>>>> 631d797f820437cc6593095924233a4a481ba207
         </IndexRightSideBar>
         <div className='rightItem'>
           <a onClick={() => setUserToggle(true)} role='button' data-name='user'><FiUser/></a>
+=======
+                ""
+              )}
+        </IndexRightSideBar>
+        <div className="rightItem">
+          {/* 會員登入 */}
+          <a
+            onClick={() => userToggleFunc()}
+            role="button"
+            data-name="user"
+          >
+            <FiUser />
+          </a>
+          {/* 購物車 */}
+          <a onClick={() => setCartToggle(true)} role="button">
+            <FiShoppingCart />
+          </a>
+>>>>>>> 5d712789d7b272f280c8b419e8c7bb28dcf0ab02
         </div>
         <CartIcon onClick={() => setCartToggle(true)} role='button'/>
       </nav>{
@@ -218,13 +241,13 @@ export default compose(
 )(Nav);
 =======
 const mapStateToProps = (store) => {
-  return { user: store.user };
+  return { user: store.user, userToggle: store.nav };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ userToggleFunc, closeSideBar }, dispatch);
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

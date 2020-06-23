@@ -17,6 +17,10 @@ import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from './pages/shop/shop.component';
+import SignIn from "./pages/SignIn/SignIn";
+import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
+
+
 
 function App() {
     return (
@@ -27,6 +31,9 @@ function App() {
                     <Switch>
                         <Route path="/classlist">
                             <ClassList />
+                        </Route>
+                        <Route path="/FaqAccordion">
+                            <FaqAccordion />
                         </Route>
                         <Route path="/itemlist">
                             <Route path="/itemlist/:brandOrCategory/:Name">
