@@ -6,7 +6,7 @@ const ClassHead = ({ classImgDir, classImg, title, content, content2 }) => {
     <>
       <div className="class-head d-flex flex-wrap align-items-center">
         <div className="headLeft">
-          <img className="object-fit-cover" src={`http://localhost:3002/images/${classImgDir}/${classImg}.png`} />
+          <img className="object-fit-cover" src={`http://localhost:3030/images/${classImgDir}/${classImg}.png`} />
         </div>
         <div className="headRight">
           <p className="headTitle">{title}</p>

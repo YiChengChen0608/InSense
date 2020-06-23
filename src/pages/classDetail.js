@@ -9,7 +9,7 @@ const ClassDetail = ({ match }) => {
   const [detail, setDetail] = useState([])
 
   const fetchClassDetailData = async () => {
-    const res = await fetch(`http://localhost:3002/class/classdetail/${match.params.classid}`)
+    const res = await fetch(`http://localhost:3030/class/classdetail/${match.params.classid}`)
     const data = res.json()
     return data
   }

@@ -8,6 +8,8 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { searchToggle } from '../../Redux/nav/navAction'
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";

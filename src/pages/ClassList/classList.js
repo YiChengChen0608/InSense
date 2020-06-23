@@ -7,7 +7,7 @@ const ClassList = () => {
   const [classInfo, setClassInfo] = useState([])
 
   const fetchClassData = async () => {
-    const res = await fetch('http://localhost:3002/class')
+    const res = await fetch('http://localhost:3030/class')
     const data = await res.json()
     return data
   }

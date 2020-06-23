@@ -1,0 +1,4 @@
+export const BURGER_TOGGLE = 'BURGER_TOGGLE'
+export const CART_TOGGLE = 'CART_TOGGLE'
+export const SEARCH_TOGGLE = 'SEARCH_TOGGLE'
+export const USER_TOGGLE = 'USER_TOGGLE'
