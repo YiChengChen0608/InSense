@@ -42,6 +42,9 @@ body {
 .flex-direction-column {
   flex-direction: column;
 }
+.flex-direction-row {
+  flex-direction: row;
+}
 .text-center {
   text-align: center;
 }
@@ -82,9 +85,11 @@ body {
 
 .main-container {
   min-height: calc(100vh - 100px);
+  margin-bottom: 80px;
 }
 
 .container {
+  width: 1140px;
+  max-width: 100%;
   margin: 0 auto;
-  max-width: 1140px;
 }

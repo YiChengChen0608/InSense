@@ -103,7 +103,7 @@ const Registration = (props) => {
       birthday: selectedDate.toLocaleDateString().split("/").join("-"),
     };
 
-    const response = await fetch("http://localhost:3001/users/registration", {
+    const response = await fetch("http://localhost:3030/users/registration", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
