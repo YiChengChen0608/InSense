@@ -18,7 +18,7 @@ import IndexLogin from '../IndexLogin/indexLogin'
 import {connect} from 'react-redux'; 
 import { createStructuredSelector } from 'reselect';
 import { selectCartHidden } from '../../Redux/cart/cartSelectors';
-// import { selectCurrentUser } from '../../redux/user/userSelectors';
+import { selectCurrentUser } from '../../redux/user/userSelectors';
 import CartIcon from '../CartIcon/cartIcon';
 import CartDropdwon from '../CartDropdown/cartDropdown';
 
@@ -176,7 +176,7 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden
 });
 
-//Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
+//Use the connect function in react-redux project. To prevent update blocking issue, use compose, 看不懂去問peggy
 const compose = (f, g) => x => f(g(x));
 
 export default compose(
