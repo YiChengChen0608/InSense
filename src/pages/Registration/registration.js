@@ -126,6 +126,10 @@ const Registration = (props) => {
   };
 
   useEffect(() => {
+    // if (user.logInStatus) setLoading(false);
+  }, []);
+
+  useEffect(() => {
     // console.log("changed", cities.length);
     // console.log(
     //   "selectedDate",
@@ -144,8 +148,12 @@ const Registration = (props) => {
     // console.log("address", address);
   });
 
+  console.log(user.logInStatus);
   if (user.logInStatus) {
     return <Redirect to="/" />;
+  } else if (user.logInStatus === null) {
+    console.log("loading");
+    return "";
   } else {
     return (
       <>
