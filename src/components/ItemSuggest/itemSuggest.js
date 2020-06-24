@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./itemSuggest.scss";
-import { FiChevronLeft } from "react-icons/fi";
-import { FiChevronRight } from "react-icons/fi";
+// import { FiChevronLeft } from "react-icons/fi";
+// import { FiChevronRight } from "react-icons/fi";
 import MainContainer from "../mainContainer";
 import ItemCard from "../ItemCard/itemCard";
 import "./itemSuggest.scss";
@@ -43,7 +43,7 @@ const ItemSuggest = () => {
                     <span>推薦商品</span>
                 </h1>
                 <div className="d-flex  align-items-center justify-content-center">
-                    <FiChevronLeft className="icon-style" />
+                    {/* <FiChevronLeft className="icon-style" /> */}
                     <div className="d-flex">
                         {ItemCardInfo.map((info, index) => {
                             return (
@@ -59,7 +59,7 @@ const ItemSuggest = () => {
                             );
                         })}
                     </div>
-                    <FiChevronRight className="icon-style" />
+                    {/* <FiChevronRight className="icon-style" /> */}
                 </div>
             </div>
         </MainContainer>
