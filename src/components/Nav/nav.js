@@ -172,7 +172,6 @@ const Nav = ({ location , hidden}) => {
 
 
 const mapStateToProps = createStructuredSelector({
-  // currentUser: selectCurrentUser,
   hidden: selectCartHidden
 });
 

@@ -13,6 +13,38 @@
             width: 100%;
         }
     }
+    .item-button-container {
+        position: relative;
+        width: 30%;
+        height: 30%;
+        opacity: 0.7;
+        bottom: 200px;
+        z-index: 2000;
+        display: none
+    }
+
+    &:hover {
+    .card-img {
+        width: 100%;
+        object-fit: cover;
+        img {
+            width: 100%;
+            opacity: 0.2;
+        }
+    }
+    .item-button-container {
+        position: relative;
+        width: 30%;
+        height: 30%;
+        opacity: 0.7;
+        bottom: 200px;
+        z-index: 2000;
+        display: block;
+     }
+    }
+
+   
+    
 }
 
 .saved-btn {
@@ -20,6 +52,7 @@
     font-size: 14px;
     position: relative;
 }
+
 
 .card-content {
     font-size: 14px;
@@ -30,3 +63,10 @@
 .card-name {
     margin: 0;
 }
+
+.item-button-container {
+    margin-left: 40px;
+}
+
+
+
