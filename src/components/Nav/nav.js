@@ -11,7 +11,7 @@ import { Link, withRouter } from "react-router-dom";
 //Redux
 import { checkLogin } from "../../Redux/user/userAction";
 import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
-import {toggleCartHidden} from '../../Redux/cart/cartAction'
+import { toggleCartHidden } from '../../Redux/cart/cartAction'
 
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
@@ -24,9 +24,7 @@ import AccountRightBar from '../AccountRightBar/accountRightBar';
 
 
 //import CartIcon to replace FiShoppingCart
-import {connect} from 'react-redux'; 
-import { createStructuredSelector } from 'reselect';
-import { selectCartHidden } from '../../Redux/cart/cartSelectors';
+import { connect } from 'react-redux';
 // import { selectCurrentUser } from '../../redux/user/userSelectors';
 import CartIcon from '../CartIcon/cartIcon';
 import CartDropdwon from '../CartDropdown/cartDropdown';
@@ -87,7 +85,7 @@ const Nav = ({
   };
 
 
-  
+
   useEffect(() => {
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
@@ -103,16 +101,16 @@ const Nav = ({
       <nav
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
-        } nav d-flex justify-content-between align-items-center ${
+          } nav d-flex justify-content-between align-items-center ${
 
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-        }`}
+          }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
@@ -152,7 +150,7 @@ const Nav = ({
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -187,14 +185,14 @@ const Nav = ({
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-              <IndexLogin />
-            )
+                <IndexLogin />
+              )
 
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
-            ""
-          )}
+                ""
+              )}
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
@@ -203,14 +201,13 @@ const Nav = ({
           </a>
           {/* 購物車 */}
           {/* <a onClick={() => userToggleFunc()} role="button" data-name="user"> */}
-          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button'/>
+          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
           {/* </a> */}
         </div>
-       
+        {hidden.hidden ? null : <CartDropdwon />}
       </nav>
       {
         // (()=>console.log(hidden))()
-        hidden.hidden ? null: <CartDropdwon />
       }
 
 
@@ -219,25 +216,18 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
-
   return { user: store.user, userToggle: store.nav, hidden: store.cart };
- 
+
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden},
+    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden },
     dispatch
   );
 };
-
-// const mapStateToProps = createStructuredSelector({
-//   hidden: selectCartHidden
-// });
-
-
 
 //Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
 const compose = (f, g) => x => f(g(x));
