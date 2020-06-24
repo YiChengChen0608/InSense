@@ -55,9 +55,6 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
       }
     })
   }
-  useEffect(() => {
-
-  }, [])
 
   return (
     <>
