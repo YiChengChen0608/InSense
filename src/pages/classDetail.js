@@ -6,7 +6,7 @@ import DetailFooter from "../components/ClassDetailFooter/detailFooter";
 import { withRouter } from "react-router-dom";
 
 const ClassDetail = ({ match }) => {
-    const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = useState([]);
 
 
   const fetchClassDetailData = async () => {
@@ -21,25 +21,26 @@ const ClassDetail = ({ match }) => {
     })()
   }, [])
 
-    return (
-        <>
-            {detail.map((info, index) => {
-                return (
-                    <React.Fragment key={index}>
-                        <ClassHead
-                            title={info.className}
-                            classImg={info.classImg}
-                            classImgDir={"class"}
-                        />
-                        <MainContainer>
-                            <DetailContent storeInfo={info} />
-                            <DetailFooter classTime={info.classTime} />
-                        </MainContainer>
-                    </React.Fragment>
-                );
-            })}
-        </>
-    );
+  return (
+    <>
+      {detail.map((info, index) => {
+        return (
+          <React.Fragment key={index}>
+            <ClassHead
+              title={info.className}
+              classImg={info.classImg}
+              classImgDir={'class'}
+            />
+            <MainContainer>
+              <DetailContent storeInfo={info} />
+              <DetailFooter classTime={info.classTime} classPrice={info.classPrice} />
+            </MainContainer>
+          </React.Fragment>
+        )
+      })}
+    </>
+
+  );
 };
 
 export default withRouter(ClassDetail);
