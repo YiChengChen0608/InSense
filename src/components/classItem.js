@@ -8,7 +8,7 @@ const ClassItem = (props) => {
       <p>{props.classInfo.bookTime}</p>
       <p>{props.classInfo.classCategoryName}</p>
       <p>{props.classInfo.className}</p>
-      <p>{props.classInfo.classPrice}</p>
+      <p>NT$ {props.classInfo.classPrice}</p>
       <p>{props.classInfo.bookQty}</p>
     </div>
   )
