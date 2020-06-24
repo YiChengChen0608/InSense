@@ -8,19 +8,18 @@ import { withRouter } from "react-router-dom";
 const ClassDetail = ({ match }) => {
     const [detail, setDetail] = useState([]);
 
-    const fetchClassDetailData = async () => {
-        const res = await fetch(
-            `http://localhost:3030/class/classdetail/${match.params.classid}`
-        );
-        const data = res.json();
-        return data;
-    };
-    useEffect(() => {
-        (async () => {
-            const data = await fetchClassDetailData();
-            setDetail(data);
-        })();
-    }, []);
+
+  const fetchClassDetailData = async () => {
+    const res = await fetch(`http://localhost:3030/class/classdetail/${match.params.classid}`)
+    const data = res.json()
+    return data
+  }
+  useEffect(() => {
+    (async () => {
+      const data = await fetchClassDetailData()
+      setDetail(data)
+    })()
+  }, [])
 
     return (
         <>
