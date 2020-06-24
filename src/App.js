@@ -15,7 +15,9 @@ import ItemDetails from "./pages/ItemDetails/itemDetails";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
-import SignIn from "./pages/SignIn/SignIn";
+import TestUI from "./pages/TestUI/testUI";
+import ShopPage from './pages/shop/shop.component';
+// import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 
 
@@ -44,8 +46,11 @@ function App() {
                         <Route path="/classdetail/:classid">
                             <ClassDetail />
                         </Route>
-                        <Route path="/signIn">
-                            <SignIn />
+                        <Route path="/testUI">
+                            <TestUI />
+                        </Route>
+                        <Route path="/Shop">
+                            <ShopPage />
                         </Route>
                         <Route path="/account">
                             <Route path="/account/classpage">
