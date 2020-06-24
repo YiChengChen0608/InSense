@@ -25,7 +25,9 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "sweetalert2": "^9.15.1"
+    "reselect": "^4.0.0",
+    "sweetalert2": "^9.15.1",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
