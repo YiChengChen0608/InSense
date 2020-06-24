@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./indexLogin.scss";
@@ -31,8 +32,13 @@ const IndexLogin = (props) => {
     userLogInAsync(userEmail, userPassword);
   };
 
+  //redirect to Registration
+  const redirectRegister = () => {
+    props.history.push('/account/registration')
+  };
+
   useEffect(() => {
-    console.log("changed");
+    // console.log("changed");
   }, [user]);
 
   return (
@@ -58,7 +64,7 @@ const IndexLogin = (props) => {
       </div>
       <div className="loginFooter text-center">
         <Button onClick={handleLogin}>登入</Button>
-        <Button>註冊</Button>
+        <Button onClick={redirectRegister}>註冊</Button>
         <Button>忘記密碼</Button>
       </div>
     </>
@@ -77,4 +83,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ userLogInAsync }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexLogin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IndexLogin));

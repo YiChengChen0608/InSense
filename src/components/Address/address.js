@@ -77,7 +77,7 @@ const Address = (props) => {
   useEffect(() => {
     (async () => {
       let cities = await getCities();
-      console.log("cities", cities);
+      // console.log("cities", cities);
       setCities(cities);
     })();
   }, []);

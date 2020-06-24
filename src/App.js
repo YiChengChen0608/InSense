@@ -40,7 +40,7 @@ function App() {
                                 <ItemList />
                             </Route>
                         </Route>
-                        <Route path="/itemdetail/:itemid?">
+                        <Route path="/itemdetail/:itemId?">
                             <ItemDetails />
                         </Route>
                         <Route path="/classdetail/:classid">
