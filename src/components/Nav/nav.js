@@ -31,6 +31,7 @@ const Nav = ({
   userToggle,
   checkLogin,
 }) => {
+
   // state change
   // test info
   const menuItem = [
@@ -97,6 +98,7 @@ const Nav = ({
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
         } nav d-flex justify-content-between align-items-center ${
+
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
         }`}
       >
@@ -170,6 +172,7 @@ const Nav = ({
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
+
           btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
@@ -179,6 +182,7 @@ const Nav = ({
             ) : (
               <IndexLogin />
             )
+
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
@@ -201,6 +205,7 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
+
   return { user: store.user, userToggle: store.nav };
 };
 
