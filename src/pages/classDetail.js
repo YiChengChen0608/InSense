@@ -32,7 +32,7 @@ const ClassDetail = ({ match }) => {
             />
             <MainContainer>
               <DetailContent storeInfo={info} />
-              <DetailFooter classTime={info.classTime} />
+              <DetailFooter classTime={info.classTime} classPrice={info.classPrice} />
             </MainContainer>
           </React.Fragment>
         )
