@@ -10,6 +10,7 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
+import { userToggleFunc, closeSideBar } from '../../Redux/nav/navAction'
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
@@ -18,7 +19,7 @@ import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
-const Nav = ({ location, user }) => {
+const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
   // state change
   // test info
   const menuItem = [
@@ -49,7 +50,6 @@ const Nav = ({ location, user }) => {
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [subMenuToggle, setSubMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
-  const [userToggle, setUserToggle] = useState(false);
   const [cartToggle, setCartToggle] = useState(false);
   const [scrollTop, setScrollTop] = useState(false);
   //  event handler
@@ -81,15 +81,15 @@ const Nav = ({ location, user }) => {
       <nav
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
-        } nav d-flex justify-content-between align-items-center ${
+          } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-        }`}
+          }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
@@ -126,7 +126,7 @@ const Nav = ({ location, user }) => {
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -155,25 +155,25 @@ const Nav = ({ location, user }) => {
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
-          btnClose={() => setUserToggle(false) || setCartToggle(false)}
+          btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
           {userToggle ? (
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-              <IndexLogin />
-            )
+                <IndexLogin />
+              )
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
-            ""
-          )}
+                ""
+              )}
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
           <a
-            onClick={() => setUserToggle(true)}
+            onClick={() => userToggleFunc()}
             role="button"
             data-name="user"
           >
@@ -190,13 +190,13 @@ const Nav = ({ location, user }) => {
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user };
+  return { user: store.user, userToggle: store.nav };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ userToggleFunc, closeSideBar }, dispatch);
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));

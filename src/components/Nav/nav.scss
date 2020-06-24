@@ -3,21 +3,21 @@
 .nav {
     width: 100%;
     max-height: 60px;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(205, 211, 235, 0.8) 5%,
-        rgba(169, 184, 225, 0) 50%
-    );
+    background-image: linear-gradient(to bottom,
+            rgba(205, 211, 235, 0.8) 5%,
+            rgba(169, 184, 225, 0) 50%);
     background-color: rgba(255, 255, 255, 0);
     font-size: 18px;
     z-index: 1;
     top: 0;
     left: 0;
     transition: 0.5s;
+
     &.scroll-down {
         background-image: none;
         background: rgba(130, 143, 182, 0.9);
     }
+
     .menu-item {
         flex-direction: column;
         top: 0;
@@ -25,47 +25,54 @@
         left: -288px;
         width: 288px;
         height: 100vh;
-        overflow: hidden;
         transition: 0.5s;
         color: $main-black;
+
         .menu-title {
             width: 100%;
             left: 0;
             top: 0;
             height: 60px;
             padding-left: 8px;
+
             span {
                 font-size: 24px;
                 padding: 16px;
                 cursor: pointer;
             }
+
             .menu-char {
                 text-align: center;
                 margin-left: 8px;
                 font-weight: 200;
             }
         }
+
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
             line-height: 36px;
+
             li {
                 margin: 12px 0;
                 width: 144px;
                 margin-right: 24px;
                 padding-left: 20px;
                 cursor: pointer;
+
                 .chevron-right {
                     width: 0;
                     transition: 0.5s;
                 }
+
                 &:hover .chevron-right {
                     width: 32px;
                 }
             }
         }
     }
+
     .search-block {
         top: 0;
         background: $sub-white;
@@ -73,6 +80,7 @@
         width: 288px;
         height: 100vh;
         transition: 0.5s;
+
         .search-title {
             width: 100%;
             color: $main-black;
@@ -81,26 +89,31 @@
             height: 60px;
             padding-left: 8px;
             font-weight: bold;
+
             span {
                 font-size: 24px;
                 padding: 16px;
                 cursor: pointer;
             }
+
             .menu-char {
                 text-align: center;
                 margin-left: 8px;
                 font-weight: 300;
             }
         }
+
         .serach-input {
             color: $main-black;
             top: 20%;
             left: 50%;
             transform: translateX(-50%);
+
             input {
                 border: 0;
                 border-bottom: 1px solid $main-black;
                 background: transparent;
+
                 &::placeholder {
                     color: $main-black;
                     font-weight: 300;
@@ -108,38 +121,46 @@
             }
         }
     }
+
     .leftItem {
         a {
             padding: 16px;
             color: $sub-white;
             cursor: pointer;
+
             &:first-child {
                 padding-left: 24px;
             }
         }
     }
+
     .rightItem {
         a {
             padding: 16px;
             color: $sub-white;
             cursor: pointer;
+
             &:nth-child(2) {
                 padding-right: 24px;
             }
         }
     }
+
     .index-nav-title {
         font-size: 32px;
         font-family: $Libre;
         color: $sub-white;
     }
+
     // changing state
     .left-side-bar-open {
         left: 0;
     }
+
     .left-sub-menu-open {
         left: 288px;
     }
+
     .right-side-bar-open {
         right: 0;
     }
