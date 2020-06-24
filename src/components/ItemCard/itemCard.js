@@ -6,33 +6,33 @@ import SavedItems from "../SavedItems/savedItems";
 import SubmitButton from "../SubmitButton/submitButton";
 
 import { connect } from 'react-redux';
-import { addItem } from '../../Redux/cart/cartAction';
-import {FiShoppingCart} from 'react-icons/fi';
+import {addItem}  from '../../Redux/cart/cartAction';
+// import { addItemToCart } from '../../Redux/cart/cartUtils';
 
 
-const ItemCard = (props, addItem) => {
+const ItemCard = (props) => {
+    const { itemName, itemimg, itemPrice, itemId, itemWishList, setitemWishList, addItem } = props;
   return (
     <>
       <div className="card-wrapper">
         <div className="card-img">
-          <img src={props.itemimg} />
+          <img src={itemimg} alt=''/>
       
         </div>
         <div className="card-content d-flex justify-content-evenly align-items-center">
-          <p className="card-name text-center">{props.itemName}</p>
+          <p className="card-name text-center">{itemName}</p>
         </div>
-        <p className="card-price text-center">{props.itemPrice}</p>
+        <p className="card-price text-center">{itemPrice}</p>
         <div className="item-button-container">
-            <SubmitButton>加入購物車</SubmitButton>
-            
+            <SubmitButton onClick={() => addItem(props)} >加入購物車</SubmitButton>
         </div>
       </div>
       <div className="saved-btn">
         <SavedItems
           className="saved-icon"
-          itemId={props.itemId}
-          itemWishList={props.itemWishList}
-          setitemWishList={props.setitemWishList}
+          itemId={itemId}
+          itemWishList={itemWishList}
+          setitemWishList={setitemWishList}
         />
        
       </div>
@@ -40,7 +40,8 @@ const ItemCard = (props, addItem) => {
   );
 };
 
-// export default ItemCard;
+
+// console.log(item);
 
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))

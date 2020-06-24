@@ -7,7 +7,7 @@ import './collectionItem.scss';
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
-
+  
   return (
     <div className='collection-item'>
       <div
@@ -23,9 +23,9 @@ const CollectionItem = ({ item, addItem }) => {
       <SubmitButton inverted>
         加入購物車
       </SubmitButton>
-      {/* <SubmitButton onClick={() => addItem(item)} inverted>
+      <SubmitButton onClick={() => addItem(item)} inverted>
         Add to cart
-      </SubmitButton> */}
+      </SubmitButton>
     </div>
   );
 };
