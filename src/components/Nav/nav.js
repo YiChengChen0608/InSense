@@ -204,11 +204,10 @@ const Nav = ({
           <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
           {/* </a> */}
         </div>
-
+        {hidden.hidden ? null : <CartDropdwon />}
       </nav>
       {
         // (()=>console.log(hidden))()
-        hidden.hidden ? null : <CartDropdwon />
       }
 
 
