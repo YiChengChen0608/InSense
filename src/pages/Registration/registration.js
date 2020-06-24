@@ -126,10 +126,6 @@ const Registration = (props) => {
   };
 
   useEffect(() => {
-    // if (user.logInStatus) setLoading(false);
-  }, []);
-
-  useEffect(() => {
     // console.log("changed", cities.length);
     // console.log(
     //   "selectedDate",
