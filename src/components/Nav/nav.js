@@ -11,7 +11,7 @@ import { Link, withRouter } from "react-router-dom";
 //Redux
 import { checkLogin } from "../../Redux/user/userAction";
 import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
-import {toggleCartHidden} from '../../Redux/cart/cartAction'
+import { toggleCartHidden } from '../../Redux/cart/cartAction'
 
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
@@ -24,9 +24,7 @@ import AccountRightBar from '../AccountRightBar/accountRightBar';
 
 
 //import CartIcon to replace FiShoppingCart
-import {connect} from 'react-redux'; 
-import { createStructuredSelector } from 'reselect';
-import { selectCartHidden } from '../../Redux/cart/cartSelectors';
+import { connect } from 'react-redux';
 // import { selectCurrentUser } from '../../redux/user/userSelectors';
 import CartIcon from '../CartIcon/cartIcon';
 import CartDropdwon from '../CartDropdown/cartDropdown';
@@ -87,7 +85,7 @@ const Nav = ({
   };
 
 
-  
+
   useEffect(() => {
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
@@ -203,14 +201,14 @@ const Nav = ({
           </a>
           {/* 購物車 */}
           {/* <a onClick={() => userToggleFunc()} role="button" data-name="user"> */}
-          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button'/>
+          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
           {/* </a> */}
         </div>
-       
+
       </nav>
       {
         // (()=>console.log(hidden))()
-        hidden.hidden ? null: <CartDropdwon />
+        hidden.hidden ? null : <CartDropdwon />
       }
 
 
@@ -228,16 +226,10 @@ const mapStateToProps = (store) => {
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden},
+    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden },
     dispatch
   );
 };
-
-// const mapStateToProps = createStructuredSelector({
-//   hidden: selectCartHidden
-// });
-
-
 
 //Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
 const compose = (f, g) => x => f(g(x));
