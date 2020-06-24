@@ -23,15 +23,15 @@
       background-color: #d94f06;
       color: white;
       border: none;
-     
     }
 
     &.inverted {
       background-color: #d94f06;
       color: white;
       border: none;
-      display: none;
-      
+     margin-left: 82px;
+     margin-right:82px;
+     margin-bottom: 48px;
 
       &:hover {
         background-color: white;
