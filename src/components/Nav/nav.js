@@ -10,7 +10,11 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
-import { userToggleFunc, closeSideBar } from '../../Redux/nav/navAction'
+
+//Redux
+import { checkLogin } from "../../Redux/user/userAction";
+import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
+
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
@@ -19,8 +23,15 @@ import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 
+const Nav = ({
+  location,
+  user,
+  userToggleFunc,
+  closeSideBar,
+  userToggle,
+  checkLogin,
+}) => {
 
-const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
   // state change
   // test info
   const menuItem = [
@@ -75,6 +86,10 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
     });
+    console.log("born");
+
+    //一開始載入網頁，驗證身份
+    checkLogin();
   }, []);
 
   return (
@@ -82,8 +97,8 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
       <nav
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
+        } nav d-flex justify-content-between align-items-center ${
 
-          } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
         }`}
       >
@@ -165,9 +180,9 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
+              <IndexLogin />
+            )
 
-                <IndexLogin />
-              )
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
@@ -176,11 +191,7 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
-          <a
-            onClick={() => userToggleFunc()}
-            role="button"
-            data-name="user"
-          >
+          <a onClick={() => userToggleFunc()} role="button" data-name="user">
             <FiUser />
           </a>
           {/* 購物車 */}
@@ -201,7 +212,10 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userToggleFunc, closeSideBar }, dispatch);
+  return bindActionCreators(
+    { userToggleFunc, closeSideBar, checkLogin },
+    dispatch
+  );
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
