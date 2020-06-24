@@ -206,18 +206,12 @@ const Nav = ({
         </div>
         {hidden.hidden ? null : <CartDropdwon />}
       </nav>
-      {
-        // (()=>console.log(hidden))()
-      }
-
-
     </>
   );
 };
 
 const mapStateToProps = (store) => {
   return { user: store.user, userToggle: store.nav, hidden: store.cart };
-
 };
 
 //Redux引入函式
