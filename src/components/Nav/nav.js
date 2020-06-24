@@ -225,7 +225,6 @@ const mapStateToProps = (store) => {
 };
 
 //Redux引入函式
-//Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
