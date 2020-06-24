@@ -7,8 +7,8 @@ import { connect } from 'react-redux'
 import { userToggleFunc } from '../../Redux/nav/navAction'
 
 const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc }) => {
-  const [reservationPeople, setReservationPeople] = useState('DEFAULT')
-  const [reservationTime, setReservationTime] = useState('DEFAULT')
+  const [reservationPeople, setReservationPeople] = useState('')
+  const [reservationTime, setReservationTime] = useState('')
 
   const popUp = async () => {
 
@@ -65,7 +65,7 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
       <p className='reservation-date'>預約日期：{classTime}</p>
       <div className='reservation-wrapper d-flex'>
         <select defaultValue={'DEFAULT'} onChange={e => setReservationPeople(e.target.value)}>
-          <option value={reservationPeople} disabled hidden>預約人數</option>
+          <option value={'DEFAULT'} disabled hidden>預約人數</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -74,7 +74,7 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
           <option value="6">6</option>
         </select>
         <select defaultValue={'DEFAULT'} onChange={e => setReservationTime(e.target.value)}>
-          <option value={reservationTime} disabled hidden>預約時間</option>
+          <option value={'DEFAULT'} disabled hidden>預約時間</option>
           <option value="13:00">13:00</option>
           <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
