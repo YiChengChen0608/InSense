@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./indexLogin.scss";
@@ -8,13 +9,14 @@ import FormInput from "../FormInput/FormInput";
 
 //Redux
 import { userLogInAsync } from "../../Redux/user/userAction";
+import { closeSideBar } from '../../Redux/nav/navAction'
 
 const IndexLogin = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   //引入Redux
-  const { user, userLogInAsync } = props;
+  const { user, userLogInAsync, closeSideBar } = props;
 
   //帳號
   const changeEmail = (event) => {
@@ -28,11 +30,20 @@ const IndexLogin = (props) => {
 
   //登入function
   const handleLogin = () => {
-    userLogInAsync(userEmail, userPassword);
+    userLogInAsync(userEmail, userPassword, () => {
+      setTimeout(() => {
+        closeSideBar()
+      }, 500);
+    })
+  };
+
+  //redirect to Registration
+  const redirectRegister = () => {
+    props.history.push('/account/registration')
   };
 
   useEffect(() => {
-    console.log("changed");
+    // console.log("changed");
   }, [user]);
 
   return (
@@ -58,7 +69,7 @@ const IndexLogin = (props) => {
       </div>
       <div className="loginFooter text-center">
         <Button onClick={handleLogin}>登入</Button>
-        <Button>註冊</Button>
+        <Button onClick={redirectRegister}>註冊</Button>
         <Button>忘記密碼</Button>
       </div>
     </>
@@ -74,7 +85,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogInAsync }, dispatch);
+  return bindActionCreators({ userLogInAsync, closeSideBar }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndexLogin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IndexLogin));

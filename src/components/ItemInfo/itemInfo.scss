@@ -44,6 +44,7 @@
             }
         }
         .add-item-wrapper {
+            margin-top: 80px;
             .qty {
                 margin: 10px;
                 p {
@@ -86,11 +87,11 @@
         }
         .item-discription-container {
             // max-height: 490px;
-            height: 250px;
+            // height: 250px;
             // border: rgb(218, 32, 32) solid 1px;
             color: $main-black;
             padding: 0 20px;
-            margin: 32px 0;
+            margin: 40px 0;
             line-height: 32px;
             letter-spacing: 1px;
             font-size: 14px;

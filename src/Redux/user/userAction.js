@@ -1,9 +1,10 @@
-// export const userlogin = (payload) => {
-//   return { type: "LOG_IN", payload };
-// };
+//登入
+export const userlogin = (userInfo) => {
+  return { type: "LOG_IN", userInfo };
+};
 
 //登入頁
-export const userLogInAsync = (userEmail, userPassword) => {
+export const userLogInAsync = (userEmail, userPassword, loginSuccess = () => { }, loginFail = () => { }) => {
   return async function getUserInfoFromServer(dispatch) {
     // 注意header資料格式要設定，伺服器才知道是json格式
 
@@ -28,20 +29,25 @@ export const userLogInAsync = (userEmail, userPassword) => {
     const obj = await response.json();
     console.log("obj", obj);
 
+    //成功與否，執行callback
+    if (obj.logInStatus) {
+      loginSuccess()
+    } else {
+      loginFail()
+    }
+
     //更動redux state
     dispatch({
-      type: obj.logInStatus ? "LOG_IN": "LOG_OUT",
-      userInfo: obj.userInfo? obj.userInfo : {}
+      type: obj.logInStatus ? "LOG_IN" : "LOG_OUT",
+      userInfo: obj.userInfo ? obj.userInfo : {},
     });
   };
 };
 
-//登出頁
-export const userLogOutAsync = (userEmail, userPassword) => {
-  return async function logOutFromServer(dispatch) {
-
-    //到後端判斷
-    const request = new Request("http://localhost:3030/users/logout", {
+//檢查登入
+export const checkLogin = (cbLogIn = () => { }) => {
+  return async function checkLoginFromServer(dispatch) {
+    const request = new Request("http://localhost:3030/users/checklogin", {
       method: "POST",
       credentials: "include",
       headers: new Headers({
@@ -53,11 +59,23 @@ export const userLogOutAsync = (userEmail, userPassword) => {
     const response = await fetch(request);
     const obj = await response.json();
     console.log("obj", obj);
+    console.log("action");
+
+    //execute callback, eg: redirect
+    obj.logInStatus && cbLogIn();
 
     //更動redux state
     dispatch({
-      type: "LOG_OUT",
-      userInfo: {}
+      type: obj.logInStatus ? "LOG_IN" : "LOG_OUT",
+      userInfo: obj.userInfo ? obj.userInfo : {},
     });
+  };
+};
+
+//登出
+export const userLogOutAsync = () => {
+  return {
+    type: "LOG_OUT",
+    userInfo: {},
   };
 };

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-
-
 import './detailFooter.scss'
 import Swal from 'sweetalert2'
+import { bindActionCreators } from "redux";
+import { connect } from 'react-redux'
+import { userToggleFunc } from '../../Redux/nav/navAction'
 
-const DetailFooter = ({ classTime, match, classPrice }) => {
+const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc }) => {
   const [reservationPeople, setReservationPeople] = useState('')
   const [reservationTime, setReservationTime] = useState('')
 
   const popUp = async () => {
+
+    // post data
     const data = {
       bookQty: reservationPeople,
       bookTime: reservationTime,
@@ -25,7 +28,9 @@ const DetailFooter = ({ classTime, match, classPrice }) => {
       body: JSON.stringify(data)
     })
     const res = await response.json()
-    console.log(res)
+
+
+    // popup
     Swal.fire({
       title: res.success ? `感謝${res.userInfo.userFirstName} 先生的預約` : '預約失敗',
       icon: res.success ? 'success' : 'error',
@@ -38,6 +43,9 @@ const DetailFooter = ({ classTime, match, classPrice }) => {
       focusConfirm: false,
       confirmButtonText:
         res.success ? '<i class="fa fa-thumbs-up"></i> 查看預約' : '請先登入',
+      preConfirm: () =>
+        res.success ? history.push('/account/classpage') : userToggleFunc()
+      ,
       customClass: {
         popup: 'popup-class',
         title: 'title-class',
@@ -79,4 +87,13 @@ const DetailFooter = ({ classTime, match, classPrice }) => {
   )
 }
 
-export default withRouter(DetailFooter)
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    { userToggleFunc },
+    dispatch
+  );
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(DetailFooter))
