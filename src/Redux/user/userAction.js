@@ -4,7 +4,7 @@ export const userlogin = (userInfo) => {
 };
 
 //登入頁
-export const userLogInAsync = (userEmail, userPassword) => {
+export const userLogInAsync = (userEmail, userPassword, loginSuccess = () => { }, loginFail = () => { }) => {
   return async function getUserInfoFromServer(dispatch) {
     // 注意header資料格式要設定，伺服器才知道是json格式
 
@@ -29,6 +29,13 @@ export const userLogInAsync = (userEmail, userPassword) => {
     const obj = await response.json();
     console.log("obj", obj);
 
+    //成功與否，執行callback
+    if (obj.logInStatus) {
+      loginSuccess()
+    } else {
+      loginFail()
+    }
+
     //更動redux state
     dispatch({
       type: obj.logInStatus ? "LOG_IN" : "LOG_OUT",
@@ -38,7 +45,7 @@ export const userLogInAsync = (userEmail, userPassword) => {
 };
 
 //檢查登入
-export const checkLogin = (cbLogIn = () => {}) => {
+export const checkLogin = (cbLogIn = () => { }) => {
   return async function checkLoginFromServer(dispatch) {
     const request = new Request("http://localhost:3030/users/checklogin", {
       method: "POST",

@@ -9,13 +9,14 @@ import FormInput from "../FormInput/FormInput";
 
 //Redux
 import { userLogInAsync } from "../../Redux/user/userAction";
+import { closeSideBar } from '../../Redux/nav/navAction'
 
 const IndexLogin = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   //引入Redux
-  const { user, userLogInAsync } = props;
+  const { user, userLogInAsync, closeSideBar } = props;
 
   //帳號
   const changeEmail = (event) => {
@@ -29,7 +30,11 @@ const IndexLogin = (props) => {
 
   //登入function
   const handleLogin = () => {
-    userLogInAsync(userEmail, userPassword);
+    userLogInAsync(userEmail, userPassword, () => {
+      setTimeout(() => {
+        closeSideBar()
+      }, 500);
+    })
   };
 
   //redirect to Registration
@@ -80,7 +85,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogInAsync }, dispatch);
+  return bindActionCreators({ userLogInAsync, closeSideBar }, dispatch);
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IndexLogin));

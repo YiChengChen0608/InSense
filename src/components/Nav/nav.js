@@ -103,16 +103,16 @@ const Nav = ({
       <nav
         className={`${
           location.pathname === "/" ? "position-fix" : "position-sticky"
-        } nav d-flex justify-content-between align-items-center ${
+          } nav d-flex justify-content-between align-items-center ${
 
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-        }`}
+          }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
@@ -152,7 +152,7 @@ const Nav = ({
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -187,14 +187,14 @@ const Nav = ({
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-              <IndexLogin />
-            )
+                <IndexLogin />
+              )
 
           ) : cartToggle ? (
             <IndexShoppingCart />
           ) : (
-            ""
-          )}
+                ""
+              )}
         </IndexRightSideBar>
         <div className="rightItem">
           {/* 會員登入 */}
@@ -219,9 +219,8 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
-
   return { user: store.user, userToggle: store.nav, hidden: store.cart };
- 
+
 };
 
 //Redux引入函式
