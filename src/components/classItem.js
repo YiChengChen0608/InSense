@@ -4,12 +4,12 @@ import '../components/Classes/classes'
 const ClassItem = (props) => {
   return (
     <div className='d-flex class-item text-center'>
-      <p>{props.classInfo.date}</p>
-      <p>{props.classInfo.time}</p>
-      <p>{props.classInfo.category}</p>
-      <p>{props.classInfo.name}</p>
-      <p>{props.classInfo.price}</p>
-      <p>{props.classInfo.people}</p>
+      <p>{props.classInfo.classTime}</p>
+      <p>{props.classInfo.bookTime}</p>
+      <p>{props.classInfo.classCategoryName}</p>
+      <p>{props.classInfo.className}</p>
+      <p>NT$ {props.classInfo.classPrice}</p>
+      <p>{props.classInfo.bookQty}</p>
     </div>
   )
 }

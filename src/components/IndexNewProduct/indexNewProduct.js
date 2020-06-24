@@ -1,56 +1,68 @@
-import React from 'react'
-import MainContainer from '../mainContainer'
-import ItemCard from '../ItemCard/itemCard'
+import React, { useState } from "react";
+import MainContainer from "../mainContainer";
+import ItemCard from "../ItemCard/itemCard";
 import { FiChevronLeft } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
-import './indexNewProduct.scss'
-
-
+import "./indexNewProduct.scss";
 
 const IndexNewProduct = () => {
+    const [itemCardData, setItemCardData] = useState([]);
+    const [itemWishList, setitemWishList] = useState([]);
+    const ItemCardInfo = [
+        {
+            itemId: "P0006",
+            itemName: "BYREDO 吉普賽之水淡香精",
+            itemPrice: "NT$ 6200",
+            itemimg: "/images/banner/newest1.png",
+        },
+        {
+            itemId: "P0058",
+            itemName: "diptyque 磨砂護膚潔手液",
+            itemPrice: "NT$ 2000",
+            itemimg: "/images/banner/newest2.png",
+        },
+        {
+            itemId: "P0027",
+            itemName: "BYREDO 逝去之愛香氛蠟燭",
+            itemPrice: "NT$ 2200",
+            itemimg: "/images/banner/newest3.png",
+        },
+        {
+            itemId: "P0093",
+            itemName: "Le Labo ANOTHER 13 淡香精 ",
+            itemPrice: "NT$ 5000",
+            itemimg: "/images/banner/newest4.png",
+        },
+    ];
 
-  const ItemCardInfo = [
-    {
-      name: 'BYREDO 吉普賽之水淡香精',
-      price: 'NT$ 3900',
-      src: '/images/banner/newest1.png'
-    },
-    {
-      name: 'diptyque 磨砂護膚潔手液',
-      price: 'NT$ 2000',
-      src: '/images/banner/newest2.png'
-    },
-    {
-      name: 'BYREDO 逝去之愛香氛蠟燭',
-      price: 'NT$ 2200',
-      src: '/images/banner/newest3.png'
-    },
-    {
-      name: 'BYREDO 逝去之愛香氛蠟燭',
-      price: 'NT$ 2200',
-      src: '/images/banner/newest3.png'
-    }
-  ]
+    return (
+        <MainContainer>
+            <div className="text-center new-product-container">
+                <h1 className="d-flex justify-content-center align-items-center">
+                    <span>最新商品</span>
+                </h1>
+                <div className="d-flex  align-items-center justify-content-center">
+                    <FiChevronLeft className="icon-style" />
+                    <div className="d-flex">
+                        {ItemCardInfo.map((info, index) => {
+                            return (
+                                <ItemCard
+                                    key={index}
+                                    itemId={info.itemId}
+                                    itemName={info.itemName}
+                                    itemPrice={info.itemPrice}
+                                    itemimg={info.itemimg}
+                                    itemWishList={itemWishList}
+                                    setitemWishList={setitemWishList}
+                                />
+                            );
+                        })}
+                    </div>
+                    <FiChevronRight className="icon-style" />
+                </div>
+            </div>
+        </MainContainer>
+    );
+};
 
-  return (
-    <MainContainer>
-      <div className='text-center new-product-container'>
-        <p>最新商品</p>
-        <div className='d-flex align-items-center justify-content-center'>
-          <FiChevronLeft className='icon-style' />
-          {
-            ItemCardInfo.map((info, index) => {
-              return <ItemCard key={index} Name={info.name} Price={info.price} src={info.src} />
-            })
-          }
-          {/* <ItemCard Name={'BYREDO 吉普賽之水淡香精'} Price={'NT$ 3900'} src={newest1} />
-          <ItemCard Name={'diptyque 磨砂護膚潔手液'} Price={'NT$ 2000'} src={newest2} />
-          <ItemCard Name={'BYREDO 逝去之愛香氛蠟燭'} Price={'NT$ 2200'} src={newest3} /> */}
-          <FiChevronRight className='icon-style' />
-        </div>
-      </div>
-    </MainContainer>
-  )
-}
-
-export default IndexNewProduct
+export default IndexNewProduct;

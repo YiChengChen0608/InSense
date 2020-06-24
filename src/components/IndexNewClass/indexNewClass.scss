@@ -1,32 +1,35 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 
-.index-class-container{
-  width: 95%;
-  margin:36px auto;
-  img{
-    width: 60%;
-  }
-  div{
-    width: 40%;
-    padding:60px;
-    p{
-      font-size: 28px;
-      color:$main-black;
-      line-height: 24px;
-      &:nth-child(2){
-        padding-top:16px;
-        font-size: 16px;
-      }
+.index-class-container {
+    width: 95%;
+    margin: 100px auto;
+    img {
+        width: 60%;
     }
-    a{
-      display: block;
-      max-width: 240px;
-      min-height: 60px;
-      border:1px solid $main-scarlet;
-      line-height: 60px;
-      font-size: 20px;
-      color: $main-scarlet;
-      margin-top: 60px;
+    div {
+        width: 40%;
+        padding: 60px;
+        p {
+            font-size: 28px;
+            color: $main-black;
+            line-height: 24px;
+            &:nth-child(2) {
+                padding-top: 16px;
+                font-size: 16px;
+            }
+        }
+        .button-link {
+            text-decoration: none;
+            color: $main-black;
+
+            display: block;
+            max-width: 240px;
+            min-height: 60px;
+            border: 1px solid $main-scarlet;
+            line-height: 60px;
+            font-size: 20px;
+            color: $main-scarlet;
+            margin-top: 60px;
+        }
     }
-  }
 }

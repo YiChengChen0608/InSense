@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 424px;
   height: 100vh;
-  background: $main-white;
+  background: $sub-white;
   top:0;
   right:-424px;
   overflow: scroll;
@@ -15,7 +15,6 @@
     left: 0;
     top:0;
     height: 60px;
-    padding-left:8px;
     font-weight: bold;
     span{
       font-size: 24px;

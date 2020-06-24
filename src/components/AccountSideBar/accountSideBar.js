@@ -1,7 +1,8 @@
 import React from "react";
 import "./accountSideBar.scss";
 import { FiChevronRight } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const AccountSideBar = () => {
   return (
@@ -9,38 +10,52 @@ const AccountSideBar = () => {
       <h2>我的帳戶</h2>
       <ul className="accountMenu">
         <li className="d-flex align-item-center">
-          <Link className="d-flex align-item-center">
-            <p>帳戶資訊</p>
+          <Link to="" className="d-flex align-item-center account-link">
             <FiChevronRight className="icon" />
+            <p>帳戶資訊</p>
           </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>我的訂單</span>
-          <FiChevronRight className="icon" />
+          <Link
+            to="/account/classpage"
+            className="d-flex align-item-center account-link"
+          >
+            <FiChevronRight className="icon" />
+            <p>我的課程</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>我的課程</span>
-          <FiChevronRight className="icon" />
+          <Link to="" className="d-flex align-item-center account-link">
+            <FiChevronRight className="icon" />
+            <p>付款資訊</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>付款資訊</span>
-          <FiChevronRight className="icon" />
+          <Link to="" className="d-flex align-item-center account-link">
+            <FiChevronRight className="icon" />
+            <p>我的優惠券</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>我的優惠券</span>
-          <FiChevronRight className="icon" />
+          <Link to="" className="d-flex align-item-center account-link">
+            <FiChevronRight className="icon" />
+            <p>願望清單</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>願望清單</span>
-          <FiChevronRight className="icon" />
+          <Link to="" className="d-flex align-item-center account-link">
+            <FiChevronRight className="icon" />
+            <p>帳戶資訊</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>客服留言</span>
-          <FiChevronRight className="icon" />
+          <Link to="" className="d-flex align-item-center account-link">
+            <FiChevronRight className="icon" />
+            <p>客服留言</p>
+          </Link>
         </li>
         <li className="d-flex align-item-center">
-          <span>登出</span>
-          <FiChevronRight className="icon" />
+          <Button>登出</Button>
         </li>
       </ul>
     </div>

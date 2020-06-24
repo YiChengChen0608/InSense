@@ -1,57 +1,74 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 
-.product-intro-container{
-  width: 95%;
-  min-height: 600px;
-  margin:36px auto;
-  background: $main-gray;
-  color:$main-black;
-  .product-title-container{
-    padding:16px 0;
-    h3{
-      font-weight: 300;
-    }
-  }
-  .product-content-container{
-    padding-bottom: 32px;
-    min-height: 500px;
-    .img-container{
-      width: 50%;
-      max-height: 500px;
-      padding:0 60px;
-      img{
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+.product-intro-container {
+    width: 95%;
+    min-height: 600px;
+    margin: 32px auto;
+    background: rgba(230, 230, 230, 0.6);
+    color: $main-black;
+    .product-title-container {
+        padding: 16px 0;
+        h3 {
+            font-size: 26px;
+            font-weight: 400;
         }
-      .img-bright{
-        filter: brightness(1.1);
-      }
-    }
-    
-    >div{
-      width: 50%;
-      padding:60px 40px;
-      .sub-intro{
-        font-size: 20px;
-      }
-      h3{
-        font-weight: 300;
-      }
-      .intro-content-container{
-        margin: 60px 0;
-        p{
-          line-height: 36px;
+        p {
+            font-size: 16px;
+            font-weight: 200;
         }
-      }
-      a{
-        display: block;
-        max-width: 240px;
-        min-height: 60px;
-        background: $main-orange;
-        line-height: 60px;
-        font-size: 20px;
-      }
     }
-  }
+    .product-content-container {
+        padding-bottom: 32px;
+        min-height: 500px;
+        .img-container {
+            width: 50%;
+            max-height: 500px;
+            padding: 0 60px;
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+            .img-bright {
+                filter: brightness(1.1);
+            }
+        }
+        .product-title {
+            .sub-intro {
+                font-size: 16px;
+            }
+            h3 {
+                font-size: 26px;
+                font-weight: 500;
+            }
+            .button-link {
+                text-decoration: none;
+                color: $main-black;
+            }
+        }
+        > div {
+            width: 50%;
+            padding: 60px 20px;
+            .sub-intro {
+                font-size: 20px;
+            }
+            .intro-content-container {
+                margin: 60px 0;
+                p {
+                    font-size: 16px;
+                    line-height: 36px;
+                }
+            }
+            .button-link {
+                display: block;
+                max-width: 240px;
+                min-height: 60px;
+                background: $main-orange;
+                line-height: 60px;
+                font-size: 20px;
+                text-decoration: none;
+                color: $main-black;
+            }
+        }
+    }
 }

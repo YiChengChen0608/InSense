@@ -1,0 +1,112 @@
+@import "../../styles/style.scss";
+
+.registration-container {
+  width: 640px;
+  margin: auto;
+  .registration-title {
+    font-weight: $title-font-weight;
+    font-size: $title-font-size;
+    margin: 0 0 30px;
+    padding-top: 48px;
+  }
+  .registration-declaration{
+    margin: 36px 0;
+    cursor: pointer;
+    p{
+      margin: 0 0 0 10px;
+      color: $main-black;
+    }
+  }
+  .registration-button {
+    border: 1px solid $main-scarlet;
+    border-radius: 0;
+    color: $main-scarlet;
+    width: 150px;
+    margin-bottom: 36px;
+  }
+  .registration-button:hover {
+    background-color: $main-scarlet;
+    color: $main-white;
+  }
+  .registration-grid-container {
+    .registration-grid-item {
+      .registration-item {
+        h4 {
+          font-size: 14px;
+          margin: 12px 0;
+          font-weight: 200;
+        }
+        .registration-gender-select {
+          .registration-select-circle {
+            width: 18px;
+            height: 18px;
+            //   font-weight: 100;
+            stroke-width: 1.5;
+          }
+          label {
+            cursor: pointer;
+            p {
+              font-weight: 200;
+              margin: 0 18px 0 6px;
+            }
+          }
+        }
+        .MuiFormControl-marginNormal {
+          margin: 0;
+        }
+        .group {
+          margin: 0;
+          .form-input {
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            width: calc(100% - 4px);
+          }
+        }
+        .address-container {
+          .group {
+            .form-input {
+              padding: 6px 0 7px 6px;
+            }
+          }
+        }
+      }
+    }
+    display: grid;
+    grid-gap: 30px 36px;
+
+    grid-template-areas:
+      "gender birthday"
+      "last-name first-name"
+      "email email-confirm"
+      "password password-confirm"
+      "address address";
+    .registration-grid-gender {
+      grid-area: gender;
+    }
+    .registration-grid-birthday {
+      grid-area: birthday;
+    }
+    .registration-grid-last-name {
+      grid-area: last-name;
+    }
+    .registration-grid-first-name {
+      grid-area: first-name;
+    }
+    .registration-grid-email {
+      grid-area: email;
+    }
+    .registration-grid-email-confirm {
+      grid-area: email-confirm;
+    }
+    .registration-grid-password {
+      grid-area: password;
+    }
+    .registration-grid-password-confirm {
+      grid-area: password-confirm;
+    }
+    .registration-grid-address {
+      grid-area: address;
+    }
+  }
+  
+}

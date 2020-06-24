@@ -1,0 +1,15 @@
+@import "../../styles/style.scss";
+.saved-icon {
+    position: absolute;
+    top: 49px;
+    left: -58px;
+    font-size: 20px;
+    color: $main-light-blue;
+}
+.saved-filled {
+    color: $main-light-blue;
+
+    fill: $main-light-blue;
+
+    stroke: $main-light-blue;
+}

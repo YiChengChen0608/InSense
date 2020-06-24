@@ -28,6 +28,42 @@
   background:$main-orange;
   font-size: 18px;
   margin: 40px 0 ;
+  cursor: pointer;
+}
+.popup-class{
+  border-radius: 0 !important;
+}
+.title-class{
+  font-size: 20px !important ;
+  font-weight: 500 !important;
+}
+.content-class{
+  display: flex !important;
+  justify-content: center !important;
+  width: 70% !important; 
+  text-align: left !important;
+  p{
+    padding-left: 48px;
+    margin-left: 36px;
+    line-height: 48px;
+  }
+}
+.confirm-button-class{
+  width: 45% !important;
+  background: rgba(99, 129, 168,.9) !important;
+  border-radius: 0 !important;
+  padding:18px 0 !important;
+  &:hover{
+    background: $main-blue!important;
+  }
+}
+.close-button-class{
+  outline: none;
+  margin: 8px 12px !important;
+  font-size: 2rem !important;
+  &:hover{
+    color: $main-black !important;
+  }
 }
 
 @media (max-width:768px){
