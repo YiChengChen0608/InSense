@@ -4,7 +4,7 @@ $hunderdPercent: 100%;
 
 
 .class-wrapper{
-  max-width: 800px;
+  max-width: 960px;
   width: 80%;
 }
 
@@ -27,8 +27,22 @@ $hunderdPercent: 100%;
   border-bottom: 1px solid $main-black;
   justify-content: space-around;
   color:$main-black;
-  p{
-    width: $hunderdPercent / 6 ;
+  .noCancelBtn,p{
+    width: $hunderdPercent / 7 ;
+  }
+  .cancelBtn,p{
+    width: $hunderdPercent / 8 ;
     // flex-grow: 1;
+  }
+  a{
+    display: block;
+    text-decoration: none;
+    background: $main-gray;
+    color:$main-black;
+    padding:12px 0;
+    cursor: pointer;
+    &:hover{
+      background: rgba(230, 230, 230,.6);
+    }
   }
 }
