@@ -1,6 +1,6 @@
 import React from "react";
 import "./itemCard.scss";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 // import { FiBookmark } from "react-icons/fi";
 import SavedItems from "../SavedItems/savedItems";
 import SubmitButton from "../SubmitButton/submitButton";
