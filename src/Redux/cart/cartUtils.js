@@ -1,6 +1,6 @@
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
-    cartItem => cartItem.itemId === cartItemToAdd.id
+    cartItem => cartItem.itemId === cartItemToAdd.itemId
   );
 
   if (existingCartItem) {
@@ -29,3 +29,5 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       : cartItem
   );
 };
+
+

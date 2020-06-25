@@ -24,7 +24,7 @@ const ItemCard = (props) => {
         </div>
         <p className="card-price text-center">{itemPrice}</p>
         <div className="item-button-container">
-            <SubmitButton onClick={() => addItem(props)} >加入購物車</SubmitButton>
+            <SubmitButton onClick={() => addItem(itemId)} >加入購物車</SubmitButton>
         </div>
       </div>
       <div className="saved-btn">

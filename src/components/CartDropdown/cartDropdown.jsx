@@ -14,7 +14,7 @@ const CartDropdwon = (cartItems) => (
               ))}
             </>
           ) : (
-            <span className="empty-message">購物車現在太空了喔</span>
+            <span className="empty-message">購物車現在太空囉</span>
           )}
         </div>
     <SubmitButton inverted={true}>結帳</SubmitButton>
@@ -28,6 +28,7 @@ const mapStateToProps = ({cart: {cartItems}}) =>({
 
 
 export default connect(mapStateToProps)(CartDropdwon);
+
 
 
 
