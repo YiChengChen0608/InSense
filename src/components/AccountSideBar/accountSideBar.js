@@ -10,7 +10,7 @@ const AccountSideBar = () => {
       <h2>我的帳戶</h2>
       <ul className="accountMenu">
         <li className="d-flex align-item-center">
-          <Link to="" className="d-flex align-item-center account-link">
+          <Link to="/account/userdashboard" className="d-flex align-item-center account-link">
             <FiChevronRight className="icon" />
             <p>帳戶資訊</p>
           </Link>
@@ -43,9 +43,9 @@ const AccountSideBar = () => {
           </Link>
         </li>
         <li className="d-flex align-item-center">
-          <Link to="" className="d-flex align-item-center account-link">
+          <Link to="/account/modify" className="d-flex align-item-center account-link">
             <FiChevronRight className="icon" />
-            <p>帳戶資訊</p>
+            <p>會員資料更改</p>
           </Link>
         </li>
         <li className="d-flex align-item-center">

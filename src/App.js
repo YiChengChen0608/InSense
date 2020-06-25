@@ -15,10 +15,9 @@ import ItemDetails from "./pages/ItemDetails/itemDetails";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
+import Modify from "./pages/Modify/modify";
 import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
-
-
 
 function App() {
     return (
@@ -53,6 +52,9 @@ function App() {
                             </Route>
                             <Route path="/account/registration">
                                 <Registration />
+                            </Route>
+                            <Route path="/account/modify">
+                                <Modify />
                             </Route>
                         </Route>
                         <Route path="/">
