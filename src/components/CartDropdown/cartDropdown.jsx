@@ -3,8 +3,13 @@ import { connect } from "react-redux";
 import CartItem from "../CartItem/cartItem";
 import SubmitButton from "../SubmitButton/submitButton";
 import "./cartDropdown.scss";
+import { toggleCartHidden } from '../../Redux/cart/cartAction'
+import { bindActionCreators } from "redux";
 
-const CartDropdwon = ({ cartItems }) => (
+
+
+const CartDropdwon = ({ cartItems, toggleCartHidden }) => (
+
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
@@ -22,7 +27,15 @@ const CartDropdwon = ({ cartItems }) => (
 );
 
 const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems,
+  cartItems
 });
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    { toggleCartHidden },
+    dispatch
+  );
+};
 
-export default connect(mapStateToProps)(CartDropdwon);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropdwon);

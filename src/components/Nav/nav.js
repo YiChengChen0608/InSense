@@ -164,13 +164,13 @@ const Nav = ({
           </div>
         </div>
         <div className="leftItem">
-          <a onClick={() => setBurgerToggle(true)} role="button"> 
+          <a onClick={() => setBurgerToggle(true)} role="button">
             <FiMenu />
           </a>
           <a
             onClick={() => setSearchToggle(true)}
             role="button"
-            data-name="search" 
+            data-name="search"
           >
             <FiSearch />
           </a>
@@ -189,12 +189,12 @@ const Nav = ({
               )
 
           ) : cartToggle ? (
-            <IndexShoppingCart />
+            <CartDropdwon />
           ) : (
                 ""
               )}
         </IndexRightSideBar>
-        <div className="rightItem">
+        <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
           <a onClick={() => userToggleFunc()} role="button" data-name="user">
             <FiUser />
@@ -204,7 +204,7 @@ const Nav = ({
           <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
           {/* </a> */}
         </div>
-        {/* {hidden.hidden ? null : <CartDropdwon />} */}
+        {hidden.hidden ? null : <CartDropdwon />}
       </nav>
     </>
   );
