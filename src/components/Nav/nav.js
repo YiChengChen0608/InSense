@@ -164,13 +164,13 @@ const Nav = ({
           </div>
         </div>
         <div className="leftItem">
-          <a onClick={() => setBurgerToggle(true)} role="button">
+          <a onClick={() => setBurgerToggle(true)} role="button"> 
             <FiMenu />
           </a>
           <a
             onClick={() => setSearchToggle(true)}
             role="button"
-            data-name="search"
+            data-name="search" 
           >
             <FiSearch />
           </a>
@@ -214,7 +214,6 @@ const mapStateToProps = (store) => {
   return { user: store.user, userToggle: store.nav, hidden: store.cart };
 };
 
-//Redux引入函式
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
