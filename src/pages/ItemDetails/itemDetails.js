@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { withRouter, Link } from "react-router-dom";
+
+//Redux
+import { userlogin, userLogOut } from "../../Redux/user/userAction";
+
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 import MainContainer from "../../components/mainContainer";
 import ItemImg from "../../components/ItemImg/itemImg";
@@ -8,11 +14,15 @@ import ItemSuggest from "../../components/ItemSuggest/itemSuggest";
 import "./itemDetails.scss";
 
 const ItemDetails = (props) => {
+    //Redux
+    const { user, userlogin, userLogOut } = props;
+
+    //localstate
     const itemId = props.match.params.itemId;
     // console.log(itemId);
     const [itemImgData, setItemImgData] = useState([]);
     const [itemInfosData, setItemInfosData] = useState({});
-    // const [itemWishList, setitemWishList] = useState([]);
+    const [itemWish, setItemWish] = useState(false);
 
     //僅做擷取資料用途
     const fetchItemData = async (itemId) => {
@@ -20,6 +30,17 @@ const ItemDetails = (props) => {
         const data = await res.json();
         console.log("data", data);
         return data;
+    };
+
+    //取得願望清單
+    const fetchWishList = async (itemId) => {
+        const res = await fetch(
+            `http://localhost:3030/itemdetail/wishlist/${itemId}`,
+            { credentials: "include" }
+        );
+        const dataWish = await res.json();
+        console.log("dataWish", dataWish);
+        return dataWish;
     };
 
     useEffect(() => {
@@ -41,9 +62,27 @@ const ItemDetails = (props) => {
         })();
     }, []);
 
-    // useEffect(() => {
-    //     console.log(itemWishList);
-    // }, [itemWishList]);
+    //登入/登出/載入該頁時，取得願望清單
+    useEffect(() => {
+        if (user.logInStatus) {
+            (async () => {
+                const wishData = await fetchWishList(itemId);
+                const logInStatus = wishData.logInStatus;
+                const userInfo = wishData.userInfo;
+
+                // //reset user
+                logInStatus ? userlogin(userInfo) : userLogOut();
+                console.log(wishData);
+                if (logInStatus) {
+                    setItemWish(wishData.itemWish);
+                }
+            })();
+        }
+        //若已轉為登出
+        if (!user.logInStatus) {
+            setItemWish(false);
+        }
+    }, [user.logInStatus, itemId]);
 
     return (
         <>
@@ -71,6 +110,7 @@ const ItemDetails = (props) => {
                         itemDiscription={itemInfosData.discription}
                         fragranceDiscription={itemInfosData.fragranceDetails}
                         itemId={itemId}
+                        wish={itemWish}
                     />
                 </div>
                 <div></div>
@@ -82,4 +122,15 @@ const ItemDetails = (props) => {
     );
 };
 
-export default withRouter(ItemDetails);
+const mapStateToProps = (store) => {
+    return { user: store.user, userToggle: store.nav };
+};
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ userlogin, userLogOut }, dispatch);
+};
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(ItemDetails)
+);
