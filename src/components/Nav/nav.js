@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import {
     FiMenu,
     FiSearch,
@@ -14,14 +12,22 @@ import { Link, withRouter } from "react-router-dom";
 //Redux
 import { checkLogin } from "../../Redux/user/userAction";
 import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
+import { toggleCartHidden } from "../../Redux/cart/cartAction";
 
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
-import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+import AccountRightBar from "../AccountRightBar/accountRightBar";
+
+//import CartIcon to replace FiShoppingCart
+import { connect } from "react-redux";
+// import { selectCurrentUser } from '../../redux/user/userSelectors';
+import CartIcon from "../CartIcon/cartIcon";
+import CartDropdwon from "../CartDropdown/cartDropdown";
+import { bindActionCreators } from "redux";
 
 const Nav = ({
     location,
@@ -30,6 +36,8 @@ const Nav = ({
     closeSideBar,
     userToggle,
     checkLogin,
+    hidden,
+    toggleCartHidden,
 }) => {
     // state change
     // test info
@@ -244,9 +252,10 @@ const Nav = ({
                         <FiUser />
                     </a>
                     {/* 購物車 */}
-                    <a onClick={() => setCartToggle(true)} role="button">
-                        <FiShoppingCart />
-                    </a>
+                    <CartIcon
+                        toggleCartHidden={() => toggleCartHidden()}
+                        role="button"
+                    />
                 </div>
             </nav>
         </>
@@ -254,16 +263,22 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
-    return { user: store.user, userToggle: store.nav };
+    return { user: store.user, userToggle: store.nav, hidden: store.cart };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
-        { userToggleFunc, closeSideBar, checkLogin },
+        { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden },
         dispatch
     );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
+//Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
+const compose = (f, g) => (x) => f(g(x));
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Nav);

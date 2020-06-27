@@ -8,6 +8,7 @@ const Classes = () => {
   const [myClassSelected, setMyClassSelected] = useState(true)
   const [allClassSelected, setAllClassSelected] = useState(false)
   const [classes, setClasses] = useState([])
+  const [cancelBtn, setCancelBtn] = useState(true)
 
   const changeSelectHandler = (e) => {
     switch (e.target.dataset.select) {
@@ -15,45 +16,48 @@ const Classes = () => {
         setMyClassSelected(true)
         setAllClassSelected(false)
         setClasses(myClassList)
+        setCancelBtn(true)
         break
       case 'allClass':
         setAllClassSelected(true)
         setMyClassSelected(false)
         setClasses(allClassList)
+        setCancelBtn(false)
         break
     }
   }
 
   const fetchMyClassData = async () => {
-    const userInfo = {
-      userId: 'U0001'
-    }
+
     const res = await fetch('http://localhost:3030/users/classlist',
       {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(userInfo)
+        credentials: 'include'
       })
-
     const data = await res.json()
     return data
   }
   const fetchAllClassDate = async () => {
-    const userInfo = {
-      userId: 'U0001'
-    }
+
     const res = await fetch('http://localhost:3030/users/allclasslist',
       {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(userInfo)
+        credentials: 'include'
       })
     const data = await res.json()
     return data
+  }
+  const fetchCancelBook = async (e) => {
+    const info = {
+      bookId: e.target.dataset.bookid
+    }
+    const res = await fetch(`http://localhost:3030/users/classlist`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    })
+    const data = await res.json()
   }
 
   useEffect(() => {
@@ -64,8 +68,7 @@ const Classes = () => {
       setAllClassList(allClassData)
       setClasses(classData)
     })()
-  }, [])
-
+  }, [myClassList])
 
   return (
     <div className='class-wrapper'>
@@ -80,8 +83,10 @@ const Classes = () => {
         <p>課程名稱</p>
         <p>課程單價</p>
         <p>報名人數</p>
+        <p>課程狀態</p>
+        {cancelBtn ? <p></p> : ''}
       </div>
-      {classes.map((item, index) => <ClassItem key={index} classInfo={item} />)}
+      {classes.map((item, index) => <ClassItem key={index} cancelBtn={cancelBtn} classInfo={item} cancel={(e) => fetchCancelBook(e)} />)}
     </div>
   )
 }

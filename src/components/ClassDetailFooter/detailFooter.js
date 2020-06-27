@@ -28,18 +28,19 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
       body: JSON.stringify(data)
     })
     const res = await response.json()
-
+    console.log(res)
 
     // popup
     Swal.fire({
-      title: res.success ? `感謝${res.userInfo.userFirstName} 先生的預約` : '預約失敗',
-      icon: res.success ? 'success' : 'error',
+      title: res.logInStatus ? res.error === '人數超過上限' ? '人數超過上限' : res.error === '請選擇人數' ? '請選擇人數' : res.error === '請選擇時間' ? '請選擇時間' : `感謝${res.userInfo.userFirstName} 先生的預約` : '預約失敗',
+      icon: res.logInStatus ? res.error ? 'info' : 'success' : 'error',
       html: res.success ?
         `<p>人數：${data.bookQty}<br/>
          日期：${classTime}<br/>
          時間：${data.bookTime}<br/></p>
-        `: '<br/>請先登入在做預約的服務<br/>',
+        `: res.error ? '' : '<br/>請先登入在做預約的服務<br/>',
       showCloseButton: true,
+      showConfirmButton: res.error ? false : true,
       focusConfirm: false,
       confirmButtonText:
         res.success ? '<i class="fa fa-thumbs-up"></i> 查看預約' : '請先登入',
@@ -55,16 +56,16 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
       }
     })
   }
-  useEffect(() => {
-
-  }, [])
-
+  const resetSelected = () => {
+    const allSelect = document.querySelectorAll('select')
+    allSelect.forEach(i => i.selectedIndex = 0)
+  }
   return (
     <>
       <p className='reservation-date'>預約日期：{classTime}</p>
       <div className='reservation-wrapper d-flex'>
         <select defaultValue={'DEFAULT'} onChange={e => setReservationPeople(e.target.value)}>
-          <option value="DEFAULT" disabled hidden>預約人數</option>
+          <option value={'DEFAULT'} disabled hidden>預約人數</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -73,7 +74,7 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
           <option value="6">6</option>
         </select>
         <select defaultValue={'DEFAULT'} onChange={e => setReservationTime(e.target.value)}>
-          <option value="DEFAULT" disabled hidden>預約時間</option>
+          <option value={'DEFAULT'} disabled hidden>預約時間</option>
           <option value="13:00">13:00</option>
           <option value="14:00">14:00</option>
           <option value="15:00">15:00</option>
@@ -82,7 +83,7 @@ const DetailFooter = ({ classTime, match, history, classPrice, userToggleFunc })
           <option value="18:00">18:00</option>
         </select>
       </div>
-      <a className='reservation-btn text-center' onClick={() => popUp()} role='button'>預約</a>
+      <a className='reservation-btn text-center' onClick={() => (popUp(), resetSelected())} role='button'>預約</a>
     </>
   )
 }

@@ -1,3 +1,4 @@
+
 //create a store
 
 //Add middleware, so we can catch acions when they get fired or dispatched and then dispatch them
