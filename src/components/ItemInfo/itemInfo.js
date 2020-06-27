@@ -14,8 +14,8 @@ const ItemInfo = (props) => {
                             <SavedItems
                                 className="saved-icon position-relative"
                                 itemId={props.itemId}
-                                itemWishList={props.itemWishList}
-                                setitemWishList={props.setitemWishList}
+                                // itemWishList={props.itemWishList}
+                                // setitemWishList={props.setitemWishList}
                             />
                         </div>
                     </div>

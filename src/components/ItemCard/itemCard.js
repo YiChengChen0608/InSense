@@ -20,8 +20,9 @@ const ItemCard = (props) => {
                 <SavedItems
                     className="saved-icon"
                     itemId={props.itemId}
-                    itemWishList={props.itemWishList}
-                    setitemWishList={props.setitemWishList}
+                    wish={props.wish}
+                    // itemWishList={props.itemWishList}
+                    // setitemWishList={props.setitemWishList}
                 />
             </div>
         </>

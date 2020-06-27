@@ -12,7 +12,7 @@ const ItemDetails = (props) => {
     // console.log(itemId);
     const [itemImgData, setItemImgData] = useState([]);
     const [itemInfosData, setItemInfosData] = useState({});
-    const [itemWishList, setitemWishList] = useState([]);
+    // const [itemWishList, setitemWishList] = useState([]);
 
     //僅做擷取資料用途
     const fetchItemData = async (itemId) => {
@@ -41,9 +41,9 @@ const ItemDetails = (props) => {
         })();
     }, []);
 
-    useEffect(() => {
-        console.log(itemWishList);
-    }, [itemWishList]);
+    // useEffect(() => {
+    //     console.log(itemWishList);
+    // }, [itemWishList]);
 
     return (
         <>
@@ -70,6 +70,7 @@ const ItemDetails = (props) => {
                         itemPrice={`NT$ ${itemInfosData.itemPrice}`}
                         itemDiscription={itemInfosData.discription}
                         fragranceDiscription={itemInfosData.fragranceDetails}
+                        itemId={itemId}
                     />
                 </div>
                 <div></div>

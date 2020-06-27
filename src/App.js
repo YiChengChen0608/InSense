@@ -12,13 +12,12 @@ import IndexPage from "./pages/indexPage";
 import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ItemDetails from "./pages/ItemDetails/itemDetails";
+import MyWishList from "./pages/MyWishList/myWishList";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
-
-
 
 function App() {
     return (
@@ -50,6 +49,9 @@ function App() {
                         <Route path="/account">
                             <Route path="/account/classpage">
                                 <ClassPage />
+                            </Route>
+                            <Route path="/account/wishlist">
+                                <MyWishList />
                             </Route>
                             <Route path="/account/registration">
                                 <Registration />
