@@ -10,7 +10,7 @@ import { userToggleFunc } from "../../Redux/nav/navAction";
 
 function SavedItems(props) {
     //Redux
-    const { user, userlogin, userLogOut, userToggleFunc } = props;
+    const { name, user, userlogin, userLogOut, userToggleFunc } = props;
     //點擊收藏按鈕
     const [savedStatus, setSavedStatus] = useState(props.wish);
     // console.log(props.itemId, !!props.wish);
@@ -68,7 +68,11 @@ function SavedItems(props) {
     //savedStatus
     useEffect(() => {
         setSavedStatus(!!props.wish);
-    }, [props.wish]);
+    }, [props.wish, name]);
+
+    useEffect(() => {
+        console.log(props.itemId, savedStatus);
+    }, []);
 
     //若改變為登出，則將savedStatus設為false
     useEffect(() => {

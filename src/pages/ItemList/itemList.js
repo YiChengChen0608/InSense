@@ -69,9 +69,12 @@ const ItemList = (props) => {
     useEffect(() => {
         if (user.logInStatus) {
             (async () => {
+                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 const wishListData = await fetchWishList(brandOrCategory, name);
                 const logInStatus = wishListData.logInStatus;
                 const userInfo = wishListData.userInfo;
+
+                console.log("wishListData", wishListData);
 
                 // //reset user
                 logInStatus ? userlogin(userInfo) : userLogOut();
@@ -116,6 +119,7 @@ const ItemList = (props) => {
                         : ""
                 }
             />
+            {console.log("itemWishList", itemWishList)}
             <ItemBrandFilter />
             <MainContainer>
                 <div className="item-list-container d-flex flex-wrap justify-content-center">
@@ -127,6 +131,7 @@ const ItemList = (props) => {
                                       itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                                       itemName={el.itemName}
                                       itemPrice={`NT$ ${el.itemPrice}`}
+                                      name={name}
                                       wish={
                                           itemWishList.findIndex((eachWish) => {
                                               return el.itemId === eachWish;

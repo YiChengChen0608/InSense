@@ -11,6 +11,7 @@ import { addItem } from "../../Redux/cart/cartAction";
 
 const ItemCard = (props) => {
     const {
+        name,
         itemName,
         itemimg,
         itemPrice,
@@ -41,6 +42,7 @@ const ItemCard = (props) => {
                     className="saved-icon"
                     itemId={itemId}
                     wish={wish}
+                    name={name}
                     // itemWishList={itemWishList}
                     // setitemWishList={setitemWishList}
                 />
