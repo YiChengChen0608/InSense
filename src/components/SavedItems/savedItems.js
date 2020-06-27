@@ -1,50 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import "./savedItems.scss";
 import { FiBookmark } from "react-icons/fi";
 
+//Redux
+import { userlogin, userLogOut } from "../../Redux/user/userAction";
+import { userToggleFunc } from "../../Redux/nav/navAction";
+
 function SavedItems(props) {
-    const [savedStatus, setIconStatus] = useState(false);
+    //Redux
+    const { user, userlogin, userLogOut, userToggleFunc } = props;
     //點擊收藏按鈕
-    // const savedStatusData = (event, props) => {
-    //     setIcoStatus(!savedStatus);
-    // };
+    const [savedStatus, setSavedStatus] = useState(props.wish);
+    // console.log(props.itemId, !!props.wish);
+
+    //像後端請求
+    const toggleWishListAsync = async () => {
+        const data = {
+            itemId: props.itemId,
+        };
+        const res = await fetch(
+            `http://localhost:3030/itemdetail/togglebookmark`,
+            {
+                method: "PATCH",
+                credentials: "include",
+                body: JSON.stringify(data),
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        const obj = await res.json();
+        return obj;
+    };
+
+    const changeSavedStatus = async () => {
+        // console.log("itemId", props.itemId);
+
+        if (user.logInStatus) {
+            const responseWishList = await toggleWishListAsync();
+            console.log("responseWishList", responseWishList);
+
+            const logInStatus = responseWishList.logInStatus;
+            const userInfo = responseWishList.userInfo;
+
+            //reset user
+            logInStatus ? userlogin(userInfo) : userLogOut();
+
+            //若為登出，則彈出登入頁
+            if (!logInStatus) {
+                userToggleFunc();
+                // ================= 告知會員現在為登出狀態 ================= //
+            }
+
+            if (responseWishList.message === "WISH_ADD") {
+                setSavedStatus(true);
+            } else if (responseWishList.message === "WISH_REMOVE") {
+                setSavedStatus(false);
+            }
+        } else {
+            userToggleFunc();
+        }
+    };
+
+    //savedStatus
+    useEffect(() => {
+        setSavedStatus(!!props.wish);
+    }, [props.wish]);
+
+    //若改變為登出，則將savedStatus設為false
+    useEffect(() => {
+        if (!user.logInStatus) {
+            setSavedStatus(false);
+        }
+    }, [user.logInStatus]);
+
     return (
         <>
             <FiBookmark
                 className={`saved-icon ${
                     savedStatus ? "saved-icon saved-filled" : "saved-icon"
                 } `}
-                onClick={(event) => {
-                    // console.log("itemId", props.itemId);
-                    setIconStatus(!savedStatus);
-                    // console.log("itemWishList", props.itemWishList);
-
-                    //尋找儲存陣列props.itemWishList中有無該itemId
-                    // console.log(props.itemWishList)
-                    const findId = props.itemWishList.findIndex((el, index) => {
-                        return el === props.itemId;
-                    });
-                    console.log(findId);
-
-                    //如果陣列props.itemWishList中有該itemId則刪除，反之若無則增加該itemId
-                    if (findId < 0) {
-                        //把原本的陣列，再加上剛剛點的itemId
-                        // console.log(props.itemWishList)
-                        const newArray = [...props.itemWishList, props.itemId];
-                        // console.log(newArray);
-                        props.setitemWishList(newArray);
-                    } else {
-                        //只取陣列中itemId不符合props.itemId的
-                        const newArray = props.itemWishList.filter(
-                            (el, index) => {
-                                return el !== props.itemId;
-                            }
-                        );
-                        props.setitemWishList(newArray);
-                    }
-                }}
+                onClick={changeSavedStatus}
             />
         </>
     );
 }
-export default SavedItems;
+
+const mapStateToProps = (store) => {
+    return { user: store.user };
+};
+
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        { userlogin, userLogOut, userToggleFunc },
+        dispatch
+    );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavedItems);

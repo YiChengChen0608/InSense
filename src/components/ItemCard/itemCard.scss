@@ -1,61 +1,76 @@
 @import "../../styles/style.scss";
 
 .card-wrapper {
-  max-width: 250px;
-  margin: 16px 8px 16px;
-  padding: 8px;
-  flex-grow: 1;
-  border: 0;
-  .card-img {
-    width: 100%;
-    object-fit: cover;
-    img {
-      width: 100%;
-    }
-  }
-  .item-button-container {
     position: relative;
-    width: 30%;
-    opacity: 0.7;
-    bottom: 200px;
-    z-index: 200;
-    display: none;
-  }
-
-  &:hover {
+    max-width: 250px;
+    margin: 16px 8px 16px;
+    padding: 8px;
+    flex-grow: 1;
+    border: 0;
     .card-img {
-      width: 100%;
-      object-fit: cover;
-      img {
         width: 100%;
-        opacity: 0.2;
-      }
+        object-fit: cover;
+        img {
+            width: 100%;
+        }
     }
     .item-button-container {
-      position: relative;
-      width: 30%;
-      opacity: 0.7;
-      bottom: 200px;
-      z-index: 2;
-      display: block;
-      margin-left: 40px;
+        position: relative;
+        width: 30%;
+        opacity: 0.7;
+        bottom: 200px;
+        z-index: 200;
+        display: none;
     }
-  }
-}
 
+    &:hover {
+        .card-img {
+            width: 100%;
+            object-fit: cover;
+            img {
+                width: 100%;
+                opacity: 0.2;
+            }
+        }
+        //=======button 的css，之後用icon取代======
+        .item-button-container {
+            position: absolute;
+            top: 120px;
+            left: 32px;
+            // width: 30%;
+            opacity: 0.7;
+            bottom: 200px;
+            z-index: 2;
+            display: block;
+            button {
+                width: 118px;
+                background-color: $sub-white;
+                color: $main-blue;
+                border: 1px solid $main-blue;
+                cursor: pointer;
+            }
+        }
+        .card-name {
+            max-width: 220px;
+        }
+    }
+}
 .saved-btn {
-  max-width: 250px;
-  font-size: 14px;
-  position: relative;
+    max-width: 250px;
+    font-size: 14px;
+    position: relative;
 }
 
 .card-content {
-  font-size: 14px;
+    font-size: 14px;
 }
 .card-price {
-  font-size: 14px;
+    font-size: 14px;
 }
 .card-name {
-  margin: 0;
+    margin: 0;
 }
 
+.item-button-container {
+    margin-left: 40px;
+}

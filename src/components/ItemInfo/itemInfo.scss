@@ -8,6 +8,7 @@
     flex-grow: 1;
     // border: darkblue solid 1px;
     .item-info {
+        position: relative;
         max-width: 550px;
         height: 550px;
         margin: auto;
@@ -16,11 +17,16 @@
             color: $main-black;
             font-weight: 300;
             text-align: center;
+            padding-left: 15px;
+            max-width: 429px;
         }
         .btn-saved {
-            width: 250px;
-            top: 90px;
-            left: 1292px;
+            top: 20px;
+            left: 92%;
+            .saved-icon {
+                top: 0;
+                left: 0;
+            }
         }
         .size-label-container {
             // .size-title {
