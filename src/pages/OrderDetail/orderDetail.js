@@ -6,7 +6,7 @@ const OrderDeatil = () => {
   const [orderDetail, setOrderDetail] = useState([])
 
   const fetchOrderDetailData = async () => {
-    const response = await fetch(`http://localhost:3030/order/orderdetail`, {
+    const response = await fetch(`http://localhost:3030/orders/ordersdetail`, {
       credentials: 'include'
     })
     const data = await response.json()

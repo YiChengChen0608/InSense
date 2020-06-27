@@ -1,18 +1,15 @@
 @import "../../styles/style.scss";
 
 .cart-icon {
-    width: 45px;
-    height: 45px;
     position: relative;
-    display: flex;
+    // display: flex;
     // align-items: center;
     // justify-content: center;
-    cursor: pointer;
-    margin-right: 30px;
+    // cursor: pointer;
     
     .shopping-icon {
       width: 18px;
-      height: 18px;
+      // height: 18px;
       color: $sub-white;
     }
   
@@ -20,7 +17,7 @@
       position: absolute;
       font-size: 10px;
       font-weight: bold;
-      bottom: 43px;
+      bottom: 35px;
       color:$sub-white;
     }
   }
