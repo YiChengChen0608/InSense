@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import "./accountModify.scss";
 
 //Redux
-import { user } from "../../Redux/user/userAction";
+import { userLogin, userLogOut } from "../../Redux/user/userAction";
 
 //component
 import FormInput from "../../components/FormInput/FormInput";
@@ -32,7 +32,7 @@ import {
 
 const AccountModify = (props) => {
   //destructor
-  const { user } = props;
+  const { user, userLogin, userLogOut } = props;
   //gender
   const [gender, setGender] = useState("");
 
@@ -118,28 +118,84 @@ const AccountModify = (props) => {
         userBirthday: selectedDate.toLocaleDateString().split("/").join("-"),
       };
 
-    //   console.log(data);
+      //   console.log(data);
+      //向後端請求更新
+      const response = await fetch("http://localhost:3030/users/infomodify", {
+        method: "PATCH",
+        credentials: "include",
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
 
-        const response = await fetch("http://localhost:3030/users/infomodify", {
+      const obj = await response.json();
+      console.log(obj);
+
+      //順便更新會員資料
+      if (obj.logInStatus) {
+        console.log("back");
+        userLogin(obj.userInfo);
+      }
+
+      // ================================== //
+      //各種更新狀態
+      if (obj.success) {
+        console.log("update successfully");
+        //   =============== 若成功改變，要彈跳視窗 ===============   //
+      } else if (obj.message === "NO_CHANGE") {
+        console.log("NO_CHANGE");
+        //   =============== 若沒有改變，要彈跳視窗 ===============   //
+      } else if (!obj.logInStatus) {
+        //   =============== 若檢查後狀態為登出，要彈跳視窗，並跳轉頁面，以及開啟登入頁面 ===============   //
+        console.log("logged out");
+        userLogOut();
+      }
+      // ================================== //
+    } else {
+      // if confirm-box not checked
+      console.log("not sent");
+    }
+  };
+
+  //送出密碼更改要求
+  const passwordSent = async () => {
+    //   =============== 要先在前端檢查密碼格式 ===============   //
+    if (newPassword === newPasswordConfirmed) {
+      //   console.log("password changed");
+      const data = {
+        oldPassword,
+        newPassword,
+        newPasswordConfirmed,
+      };
+      console.log(data);
+
+      //向後端請求更新
+      const response = await fetch(
+        "http://localhost:3030/users/changepassword",
+        {
           method: "PATCH",
           credentials: "include",
           body: JSON.stringify(data),
           headers: {
             "content-type": "application/json",
           },
-        });
+        }
+      );
 
-        const obj = await response.json();
-        console.log(obj);
-    } else {
-      console.log("not sent");
-    }
-  };
-
-  //送出密碼更改要求
-  const passwordSent = () => {
-    if (confirm) {
-      console.log("password changed");
+      const obj = await response.json();
+      console.log(obj);
+      // ================================== //
+      //各種更新狀態
+      if (obj.success) {
+        console.log("update successfully");
+        //   =============== 若成功改變，要彈跳視窗 ===============   //
+      } else if (!obj.logInStatus) {
+        //   =============== 若檢查後狀態為登出，要彈跳視窗，並跳轉頁面，以及開啟登入頁面 ===============   //
+        console.log("logged out");
+        userLogOut();
+      }
+      // ================================== //
     } else {
       console.log("password not changed");
     }
@@ -147,7 +203,6 @@ const AccountModify = (props) => {
 
   useEffect(() => {
     // console.log("user", user);
-    console.log('redux')
     if (user.logInStatus) {
       setGender(user.userInfo.userGender);
       setSelectedDate(new Date(user.userInfo.userBirthday));
@@ -164,11 +219,8 @@ const AccountModify = (props) => {
   }, [user]);
 
   useEffect(() => {
-    //   console.log(oldPassword)
-    //   console.log(newPassword)
-    //   console.log(newPasswordConfirmed)
-    //   console.log(confirm)
-  });
+    //   console.log('user changed')
+  }, [user]);
 
   return (
     <>
@@ -376,6 +428,6 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AccountModify);

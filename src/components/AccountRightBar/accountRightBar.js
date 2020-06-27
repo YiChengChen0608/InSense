@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 //Redux
-import { userLogOutAsync } from "../../Redux/user/userAction";
+import { userLogOut } from "../../Redux/user/userAction";
 
 const AccountRightBar = (props) => {
   //引入Redux
-  const { user, userLogOutAsync } = props;
+  const { user, userLogOut } = props;
 
   const handleLogOut = () => {
     (async () => {
@@ -41,7 +41,7 @@ const AccountRightBar = (props) => {
         logOut.errorMessage = e;
       }
       
-      if (logOut.success) userLogOutAsync();
+      if (logOut.success) userLogOut();
       console.log(logOut.errorMessage)
 
     })();
@@ -114,7 +114,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogOutAsync }, dispatch);
+  return bindActionCreators({ userLogOut }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountRightBar);

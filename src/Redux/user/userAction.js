@@ -1,5 +1,5 @@
 //登入
-export const userlogin = (userInfo) => {
+export const userLogin = (userInfo) => {
   return { type: "LOG_IN", userInfo };
 };
 
@@ -66,7 +66,7 @@ export const checkLogin = (cbLogIn = () => {}) => {
 };
 
 //登出
-export const userLogOutAsync = () => {
+export const userLogOut = () => {
   return {
     type: "LOG_OUT",
     userInfo: {},

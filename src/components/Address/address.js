@@ -101,8 +101,8 @@ const Address = (props) => {
     if (user.logInStatus && cities.length) {
       const myCity = user.userInfo.userCity;
       const myPostCode = user.userInfo.userPostCode;
-      console.log(myCity, myPostCode);
-      console.log("cities", cities);
+      // console.log(myCity, myPostCode);
+      // console.log("cities", cities);
       const newCode = { cityCode: "", districtCode: "" };
 
       //尋找城市key
@@ -114,7 +114,7 @@ const Address = (props) => {
       // console.log(cities[newCode.cityCode])
       //尋找地區key
       if (newCode.cityCode.toString().length) {
-        console.log(cities[newCode.cityCode].AreaList);
+        // console.log(cities[newCode.cityCode].AreaList);
         cities[newCode.cityCode].AreaList.forEach((el, index) => {
           if (el.ZipCode.toString() === myPostCode.toString()) {
             newCode.districtCode = index;

@@ -8,7 +8,7 @@ import "./registration.scss";
 import { Redirect, withRouter } from "react-router-dom";
 
 //Redux
-import { userlogin, checkLogin } from "../../Redux/user/userAction";
+import { userLogin, checkLogin } from "../../Redux/user/userAction";
 
 //react-icon
 import {
@@ -32,7 +32,7 @@ import {
 
 const Registration = (props) => {
   //Redux
-  const { user, userlogin } = props;
+  const { user, userLogin } = props;
 
   //gender
   const [gender, setGender] = useState("");
@@ -125,7 +125,7 @@ const Registration = (props) => {
     console.log(obj);
 
     //若成功註冊，則自動登入
-    if (obj.logInStatus) userlogin(obj.userInfo);
+    if (obj.logInStatus) userLogin(obj.userInfo);
   };
 
   useEffect(() => {
@@ -344,7 +344,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userlogin, checkLogin }, dispatch);
+  return bindActionCreators({ userLogin, checkLogin }, dispatch);
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Registration)
