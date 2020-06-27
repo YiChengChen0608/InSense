@@ -1,9 +1,19 @@
-import React from "react";
-import "./itemFilter.scss";
+import React, { useState, useEffect } from "react";
+import "./itemCategoryFilter.scss";
 import { FiX } from "react-icons/fi";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
-const ItemFilter = (props) => {
+const categoryItem = [
+    { itemName: "室內香氣", name: "home-scents" },
+    { itemName: "沐浴清潔", name: "" },
+    { itemName: "乳液與保養油", name: "" },
+    { itemName: "手部保養", name: "" },
+    { itemName: "香水", name: "" },
+    { itemName: "髮香噴霧與隨身香水", name: "" },
+];
+
+const ItemCategoryFilter = (props) => {
+    const [filterToggle, setFilterToggle] = useState(false);
     return (
         <>
             <section className="filter-bar">
@@ -15,9 +25,13 @@ const ItemFilter = (props) => {
                         <section className="filter filter-bar-layer layer-opened">
                             <div className="filter-layer layer">
                                 <div className="filter-layer-header">
-                                    <button className="close-icon">
+                                    <span
+                                        className="close-icon"
+                                        onClick={() => setFilterToggle(false)}
+                                    >
                                         <FiX className="close-icon" />
-                                    </button>
+                                    </span>
+
                                     <h2>Filter</h2>
                                 </div>
                                 <div className="filter-content">
@@ -33,4 +47,4 @@ const ItemFilter = (props) => {
     );
 };
 
-export default ItemFilter;
+export default ItemCategoryFilter;

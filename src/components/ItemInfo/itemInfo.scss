@@ -8,6 +8,7 @@
     flex-grow: 1;
     // border: darkblue solid 1px;
     .item-info {
+        position: relative;
         max-width: 550px;
         height: 550px;
         margin: auto;
@@ -16,6 +17,16 @@
             color: $main-black;
             font-weight: 300;
             text-align: center;
+            padding-left: 15px;
+            max-width: 429px;
+        }
+        .btn-saved {
+            top: 20px;
+            left: 92%;
+            .saved-icon {
+                top: 0;
+                left: 0;
+            }
         }
         .size-label-container {
             // .size-title {
@@ -43,54 +54,14 @@
                 padding-right: 20px;
             }
         }
-        .add-item-wrapper {
-            .qty {
-                margin: 10px;
-                p {
-                    color: $main-black;
-                    font-size: 14px;
-                    padding-left: 20px;
-                    margin-bottom: 10px;
-                }
-                .qty-control {
-                    color: $main-black;
-                    height: 40px;
-                    .minus {
-                        font-size: 20px;
-                        padding: 8px 16px;
-                    }
-                    .plus {
-                        font-size: 20px;
-                        padding: 8px 16px;
-                    }
-                    .qty-input {
-                        width: 60px;
-                        height: 26px;
-                        border: solid 1px black;
-                    }
-                }
-            }
-            .item-add-cart {
-                padding-top: 36px;
-                .btn-cart {
-                    width: 200px;
-                    height: 50px;
-                    font-size: 18px;
-                    font-weight: 300;
-                    letter-spacing: 1px;
-                    border: transparent;
-                    background-color: $main-orange;
-                    color: $main-black;
-                }
-            }
-        }
+
         .item-discription-container {
             // max-height: 490px;
-            height: 250px;
+            // height: 250px;
             // border: rgb(218, 32, 32) solid 1px;
             color: $main-black;
             padding: 0 20px;
-            margin: 32px 0;
+            margin: 40px 0;
             line-height: 32px;
             letter-spacing: 1px;
             font-size: 14px;

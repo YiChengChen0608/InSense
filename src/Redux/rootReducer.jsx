@@ -3,13 +3,17 @@
 import { combineReducers } from 'redux';
 import testReducer from './test/testReducer';
 import userReducer from './user/userReducer';
-import navReducer from './nav/navReducer'
+import cartReducer from './cart/cartReducer';
+import navReducer from './nav/navReducer';
 
-
-export default combineReducers({
-  test: testReducer,
-  user: userReducer,
-  nav: navReducer
+export default combineReducers ({
+    user: userReducer,
+    cart: cartReducer,
+    test: testReducer,
+    nav: navReducer
 });
+
+
+
 
 //imported in store.js

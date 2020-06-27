@@ -12,11 +12,16 @@ import IndexPage from "./pages/indexPage";
 import ClassDetail from "./pages/classDetail";
 import ItemList from "./pages/ItemList/itemList";
 import ItemDetails from "./pages/ItemDetails/itemDetails";
+import MyWishList from "./pages/MyWishList/myWishList";
+import OrderDetail from "./pages/OrderDetail/orderDetail";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import Modify from "./pages/Modify/modify";
-import SignIn from "./pages/SignIn/SignIn";
+// import SignIn from "./pages/SignIn/SignIn";
+// import TestUI from "./pages/TestUI/testUI";
+import ShopPage from "./pages/shop/shop.component";
+// import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 
 function App() {
@@ -37,18 +42,24 @@ function App() {
                                 <ItemList />
                             </Route>
                         </Route>
-                        <Route path="/itemdetail/:itemid?">
+                        <Route path="/itemdetail/:itemId?">
                             <ItemDetails />
+                        </Route>
+                        <Route path="/orderdetail">
+                            <OrderDetail />
                         </Route>
                         <Route path="/classdetail/:classid">
                             <ClassDetail />
                         </Route>
-                        <Route path="/signIn">
-                            <SignIn />
+                        <Route path="/Shop">
+                            <ShopPage />
                         </Route>
                         <Route path="/account">
                             <Route path="/account/classpage">
                                 <ClassPage />
+                            </Route>
+                            <Route path="/account/wishlist">
+                                <MyWishList />
                             </Route>
                             <Route path="/account/registration">
                                 <Registration />

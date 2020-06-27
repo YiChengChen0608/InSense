@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import {
   FiMenu,
   FiSearch,
@@ -14,14 +12,22 @@ import { Link, withRouter } from "react-router-dom";
 //Redux
 import { checkLogin } from "../../Redux/user/userAction";
 import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
+import { toggleCartHidden } from "../../Redux/cart/cartAction";
 
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
-import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
 import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+import AccountRightBar from "../AccountRightBar/accountRightBar";
+
+//import CartIcon to replace FiShoppingCart
+import { connect } from "react-redux";
+// import { selectCurrentUser } from '../../redux/user/userSelectors';
+import CartIcon from "../CartIcon/cartIcon";
+import CartDropdwon from "../CartDropdown/cartDropdown";
+import { bindActionCreators } from "redux";
 
 const Nav = ({
   location,
@@ -30,6 +36,8 @@ const Nav = ({
   closeSideBar,
   userToggle,
   checkLogin,
+  hidden,
+  toggleCartHidden,
 }) => {
   // state change
   // test info
@@ -37,24 +45,68 @@ const Nav = ({
     { itemName: "代理品牌", name: "brand" },
     { itemName: "身體保養", name: "body" },
     { itemName: "個人香氛", name: "self" },
-    { itemName: "室內香氣", name: "indoor" },
+    {
+      itemName: "室內香氣",
+      name: "home-scents",
+      pathUrl: "/itemlist/category/home-scents",
+    },
     { itemName: "體驗課程", name: "class", pathUrl: "/classlist" },
   ];
   const brandItem = [
-    { itemName: "BYREDO", name: "byredo", pathUrl: "/itemlist" },
-    { itemName: "CHANEL", name: "chanel" },
-    { itemName: "DIPTYQUE", name: "diptyque" },
-    { itemName: "Jo Malone London", name: "jomalonelondon" },
-    { itemName: "LeLabo", name: "lelabo" },
+    {
+      itemName: "BYREDO",
+      name: "byredo",
+      pathUrl: "/itemlist/brand/byredo",
+    },
+    {
+      itemName: "CHANEL",
+      name: "chanel",
+      pathUrl: "/itemlist/brand/chanel",
+    },
+    {
+      itemName: "Diptyque",
+      name: "diptyque",
+      pathUrl: "/itemlist/brand/diptyque",
+    },
+    {
+      itemName: "Jo Malone London",
+      name: "jomalone",
+      pathUrl: "/itemlist/brand/jomalone",
+    },
+    {
+      itemName: "LeLabo",
+      name: "lelabo",
+      pathUrl: "/itemlist/brand/lelabo",
+    },
   ];
   const bodyItem = [
-    { itemName: "沐浴清潔", name: "" },
-    { itemName: "乳液與保養油", name: "" },
-    { itemName: "手部保養", name: "" },
+    {
+      itemName: "沐浴清潔",
+      name: "body-wash",
+      pathUrl: "/itemlist/category/body-wash",
+    },
+    {
+      itemName: "乳液與保養油",
+      name: "lotions-oils",
+      pathUrl: "/itemlist/category/lotions-oils",
+    },
+    {
+      itemName: "手部保養",
+      name: "hands-care",
+      pathUrl: "/itemlist/category/hands-care",
+    },
   ];
   const selfItem = [
-    { itemName: "香水", name: "" },
-    { itemName: "髮香噴霧與隨身香水", name: "" },
+    {
+      itemName: "香水",
+      name: "perfume",
+      pathUrl: "/itemlist/category/perfume",
+    },
+    {
+      itemName: "髮香噴霧與隨身香水",
+      name: "hair-mist-travel-size",
+      pathUrl: "/itemlist/category/hair-mist-travel-size",
+    },
   ];
 
   const [subMenu, setSubMenu] = useState([]);
@@ -95,20 +147,25 @@ const Nav = ({
     <>
       <nav
         className={`${
-          location.pathname === "/" ? "position-fix" : "position-sticky"
-        } nav d-flex justify-content-between align-items-center ${
+          location.pathname === "/"
+            ? "position-fix"
+            : "position-sticky"
+          } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-        }`}
+          }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
-              onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}
+              onClick={() =>
+                setBurgerToggle(false) ||
+                setSubMenuToggle(false)
+              }
             >
               <FiX />
             </span>
@@ -128,12 +185,12 @@ const Nav = ({
           <ul>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-              關於我們
-            </li>
+                            關於我們
+                        </li>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-              幫助中心
-            </li>
+                            幫助中心
+                        </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -141,7 +198,7 @@ const Nav = ({
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-          }`}
+            }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -155,11 +212,9 @@ const Nav = ({
           </div>
         </div>
         <div className="leftItem">
-          {/* 漢堡 */}
           <a onClick={() => setBurgerToggle(true)} role="button">
             <FiMenu />
           </a>
-          {/* 搜尋 */}
           <a
             onClick={() => setSearchToggle(true)}
             role="button"
@@ -170,6 +225,7 @@ const Nav = ({
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
+
           btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
@@ -177,40 +233,48 @@ const Nav = ({
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-              <IndexLogin />
-            )
+                <IndexLogin />
+              )
+
           ) : cartToggle ? (
-            <IndexShoppingCart />
+            <CartDropdwon />
           ) : (
-            ""
-          )}
+                ""
+              )}
         </IndexRightSideBar>
-        <div className="rightItem">
+        <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
           <a onClick={() => userToggleFunc()} role="button" data-name="user">
             <FiUser />
           </a>
           {/* 購物車 */}
-          <a onClick={() => setCartToggle(true)} role="button">
-            <FiShoppingCart />
-          </a>
+          {/* <a onClick={() => userToggleFunc()} role="button" data-name="user"> */}
+          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
+          {/* </a> */}
         </div>
+        {hidden.hidden ? null : <CartDropdwon />}
       </nav>
     </>
   );
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user, userToggle: store.nav };
+  return { user: store.user, userToggle: store.nav, hidden: store.cart };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { userToggleFunc, closeSideBar, checkLogin },
+    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden },
     dispatch
   );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
+//Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
+const compose = (f, g) => (x) => f(g(x));
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Nav);

@@ -1,0 +1,29 @@
+@import '../../styles/style.scss';
+
+.order-detail-product-card{
+  border: 2px solid rgba(85, 85, 85,.6);
+  figure,p{
+    flex:1 0 0;
+    text-align: center;
+  }
+  figure{
+    margin: 0;
+    margin-right: 32px;
+    img{
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  ul{
+    list-style: none;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    li{
+      line-height: 24px;
+      text-align: left;
+    }
+  }
+  
+}

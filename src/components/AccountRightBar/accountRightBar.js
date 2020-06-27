@@ -13,39 +13,41 @@ const AccountRightBar = (props) => {
   //引入Redux
   const { user, userLogOut } = props;
 
-  const handleLogOut = () => {
-    (async () => {
-      const logOut = { success: false };
+    const handleLogOut = () => {
+        (async () => {
+            const logOut = { success: false };
 
-      //到後端判斷
-      try {
-        const request = new Request("http://localhost:3030/users/logout", {
-          method: "POST",
-          credentials: "include",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
+            //到後端判斷
+            try {
+                const request = new Request(
+                    "http://localhost:3030/users/logout",
+                    {
+                        method: "POST",
+                        credentials: "include",
+                        headers: new Headers({
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        }),
+                    }
+                );
 
-        const response = await fetch(request);
-        const obj = await response.json();
-        console.log("obj", obj);
+                const response = await fetch(request);
+                const obj = await response.json();
+                console.log("obj", obj);
 
-        //更改logOut
-        logOut.success = true;
-      } catch (e) {
-        console.log(e);
+                //更改logOut
+                logOut.success = true;
+            } catch (e) {
+                console.log(e);
 
-        //錯誤資訊
-        logOut.errorMessage = e;
-      }
-      
-      if (logOut.success) userLogOut();
-      console.log(logOut.errorMessage)
+                //錯誤資訊
+                logOut.errorMessage = e;
+            }
 
-    })();
-  };
+            if (logOut.success) userLogOut();
+            console.log(logOut.errorMessage);
+        })();
+    };
 
   return (
     <div className="right-bar-wrapper">
@@ -108,7 +110,7 @@ const AccountRightBar = (props) => {
 //Redux引入狀態
 //mapStateToProps
 const mapStateToProps = (store) => {
-  return { user: store.user };
+    return { user: store.user };
 };
 
 //Redux引入函式

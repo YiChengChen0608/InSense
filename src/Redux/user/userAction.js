@@ -4,7 +4,12 @@ export const userLogin = (userInfo) => {
 };
 
 //登入頁
-export const userLogInAsync = (userEmail, userPassword) => {
+export const userLogInAsync = (
+  userEmail,
+  userPassword,
+  loginSuccess = () => {},
+  loginFail = () => {}
+) => {
   return async function getUserInfoFromServer(dispatch) {
     // 注意header資料格式要設定，伺服器才知道是json格式
 
@@ -28,6 +33,13 @@ export const userLogInAsync = (userEmail, userPassword) => {
     const response = await fetch(request);
     const obj = await response.json();
     console.log("obj", obj);
+
+    //成功與否，執行callback
+    if (obj.logInStatus) {
+      loginSuccess();
+    } else {
+      loginFail();
+    }
 
     //更動redux state
     dispatch({
