@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter, useParams, Link } from "react-router-dom";
 
 //Redux
-import { userlogin, userLogOut } from "../../Redux/user/userAction";
+import { userLogin, userLogOut } from "../../Redux/user/userAction";
 
 //component
 import ItemHead from "../../components/ItemHead/itemHead";
@@ -17,7 +17,7 @@ import "./itemList.scss";
 import WishList from "../../components/WishList/wishList";
 const ItemList = (props) => {
     //Redux
-    const { user, userlogin, userLogOut } = props;
+    const { user, userLogin, userLogOut } = props;
 
     //localstate
     const [itemCardData, setItemCardData] = useState([]);
@@ -74,7 +74,7 @@ const ItemList = (props) => {
                 const userInfo = wishListData.userInfo;
 
                 // //reset user
-                logInStatus ? userlogin(userInfo) : userLogOut();
+                logInStatus ? userLogin(userInfo) : userLogOut();
 
                 if (logInStatus) {
                     setItemWishList(wishListData.wishList);
@@ -127,6 +127,7 @@ const ItemList = (props) => {
                                       itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                                       itemName={el.itemName}
                                       itemPrice={`NT$ ${el.itemPrice}`}
+                                      name={name}
                                       wish={
                                           itemWishList.findIndex((eachWish) => {
                                               return el.itemId === eachWish;
@@ -165,7 +166,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userlogin, userLogOut }, dispatch);
+    return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 
 export default withRouter(

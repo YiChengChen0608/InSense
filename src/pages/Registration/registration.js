@@ -8,7 +8,7 @@ import "./registration.scss";
 import { Redirect, withRouter } from "react-router-dom";
 
 //Redux
-import { checkLogin } from "../../Redux/user/userAction";
+import { userLogin, checkLogin } from "../../Redux/user/userAction";
 
 //react-icon
 import {
@@ -32,7 +32,7 @@ import {
 
 const Registration = (props) => {
   //Redux
-  const { user, checkLogin } = props;
+  const { user, userLogin } = props;
 
   //gender
   const [gender, setGender] = useState("");
@@ -99,16 +99,17 @@ const Registration = (props) => {
 
   const registrationSent = async () => {
     const data = {
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      gender: gender,
-      cities: cities,
-      districts: districts,
-      address: address,
-      postCode: postCode,
-      birthday: selectedDate.toLocaleDateString().split("/").join("-"),
+      userAccount: email,
+      userEmail: email,
+      userPassword: password,
+      userFirstName: firstName,
+      userLastName: lastName,
+      userGender: gender,
+      userCity: cities,
+      userDistrict: districts,
+      userAddress: address,
+      userPostCode: postCode,
+      userBirthday: selectedDate.toLocaleDateString().split("/").join("-"),
     };
 
     const response = await fetch("http://localhost:3030/users/registration", {
@@ -121,13 +122,11 @@ const Registration = (props) => {
     });
 
     const obj = await response.json();
-
     console.log(obj);
-  };
 
-  useEffect(() => {
-    // if (user.logInStatus) setLoading(false);
-  }, []);
+    //若成功註冊，則自動登入
+    if (obj.logInStatus) userLogin(obj.userInfo);
+  };
 
   useEffect(() => {
     // console.log("changed", cities.length);
@@ -345,7 +344,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ checkLogin }, dispatch);
+  return bindActionCreators({ userLogin, checkLogin }, dispatch);
 };
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Registration)

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter, Link } from "react-router-dom";
 
 //Redux
-import { userlogin, userLogOut } from "../../Redux/user/userAction";
+import { userLogin, userLogOut } from "../../Redux/user/userAction";
 
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 import MainContainer from "../../components/mainContainer";
@@ -15,7 +15,7 @@ import "./itemDetails.scss";
 
 const ItemDetails = (props) => {
     //Redux
-    const { user, userlogin, userLogOut } = props;
+    const { user, userLogin, userLogOut } = props;
 
     //localstate
     const itemId = props.match.params.itemId;
@@ -71,7 +71,7 @@ const ItemDetails = (props) => {
                 const userInfo = wishData.userInfo;
 
                 // //reset user
-                logInStatus ? userlogin(userInfo) : userLogOut();
+                logInStatus ? userLogin(userInfo) : userLogOut();
                 console.log(wishData);
                 if (logInStatus) {
                     setItemWish(wishData.itemWish);
@@ -128,7 +128,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userlogin, userLogOut }, dispatch);
+    return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 
 export default withRouter(

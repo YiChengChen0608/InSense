@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 import "./address.scss";
 
 import FormInput from "../../components/FormInput/FormInput";
@@ -22,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Address = (props) => {
+  //Redux
+  const user = props.user;
+
   //縣市區
   const [cities, setCities] = useState([]);
   const [address, setAddress] = useState("");
@@ -29,8 +35,8 @@ const Address = (props) => {
   //Select CSS(material UI)
   const classes = useStyles();
   //selected
-  const [citiesSelected, setCitiesSelected] = React.useState("");
-  const [districtsSelected, setDistrictsSelected] = React.useState("");
+  const [citiesSelected, setCitiesSelected] = useState("");
+  const [districtsSelected, setDistrictsSelected] = useState("");
 
   //縣市區選擇
   const addressChange = (event) => {
@@ -38,6 +44,10 @@ const Address = (props) => {
       case "citiesSelected":
         props.setCities && props.setCities(cities[event.target.value].CityName);
         setCitiesSelected(event.target.value);
+        //選完縣市後，將地區還原
+        setDistrictsSelected("");
+        props.setDistricts("");
+        props.setPostCode("");
         break;
       case "districtsSelected":
         props.setDistricts &&
@@ -81,6 +91,45 @@ const Address = (props) => {
       setCities(cities);
     })();
   }, []);
+
+  //若有登入，則載入
+  //尋找陣列的key
+  useEffect(() => {
+    // console.log("user", user);
+
+    //若已登入，且找到cities資訊
+    if (user.logInStatus && cities.length) {
+      const myCity = user.userInfo.userCity;
+      const myPostCode = user.userInfo.userPostCode;
+      // console.log(myCity, myPostCode);
+      // console.log("cities", cities);
+      const newCode = { cityCode: "", districtCode: "" };
+
+      //尋找城市key
+      cities.forEach((el, index) => {
+        if (el.CityName === myCity) {
+          newCode.cityCode = index;
+        }
+      });
+      // console.log(cities[newCode.cityCode])
+      //尋找地區key
+      if (newCode.cityCode.toString().length) {
+        // console.log(cities[newCode.cityCode].AreaList);
+        cities[newCode.cityCode].AreaList.forEach((el, index) => {
+          if (el.ZipCode.toString() === myPostCode.toString()) {
+            newCode.districtCode = index;
+          }
+        });
+      }
+
+      // console.log(user.userInfo.userAddress);
+
+      console.log("newCode", newCode);
+      setCitiesSelected(newCode.cityCode);
+      setDistrictsSelected(newCode.districtCode);
+      setAddress(user.userInfo.userAddress);
+    }
+  }, [user, cities]);
 
   return (
     <div className="address-container d-flex align-items-end">
@@ -134,4 +183,14 @@ const Address = (props) => {
   );
 };
 
-export default Address;
+const mapStateToProps = (store) => {
+  return { user: store.user };
+};
+
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({}, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Address);
