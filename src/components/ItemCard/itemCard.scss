@@ -35,6 +35,7 @@
         //=======button 的css，之後用icon取代======
         .item-button-container {
             position: absolute;
+            margin-left: 40px;
             top: 120px;
             left: 32px;
             // width: 30%;
@@ -44,6 +45,7 @@
             display: block;
             button {
                 width: 118px;
+                height: 50px;
                 background-color: $sub-white;
                 color: $main-blue;
                 border: 1px solid $main-blue;
@@ -69,8 +71,4 @@
 }
 .card-name {
     margin: 0;
-}
-
-.item-button-container {
-    margin-left: 40px;
 }

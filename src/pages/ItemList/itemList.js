@@ -69,9 +69,12 @@ const ItemList = (props) => {
     useEffect(() => {
         if (user.logInStatus) {
             (async () => {
+                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 const wishListData = await fetchWishList(brandOrCategory, name);
                 const logInStatus = wishListData.logInStatus;
                 const userInfo = wishListData.userInfo;
+
+                console.log("wishListData", wishListData);
 
                 // //reset user
                 logInStatus ? userLogin(userInfo) : userLogOut();
@@ -116,6 +119,7 @@ const ItemList = (props) => {
                         : ""
                 }
             />
+            {console.log("itemWishList", itemWishList)}
             <ItemBrandFilter />
             <MainContainer>
                 <div className="item-list-container d-flex flex-wrap justify-content-center">
