@@ -80,7 +80,7 @@ function SavedItems(props) {
       <FiBookmark
         className={`saved-icon ${
           savedStatus ? "saved-icon saved-filled" : "saved-icon"
-        } `}
+          } `}
         onClick={changeSavedStatus}
       />
     </>
