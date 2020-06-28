@@ -41,6 +41,7 @@ const ItemCard = (props) => {
                 <SavedItems
                     className="saved-icon"
                     itemId={itemId}
+                    name={name}
                     wish={wish}
                     name={name}
                     // itemWishList={itemWishList}

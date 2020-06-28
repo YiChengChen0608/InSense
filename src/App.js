@@ -17,7 +17,9 @@ import OrderDetail from "./pages/OrderDetail/orderDetail";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
-import TestUI from "./pages/TestUI/testUI";
+import Modify from "./pages/Modify/modify";
+// import SignIn from "./pages/SignIn/SignIn";
+// import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
 // import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
@@ -61,6 +63,9 @@ function App() {
                             </Route>
                             <Route path="/account/registration">
                                 <Registration />
+                            </Route>
+                            <Route path="/account/modify">
+                                <Modify />
                             </Route>
                         </Route>
                         <Route path="/">
