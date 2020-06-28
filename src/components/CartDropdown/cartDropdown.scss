@@ -6,24 +6,30 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   background-color: white;
-  right: 0;
+  right:-426px;
   top: 0;
   z-index: 5;
-
+  transition: .5s;
+  >span{
+    font-size: 24px;
+    padding: 16px;
+    cursor: pointer;
+  }
   .empty-message {
     font-size: 18px;
     margin: 50px auto;
   }
 
   .cart-items {
-    height: 80vh;
     display: flex;
+    flex:1 0 0 ;
     flex-direction: column;
     overflow: scroll;
   }
 
-  button {
-    margin-top: auto;
-  }
+}
+.right-open{
+  right:0;
 }

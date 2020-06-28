@@ -137,8 +137,6 @@ const Nav = ({
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
     });
-    console.log("born");
-
     //一開始載入網頁，驗證身份
     checkLogin();
   }, []);
@@ -229,18 +227,7 @@ const Nav = ({
           btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
-          {userToggle ? (
-            user.logInStatus ? (
-              <AccountRightBar />
-            ) : (
-                <IndexLogin />
-              )
-
-          ) : cartToggle ? (
-            <CartDropdwon />
-          ) : (
-                ""
-              )}
+          {userToggle ? user.logInStatus ? <AccountRightBar /> : <IndexLogin /> : ''}
         </IndexRightSideBar>
         <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
@@ -252,7 +239,7 @@ const Nav = ({
           <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
           {/* </a> */}
         </div>
-        {hidden.hidden ? null : <CartDropdwon />}
+        <CartDropdwon />
       </nav>
     </>
   );
