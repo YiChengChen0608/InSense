@@ -8,28 +8,27 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
-  right:-426px;
+  right: -426px;
   top: 0;
   z-index: 5;
-  transition: .5s;
-  >span{
+  transition: 0.5s;
+  > span {
     font-size: 24px;
     padding: 16px;
     cursor: pointer;
   }
   .empty-message {
-    font-size: 18px;
+    font-size: 16px;
     margin: 50px auto;
   }
 
   .cart-items {
     display: flex;
-    flex:1 0 0 ;
+    flex: 1 0 0;
     flex-direction: column;
     overflow: scroll;
   }
-
 }
-.right-open{
-  right:0;
+.right-open {
+  right: 0;
 }
