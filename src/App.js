@@ -18,6 +18,8 @@ import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import Modify from "./pages/Modify/modify";
+import CreditCard from "./pages/CreditCard/creditCard";
+
 // import SignIn from "./pages/SignIn/SignIn";
 // import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
@@ -57,6 +59,9 @@ function App() {
                         <Route path="/account">
                             <Route path="/account/classpage">
                                 <ClassPage />
+                            </Route>
+                            <Route path="/account/creditcard">
+                                <CreditCard />
                             </Route>
                             <Route path="/account/wishlist">
                                 <MyWishList />
