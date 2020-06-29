@@ -65,32 +65,19 @@ const ItemList = (props) => {
     // console.log("born");
   }, [name]);
 
-<<<<<<< HEAD
   //登入/登出/載入該頁時，取得願望清單
   useEffect(() => {
     if (user.logInStatus) {
       (async () => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         const wishListData = await fetchWishList(brandOrCategory, name);
         const logInStatus = wishListData.logInStatus;
         const userInfo = wishListData.userInfo;
 
-        //reset user
+        console.log("wishListData", wishListData);
+
+        // //reset user
         logInStatus ? userLogin(userInfo) : userLogOut();
-=======
-    //登入/登出/載入該頁時，取得願望清單
-    useEffect(() => {
-        if (user.logInStatus) {
-            (async () => {
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                const wishListData = await fetchWishList(brandOrCategory, name);
-                const logInStatus = wishListData.logInStatus;
-                const userInfo = wishListData.userInfo;
-
-                console.log("wishListData", wishListData);
-
-                // //reset user
-                logInStatus ? userLogin(userInfo) : userLogOut();
->>>>>>> e117bca0617b4a8e9d83be952993ed90d244bc97
 
         if (logInStatus) {
           setItemWishList(wishListData.wishList);
@@ -103,7 +90,6 @@ const ItemList = (props) => {
     }
   }, [user.logInStatus, name]);
 
-<<<<<<< HEAD
   return (
     <>
       <ItemHead
@@ -133,6 +119,7 @@ const ItemList = (props) => {
             : ""
         }
       />
+      {console.log("itemWishList", itemWishList)}
       <ItemBrandFilter />
       <MainContainer>
         <div className="item-list-container d-flex flex-wrap justify-content-center">
@@ -140,6 +127,7 @@ const ItemList = (props) => {
             ? itemCardData.map((el, index) => {
                 return (
                   <ItemCard
+                    key={el.itemId}
                     itemId={el.itemId}
                     itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                     itemName={el.itemName}
@@ -159,64 +147,6 @@ const ItemList = (props) => {
               })
             : ""}
           {/* {itemCardData[0].items.map((el, index) => {
-=======
-    return (
-        <>
-            <ItemHead
-                Banner={`http://localhost:3030/images/banner/${
-                    itemHeadData.length
-                        ? itemHeadData[0].brandBanner
-                            ? itemHeadData[0].brandBanner
-                            : itemHeadData[0].itemCategoryBanner
-                            ? itemHeadData[0].itemCategoryBanner
-                            : ""
-                        : ""
-                }.png`}
-                Name={
-                    itemHeadData.length
-                        ? itemHeadData[0].brandName
-                            ? itemHeadData[0].brandName
-                            : itemHeadData[0].itemCategoryName
-                            ? itemHeadData[0].itemCategoryName
-                            : ""
-                        : ""
-                }
-                Discription={
-                    itemHeadData.length
-                        ? itemHeadData[0].brandDiscription
-                            ? itemHeadData[0].brandDiscription
-                            : ""
-                        : ""
-                }
-            />
-            {console.log("itemWishList", itemWishList)}
-            <ItemBrandFilter />
-            <MainContainer>
-                <div className="item-list-container d-flex flex-wrap justify-content-center">
-                    {itemCardData.length
-                        ? itemCardData.map((el, index) => {
-                              return (
-                                  <ItemCard
-                                      itemId={el.itemId}
-                                      itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
-                                      itemName={el.itemName}
-                                      itemPrice={`NT$ ${el.itemPrice}`}
-                                      name={name}
-                                      wish={
-                                          itemWishList.findIndex((eachWish) => {
-                                              return el.itemId === eachWish;
-                                          }) < 0
-                                              ? false
-                                              : true
-                                      }
-                                      //   itemWishList={itemWishList}
-                                      //   setitemWishList={setitemWishList}
-                                  />
-                              );
-                          })
-                        : ""}
-                    {/* {itemCardData[0].items.map((el, index) => {
->>>>>>> e117bca0617b4a8e9d83be952993ed90d244bc97
                     return (
                         <ItemCard
                             id={el.id}
