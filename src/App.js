@@ -23,60 +23,64 @@ import Modify from "./pages/Modify/modify";
 import ShopPage from "./pages/shop/shop.component";
 // import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
+import CheckoutPage from "./pages/Checkout/chechout";
 
 function App() {
-    return (
-        <Router>
-            <>
-                <Nav />
-                <MainContent>
-                    <Switch>
-                        <Route path="/classlist">
-                            <ClassList />
-                        </Route>
-                        <Route path="/FaqAccordion">
-                            <FaqAccordion />
-                        </Route>
-                        <Route path="/itemlist">
-                            <Route path="/itemlist/:brandOrCategory/:Name">
-                                <ItemList />
-                            </Route>
-                        </Route>
-                        <Route path="/itemdetail/:itemId?">
-                            <ItemDetails />
-                        </Route>
-                        <Route path="/orderdetail">
-                            <OrderDetail />
-                        </Route>
-                        <Route path="/classdetail/:classid">
-                            <ClassDetail />
-                        </Route>
-                        <Route path="/Shop">
-                            <ShopPage />
-                        </Route>
-                        <Route path="/account">
-                            <Route path="/account/classpage">
-                                <ClassPage />
-                            </Route>
-                            <Route path="/account/wishlist">
-                                <MyWishList />
-                            </Route>
-                            <Route path="/account/registration">
-                                <Registration />
-                            </Route>
-                            <Route path="/account/modify">
-                                <Modify />
-                            </Route>
-                        </Route>
-                        <Route path="/">
-                            <IndexPage />
-                        </Route>
-                    </Switch>
-                </MainContent>
-                <Footer />
-            </>
-        </Router>
-    );
+  return (
+    <Router>
+      <>
+        <Nav />
+        <MainContent>
+          <Switch>
+            <Route path="/classlist">
+              <ClassList />
+            </Route>
+            <Route path="/FaqAccordion">
+              <FaqAccordion />
+            </Route>
+            <Route path="/itemlist">
+              <Route path="/itemlist/:brandOrCategory/:Name">
+                <ItemList />
+              </Route>
+            </Route>
+            <Route path="/itemdetail/:itemId?">
+              <ItemDetails />
+            </Route>
+            <Route path="/checkout">
+              <CheckoutPage />
+            </Route>
+            <Route path="/orderdetail">
+              <OrderDetail />
+            </Route>
+            <Route path="/classdetail/:classid">
+              <ClassDetail />
+            </Route>
+            <Route path="/Shop">
+              <ShopPage />
+            </Route>
+            <Route path="/account">
+              <Route path="/account/classpage">
+                <ClassPage />
+              </Route>
+              <Route path="/account/wishlist">
+                <MyWishList />
+              </Route>
+              <Route path="/account/registration">
+                <Registration />
+              </Route>
+              <Route path="/account/modify">
+                <Modify />
+              </Route>
+            </Route>
+            <Route path="/">
+              <IndexPage />
+            </Route>
+          </Switch>
+        </MainContent>
+        <Footer />
+      </>
+    </Router>
+  );
 }
 
 export default App;

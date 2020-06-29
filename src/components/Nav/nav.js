@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  FiMenu,
-  FiSearch,
-  FiUser,
-  FiShoppingCart,
-  FiX,
-  FiChevronRight,
-} from "react-icons/fi";
+import { FiMenu, FiSearch, FiUser, FiX, FiChevronRight } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
 
 //Redux
@@ -19,7 +12,7 @@ import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
 import IndexLogin from "../IndexLogin/indexLogin";
-import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+// import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 import AccountRightBar from "../AccountRightBar/accountRightBar";
 
 //import CartIcon to replace FiShoppingCart
@@ -145,25 +138,20 @@ const Nav = ({
     <>
       <nav
         className={`${
-          location.pathname === "/"
-            ? "position-fix"
-            : "position-sticky"
-          } nav d-flex justify-content-between align-items-center ${
+          location.pathname === "/" ? "position-fix" : "position-sticky"
+        } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-          }`}
+        }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
-              onClick={() =>
-                setBurgerToggle(false) ||
-                setSubMenuToggle(false)
-              }
+              onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}
             >
               <FiX />
             </span>
@@ -183,12 +171,12 @@ const Nav = ({
           <ul>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-                            關於我們
-                        </li>
+              關於我們
+            </li>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-                            幫助中心
-                        </li>
+              幫助中心
+            </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -196,7 +184,7 @@ const Nav = ({
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -223,11 +211,18 @@ const Nav = ({
         </div>
         <p className="index-nav-title">InSense</p>
         <IndexRightSideBar
-
           btnClose={() => closeSideBar() || setCartToggle(false)}
           state={userToggle || cartToggle}
         >
-          {userToggle ? user.logInStatus ? <AccountRightBar /> : <IndexLogin /> : ''}
+          {userToggle ? (
+            user.logInStatus ? (
+              <AccountRightBar />
+            ) : (
+              <IndexLogin />
+            )
+          ) : (
+            ""
+          )}
         </IndexRightSideBar>
         <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
@@ -236,7 +231,7 @@ const Nav = ({
           </a>
           {/* 購物車 */}
           {/* <a onClick={() => userToggleFunc()} role="button" data-name="user"> */}
-          <CartIcon toggleCartHidden={() => toggleCartHidden()} role='button' />
+          <CartIcon toggleCartHidden={() => toggleCartHidden()} role="button" />
           {/* </a> */}
         </div>
         <CartDropdwon />
