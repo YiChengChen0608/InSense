@@ -1,11 +1,13 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   selectCartItems,
   selectCartTotal,
 } from "../../Redux/cart/cartSelectors";
+
+import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
 import "./checkout.scss";
 
@@ -25,16 +27,16 @@ const CheckoutPage = ({ cartItems, total }) => (
       <div className="header-block">
         <span>價格</span>
       </div>
-      <div className="header-block">
+      {/* <div className="header-block">
         <span>小計</span>
-      </div>
+      </div> */}
       <div className="header-block">
         <span>刪除</span>
       </div>
     </div>
-    {/* {cartItems.map((cartItem) => (
-      <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-    ))} */}
+    {cartItems.map((cartItem) => (
+      <CheckoutItem key={cartItem.itemId} cartItem={cartItem} />
+    ))}
     <div className="total">總計: ${total}</div>
   </div>
 );

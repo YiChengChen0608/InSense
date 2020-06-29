@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiSearch, FiUser, FiX, FiChevronRight } from "react-icons/fi";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 //Redux
 import { checkLogin } from "../../Redux/user/userAction";
