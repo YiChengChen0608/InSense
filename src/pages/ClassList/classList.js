@@ -15,7 +15,7 @@ const ClassList = () => {
   useEffect(() => {
     (async () => {
       const data = await fetchClassData()
-      setClassInfo(data)
+      setClassInfo(data.classInfo)
     })()
   }, [])
 
@@ -30,7 +30,7 @@ const ClassList = () => {
         content2={"與您一起感受香氛"}
       />
       <MainContainer otherClass="class-list-container d-flex flex-wrap justify-content-center">
-        {classInfo.map((info, index) => <ClassCard key={index} classImg={info.classImg} classTime={info.classTime} className={info.className} classId={info.classId} />)}
+        {classInfo.map((info, index) => <ClassCard key={index} classImg={info.classImg} classTime={info.classTime} className={info.className} classId={info.classId} remainingPeople={info.remainingPeople} />)}
       </MainContainer>
     </>
   );

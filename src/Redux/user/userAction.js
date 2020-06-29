@@ -32,7 +32,7 @@ export const userLogInAsync = (
 
     const response = await fetch(request);
     const obj = await response.json();
-    console.log("obj", obj);
+    // console.log("obj", obj);
 
     //成功與否，執行callback
     if (obj.logInStatus) {
