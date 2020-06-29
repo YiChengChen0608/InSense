@@ -25,7 +25,7 @@ const AccountSideBar = () => {
           </Link>
         </li>
         <li className="d-flex align-item-center">
-          <Link to="" className="d-flex align-item-center account-link">
+          <Link to="/account/creditcard" className="d-flex align-item-center account-link">
             <FiChevronRight className="icon" />
             <p>付款資訊</p>
           </Link>
