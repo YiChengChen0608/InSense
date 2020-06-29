@@ -17,7 +17,7 @@ const ClassCard = ({ classImg, classTime, className, classId, remainingPeople })
         </div>
         <div className='d-flex justify-content-between'>
           <p className="card-name">{className}</p>
-          <p className='countPeople'>剩餘: {remainingPeople}位</p>
+          <p className='countPeople'>剩餘 {remainingPeople}位</p>
         </div>
         <Link to={`/classdetail/${classId}`}
           className="card-btn text-center"
