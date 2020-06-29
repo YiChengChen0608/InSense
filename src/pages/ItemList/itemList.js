@@ -63,7 +63,7 @@ const ItemList = (props) => {
       setItemCardData(cardData);
     })();
     // console.log("born");
-  }, [brandOrCategory, name]);
+  }, [name]);
 
   //登入/登出/載入該頁時，取得願望清單
   useEffect(() => {
@@ -127,6 +127,7 @@ const ItemList = (props) => {
             ? itemCardData.map((el, index) => {
                 return (
                   <ItemCard
+                    key={el.itemId}
                     itemId={el.itemId}
                     itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                     itemName={el.itemName}

@@ -3,7 +3,7 @@ import { FiShare2 } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 import "./classCard.scss";
 
-const ClassCard = ({ classImg, classTime, className, classId }) => {
+const ClassCard = ({ classImg, classTime, className, classId, remainingPeople }) => {
 
   return (
     <>
@@ -15,7 +15,10 @@ const ClassCard = ({ classImg, classTime, className, classId }) => {
           <p>{classTime}</p>
           <FiShare2 className="share-icon" />
         </div>
-        <p className="card-name">{className}</p>
+        <div className='d-flex justify-content-between'>
+          <p className="card-name">{className}</p>
+          <p className='countPeople'>剩餘 {remainingPeople}位</p>
+        </div>
         <Link to={`/classdetail/${classId}`}
           className="card-btn text-center"
           role="button"
