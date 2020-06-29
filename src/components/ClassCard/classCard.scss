@@ -24,10 +24,14 @@
             margin-right: 8px;
         }
     }
-    .card-name {
+    .card-name,.countPeople {
         margin: 0;
         margin-bottom: 16px;
         color: $main-black;
+    }
+    .countPeople{
+      padding-top:3px;
+      font-size: 12px;
     }
 
     .card-btn {
