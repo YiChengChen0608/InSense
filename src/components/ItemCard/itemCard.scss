@@ -3,7 +3,7 @@
 .card-wrapper {
     position: relative;
     max-width: 250px;
-    margin: 16px 8px 16px;
+    margin: 16px 8px;
     padding: 8px;
     flex-grow: 1;
     border: 0;
@@ -16,10 +16,6 @@
     }
     .item-button-container {
         position: relative;
-        width: 30%;
-        opacity: 0.7;
-        bottom: 200px;
-        z-index: 200;
         display: none;
     }
 
