@@ -15,8 +15,6 @@
     border: 1px solid #d94f06;
     cursor: pointer;
     //center the text
-    display: flex;
-    justify-content: center;
 
     &:hover {
         background-color: #d94f06;
@@ -29,9 +27,8 @@
         background-color: #d94f06;
         color: white;
         border: none;
-        // margin-left: 82px;
-        // margin-right: 82px;
-        // margin-bottom: 48px;
+        display: block;
+        margin: 16px auto 32px;
 
         &:hover {
             background-color: white;
@@ -41,9 +38,6 @@
             color: white;
             border: none;
             opacity: 0.7;
-            // margin-left: 82px;
-            // margin-right: 82px;
-            // margin-bottom: 48px;
         }
     }
 }

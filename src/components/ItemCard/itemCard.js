@@ -43,6 +43,7 @@ const ItemCard = (props) => {
                     itemId={itemId}
                     name={name}
                     wish={wish}
+                    name={name}
                     // itemWishList={itemWishList}
                     // setitemWishList={setitemWishList}
                 />

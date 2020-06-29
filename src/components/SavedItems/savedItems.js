@@ -9,6 +9,7 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 import { userToggleFunc } from "../../Redux/nav/navAction";
 
 function SavedItems(props) {
+
   const { user, userLogin, userLogOut, userToggleFunc, name } = props;
   //點擊收藏按鈕
   const [savedStatus, setSavedStatus] = useState(props.wish);
@@ -61,6 +62,7 @@ function SavedItems(props) {
     }
   };
 
+
   //savedStatus
   useEffect(() => {
     setSavedStatus(!!props.wish);
@@ -78,7 +80,7 @@ function SavedItems(props) {
       <FiBookmark
         className={`saved-icon ${
           savedStatus ? "saved-icon saved-filled" : "saved-icon"
-        } `}
+          } `}
         onClick={changeSavedStatus}
       />
     </>
