@@ -10,7 +10,7 @@ $main-black: #555555;
 $main-orange: #f7b66c;
 $main-scarlet: #d94f06;
 $title-font-weight: 300;
-$title-font-size: 32px;
+$title-font-size: 28px;
 
 /* font*/
 $Roboto: "Roboto", "Noto Sans TC", sans-serif;
@@ -61,6 +61,9 @@ body {
 }
 .justify-content-evenly {
   justify-content: space-evenly;
+}
+.justify-content-end {
+  justify-content: flex-end;
 }
 .align-items-center {
   align-items: center;
