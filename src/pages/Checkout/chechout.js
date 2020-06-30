@@ -30,7 +30,7 @@ const CheckoutPage = ({ cartItems, total, handleChange }) => (
         <span>價格</span>
       </div>
       <div className="header-block product-subtotal">
-        <span>刪除</span>
+        <span>小計</span>
       </div>
     </div>
     {cartItems.map((cartItem) => (
