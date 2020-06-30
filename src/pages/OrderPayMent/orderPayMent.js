@@ -5,6 +5,8 @@ import FormInput from '../../components/FormInput/FormInput'
 const OrderPayMent = () => {
   const [cardName, setCardName] = useState('')
   const [cardNum, setCardNum] = useState('')
+  const [month, setMonth] = useState('')
+
   return (
     <MainContainer>
       <div className='text-center position-relative order-payment-head'>

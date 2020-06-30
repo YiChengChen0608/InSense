@@ -28,26 +28,26 @@ const ItemCard = (props) => {
       <div className="card-wrapper">
         <div className="card-img">
           <img src={itemimg} alt="" />
+          <div className="item-button-container">
+            <a className="cart-anchor" onClick={() => addItem(props)}>
+              <FiShoppingCart className="cart-button" />
+            </a>
+          </div>
         </div>
         <div className="card-content d-flex justify-content-evenly align-items-center">
           <p className="card-name text-center">{itemName}</p>
         </div>
         <p className="card-price text-center">{`NT$ ${itemPrice}`}</p>
-      </div>
-      <div className="item-button-container">
-        <a className="cart-anchor" onClick={() => addItem(props)}>
-          <FiShoppingCart className="cart-button" />
-        </a>
-      </div>
-      <div className="saved-btn">
-        <SavedItems
-          className="saved-icon"
-          itemId={itemId}
-          name={name}
-          wish={wish}
+        <div className="saved-btn">
+          <SavedItems
+            className="saved-icon"
+            itemId={itemId}
+            name={name}
+            wish={wish}
           // itemWishList={itemWishList}
           // setitemWishList={setitemWishList}
-        />
+          />
+        </div>
       </div>
     </>
   );
