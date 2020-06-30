@@ -1,1 +1,15 @@
 @import "../../styles/style.scss";
+.list-container {
+    width: 72%;
+    margin-bottom: 32px;
+    color: $main-black;
+
+    .list-title {
+        color: $main-black;
+        font-weight: $title-font-weight;
+        font-size: $title-font-size;
+        margin-top: 0;
+    }
+    .card-group-container {
+    }
+}

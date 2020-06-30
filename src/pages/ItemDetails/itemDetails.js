@@ -114,7 +114,7 @@ const ItemDetails = (props) => {
                     />
                 </div>
                 <div></div>
-                <div>
+                <div className="item-suggest-container">
                     <ItemSuggest></ItemSuggest>
                 </div>
             </div>
