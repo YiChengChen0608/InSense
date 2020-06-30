@@ -37,17 +37,17 @@ const ItemCard = (props) => {
                     </div>
                     <p className="card-price text-center">{itemPrice}</p>
                 </Link>
-            </div>
-            <div className="saved-btn">
-                <SavedItems
-                    className="saved-icon"
-                    itemId={itemId}
-                    name={name}
-                    wish={wish}
-                    name={name}
-                    // itemWishList={itemWishList}
-                    // setitemWishList={setitemWishList}
-                />
+                <div className="saved-btn">
+                    <SavedItems
+                        className="saved-icon"
+                        itemId={itemId}
+                        name={name}
+                        wish={wish}
+                        name={name}
+                        // itemWishList={itemWishList}
+                        // setitemWishList={setitemWishList}
+                    />
+                </div>
             </div>
         </>
     );

@@ -23,8 +23,9 @@ const WishList = (props) => {
         <>
             <div className="list-container">
                 <h2 className="list-title ">我的願望清單</h2>
-                <WishListCard />
-                {/* {myWishList.length ? (
+                <div className="card-group-container d-flex">
+                    <WishListCard />
+                    {/* {myWishList.length ? (
                     myWishList.map((el, index) => {
                         return (
                             <WishListCard
@@ -46,6 +47,7 @@ const WishList = (props) => {
                 ) : (
                     <p>沒有收藏的商品</p>
                 )} */}
+                </div>
             </div>
         </>
     );

@@ -1,13 +1,13 @@
 @import "../../styles/style.scss";
 
 .list-card-container {
-    max-width: 680px;
+    max-width: 460px;
     border: 1px solid #bbb;
-    margin: 2% 0;
+    margin: 10px;
 
     .list-card-img {
-        width: 160px;
-        height: 160px;
+        width: 150px;
+        height: 150px;
         img {
             width: 100%;
             height: 100%;
@@ -21,19 +21,22 @@
             .list-card-title {
                 font-weight: 400;
                 color: $main-black;
-                margin: 18px 0 12px;
+                margin: 18px 0 18px;
+                font-size: 14px;
             }
         }
         .list-card-size-container {
             p {
                 color: $main-black;
                 margin: 0;
+                font-size: 14px;
             }
         }
         .list-card-price-container {
             p {
                 color: $main-black;
-                margin: 12px 0;
+                margin: 18px 0;
+                font-size: 14px;
             }
         }
     }
@@ -50,13 +53,20 @@
             }
         }
         .btn-add-cart {
-            margin-top: 46%;
+            margin-top: 52px;
 
             button {
-                width: 142px;
-                height: 40px;
+                font-size: 14px;
+                width: 126px;
+                height: 34px;
+                line-height: 36px;
                 background-color: $main-orange;
                 border: $main-orange solid 1px;
+                color: $main-black;
+                &:hover {
+                    line-height: 40px;
+                    border: $main-scarlet solid 1px;
+                }
             }
         }
     }
