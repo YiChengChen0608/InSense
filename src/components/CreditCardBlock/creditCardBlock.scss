@@ -1,108 +1,108 @@
 @import "../../styles/style.scss";
 
 .credit-card-block-container {
-  // background-color: #ccc;
-  // min-height: 150px;
-  margin: 32px 0;
-  border: 1px solid #bbb;
+    // background-color: #ccc;
+    // min-height: 150px;
+    margin: 32px 0;
+    border: 1px solid #bbb;
 
-  .block-default {
-    // background-color: #eee;
-    width: 120px;
-    margin: 0 1% 0 2%;
-    p {
-      font-weight: 300;
-      color: $main-scarlet;
-    }
-    button {
-      font-weight: 300;
-      padding: 2px 15px;
-      border-radius: 0;
-      background-color: $main-gray;
-    }
-  }
-
-  .card-info {
-    // background-color: #eee;
-    align-self: flex-start;
-    margin: 12px 0;
-    padding-left: 2%;
-    padding-right: 3%;
-    width: 150px;
-
-    .card-info-detail {
-      margin: 14px 0;
-      font-weight: 200;
-      color: $main-black;
-    }
-
-    .card-info-title {
-      font-weight: 400;
-      color: black;
-    }
-    .card-association {
-      .card-association-icon {
-        color: #888888;
-        width: 24px;
-        height: 20px;
-      }
-      p {
-        margin: 0 6px;
-      }
-    }
-  }
-  .bill-address {
-    // background-color: #eee;
-    align-self: flex-start;
-    margin: 12px 0 6px;
-
-    .bill-address-detail {
-      margin: 14px 0;
-      font-weight: 200;
-      color: $main-black;
-    }
-
-    .bill-address-title {
-      font-weight: 400;
-      color: black;
-    }
-    h4 {
-      margin: 0;
-    }
-
-    .address-container {
-      flex-wrap: wrap;
-      width: 220px;
-      .group {
-        margin: 24px 0 0;
-        .form-input {
-          margin-bottom: 0;
-          margin: 0;
-          padding: 6px 0 3px 3px;
+    .block-default {
+        // background-color: #eee;
+        width: 120px;
+        margin: 0 1% 0 2%;
+        p {
+            font-weight: 300;
+            color: $main-scarlet;
         }
-        .form-input-label.shrink {
-          // top: -10px;
+        button {
+            font-weight: 300;
+            padding: 2px 15px;
+            border-radius: 0;
+            background-color: $main-gray;
         }
-      }
     }
-  }
 
-  .card-buttons {
-    margin: 0 5% 0 1%;
-    button {
-      margin: 0 6px;
-      font-weight: 300;
-      padding: 2px 15px;
-      border-radius: 0;
-      background-color: $main-gray;
+    .card-info {
+        // background-color: #eee;
+        align-self: flex-start;
+        margin: 12px 0;
+        padding-left: 2%;
+        padding-right: 3%;
+        width: 150px;
+
+        .card-info-detail {
+            margin: 14px 0;
+            font-weight: 200;
+            color: $main-black;
+        }
+
+        .card-info-title {
+            font-weight: 400;
+            color: $main-black;
+        }
+        .card-association {
+            .card-association-icon {
+                color: #888888;
+                width: 24px;
+                height: 20px;
+            }
+            p {
+                margin: 0 6px;
+            }
+        }
     }
-    .card-modify-save {
-      color: $main-white;
-      background-color: $main-blue;
+    .bill-address {
+        // background-color: #eee;
+        align-self: flex-start;
+        margin: 12px 0 6px;
+
+        .bill-address-detail {
+            margin: 14px 0;
+            font-weight: 200;
+            color: $main-black;
+        }
+
+        .bill-address-title {
+            font-weight: 400;
+            color: black;
+        }
+        h4 {
+            margin: 0;
+        }
+
+        .address-container {
+            flex-wrap: wrap;
+            width: 220px;
+            .group {
+                margin: 24px 0 0;
+                .form-input {
+                    margin-bottom: 0;
+                    margin: 0;
+                    padding: 6px 0 3px 3px;
+                }
+                .form-input-label.shrink {
+                    // top: -10px;
+                }
+            }
+        }
     }
-    .card-modify-cancel{
-      color: $main-white;
-      background-color: $main-orange;
+
+    .card-buttons {
+        margin: 0 5% 0 1%;
+        button {
+            margin: 0 6px;
+            font-weight: 300;
+            padding: 2px 15px;
+            border-radius: 0;
+            background-color: $main-gray;
+        }
+        .card-modify-save {
+            color: $main-white;
+            background-color: $main-blue;
+        }
+        .card-modify-cancel {
+            color: $main-white;
+            background-color: $main-orange;
+        }
     }
-  }
 }
