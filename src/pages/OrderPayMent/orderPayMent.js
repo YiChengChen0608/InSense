@@ -6,7 +6,7 @@ const OrderPayMent = () => {
   const [cardName, setCardName] = useState('')
   const [cardNum, setCardNum] = useState('')
   const [month, setMonth] = useState('')
-
+  const [year, setYear] = useState('')
   return (
     <MainContainer>
       <div className='text-center position-relative order-payment-head'>
@@ -41,8 +41,8 @@ const OrderPayMent = () => {
           <FormInput type='text' value={cardNum} label='卡號*' required />
           <div>到期日期</div>
           <div className='d-flex align-items-center'>
-            <FormInput type='text' name='month' value='' label='Month' required />
-            <FormInput type='text' name='year' value='' label='Year' required />
+            <FormInput type='text' value={month} label='Month' required />
+            <FormInput type='text' value={year} label='Year' required />
           </div>
         </div>
         <div></div>
