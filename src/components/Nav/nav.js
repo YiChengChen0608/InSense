@@ -19,7 +19,7 @@ import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
 import IndexLogin from "../IndexLogin/indexLogin";
-import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+// import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
 import AccountRightBar from "../AccountRightBar/accountRightBar";
 
 //import CartIcon to replace FiShoppingCart
