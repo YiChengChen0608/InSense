@@ -24,12 +24,16 @@ export const selectCartItemsCount = createSelector(
     )
 );
 
-// export const selectCartSubtotal = createSelector([selectCartItems], (cartItems) =>
-//   cartItems.reduce(
-//     (accumalatedQuantity, cartItem) =>
-//       accumalatedQuantity + cartItem.quantity * cartItem.itemPrice,
-//     0
-//   )
+//小計 未完成
+// export const selectCartSubtotal = createSelector(
+//   [selectCartItems],
+//   (cartItems) =>
+//     cartItems.reduce(
+//       (accumalatedQuantity, cartItem) =>
+//         accumalatedQuantity +
+//         cartItem.itemId.quantity * cartItem.itemId.itemPrice,
+//       0
+//     )
 // );
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
