@@ -28,7 +28,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       </span>
       <span className="price">
         {" "}
-        <span>NT$</span>
+        <span>NT$ </span>
         {itemPrice}
       </span>
       <span>
