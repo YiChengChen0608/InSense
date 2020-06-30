@@ -49,7 +49,7 @@ const CheckoutPage = ({ cartItems, total, handleChange }) => (
     </div>
     <div className="sum">${total}</div>
     <div className="discount">折扣: -100</div> */}
-    <div className="total">總計: ${total}</div>
+    <div className="total">總計: NT${total}</div>
   </div>
 );
 
