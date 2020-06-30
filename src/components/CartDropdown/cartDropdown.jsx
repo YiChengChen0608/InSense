@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import CartItem from "../CartItem/cartItem";
 import SubmitButton from "../SubmitButton/submitButton";
 import "./cartDropdown.scss";
-import {
-  FiX,
-} from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import { bindActionCreators } from "redux";
-import { toggleCartHidden } from '../../Redux/cart/cartAction'
+import { toggleCartHidden } from "../../Redux/cart/cartAction";
 
-const CartDropdwon = ({ cartItems, hidden, toggleCartHidden }) => {
+import {
+  selectCartItems,
+  selectCartHidden,
+} from "../../Redux/cart/cartSelectors";
+import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
+
+const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
   return (
-    <div className={`cart-dropdown ${hidden ? 'right-open' : ''}`}>
+    <div className={`cart-dropdown ${hidden ? "right-open" : ""}`}>
       <span onClick={() => toggleCartHidden()}>
         <FiX />
       </span>
@@ -23,22 +28,37 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden }) => {
             ))}
           </>
         ) : (
-            <span className="empty-message">購物車現在太空囉</span>
-          )}
+          <span className="empty-message">購物車現在太空囉</span>
+        )}
       </div>
-      <SubmitButton inverted={true}>結帳</SubmitButton>
+      <SubmitButton
+        inverted={true}
+        onClick={() => {
+          history.push("/checkout");
+        }}
+      >
+        結帳
+      </SubmitButton>
     </div>
-  );
-}
-const mapStateToProps = ({ cart: { cartItems, hidden } }) => ({
-  cartItems, hidden
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    { toggleCartHidden },
-    dispatch
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartDropdwon);
+//6/29
+// const mapStateToProps = ({ cart: { cartItems, hidden } }) => ({
+//   cartItems, hidden
+// });
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ toggleCartHidden }, dispatch);
+};
+
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  hidden: selectCartHidden,
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartDropdwon)
+);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(CartDropdwon);

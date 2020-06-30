@@ -25,6 +25,7 @@ import CreditCard from "./pages/CreditCard/creditCard";
 import ShopPage from "./pages/shop/shop.component";
 // import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
+import CheckoutPage from "./pages/Checkout/chechout";
 
 function App() {
   return (
@@ -47,9 +48,9 @@ function App() {
             <Route path="/itemdetail/:itemId?">
               <ItemDetails />
             </Route>
-            <Route path='/orders'>
-              <Route path='/orders/checkout'>
-
+            <Route path="/orders">
+              <Route path="/orders/checkout">
+                <CheckoutPage />
               </Route>
               <Route path="/orders/orderdetail">
                 <OrderDetail />
@@ -85,7 +86,7 @@ function App() {
         </MainContent>
         <Footer />
       </>
-    </Router >
+    </Router>
   );
 }
 
