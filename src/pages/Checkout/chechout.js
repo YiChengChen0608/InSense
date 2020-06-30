@@ -8,7 +8,7 @@ import {
 } from "../../Redux/cart/cartSelectors";
 
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
-import FormInput from "../../components/FormInput/FormInput";
+// import FormInput from "../../components/FormInput/FormInput";
 
 import "./checkout.scss";
 
@@ -37,7 +37,7 @@ const CheckoutPage = ({ cartItems, total, handleChange }) => (
     ))}
 
     {/* 優惠卷欄位 */}
-    <div className="coupon">
+    {/* <div className="coupon">
       <FormInput
         type="text"
         name="coupon"
@@ -48,7 +48,7 @@ const CheckoutPage = ({ cartItems, total, handleChange }) => (
       />
     </div>
     <div className="sum">${total}</div>
-    <div className="discount">折扣: -100</div>
+    <div className="discount">折扣: -100</div> */}
     <div className="total">總計: ${total}</div>
   </div>
 );
