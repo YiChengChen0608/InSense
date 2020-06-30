@@ -1,7 +1,8 @@
 import React from "react";
 import "./itemCard.scss";
 // import { withRouter } from "react-router-dom";
-// import { FiBookmark } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
+
 import SavedItems from "../SavedItems/savedItems";
 import SubmitButton from "../SubmitButton/submitButton";
 
@@ -33,7 +34,9 @@ const ItemCard = (props) => {
         </div>
         <p className="card-price text-center">{`NT$ ${itemPrice}`}</p>
         <div className="item-button-container">
-          <SubmitButton onClick={() => addItem(props)}>加入購物車</SubmitButton>
+          <a className="cart-ancor" onClick={() => addItem(props)}>
+            <FiShoppingCart className="cart-button" />
+          </a>
         </div>
       </div>
       <div className="saved-btn">
