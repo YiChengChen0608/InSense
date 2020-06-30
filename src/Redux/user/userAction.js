@@ -7,8 +7,8 @@ export const userLogin = (userInfo) => {
 export const userLogInAsync = (
   userEmail,
   userPassword,
-  loginSuccess = () => {},
-  loginFail = () => {}
+  loginSuccess = () => { },
+  loginFail = () => { }
 ) => {
   return async function getUserInfoFromServer(dispatch) {
     // 注意header資料格式要設定，伺服器才知道是json格式
@@ -17,7 +17,6 @@ export const userLogInAsync = (
       userEmail,
       userPassword,
     };
-    console.log("data", JSON.stringify(data));
 
     //到後端判斷
     const request = new Request("http://localhost:3030/users/login", {
@@ -50,7 +49,7 @@ export const userLogInAsync = (
 };
 
 //檢查登入
-export const checkLogin = (cbLogIn = () => {}) => {
+export const checkLogin = (cbLogIn = () => { }) => {
   return async function checkLoginFromServer(dispatch) {
     const request = new Request("http://localhost:3030/users/checklogin", {
       method: "POST",
