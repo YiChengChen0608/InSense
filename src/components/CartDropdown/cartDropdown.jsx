@@ -34,7 +34,7 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
       <SubmitButton
         inverted={true}
         onClick={() => {
-          history.push("/checkout");
+          history.push("/orders/checkout");
         }}
       >
         結帳
