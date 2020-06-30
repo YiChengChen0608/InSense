@@ -33,11 +33,11 @@ const ItemCard = (props) => {
           <p className="card-name text-center">{itemName}</p>
         </div>
         <p className="card-price text-center">{`NT$ ${itemPrice}`}</p>
-        <div className="item-button-container">
-          <a className="cart-ancor" onClick={() => addItem(props)}>
-            <FiShoppingCart className="cart-button" />
-          </a>
-        </div>
+      </div>
+      <div className="item-button-container">
+        <a className="cart-anchor" onClick={() => addItem(props)}>
+          <FiShoppingCart className="cart-button" />
+        </a>
       </div>
       <div className="saved-btn">
         <SavedItems

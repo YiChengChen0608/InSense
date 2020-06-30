@@ -14,56 +14,30 @@
       width: 100%;
     }
   }
-  .item-button-container {
-    position: relative;
-    width: 30%;
-    opacity: 0.7;
-    left: 210px;
-    bottom: 130px;
-    display: block;
+}
+.item-button-container {
+  max-width: 250px;
+  position: relative;
+  font-size: 20px;
+  color: $main-light-blue;
+  cursor: pointer;
 
-    .cart-ancor {
-      border: 0;
-      padding: 0;
-      color: $main-blue;
-      background: transparent;
-    }
+  .cart-anchor {
+    position: absolute;
+    bottom: 105px;
+    left: -64px;
+    padding: 8px;
+    font-size: 16px;
+    color: $main-light-blue;
+    background: transparent;
   }
 
-  //   &:hover {
-  //     .card-img {
-  //       width: 100%;
-  //       object-fit: cover;
-  //       img {
-  //         width: 100%;
-  //         opacity: 0.2;
-  //       }
-  //     }
-  //=======button 的css，之後用icon取代======
-  //     .item-button-container {
-  //       position: absolute;
-  //       margin-left: 40px;
-  //       top: 120px;
-  //       left: 32px;
-  //       // width: 30%;
-  //       opacity: 0.7;
-  //       bottom: 200px;
-  //       z-index: 2;
-  //       display: block;
-  //       button {
-  //         width: 20px;
-  //         height: 20px;
-  //         background-color: $sub-white;
-  //         color: $main-blue;
-  //         border: 1px solid $main-blue;
-  //         cursor: pointer;
-  //       }
-  //     }
-  //     .card-name {
-  //       max-width: 220px;
-  //     }
-  //   }
+  .cart-anchor:hover,
+  .cart-ancor::after {
+    color: $main-orange;
+  }
 }
+
 .saved-btn {
   max-width: 250px;
   font-size: 14px;
