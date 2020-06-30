@@ -21,6 +21,7 @@ const ItemCard = (props) => {
     addItem,
     wish,
   } = props;
+
   return (
     <>
       <div className="card-wrapper">
@@ -30,7 +31,7 @@ const ItemCard = (props) => {
         <div className="card-content d-flex justify-content-evenly align-items-center">
           <p className="card-name text-center">{itemName}</p>
         </div>
-        <p className="card-price text-center">{itemPrice}</p>
+        <p className="card-price text-center">{`NT$ ${itemPrice}`}</p>
         <div className="item-button-container">
           <SubmitButton onClick={() => addItem(props)}>加入購物車</SubmitButton>
         </div>
