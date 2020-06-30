@@ -19,12 +19,14 @@ import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
+import OrderPayMent from './pages/OrderPayMent/orderPayMent'
 
 // import SignIn from "./pages/SignIn/SignIn";
 // import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
 // import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
+import CheckoutPage from "./pages/Checkout/chechout";
 
 function App() {
   return (
@@ -49,7 +51,10 @@ function App() {
             </Route>
             <Route path='/orders'>
               <Route path='/orders/checkout'>
-
+                <CheckoutPage />
+              </Route>
+              <Route path='/orders/orderpayment'>
+                <OrderPayMent />
               </Route>
               <Route path="/orders/orderdetail">
                 <OrderDetail />
@@ -85,7 +90,7 @@ function App() {
         </MainContent>
         <Footer />
       </>
-    </Router >
+    </Router>
   );
 }
 
