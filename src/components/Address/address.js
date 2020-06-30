@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
 import "./address.scss";
 
@@ -46,8 +47,8 @@ const Address = (props) => {
         setCitiesSelected(event.target.value);
         //選完縣市後，將地區還原
         setDistrictsSelected("");
-        props.setDistricts("");
-        props.setPostCode("");
+        props.setDistricts && props.setDistricts("");
+        props.setPostCode && props.setPostCode("");
         break;
       case "districtsSelected":
         props.setDistricts &&
@@ -92,22 +93,32 @@ const Address = (props) => {
     })();
   }, []);
 
-  //若有登入，則載入
+  //若有登入，則載入（修改資訊頁才需要）
   //尋找陣列的key
   useEffect(() => {
     // console.log("user", user);
 
     //若已登入，且找到cities資訊
+    console.log(props.location.pathname);
     if (user.logInStatus && cities.length) {
-      const myCity = user.userInfo.userCity;
-      const myPostCode = user.userInfo.userPostCode;
-      // console.log(myCity, myPostCode);
-      // console.log("cities", cities);
+      const myCompleteAddress = { myCity: "", myPostCode: "", myAddress: "" };
+
+      if (props.location.pathname === "/account/modify") {
+        myCompleteAddress.myCity = user.userInfo.userCity;
+        myCompleteAddress.myPostCode = user.userInfo.userPostCode;
+        myCompleteAddress.myAddress = user.userInfo.userAddress;
+      } else if (props.location.pathname === "/account/creditcard") {
+        console.log(props.myCity, props.myPostCode, props.myAddress);
+        myCompleteAddress.myCity = props.myCity;
+        myCompleteAddress.myPostCode = props.myPostCode;
+        myCompleteAddress.myAddress = props.myAddress;
+        // console.log(myCompleteAddress)
+      }
       const newCode = { cityCode: "", districtCode: "" };
 
       //尋找城市key
       cities.forEach((el, index) => {
-        if (el.CityName === myCity) {
+        if (el.CityName === myCompleteAddress.myCity) {
           newCode.cityCode = index;
         }
       });
@@ -116,20 +127,20 @@ const Address = (props) => {
       if (newCode.cityCode.toString().length) {
         // console.log(cities[newCode.cityCode].AreaList);
         cities[newCode.cityCode].AreaList.forEach((el, index) => {
-          if (el.ZipCode.toString() === myPostCode.toString()) {
+          if (
+            el.ZipCode.toString() === myCompleteAddress.myPostCode.toString()
+          ) {
             newCode.districtCode = index;
           }
         });
       }
 
-      // console.log(user.userInfo.userAddress);
-
       console.log("newCode", newCode);
       setCitiesSelected(newCode.cityCode);
       setDistrictsSelected(newCode.districtCode);
-      setAddress(user.userInfo.userAddress);
+      setAddress(myCompleteAddress.myAddress);
     }
-  }, [user, cities]);
+  }, [user, cities, props.myPostCode]);
 
   return (
     <div className="address-container d-flex align-items-end">
@@ -193,4 +204,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({}, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Address);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Address)
+);

@@ -1,0 +1,40 @@
+@import "../../styles/style.scss";
+
+.credit-card-info-container {
+    width: calc(80% - 5%);
+    margin-bottom: 32px;
+    color: $main-black;
+
+    .info-title {
+        color: $main-black;
+        font-weight: $title-font-weight;
+        font-size: $title-font-size;
+        margin-top: 0;
+    }
+
+    .add-credit-card {
+        .credit-card-icons {
+            margin: 0 4% 0 0;
+            .card-association-icon {
+                color: #888888;
+                width: 32px;
+                height: 36px;
+                margin: 0 3px;
+            }
+        }
+        .add-button {
+            button {
+                border: 1px solid $main-blue;
+                border-radius: 0;
+                color: $main-blue;
+                font-weight: 300;
+                font-size: 18px;
+                padding: 6px 36px;
+            }
+            button:hover {
+                background-color: $main-blue;
+                color: $main-white;
+            }
+        }
+    }
+}

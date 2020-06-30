@@ -7,6 +7,18 @@
     padding: 8px;
     flex-grow: 1;
     border: 0;
+    .item-detail-url {
+        text-decoration: none;
+        color: $main-black;
+        .card-content {
+            font-size: 14px;
+            z-index: 300;
+        }
+        .card-price {
+            font-size: 14px;
+            z-index: 300;
+        }
+    }
     .card-img {
         width: 100%;
         object-fit: cover;
@@ -20,37 +32,16 @@
     }
 
     &:hover {
-        .card-img {
-            width: 100%;
-            object-fit: cover;
-            img {
-                width: 100%;
-                opacity: 0.2;
-            }
+        img {
+            opacity: 0.5;
         }
-        //=======button 的css，之後用icon取代======
-        .item-button-container {
-            position: absolute;
-            margin-left: 40px;
-            top: 120px;
-            left: 32px;
-            // width: 30%;
-            opacity: 0.7;
-            bottom: 200px;
-            z-index: 2;
-            display: block;
-            button {
-                width: 118px;
-                height: 50px;
-                background-color: $sub-white;
-                color: $main-blue;
-                border: 1px solid $main-blue;
-                cursor: pointer;
-            }
-        }
-        .card-name {
-            max-width: 220px;
-        }
+
+        // .card-content {
+        //     opacity: 0.7;
+        // }
+        // .card-price {
+        //     opacity: 0.7;
+        // }
     }
 }
 .saved-btn {
@@ -61,10 +52,16 @@
 
 .card-content {
     font-size: 14px;
+    text-decoration: none;
+    z-index: 300;
 }
 .card-price {
     font-size: 14px;
+    text-decoration: none;
+    z-index: 300;
 }
 .card-name {
     margin: 0;
+    text-decoration: none;
+    max-width: 220px;
 }
