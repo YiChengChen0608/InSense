@@ -81,6 +81,7 @@ const ItemList = (props) => {
 
         if (logInStatus) {
           setItemWishList(wishListData.wishList);
+
         }
       })();
     }
@@ -132,6 +133,7 @@ const ItemList = (props) => {
                     itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                     itemName={el.itemName}
                     itemPrice={el.itemPrice}
+
                     name={name}
                     wish={
                       itemWishList.findIndex((eachWish) => {
