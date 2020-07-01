@@ -39,7 +39,7 @@ const CheckoutPage = ({
       <div className="header-block product-qty">
         <span>數量</span>
       </div>
-      <div className="header-block">
+      <div className="header-block product-price">
         <span>價格</span>
       </div>
       <div className="header-block product-subtotal">
