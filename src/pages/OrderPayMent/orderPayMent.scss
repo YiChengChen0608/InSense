@@ -1,16 +1,18 @@
 @import '../../styles/style.scss';
 
 .order-payment-head{
-  min-height: 200px;
+  height: 160px;
   .order-payment-title{
     left:0;
     top:50%;
     transform: translateY(-50%);
     font-size: 24px;
     color:$main-blue;
+    
   }
   .order-payment-step{
-    line-height: 200px;
+    line-height: 160px;
+    font-size: 14px;
     a{
       text-decoration: none;
       color:$main-black;
@@ -18,12 +20,66 @@
   }
 }
 .order-payment-content{
-  
-  div{
+  min-height: 420px;
+  margin-bottom: 48px;
+  .order-payment-subcontent{
+    padding:0 32px;
     flex:1 0 0;
     img{
       object-fit: cover;
       width: 100%;
     }
+    .confirm-btn{
+      display: block;
+      padding:16px 0;
+      text-align: center;
+      text-decoration: none;
+      width: 75%;
+      font-size: 20px;
+      color:$main-scarlet;
+      border: 1px solid $main-scarlet;
+    }
+    &.subcontent-left{
+      margin-top: 16px;
+      margin-right: 18px;
+      padding:0;
+    }
+    &.subcontent-center{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding:16px 32px 32px;
+      margin-top:8px;
+      .subcontent-payment-title{
+        margin-bottom:16px;
+        label{
+          font-size: 14px;
+        }
+        .order-payment-circle{
+          padding-right: 8px;
+        }
+      }
+      .MuiFormControl-root{
+        flex: 1 0 0;
+        margin:20px 0 ;
+      }
+      .subcontent-date{
+        margin-top:32px;
+        .MuiFormControl-root{
+          &:nth-child(1){
+          margin-right:20px;
+          }
+        }
+      }
+    }
+    &.subcontent-right{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding:0 32px;
+      margin-bottom: 32px;
+      padding-right: 0;
+    }
   }
+  
 }

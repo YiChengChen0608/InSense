@@ -1,12 +1,27 @@
 import React, { useState } from 'react'
 import MainContainer from '../../components/mainContainer'
 import './orderPayMent.scss'
-import FormInput from '../../components/FormInput/FormInput'
+import { Input, FormControl, InputLabel } from '@material-ui/core';
+
+import {
+  FiCircle,
+  FiCheckCircle,
+  FiSquare,
+  FiCheckSquare,
+} from "react-icons/fi";
+
+
 const OrderPayMent = () => {
+  const [payment, setPayment] = useState('')
   const [cardName, setCardName] = useState('')
   const [cardNum, setCardNum] = useState('')
   const [month, setMonth] = useState('')
   const [year, setYear] = useState('')
+  const [safeCode, setSafeCode] = useState('')
+
+  const changePayment = (e) => {
+    setPayment(e.target.value)
+  }
   return (
     <MainContainer>
       <div className='text-center position-relative order-payment-head'>
@@ -18,34 +33,64 @@ const OrderPayMent = () => {
         </div>
       </div>
       <div className='d-flex order-payment-content'>
-        <div>
+        <div className='order-payment-subcontent subcontent-left'>
           <img src='/images/class/class1.jpg' />
         </div>
-        <div>
-          <div>付款方式*：</div>
-          <div className='d-flex flex-grow'>
-            <label>
-              <input name='payment' type='radio' value='Credit' />
+        <div className='order-payment-subcontent subcontent-center'>
+          <div className='d-flex subcontent-payment-title'>付款方式*：
+            <label className='d-flex flex-grow align-items-center'>
+              <input className="display-none" name='payment' type='radio' value='Credit' onChange={changePayment} />
+              {payment === 'Credit' ? <FiCheckCircle className='order-payment-circle' /> : <FiCircle className='order-payment-circle' />}
               Credit
             </label>
-            <label>
-              <input name='payment' type='radio' value='Paypal' />
+            <label className='d-flex flex-grow align-items-center'>
+              <input className="display-none" name='payment' type='radio' value='Paypal' onChange={changePayment} />
+              {payment === 'Paypal' ? <FiCheckCircle className='order-payment-circle' /> : <FiCircle className='order-payment-circle' />}
               Paypal
             </label>
-            <label>
-              <input name='payment' type='radio' value='Stripe' />
+            <label className='d-flex flex-grow align-items-center'>
+              <input className="display-none" name='payment' type='radio' value='Stripe' onChange={changePayment} />
+              {payment === 'Stripe' ? <FiCheckCircle className='order-payment-circle' /> : <FiCircle className='order-payment-circle' />}
               Stripe
             </label>
           </div>
-          <FormInput type='text' value={cardName} label='持卡人姓名*' required />
-          <FormInput type='text' value={cardNum} label='卡號*' required />
-          <div>到期日期</div>
-          <div className='d-flex align-items-center'>
-            <FormInput type='text' value={month} label='Month' required />
-            <FormInput type='text' value={year} label='Year' required />
+          <FormControl>
+            <InputLabel htmlFor="my-input">持卡人姓名*</InputLabel>
+            <Input id="my-input" aria-describedby="my-helper-text" />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="my-input">卡號*</InputLabel>
+            <Input id="my-input" aria-describedby="my-helper-text" />
+          </FormControl>
+          <div className='subcontent-date'>到期日期
+            <div className='d-flex credit-card-date'>
+              <FormControl>
+                <InputLabel htmlFor="my-input">Month*</InputLabel>
+                <Input id="my-input" aria-describedby="my-helper-text" />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="my-input">Year*</InputLabel>
+                <Input id="my-input" aria-describedby="my-helper-text" />
+              </FormControl>
+            </div>
           </div>
         </div>
-        <div></div>
+        <div className='order-payment-subcontent subcontent-right'>
+          <FormControl>
+            <InputLabel htmlFor="my-input">安全碼*</InputLabel>
+            <Input id="my-input" aria-describedby="my-helper-text" />
+          </FormControl>
+          <label className="check-input" >
+            <input type='checkbox' />
+            使用已儲存的信用卡資訊
+          </label>
+          <label>
+            <input type='checkbox' />
+            我確認上述資訊完整無誤,並同意上述資訊可以被InSense作為商業用途使用
+          </label>
+
+          <a className='confirm-btn' href='#' onClick={e => e.preventDefault()}>確認付款</a>
+        </div>
       </div>
     </MainContainer>
   )

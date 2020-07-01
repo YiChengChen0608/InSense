@@ -11,6 +11,7 @@ import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 // import FormInput from "../../components/FormInput/FormInput";
 
 import "./checkout.scss";
+import SubmitButton from "../../components/SubmitButton/submitButton";
 
 const CheckoutPage = ({ cartItems, total, handleChange }) => (
   <div className="checkout-page">
@@ -50,6 +51,7 @@ const CheckoutPage = ({ cartItems, total, handleChange }) => (
     <div className="sum">${total}</div>
     <div className="discount">折扣: -100</div> */}
     <div className="total">總計: NT${total}</div>
+    <SubmitButton>確認購買</SubmitButton>
   </div>
 );
 
