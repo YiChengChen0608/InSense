@@ -13,6 +13,8 @@ import {
 
 const OrderPayMent = () => {
   const [payment, setPayment] = useState('')
+  const [saveCreditCard, setSaveCreditCard] = useState(false)
+  const [agree, setAgree] = useState(false)
   const [cardName, setCardName] = useState('')
   const [cardNum, setCardNum] = useState('')
   const [month, setMonth] = useState('')
@@ -80,15 +82,14 @@ const OrderPayMent = () => {
             <InputLabel htmlFor="my-input">安全碼*</InputLabel>
             <Input id="my-input" aria-describedby="my-helper-text" />
           </FormControl>
-          <label className="check-input" >
-            <input type='checkbox' />
-            使用已儲存的信用卡資訊
-          </label>
-          <label>
-            <input type='checkbox' />
-            我確認上述資訊完整無誤,並同意上述資訊可以被InSense作為商業用途使用
-          </label>
-
+          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setSaveCreditCard(!saveCreditCard)}>
+            {saveCreditCard ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
+            <span>使用已儲存的信用卡資訊</span>
+          </div>
+          <div className='credit-card-checkedBtn' onClick={() => setAgree(!agree)}>
+            {agree ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
+            <span>我確認上述資訊完整無誤,並同意上述資訊可以被InSense作為商業用途使用</span>
+          </div>
           <a className='confirm-btn' href='#' onClick={e => e.preventDefault()}>確認付款</a>
         </div>
       </div>
