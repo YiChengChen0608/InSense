@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./creditCardInfo.scss";
 
+//Dialog
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
+//Form
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+
 //Redux
 import { userLogin, userLogOut } from "../../Redux/user/userAction";
 
@@ -20,10 +32,21 @@ import {
 
 //component
 import CreditCardBlock from "../CreditCardBlock/creditCardBlock";
+import CreditCardAdd from "../CreditCardAdd/creditCardAdd";
 
 const CreditCardInfo = (props) => {
   const { user } = props;
   const [creditCardList, setCreditCardList] = useState([]);
+
+  //Dialog
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   //fetch credit card info
   const fetchCreditCardInfo = async () => {
@@ -34,6 +57,7 @@ const CreditCardInfo = (props) => {
     return creditCardInfo;
   };
 
+  //載入credit card list
   useEffect(() => {
     (async () => {
       const rawData = await fetchCreditCardInfo();
@@ -44,7 +68,6 @@ const CreditCardInfo = (props) => {
 
       if (rawData.logInStatus) {
         setCreditCardList(rawData.creditCardList);
-        
       }
     })();
 
@@ -89,7 +112,11 @@ const CreditCardInfo = (props) => {
             <FaCcDiscover className="card-association-icon" />
           </div>
           <div className="add-button">
-            <Button>新增信用卡</Button>
+            <Button onClick={handleClickOpen}>新增信用卡</Button>
+            <CreditCardAdd
+              open={open}
+              handleClose={handleClose}
+            />
           </div>
         </div>
       </div>
