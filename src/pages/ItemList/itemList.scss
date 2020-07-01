@@ -1,5 +1,21 @@
-@import '../../styles/style.scss';
-
+@import "../../styles/style.scss";
+.filter-btn-container {
+    padding-left: 60px;
+    .filter-btn {
+        padding: 0 16px;
+        margin: 40px 0 20px;
+        color: $main-black;
+        font-weight: 300;
+        font-size: 14px;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+    }
+}
 .item-list-container {
     padding: 32px 0;
+}
+
+.filter-bar-close {
+    transform: translateX(-100%);
+    transition: ease-in-out 0.5s;
 }

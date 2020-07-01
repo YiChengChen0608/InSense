@@ -25,7 +25,7 @@
         cursor: pointer;
         &:hover .item-button-container {
             display: block;
-            background: $sub-white;
+            background: rgba(255, 255, 255, 0.8);
         }
         .item-button-container {
             display: none;
@@ -40,7 +40,7 @@
             color: $main-light-blue;
             cursor: pointer;
             &:hover {
-                background-color: rgba(247, 182, 108, 0.8);
+                background-color: rgba(247, 182, 108, 0.7);
                 border: transparent;
             }
             .cart-anchor {
