@@ -1,0 +1,35 @@
+@import "../../styles/style.scss";
+
+.credit-card-association {
+}
+
+.MuiFormControl-root.credit-card-form {
+  margin: 0;
+  width: 150px;
+  .MuiSelect-select.MuiSelect-selectMenu{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .MuiFormLabel-root.Mui-focused {
+    color: $main-black;
+  }
+  .MuiInput-underline::after {
+    border-bottom-color: $main-orange;
+  }
+  .MuiListItem-root {
+    padding: 4px 10px;
+    .card-association-icon {
+      margin-right: 10px;
+    }
+  }
+  
+}
+
+.MuiListItem-root {
+  padding: 4px 10px;
+  .card-association-icon {
+    margin-right: 10px;
+    color: $main-black ;
+  }
+}
