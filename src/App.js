@@ -23,6 +23,7 @@ import Registration from "./pages/Registration/registration";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
+
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 
 // import SignIn from "./pages/SignIn/SignIn";
@@ -58,7 +59,7 @@ function App() {
                 <Route path="/orders/checkout">
                   <CheckoutPage />
                 </Route>
-                <Route path="/orders/orderdelivery">
+                <Route path="/orders/orderDelivery">
                   <OrderDelivery />
                 </Route>
                 <Route path="/orders/orderpayment">

@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import { userLogOut } from "../../Redux/user/userAction";
 
 const AccountRightBar = (props) => {
-  //引入Redux
-  const { user, userLogOut } = props;
+    //引入Redux
+    const { user, userLogOut } = props;
 
     const handleLogOut = () => {
         (async () => {
@@ -49,63 +49,81 @@ const AccountRightBar = (props) => {
         })();
     };
 
-  return (
-    <div className="right-bar-wrapper">
-      <h2>{user.userInfo.userFirstName} 你好</h2>
-      <div className="menu-bar">
-        <ul className="accountMenu">
-          <li className="d-flex align-item-center">
-            <Link to="/account/userdashboard" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>帳戶資訊</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link
-              to="/account/classpage"
-              className="d-flex align-item-center account-link"
-            >
-              <FiChevronRight className="icon" />
-              <p>我的課程</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link to="/account/creditcard" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>付款資訊</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>我的優惠券</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>願望清單</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link to="/account/modify" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>會員資料更改</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
-              <FiChevronRight className="icon" />
-              <p>客服留言</p>
-            </Link>
-          </li>
-          <li className="d-flex align-item-center">
-            <Button onClick={handleLogOut}>登出</Button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
+    return (
+        <div className="right-bar-wrapper">
+            <h2>{user.userInfo.userFirstName} 你好</h2>
+            <div className="menu-bar">
+                <ul className="accountMenu">
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to="/account/userdashboard"
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>帳戶資訊</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to="/account/classpage"
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>我的課程</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to="/account/creditcard"
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>付款資訊</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to=""
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>我的優惠券</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to="/account/wishlist"
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>願望清單</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to="/account/modify"
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>會員資料更改</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Link
+                            to=""
+                            className="d-flex align-item-center account-link"
+                        >
+                            <FiChevronRight className="icon" />
+                            <p>客服留言</p>
+                        </Link>
+                    </li>
+                    <li className="d-flex align-item-center">
+                        <Button onClick={handleLogOut}>登出</Button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
 };
 //Redux引入狀態
 //mapStateToProps
@@ -116,7 +134,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogOut }, dispatch);
+    return bindActionCreators({ userLogOut }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountRightBar);

@@ -122,7 +122,7 @@ const ItemList = (props) => {
       {console.log("itemWishList", itemWishList)}
       <ItemBrandFilter />
       <MainContainer>
-        <div className="item-list-container d-flex flex-wrap justify-content-center">
+        <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
                 return (
@@ -163,6 +163,8 @@ const ItemList = (props) => {
     </>
   );
 };
+
+//
 
 const mapStateToProps = (store) => {
   return { user: store.user, userToggle: store.nav };

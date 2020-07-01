@@ -72,7 +72,7 @@ const CheckoutPage = ({
           e.preventDefault();
           userToggleFunc();
         } else {
-          history.push("/orders/orderPayment");
+          history.push("/orders/orderDelivery");
         }
       }}
     >
@@ -89,11 +89,6 @@ const mapStateToProps = createStructuredSelector({
   total: selectCartTotal,
   userSelect: selectUserLogin,
 });
-
-//判定登入
-// const mapStateToProps = (store) => {
-//   return { user: store.user };
-// };
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CheckoutPage)

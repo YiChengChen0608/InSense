@@ -7,6 +7,18 @@
   padding: 8px;
   flex-grow: 1;
   border: 0;
+  .item-detail-url {
+    text-decoration: none;
+    color: $main-black;
+    .card-content {
+      font-size: 14px;
+      z-index: 30;
+    }
+    .card-price {
+      font-size: 14px;
+      z-index: 30;
+    }
+  }
   .card-img {
     width: 100%;
     object-fit: cover;
@@ -18,7 +30,7 @@
     .item-button-container {
       display: none;
       position: absolute;
-      right: 60px;
+      right: 50px;
       bottom: 105px;
       border: 1px solid $main-gray;
       border-radius: 50%;
@@ -33,6 +45,8 @@
       }
       .cart-anchor {
         position: absolute;
+        right: 2px;
+        bottom: -2px;
         padding: 10px;
         font-size: 18px;
         color: $main-light-blue;
