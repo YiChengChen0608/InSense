@@ -69,7 +69,7 @@ const ItemList = (props) => {
   useEffect(() => {
     if (user.logInStatus) {
       (async () => {
-        // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         const wishListData = await fetchWishList(brandOrCategory, name);
         const logInStatus = wishListData.logInStatus;
         const userInfo = wishListData.userInfo;
@@ -122,7 +122,7 @@ const ItemList = (props) => {
       {console.log("itemWishList", itemWishList)}
       <ItemBrandFilter />
       <MainContainer>
-        <div className="item-list-container d-flex flex-wrap justify-content-center">
+        <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
                 return (

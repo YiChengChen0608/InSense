@@ -1,0 +1,29 @@
+@import '../../styles/style.scss';
+
+.order-payment-head{
+  min-height: 200px;
+  .order-payment-title{
+    left:0;
+    top:50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color:$main-blue;
+  }
+  .order-payment-step{
+    line-height: 200px;
+    a{
+      text-decoration: none;
+      color:$main-black;
+    }
+  }
+}
+.order-payment-content{
+  
+  div{
+    flex:1 0 0;
+    img{
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}

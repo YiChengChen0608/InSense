@@ -3,64 +3,71 @@
 .card-wrapper {
     position: relative;
     max-width: 250px;
-    margin: 16px 8px 16px;
+    margin: 16px 8px;
     padding: 8px;
     flex-grow: 1;
     border: 0;
+    .item-detail-url {
+        text-decoration: none;
+        color: $main-black;
+        .card-content {
+            font-size: 14px;
+            z-index: 30;
+        }
+        .card-price {
+            font-size: 14px;
+            z-index: 30;
+        }
+    }
     .card-img {
         width: 100%;
         object-fit: cover;
+        cursor: pointer;
+        &:hover .item-button-container {
+            display: block;
+            background: $sub-white;
+        }
+        .item-button-container {
+            display: none;
+            position: absolute;
+            right: 50px;
+            bottom: 105px;
+            border: 1px solid $main-gray;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            color: $main-light-blue;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(247, 182, 108, 0.8);
+                border: transparent;
+            }
+            .cart-anchor {
+                position: absolute;
+                right: 2px;
+                bottom: -2px;
+                padding: 10px;
+                font-size: 18px;
+                color: $main-light-blue;
+                background: transparent;
+                &:hover {
+                    color: $sub-white;
+                }
+            }
+        }
         img {
             width: 100%;
         }
     }
-    .item-button-container {
-        position: relative;
-        width: 30%;
-        opacity: 0.7;
-        bottom: 200px;
-        z-index: 200;
-        display: none;
+    .saved-btn {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        width: 20px;
+        height: 20px;
+        padding: 10px;
     }
-
-    &:hover {
-        .card-img {
-            width: 100%;
-            object-fit: cover;
-            img {
-                width: 100%;
-                opacity: 0.2;
-            }
-        }
-        //=======button 的css，之後用icon取代======
-        .item-button-container {
-            position: absolute;
-            margin-left: 40px;
-            top: 120px;
-            left: 32px;
-            // width: 30%;
-            opacity: 0.7;
-            bottom: 200px;
-            z-index: 2;
-            display: block;
-            button {
-                width: 118px;
-                height: 50px;
-                background-color: $sub-white;
-                color: $main-blue;
-                border: 1px solid $main-blue;
-                cursor: pointer;
-            }
-        }
-        .card-name {
-            max-width: 220px;
-        }
-    }
-}
-.saved-btn {
-    max-width: 250px;
-    font-size: 14px;
-    position: relative;
 }
 
 .card-content {
@@ -71,4 +78,5 @@
 }
 .card-name {
     margin: 0;
+    max-width: 230px;
 }
