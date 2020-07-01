@@ -69,7 +69,7 @@ const ItemList = (props) => {
   useEffect(() => {
     if (user.logInStatus) {
       (async () => {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         const wishListData = await fetchWishList(brandOrCategory, name);
         const logInStatus = wishListData.logInStatus;
         const userInfo = wishListData.userInfo;
