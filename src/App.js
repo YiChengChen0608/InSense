@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+//persistor to store data in local storage
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./Redux/store";
 import "normalize.css";
@@ -22,6 +23,7 @@ import Registration from "./pages/Registration/registration";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
+import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 
 // import SignIn from "./pages/SignIn/SignIn";
 // import TestUI from "./pages/TestUI/testUI";
@@ -55,6 +57,9 @@ function App() {
               <Route path="/orders">
                 <Route path="/orders/checkout">
                   <CheckoutPage />
+                </Route>
+                <Route path="/orders/orderdelivery">
+                  <OrderDelivery />
                 </Route>
                 <Route path="/orders/orderpayment">
                   <OrderPayMent />

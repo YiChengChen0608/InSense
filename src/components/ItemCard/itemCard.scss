@@ -11,24 +11,24 @@
     width: 100%;
     object-fit: cover;
     cursor: pointer;
-    &:hover .item-button-container{
+    &:hover .item-button-container {
       display: block;
       background: $sub-white;
     }
     .item-button-container {
       display: none;
       position: absolute;
-      right:60px;
-      bottom:105px;
-      border:1px solid $main-gray;
+      right: 60px;
+      bottom: 105px;
+      border: 1px solid $main-gray;
       border-radius: 50%;
       width: 40px;
       height: 40px;
       font-size: 20px;
       color: $main-light-blue;
       cursor: pointer;
-      &:hover{
-        background-color:rgba(247, 182, 108,.8) ;
+      &:hover {
+        background-color: rgba(247, 182, 108, 0.8);
         border: transparent;
       }
       .cart-anchor {
@@ -37,29 +37,24 @@
         font-size: 18px;
         color: $main-light-blue;
         background: transparent;
-        &:hover{
-        color: $sub-white;
+        &:hover {
+          color: $sub-white;
         }
       }
-      
-     
     }
     img {
       width: 100%;
-    
     }
   }
   .saved-btn {
     position: absolute;
-    right:10px;
-    top:20px;
+    right: 10px;
+    top: 20px;
     width: 20px;
     height: 20px;
     padding: 10px;
   }
 }
-
-
 
 .card-content {
   font-size: 14px;

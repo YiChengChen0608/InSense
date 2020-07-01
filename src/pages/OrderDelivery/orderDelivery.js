@@ -1,32 +1,23 @@
-import React from "react";
-import { createStructuredSelector } from "reselect";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import {
   selectCartItems,
   selectCartTotal,
-  selectUserLogin,
 } from "../../Redux/cart/cartSelectors";
 
-import { userToggleFunc } from "../../Redux/nav/navAction";
-import { bindActionCreators } from "redux";
-import { toggleCartHidden } from "../../Redux/cart/cartAction";
+import MainContainer from "../../components/mainContainer";
+import "./orderDelivery.scss";
+import FormInput from "../../components/FormInput/FormInput";
 
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 // import FormInput from "../../components/FormInput/FormInput";
 
-import "./checkout.scss";
+import "../Checkout/checkout.scss";
 import SubmitButton from "../../components/SubmitButton/submitButton";
 
-const CheckoutPage = ({
-  cartItems,
-  total,
-  handleChange,
-  history,
-  user,
-  userToggleFunc,
-  userSelect,
-}) => (
+const OrderDelivery = ({ cartItems, total, handleChange, history }) => (
   <div className="checkout-page">
     <div className="title">購物車</div>
     <div className="checkout-header">
@@ -66,35 +57,18 @@ const CheckoutPage = ({
     <div className="total">總計: NT${total}</div>
     <SubmitButton
       inverted={true}
-      onClick={(e) => {
-        if (!userSelect) {
-          console.log(userSelect);
-          e.preventDefault();
-          userToggleFunc();
-        } else {
-          history.push("/orders/orderPayment");
-        }
+      onClick={() => {
+        history.push("/orders/orderPayMent");
       }}
     >
       確認訂單
     </SubmitButton>
   </div>
 );
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ toggleCartHidden, userToggleFunc }, dispatch);
-};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
-  userSelect: selectUserLogin,
 });
 
-//判定登入
-// const mapStateToProps = (store) => {
-//   return { user: store.user };
-// };
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CheckoutPage)
-);
+export default withRouter(connect(mapStateToProps, null)(OrderDelivery));

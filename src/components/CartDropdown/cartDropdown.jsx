@@ -37,7 +37,7 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
           history.push("/orders/checkout");
         }}
       >
-        結帳
+        購物車
       </SubmitButton>
     </div>
   );

@@ -4,7 +4,6 @@ import "./itemCard.scss";
 import { FiShoppingCart } from "react-icons/fi";
 
 import SavedItems from "../SavedItems/savedItems";
-import SubmitButton from "../SubmitButton/submitButton";
 
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/cart/cartAction";
