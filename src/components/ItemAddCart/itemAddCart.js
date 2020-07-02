@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./itemAddCart.scss";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
-import { addItem, addItemToCart } from "../../Redux/cart/cartAction";
+import {
+  addItem,
+  addItemToCart,
+  addQuantity,
+} from "../../Redux/cart/cartAction";
 
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -22,6 +26,7 @@ const ItemAddCart = (props) => {
     addItem,
     itemimg,
     addItemToCart,
+    addQuantity,
   } = props;
   const [total, setTotal] = useState(1);
   useEffect(() => {
@@ -92,7 +97,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
   addItemToCart: (item) => dispatch(addItemToCart(item)),
 });
 
