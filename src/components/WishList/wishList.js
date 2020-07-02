@@ -23,7 +23,7 @@ const WishList = (props) => {
         <>
             <div className="list-container">
                 <h2 className="list-title ">我的願望清單</h2>
-                <div className="card-group-container d-flex">
+                <div className="card-group-container d-flex justify-content-center">
                     <WishListCard />
                     {/* {myWishList.length ? (
                     myWishList.map((el, index) => {
