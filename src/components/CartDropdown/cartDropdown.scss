@@ -12,6 +12,15 @@
   top: 0;
   z-index: 5;
   transition: 0.5s;
+  font-family: "Roboto", "Noto Sans TC", sans-serif;
+  font-weight: 100;
+
+  .dropdown-header {
+    color: $main-blue;
+    margin-left: 50px;
+    font-size: 24px;
+  }
+
   > span {
     font-size: 24px;
     padding: 16px;
@@ -23,6 +32,8 @@
   }
 
   .cart-items {
+    width: 80%;
+
     display: flex;
     flex: 1 0 0;
     flex-direction: column;

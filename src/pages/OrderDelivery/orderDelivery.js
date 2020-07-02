@@ -96,6 +96,7 @@ const OrderDelivery = (props) => {
 
   const registrationSent = async () => {
     const data = {
+      // 會員帳號
       userAccount: email,
       userEmail: email,
       userPhone: phone,
@@ -108,7 +109,9 @@ const OrderDelivery = (props) => {
       userPostCode: postCode,
       userBirthday: selectedDate.toLocaleDateString().split("/").join("-"),
     };
-    history.push("/orders/orderpayment");
+    history.push("/orders/orderpayment", {
+      data: data,
+    });
   };
 
   return (
@@ -245,7 +248,7 @@ const OrderDelivery = (props) => {
               <div className="registration-item">
                 <FormInput
                   type="tel"
-                  name="telphone"
+                  name="phone"
                   value={phone}
                   handleChange={handleChange}
                   label="手機"
