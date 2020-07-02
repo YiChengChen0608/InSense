@@ -14,18 +14,47 @@
       font-size: 14px;
       z-index: 30;
     }
-    .card-price {
-      font-size: 14px;
-      z-index: 30;
-    }
-  }
-  .card-img {
-    width: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    &:hover .item-button-container {
-      display: block;
-      background: $sub-white;
+    .card-img {
+        width: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        &:hover .item-button-container {
+            display: block;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .item-button-container {
+            display: none;
+            position: absolute;
+            right: 50px;
+            bottom: 105px;
+            border: 1px solid $main-gray;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            color: $main-light-blue;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(247, 182, 108, 0.7);
+                border: transparent;
+            }
+            .cart-anchor {
+                position: absolute;
+                right: 2px;
+                bottom: -2px;
+                padding: 10px;
+                font-size: 18px;
+                color: $main-light-blue;
+                background: transparent;
+                &:hover {
+                    color: $sub-white;
+                }
+            }
+        }
+        img {
+            width: 100%;
+        }
+
     }
     .item-button-container {
       display: none;
