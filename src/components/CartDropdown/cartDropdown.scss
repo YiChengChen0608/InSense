@@ -19,6 +19,7 @@
     color: $main-blue;
     margin-left: 50px;
     font-size: 24px;
+    font-weight: 300;
   }
 
   > span {
@@ -34,13 +35,13 @@
   .cart-items {
     height: 70%;
     width: 70%;
-    margin-left: 40px;
+    margin-left: 60px;
     display: flex;
     flex: 1 0 0;
     flex-direction: column;
     overflow: scroll;
     font-size: 14px;
-    color: $main-blue;
+    color: $main-black;
 
     .cart-item {
       .item-details {
