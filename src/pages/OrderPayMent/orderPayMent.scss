@@ -71,19 +71,27 @@
           cursor: pointer;
         }
         .order-payment-circle{
-          padding-right: 8px;
+          padding-right: 4px;
         }
       }
       .MuiFormControl-root{
         flex: 1 0 0;
-        margin:20px 0 ;
+        margin:30px 0 20px;
       }
       .subcontent-date{
         margin-top:32px;
         .MuiFormControl-root{
-          &:nth-child(1){
-          margin-right:20px;
+          margin-bottom: 0;
+          text-align: center;
+          .MuiInput-input{
+            margin: 0 auto;
           }
+        }
+      }
+      .credit-card-number{
+        margin:20px 0 40px;
+        .MuiFormControl-root{
+          margin-bottom: 0;
         }
       }
     }
@@ -94,10 +102,23 @@
       padding:0 32px;
       margin-bottom: 32px;
       padding-right: 0;
+      .payment-safe-code{
+        p{
+          margin: 0;
+          padding-top:18px;
+        }
+      }
       .credit-card-checkedBtn{
+        width: 100%;
         cursor: pointer;
         .order-payment-square{
+
           padding-right: 8px;
+          width: 24px;
+        }
+        p{
+          margin: 0;
+          letter-spacing: .5px;
         }
       }
     }

@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import MainContainer from '../../components/mainContainer'
 import './orderPayMent.scss'
 import { Input, FormControl, InputLabel } from '@material-ui/core';
+import CreditCardNumber from '../../components/CreditCardNumber/creditCardNumber'
+import CreditCardExpiration from '../../components/CreditCardExpiration/creditCardExpiration'
+
 
 import {
   FiCircle,
@@ -15,11 +18,35 @@ const OrderPayMent = () => {
   const [payment, setPayment] = useState('')
   const [saveCreditCard, setSaveCreditCard] = useState(false)
   const [agree, setAgree] = useState(false)
-  const [cardName, setCardName] = useState('')
-  const [cardNum, setCardNum] = useState('')
-  const [month, setMonth] = useState('')
-  const [year, setYear] = useState('')
+
+  //信用卡號
+  const [cardNumberFirst, setCardNumberFirst] = useState("");
+  const [cardNumberSecond, setCardNumberSecond] = useState("");
+  const [cardNumberThird, setCardNumberThird] = useState("");
+  const [cardNumberForth, setCardNumbeForth] = useState("");
+
+  //期限
+  const [cdMonth, setCdMonth] = useState("");
+  const [cdYear, setCdYear] = useState("");
+
+  //安全碼
   const [safeCode, setSafeCode] = useState('')
+
+  const changeSafeCode = (e) => {
+    //先取出數字陣列
+    const inputNumList = e.target.value.match(/\d+/g);
+    // console.log("inputNumList", inputNumList);
+
+    //將陣列合併成字串
+    const insertRawNum = !!inputNumList ? inputNumList.join("") : "";
+    // console.log("insertRawNum", insertRawNum);
+
+    //取出前四個數字
+    const insertNum = !!insertRawNum.match(/\d{1,3}/g)
+      ? insertRawNum.match(/\d{1,3}/g)[0]
+      : "";
+    setSafeCode(insertNum)
+  }
 
   const changePayment = (e) => {
     setPayment(e.target.value)
@@ -60,35 +87,42 @@ const OrderPayMent = () => {
             <InputLabel htmlFor="my-input">持卡人姓名*</InputLabel>
             <Input id="my-input" aria-describedby="my-helper-text" />
           </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="my-input">卡號*</InputLabel>
-            <Input id="my-input" aria-describedby="my-helper-text" />
-          </FormControl>
+          <CreditCardNumber
+            cardNumberFirst={cardNumberFirst}
+            cardNumberSecond={cardNumberSecond}
+            cardNumberThird={cardNumberThird}
+            cardNumberForth={cardNumberForth}
+            setCardNumberFirst={setCardNumberFirst}
+            setCardNumberSecond={setCardNumberSecond}
+            setCardNumberThird={setCardNumberThird}
+            setCardNumbeForth={setCardNumbeForth}
+          />
           <div className='subcontent-date'>到期日期
-            <div className='d-flex credit-card-date'>
-              <FormControl>
-                <InputLabel htmlFor="my-input">Month*</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-              </FormControl>
-              <FormControl>
-                <InputLabel htmlFor="my-input">Year*</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-              </FormControl>
+            <div className='credit-card-date'>
+              <CreditCardExpiration
+                cdMonth={cdMonth}
+                cdYear={cdYear}
+                setCdMonth={setCdMonth}
+                setCdYear={setCdYear}
+              />
             </div>
           </div>
         </div>
         <div className='order-payment-subcontent subcontent-right'>
-          <FormControl>
-            <InputLabel htmlFor="my-input">安全碼*</InputLabel>
-            <Input id="my-input" aria-describedby="my-helper-text" />
-          </FormControl>
+          <div className='d-flex align-items-center payment-safe-code'>
+            <FormControl>
+              <InputLabel htmlFor="my-input">安全碼*</InputLabel>
+              <Input id="my-input" value={safeCode} onChange={changeSafeCode} aria-describedby="my-helper-text" />
+            </FormControl>
+            <p> (3碼) </p>
+          </div>
           <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setSaveCreditCard(!saveCreditCard)}>
             {saveCreditCard ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
-            <span>使用已儲存的信用卡資訊</span>
+            <p>使用已儲存的信用卡資訊</p>
           </div>
-          <div className='credit-card-checkedBtn' onClick={() => setAgree(!agree)}>
+          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setAgree(!agree)}>
             {agree ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
-            <span>我確認上述資訊完整無誤,並同意上述資訊可以被InSense作為商業用途使用</span>
+            <p>我確認上述資訊完整無誤並同意上述資訊<br />可以被InSense作為商業用途使用</p>
           </div>
           <a className='confirm-btn' href='#' onClick={e => e.preventDefault()}>確認付款</a>
         </div>
