@@ -92,11 +92,6 @@ const ItemList = (props) => {
                     setItemWishList(wishListData.wishList);
                 }
             })();
-        }
-        //若已轉為登出
-        if (!user.logInStatus) {
-            setItemWishList([]);
-        }
     }, [user.logInStatus, name]);
 
     return (
@@ -175,6 +170,7 @@ const ItemList = (props) => {
                           })
                         : ""}
                     {/* {itemCardData[0].items.map((el, index) => {
+
                     return (
                         <ItemCard
                             id={el.id}
@@ -186,22 +182,24 @@ const ItemList = (props) => {
                         />
                     );
                 })} */}
-                </div>
-            </MainContainer>
-        </>
-    );
+        </div>
+      </MainContainer>
+    </>
+  );
 };
 
+//
+
 const mapStateToProps = (store) => {
-    return { user: store.user, userToggle: store.nav };
+  return { user: store.user, userToggle: store.nav };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userLogin, userLogOut }, dispatch);
+  return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ItemList)
+  connect(mapStateToProps, mapDispatchToProps)(ItemList)
 );

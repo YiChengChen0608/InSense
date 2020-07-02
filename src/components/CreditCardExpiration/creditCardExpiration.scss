@@ -1,0 +1,33 @@
+@import "../../styles/style.scss";
+
+.credit-card-expiration {
+  .input-dash {
+    height: 23px;
+    padding: 0 6px;
+  }
+  .input-expiration-label {
+    transform: translate(0px, 15px) scale(1);
+  }
+  .MuiInputLabel-shrink{
+    transform: translate(0px, -5px) scale(.75);
+  }
+  .MuiFormLabel-root.Mui-focused{
+    color: $main-black;
+  }
+  .input-time {
+    input {
+      width: 48px;
+      padding: 0 0 4px;
+      text-align: center;
+    }
+    &::after{
+      border-bottom-color: $main-orange;;
+    }
+  }
+  .expiration-hint{
+    color: $main-black;
+    margin:4px 0;
+    font-weight: 200;
+    font-size: 12px;
+  }
+}

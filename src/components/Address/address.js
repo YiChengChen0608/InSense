@@ -99,16 +99,16 @@ const Address = (props) => {
     // console.log("user", user);
 
     //若已登入，且找到cities資訊
-    console.log(props.location.pathname);
     if (user.logInStatus && cities.length) {
       const myCompleteAddress = { myCity: "", myPostCode: "", myAddress: "" };
-
+      
+      // console.log(props.location.pathname);
       if (props.location.pathname === "/account/modify") {
         myCompleteAddress.myCity = user.userInfo.userCity;
         myCompleteAddress.myPostCode = user.userInfo.userPostCode;
         myCompleteAddress.myAddress = user.userInfo.userAddress;
       } else if (props.location.pathname === "/account/creditcard") {
-        console.log(props.myCity, props.myPostCode, props.myAddress);
+        // console.log(props.myCity, props.myPostCode, props.myAddress);
         myCompleteAddress.myCity = props.myCity;
         myCompleteAddress.myPostCode = props.myPostCode;
         myCompleteAddress.myAddress = props.myAddress;
@@ -155,7 +155,7 @@ const Address = (props) => {
         >
           {cities.length
             ? cities.map((el, index) => {
-                return <MenuItem value={index}>{el.CityName}</MenuItem>;
+                return <MenuItem key={el.CityName} value={index}>{el.CityName}</MenuItem>;
               })
             : ""}
         </Select>
@@ -172,7 +172,7 @@ const Address = (props) => {
           {citiesSelected !== "" ? (
             cities[citiesSelected].AreaList.map((el, index) => {
               return (
-                <MenuItem value={index}>
+                <MenuItem key={el.ZipCode} value={index}>
                   {el.ZipCode} {el.AreaName}
                 </MenuItem>
               );

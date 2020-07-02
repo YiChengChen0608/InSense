@@ -1,0 +1,103 @@
+@import "../../styles/style.scss";
+
+#credit-card-add-dialog-title {
+  padding: 32px 56px 6px;
+  .MuiTypography-h6 {
+    font-size: 24px;
+    font-weight: 300;
+    border-bottom: 1px solid $main-black;
+  }
+}
+
+.credit-card-add-dialog-content-text.MuiDialogContentText-root {
+  padding: 0 32px;
+  font-size: 6px;
+  margin-bottom: 0px;
+  color: $main-scarlet;
+}
+
+.credit-card-add-form {
+  // width: 480px;
+  padding: 0 32px;
+  .credit-card-add-block {
+    margin: 12px 0;
+  }
+
+  .credit-card-add-association {
+    width: 100%;
+  }
+
+  .credit-card-add-card-number {
+    width: 100%;
+    // margin-right: 48px;
+  }
+
+  .credit-card-add-card-holder {
+    margin-right: 48px;
+    .MuiFormLabel-root.Mui-focused {
+      color: $main-black;
+    }
+    .MuiInput-underline::after {
+      border-bottom-color: $main-orange;
+    }
+  }
+
+  .credit-card-add-expiration {
+    // width: 100%;
+    margin-right: 48px;
+    .credit-card-expiration {
+      height: 100%;
+    }
+  }
+
+  .credit-card-add-bill-address {
+    width: 100%;
+    margin-bottom: 12px;
+    .address-container {
+      .group {
+        margin: 0;
+        flex-grow: 1;
+        .form-input {
+          margin: 0;
+          padding-right: 0;
+          padding-left: 4px;
+          //   max-width: 300px;
+        }
+      }
+      .MuiFormControl-root {
+        .MuiFormLabel-root.Mui-focused {
+          color: $main-black;
+        }
+        .MuiInput-underline::after {
+          border-bottom-color: $main-orange;
+        }
+      }
+    }
+  }
+}
+
+.credit-card-add-btns.MuiDialogActions-root {
+  margin: 22px 0;
+  padding: 10px 56px;
+  // background-color: $main-gray;
+  button {
+    color: $main-black;
+  }
+  button:nth-child(1) {
+    font-weight: 300;
+  }
+
+  button:nth-child(2) {
+    border: 1px solid $main-black;
+    color: $main-black;
+    border-radius: 0;
+    padding: 6px 24px;
+    font-weight: 400;
+  }
+  button:nth-child(2):hover {
+    font-weight: 200;
+    border: 1px solid $main-orange;
+    background-color: $main-orange;
+    // color: $main-black;
+  }
+}
