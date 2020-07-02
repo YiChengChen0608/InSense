@@ -1,0 +1,28 @@
+@import "../../styles/style.scss";
+
+.credit-card-number {
+  .input-dash {
+    height: 23px;
+    padding: 0 6px;
+  }
+  .input-num-label {
+    //   padding-bottom: 20px;
+    transform: translate(0px, 15px) scale(1);
+  }
+  .MuiInputLabel-shrink{
+    transform: translate(0px, -5px) scale(.75);
+  }
+  .MuiFormLabel-root.Mui-focused{
+    color: $main-black;
+  }
+  .input-number {
+    input {
+      width: 60px;
+      padding: 0 0 4px;
+      text-align: center;
+    }
+    &::after{
+      border-bottom-color: $main-orange;;
+    }
+  }
+}

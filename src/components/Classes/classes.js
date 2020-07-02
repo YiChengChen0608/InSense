@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import './classes.scss'
-import ClassItem from '../classItem'
+import React, { useState, useEffect } from "react";
+import "./classes.scss";
+import ClassItem from "../classItem";
 
 
 const Classes = () => {
@@ -15,47 +15,45 @@ const Classes = () => {
 
   const changeSelectHandler = (e) => {
     switch (e.target.dataset.select) {
-      case 'myClass':
-        setMyClassSelected(true)
-        setAllClassSelected(false)
-        setClasses(myClassList)
-        setCancelBtn(true)
-        break
-      case 'allClass':
-        setAllClassSelected(true)
-        setMyClassSelected(false)
-        setClasses(allClassList)
-        setCancelBtn(false)
-        break
+      case "myClass":
+        setMyClassSelected(true);
+        setAllClassSelected(false);
+        setClasses(myClassList);
+        setCancelBtn(true);
+        break;
+      case "allClass":
+        setAllClassSelected(true);
+        setMyClassSelected(false);
+        setClasses(allClassList);
+        setCancelBtn(false);
+        break;
+      default:
+        break;
     }
   }
   const fetchMyClassData = async () => {
-
-    const res = await fetch('http://localhost:3030/users/classlist',
-      {
-        credentials: 'include'
-      })
-    const data = await res.json()
-    return data
-  }
+    const res = await fetch("http://localhost:3030/users/classlist", {
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  };
   const fetchAllClassDate = async () => {
-
-    const res = await fetch('http://localhost:3030/users/allclasslist',
-      {
-        credentials: 'include'
-      })
-    const data = await res.json()
-    return data
-  }
+    const res = await fetch("http://localhost:3030/users/allclasslist", {
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  };
   const fetchCancelBook = async (e) => {
     const info = {
       bookId: e.currentTarget.id
     }
     const res = await fetch(`http://localhost:3030/users/classlist`, {
-      method: 'PATCH',
-      credentials: 'include',
+      method: "PATCH",
+      credentials: "include",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
       body: JSON.stringify(info)
     })
@@ -101,4 +99,4 @@ const Classes = () => {
   )
 }
 
-export default Classes
+export default Classes;

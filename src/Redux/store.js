@@ -1,5 +1,5 @@
 //create a store
-//Add middleware, so we can catch acions when they get fired or dispatched and then dispatch them
+//Add middleware, so we can catch actions when they get fired or dispatched and then dispatch them
 import { persistStore } from "redux-persist";
 import { createStore, applyMiddleware, compose } from "redux";
 import logger from "redux-logger";

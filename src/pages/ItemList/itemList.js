@@ -22,6 +22,7 @@ const ItemList = (props) => {
     const { user, userLogin, userLogOut } = props;
 
     //localstate
+    const [originalCardData, setOriginalCardData] = useState([]);
     const [itemCardData, setItemCardData] = useState([]);
     const [itemHeadData, setItemHeadData] = useState([]);
     const [itemWishList, setItemWishList] = useState([]);
@@ -69,16 +70,18 @@ const ItemList = (props) => {
             const headData = rawData[0]; //標題資料
             const cardData = rawData[1]; //卡片資料
             setItemHeadData(headData);
+            setOriginalCardData(cardData);
             setItemCardData(cardData);
         })();
         // console.log("born");
+        setFilterToggle(false);
     }, [name]);
 
     //登入/登出/載入該頁時，取得願望清單
     useEffect(() => {
         if (user.logInStatus) {
             (async () => {
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 const wishListData = await fetchWishList(brandOrCategory, name);
                 const logInStatus = wishListData.logInStatus;
                 const userInfo = wishListData.userInfo;
@@ -93,14 +96,20 @@ const ItemList = (props) => {
                 }
             })();
         }
-        //若已轉為登出
-        if (!user.logInStatus) {
-            setItemWishList([]);
-        }
     }, [user.logInStatus, name]);
 
     return (
         <>
+            {filterToggle ? (
+                <div
+                    className="cover"
+                    onClick={() => {
+                        setFilterToggle(false);
+                    }}
+                ></div>
+            ) : (
+                ""
+            )}
             <ItemHead
                 Banner={`http://localhost:3030/images/banner/${
                     itemHeadData.length
@@ -141,15 +150,27 @@ const ItemList = (props) => {
                         <div className="filter-btn">Order by</div>
                     </div>
                 </div>
-                <ItemCategoryFilter
-                    otherClass={!filterToggle ? "filter-bar-close" : ""}
-                    filterToggle={filterToggle}
-                    setFilterToggle={setFilterToggle}
-                    brandOrCategory={brandOrCategory}
-                    name={name}
-                />
-
-                {/* <ItemBrandFilter /> */}
+                {brandOrCategory === "brand" ? (
+                    <ItemCategoryFilter
+                        setItemCardData={setItemCardData}
+                        originalCardData={originalCardData}
+                        otherClass={!filterToggle ? "filter-bar-close" : ""}
+                        filterToggle={filterToggle}
+                        setFilterToggle={setFilterToggle}
+                        brandOrCategory={brandOrCategory}
+                        name={name}
+                    />
+                ) : (
+                    <ItemBrandFilter
+                        setItemCardData={setItemCardData}
+                        originalCardData={originalCardData}
+                        otherClass={!filterToggle ? "filter-bar-close" : ""}
+                        filterToggle={filterToggle}
+                        setFilterToggle={setFilterToggle}
+                        brandOrCategory={brandOrCategory}
+                        name={name}
+                    />
+                )}
                 <div className="item-list-container d-flex flex-wrap ">
                     {itemCardData.length
                         ? itemCardData.map((el, index) => {
@@ -191,6 +212,8 @@ const ItemList = (props) => {
         </>
     );
 };
+
+//
 
 const mapStateToProps = (store) => {
     return { user: store.user, userToggle: store.nav };
