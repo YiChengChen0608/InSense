@@ -5,6 +5,11 @@ import { createSelector } from "reselect";
 const selectCart = (state) => state.cart;
 const selectUser = (state) => state.user;
 
+export const selectUserInfo = createSelector(
+  [selectUser],
+  (user) => user.userInfo
+);
+
 export const selectUserLogin = createSelector(
   [selectUser],
   (user) => user.logInStatus

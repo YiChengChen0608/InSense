@@ -96,6 +96,7 @@ const OrderDelivery = (props) => {
 
   const registrationSent = async () => {
     const data = {
+      // 會員帳號
       userAccount: email,
       userEmail: email,
       userPhone: phone,

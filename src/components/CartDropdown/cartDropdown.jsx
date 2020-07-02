@@ -21,6 +21,7 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
         <FiX />
       </span>
       <div className="cart-items">
+        <div className="dropdown-header">購物車</div>
         {cartItems.length ? (
           <>
             {cartItems.map((cartItem) => (
@@ -37,7 +38,7 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
           history.push("/orders/checkout");
         }}
       >
-        購物車
+        前往購物車
       </SubmitButton>
     </div>
   );
