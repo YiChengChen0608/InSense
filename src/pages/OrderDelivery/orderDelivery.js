@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import MainContainer from "../../components/mainContainer";
 import FormInput from "../../components/FormInput/FormInput";
 import Address from "../../components/Address/address";
 import "./orderDelivery.scss";
-import { Redirect, withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import {
   selectCartItems,
@@ -154,7 +153,7 @@ const OrderDelivery = (props) => {
                     onChange={genderChange}
                   ></input>
                   <label
-                    for="registration-radio-woman"
+                    htmlFor="registration-radio-woman"
                     className="d-flex align-items-center"
                   >
                     {gender === "woman" ? (
@@ -173,7 +172,7 @@ const OrderDelivery = (props) => {
                     onChange={genderChange}
                   ></input>
                   <label
-                    for="registration-radio-man"
+                    htmlFor="registration-radio-man"
                     className=" d-flex align-items-center"
                   >
                     {gender === "man" ? (
