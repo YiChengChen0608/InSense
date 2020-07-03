@@ -101,18 +101,19 @@ const Address = (props) => {
     //若已登入，且找到cities資訊
     if (user.logInStatus && cities.length) {
       const myCompleteAddress = { myCity: "", myPostCode: "", myAddress: "" };
-      
+
       // console.log(props.location.pathname);
       if (props.location.pathname === "/account/modify") {
         myCompleteAddress.myCity = user.userInfo.userCity;
         myCompleteAddress.myPostCode = user.userInfo.userPostCode;
         myCompleteAddress.myAddress = user.userInfo.userAddress;
-      } else if (props.location.pathname === "/account/creditcard") {
-        // console.log(props.myCity, props.myPostCode, props.myAddress);
-        myCompleteAddress.myCity = props.myCity;
-        myCompleteAddress.myPostCode = props.myPostCode;
-        myCompleteAddress.myAddress = props.myAddress;
-        // console.log(myCompleteAddress)
+      } else {
+        //可以給地址預設值
+        myCompleteAddress.myCity = !!props.myCity ? props.myCity : "";
+        myCompleteAddress.myPostCode = !!props.myPostCode
+          ? props.myPostCode
+          : "";
+        myCompleteAddress.myAddress = !!props.myAddress ? props.myAddress : "";
       }
       const newCode = { cityCode: "", districtCode: "" };
 
@@ -155,7 +156,11 @@ const Address = (props) => {
         >
           {cities.length
             ? cities.map((el, index) => {
-                return <MenuItem key={el.CityName} value={index}>{el.CityName}</MenuItem>;
+                return (
+                  <MenuItem key={el.CityName} value={index}>
+                    {el.CityName}
+                  </MenuItem>
+                );
               })
             : ""}
         </Select>
@@ -172,7 +177,7 @@ const Address = (props) => {
           {citiesSelected !== "" ? (
             cities[citiesSelected].AreaList.map((el, index) => {
               return (
-                <MenuItem key={el.ZipCode} value={index}>
+                <MenuItem key={index + el.ZipCode} value={index}>
                   {el.ZipCode} {el.AreaName}
                 </MenuItem>
               );
