@@ -10,8 +10,17 @@ import {
 // import { withRouter } from "react-router-dom";
 
 const ItemBrandFilter = (props) => {
-    //確認
-    const [confirm, setConfirm] = useState(false);
+    //解構
+    const {
+        brandOrCategory,
+        name,
+        filterToggle,
+        setFilterToggle,
+        otherClass,
+        originalCardData,
+        setItemCardData,
+    } = props;
+
     //品牌 brand
     const [byredoSelected, setByredohSelected] = useState(false);
     const [chanelSelected, setChanelSelected] = useState(false);
@@ -23,8 +32,6 @@ const ItemBrandFilter = (props) => {
     const [freshSelected, setFreshSelected] = useState(false);
     const [warmSelected, setWarmSelected] = useState(false);
     const [woodySelected, setWoodySelected] = useState(false);
-
-    const [filterToggle, setFilterToggle] = useState(false);
 
     const filterSelect = (e) => {
         // console.log(e.currentTarget);
@@ -62,9 +69,87 @@ const ItemBrandFilter = (props) => {
                 break;
         }
     };
+    //filter
+    useEffect(() => {
+        console.log(originalCardData);
+        const filterBrandArray = [];
+        byredoSelected && filterBrandArray.push(1);
+        chanelSelected && filterBrandArray.push(2);
+        diptyqueSelected && filterBrandArray.push(3);
+        jomaloneSelected && filterBrandArray.push(4);
+        lelaboSelected && filterBrandArray.push(5);
+        console.log("Brand", filterBrandArray);
+
+        const filterFragranceArray = [];
+        floralSelected && filterFragranceArray.push(1);
+        freshSelected && filterFragranceArray.push(2);
+        warmSelected && filterFragranceArray.push(3);
+        woodySelected && filterFragranceArray.push(4);
+        console.log("Fragrance", filterFragranceArray);
+
+        if (!filterBrandArray.length && !filterFragranceArray.length) {
+            console.log("original", originalCardData);
+            setItemCardData(originalCardData);
+        } else {
+            const newCardData = originalCardData.filter((item) => {
+                //先判斷有沒有在brand
+                const brandId = item.brandId;
+                const findBrand = filterBrandArray.length
+                    ? filterBrandArray.findIndex((el) => {
+                          return brandId.toString() === el.toString()
+                              ? true
+                              : false;
+                      })
+                    : 1;
+                // if (filterBrand > -1) return true;//union聯集
+
+                //再判斷有沒有在fragrance
+                const fragranceId = item.fragranceId;
+                const findFragrance = filterFragranceArray.length
+                    ? filterFragranceArray.findIndex((el) => {
+                          return fragranceId.toString() === el.toString()
+                              ? true
+                              : false;
+                      })
+                    : 1;
+                // if (findFragrance > -1) return true;//union聯集
+                if (findBrand > -1 && findFragrance > -1) return true;
+            });
+            console.log("newCardData", newCardData);
+            setItemCardData(newCardData);
+        }
+    }, [
+        byredoSelected,
+        chanelSelected,
+        diptyqueSelected,
+        jomaloneSelected,
+        lelaboSelected,
+        floralSelected,
+        freshSelected,
+        warmSelected,
+        woodySelected,
+    ]);
+
+    const filterClear = () => {
+        setByredohSelected(false);
+        setChanelSelected(false);
+        setDiptyqueSelected(false);
+        setJomaloneSelected(false);
+        setLelaboSelected(false);
+        setFloralSelected(false);
+        setFreshSelected(false);
+        setWarmSelected(false);
+        setWoodySelected(false);
+    };
+
+    useEffect(() => {
+        filterClear();
+    }, [name]);
     return (
         <>
-            <section className="filter-bar position-absolute">
+            <section
+                className={`filter-bar-brand position-absolute ${otherClass}`}
+            >
                 <div className="filter-wrapper">
                     <div className="filter-bar-element">
                         {/* <button className="filter-bar-opener" label="Filter">
@@ -82,7 +167,7 @@ const ItemBrandFilter = (props) => {
                                     <h2>Filter By Brand & Fragrance</h2>
                                 </div>
                                 <div className="filter-layer d-flex">
-                                    <div className="filter-content">
+                                    <div className="filter-content-2">
                                         <div
                                             className="category-name d-flex"
                                             name="byredo"
@@ -144,7 +229,7 @@ const ItemBrandFilter = (props) => {
                                             <p>Le Labo</p>
                                         </div>
                                     </div>
-                                    <div className="filter-content">
+                                    <div className="filter-content-2">
                                         <div
                                             className="category-name d-flex"
                                             name="floral"
@@ -192,6 +277,14 @@ const ItemBrandFilter = (props) => {
                                                 <FiSquare />
                                             )}
                                             <p>木質香調</p>
+                                        </div>
+                                        <div className="btn-clear-box">
+                                            <button
+                                                className="btn-clear"
+                                                onClick={filterClear}
+                                            >
+                                                Clear All
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
