@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./creditCardInfo.scss";
 
-//Dialog
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-
-//Form
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-
 //Redux
 import { userLogin, userLogOut } from "../../Redux/user/userAction";
+import { userToggleFunc } from "../../Redux/nav/navAction";
 
 //material UI
 import Button from "@material-ui/core/Button";
@@ -33,19 +23,62 @@ import {
 //component
 import CreditCardBlock from "../CreditCardBlock/creditCardBlock";
 import CreditCardAdd from "../CreditCardAdd/creditCardAdd";
+import SuccessAlert from "../SuccessAlert/successAlert";
 
 const CreditCardInfo = (props) => {
-  const { user } = props;
+  const { user, history } = props;
   const [creditCardList, setCreditCardList] = useState([]);
 
-  //Dialog
-  const [open, setOpen] = useState(false);
+  //以重整新增信用卡頁面
+  const [creditCardFormState, setCreditCardFormState] = useState(0);
 
+  //新增信用卡Dialog
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
+    if (user.logInStatus) {
+      setOpen(true);
+    } else {
+      handleAlertOpen(
+        "請先登入，方可新增",
+        "二秒後跳轉至首頁",
+        true,
+        true,
+        2000
+      );
+      //跳轉至首頁
+      setTimeout(() => {
+        history.push("/");
+        props.userToggleFunc()
+      }, 2300);
+    }
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  //alert
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertName, setAlertName] = useState("");
+  const [alertContext, setAlertContext] = useState("");
+  const [alertLinearProgress, setAlertLinearProgress] = useState(false);
+  const [alertAutoClose, setAlertAutoClose] = useState(false);
+  const [alertDuration, setAlertDuration] = useState("");
+  const handleAlertOpen = (
+    alertName = "alertName",
+    alertContext = "alertContext",
+    alertAutoClose = false,
+    linearProgress = false,
+    duration
+  ) => {
+    setAlertName(alertName);
+    setAlertContext(alertContext);
+    setAlertLinearProgress(linearProgress);
+    setAlertAutoClose(alertAutoClose);
+    setAlertDuration(duration);
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
   };
 
   //fetch credit card info
@@ -85,6 +118,7 @@ const CreditCardInfo = (props) => {
           creditCardList.map((el, index) => {
             return (
               <CreditCardBlock
+                otherClass=""
                 key={el.id}
                 id={el.id}
                 association={el.association}
@@ -97,6 +131,7 @@ const CreditCardInfo = (props) => {
                 cdLastFourNumber={el.cdLastFourNumber}
                 isDefault={el.isDefault}
                 setCreditCardList={setCreditCardList}
+                handleAlertOpen={handleAlertOpen}
               />
             );
           })
@@ -114,8 +149,23 @@ const CreditCardInfo = (props) => {
           <div className="add-button">
             <Button onClick={handleClickOpen}>新增信用卡</Button>
             <CreditCardAdd
+              key={creditCardFormState}
+              creditCardFormState={creditCardFormState}
+              setCreditCardFormState={setCreditCardFormState}
               open={open}
               handleClose={handleClose}
+              setCreditCardList={setCreditCardList}
+              setOpen={setOpen}
+              handleAlertOpen={handleAlertOpen}
+            />
+            <SuccessAlert
+              alertName={alertName}
+              alertContext={alertContext}
+              openAlert={openAlert}
+              handleAlertClose={handleAlertClose}
+              alertLinearProgress={alertLinearProgress}//有無時間條
+              alertAutoClose={alertAutoClose} // 自行關閉
+              alertDuration={alertDuration} //時間間隔
             />
           </div>
         </div>
@@ -131,6 +181,8 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogin, userLogOut }, dispatch);
+  return bindActionCreators({ userLogin, userLogOut, userToggleFunc }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CreditCardInfo);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CreditCardInfo)
+);

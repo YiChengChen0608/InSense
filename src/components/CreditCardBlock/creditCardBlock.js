@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./creditCardBlock.scss";
@@ -19,10 +20,13 @@ import {
 
 //component
 import Address from "../../components/Address/address";
+import InquiryAlert from "../../components/InquiryAlert/inquiryAlert";
 
 //destructor
 const CreditCardBlock = (props) => {
   const {
+    history,
+    otherClass,
     id,
     association,
     cdMonth,
@@ -34,6 +38,9 @@ const CreditCardBlock = (props) => {
     cdLastFourNumber,
     isDefault,
     setCreditCardList,
+    handleAlertOpen,
+    userLogin,
+    userLogOut,
   } = props;
 
   //localstate
@@ -42,6 +49,19 @@ const CreditCardBlock = (props) => {
   const [districts, setDistricts] = useState(billAddressDistrict);
   const [postCode, setPostCode] = useState(billAddressPostCode);
   const [address, setAddress] = useState(billAddressStreet);
+
+  //打開詢問delete
+  const [openInquiry, setOpenInquiry] = useState(false);
+  const [inquiryTitle, setInquiryTitle] = useState("title");
+  const [inquiryContext, setInquiryContext] = useState("context");
+  const handleInquiryOpen = () => {
+    setInquiryTitle("確認刪除");
+    setInquiryContext("將永遠刪除此付款方式");
+    setOpenInquiry(true);
+  };
+  const handleInquiryClose = () => {
+    setOpenInquiry(false);
+  };
 
   //變更資料
   const handleInputOpen = () => {
@@ -80,20 +100,43 @@ const CreditCardBlock = (props) => {
           // 若有改變
           if (rawData.newCreditCardList) {
             setCreditCardList(rawData.newCreditCardList);
-            // ================================ alert change made ================================ //
+            handleAlertOpen(
+              "更新成功",
+              "已可在付款資訊頁查詢",
+              true,
+              true,
+              2500
+            );
           }
 
           // 若無改變
           if (rawData.message && rawData.message === "NO_CHANGE") {
-            console.log(rawData.message)
-            // ================================ alert no change ================================ //
+            console.log(rawData.message);
+            handleAlertOpen(
+              "無任何更新",
+              "可在付款資訊頁查詢",
+              true,
+              true,
+              2500
+            );
           }
-        } else {
-          // ================================ redirect to Hompage ================================ //
         }
-
         //不管如何，都要關閉
         setInputOpen(false);
+      } else {
+        if (!rawData.logInStatus) {
+          handleAlertOpen(
+            "請先登入，方可查詢",
+            "二秒後跳轉至首頁",
+            true,
+            true,
+            2000
+          );
+          //跳轉至首頁
+          setTimeout(() => {
+            history.push("/");
+          }, 2300);
+        }
       }
     })();
   };
@@ -109,6 +152,105 @@ const CreditCardBlock = (props) => {
     setAddress(billAddressStreet);
   };
 
+  //changeDefault
+  const changeDefault = async () => {
+    const res = await fetch(
+      `http://localhost:3030/users/creditcardchangedefault/${id}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const rawData = await res.json();
+
+    //reset user
+    rawData.logInStatus ? userLogin(rawData.userInfo) : userLogOut();
+
+    if (rawData.success) {
+      if (rawData.logInStatus) {
+        setCreditCardList(rawData.newCreditCardList);
+      }
+    } else {
+      if (!rawData.logInStatus) {
+        handleAlertOpen(
+          "請先登入，方可查詢",
+          "二秒後跳轉至首頁",
+          true,
+          true,
+          2000
+        );
+        //跳轉至首頁
+        setTimeout(() => {
+          history.push("/");
+        }, 2300);
+      }
+    }
+
+    console.log(rawData);
+  };
+
+  //delete payment
+  const deletePayment = async () => {
+    const res = await fetch(
+      `http://localhost:3030/users/creditcarddelete/${id}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const rawData = await res.json();
+
+    //reset user
+    rawData.logInStatus ? userLogin(rawData.userInfo) : userLogOut();
+
+    if (rawData.success) {
+      if (rawData.logInStatus) {
+        // 若有改變
+        if (rawData.newCreditCardList) {
+          setCreditCardList(rawData.newCreditCardList);
+          handleAlertOpen("刪除成功", "已可在付款資訊頁查詢", true, true, 2500);
+          console.log(openInquiry);
+        }
+        // 若無改變
+        if (rawData.message && rawData.message === "DELETE_FAIL") {
+          console.log(rawData.message);
+          handleAlertOpen(
+            "刪除失敗",
+            "請刷新頁面，再嘗試看看",
+            true,
+            true,
+            2500
+          );
+        }
+      }
+      //不管如何，都要關閉
+      // handleInquiryClose();
+    } else {
+      if (!rawData.logInStatus) {
+        handleAlertOpen(
+          "請先登入，方可修改資料",
+          "二秒後跳轉至首頁",
+          true,
+          true,
+          2000
+        );
+        //跳轉至首頁
+        setTimeout(() => {
+          history.push("/");
+        }, 2300);
+      }
+    }
+    console.log(rawData);
+  };
+
   useEffect(() => {
     setCities(billAddressCity);
     setDistricts(billAddressDistrict);
@@ -121,11 +263,21 @@ const CreditCardBlock = (props) => {
     billAddressStreet,
   ]);
 
+  useEffect(() => {
+    console.log("openInquiry", openInquiry);
+  }, [openInquiry]);
+
   return (
     <>
-      <div className="credit-card-block-container d-flex align-items-center ">
+      <div
+        className={`credit-card-block-container d-flex align-items-center ${otherClass}`}
+      >
         <div className="block-default d-flex justify-content-center">
-          {isDefault ? <p>預設</p> : <Button>設為預設</Button>}
+          {isDefault ? (
+            <p>預設</p>
+          ) : (
+            <Button onClick={changeDefault}>設為預設</Button>
+          )}
         </div>
         <div className="card-info">
           <h4 className="card-info-detail card-info-title">卡片資訊</h4>
@@ -138,7 +290,7 @@ const CreditCardBlock = (props) => {
                   return <FaCcVisa className="card-association-icon" />;
                 case "JCB":
                   return <FaCcJcb className="card-association-icon" />;
-                case "Discover":
+                case "DISCOVER":
                   return <FaCcDiscover className="card-association-icon" />;
                 default:
                   break;
@@ -151,7 +303,7 @@ const CreditCardBlock = (props) => {
             末四碼 {cdLastFourNumber}
           </div>
           <div className="card-info-detail card-expiration">
-            期限 {cdMonth}/{cdYear}
+            期限 {cdMonth < 10 ? "0" + cdMonth.toString() : cdMonth}/{cdYear}
           </div>
         </div>
         <div className="bill-address flex-grow">
@@ -193,8 +345,20 @@ const CreditCardBlock = (props) => {
               取消
             </Button>
           ) : (
-            <Button className="card-delete">刪除</Button>
+            <Button className="card-delete" onClick={handleInquiryOpen}>
+              刪除
+            </Button>
           )}
+          <InquiryAlert
+            openInquiry={openInquiry}
+            handleInquiryClose={handleInquiryClose}
+            inquiryTitle={inquiryTitle}
+            inquiryContext={inquiryContext}
+            leftButton={"取消"}
+            rightButton={"確認刪除"}
+            leftButtonFunc={handleInquiryClose}
+            rightButtonFunc={deletePayment}
+          />
         </div>
       </div>
     </>
@@ -210,4 +374,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(CreditCardBlock);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CreditCardBlock)
+);

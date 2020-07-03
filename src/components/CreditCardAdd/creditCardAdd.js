@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
 import { bindActionCreators } from "redux";
 import Button from "@material-ui/core/Button";
 // import TextField from "@material-ui/core/TextField";
@@ -29,7 +31,17 @@ import CreditCardExpiration from "../../components/CreditCardExpiration/creditCa
 
 const FormDialog = function (props) {
   // const [open, setOpen] = React.useState(false);
-  const { user, open, handleClose } = props;
+  const {
+    user,
+    open,
+    setOpen,
+    handleClose,
+    handleAlertOpen,
+    setCreditCardList,
+    setCreditCardFormState,
+    creditCardFormState,
+    history,
+  } = props;
 
   //card association
   const [association, setAssociation] = useState("");
@@ -53,7 +65,8 @@ const FormDialog = function (props) {
   const [billPostCode, setBillPostCode] = useState("");
   const [billAddress, setBillAddress] = useState("");
 
-  const [errMessage, setErrMessage] = useState("")
+  //格式錯誤陣列
+  const [errMessage, setErrMessage] = useState([]);
 
   //card holder
   const handleCardHolderChange = (event) => {
@@ -61,21 +74,125 @@ const FormDialog = function (props) {
   };
 
   //新增付款方式
-  const creditCardAddSent = () => {
+  const creditCardAddSent = async () => {
+    // 先將卡號結合
+    const cardNum = [
+      cardNumberFirst,
+      cardNumberSecond,
+      cardNumberThird,
+      cardNumberForth,
+    ].join("-");
 
-    const cardNum = [cardNumberFirst, cardNumberSecond, cardNumberThird, cardNumberForth].join("-")
+    if (!user.logInStatus) {
+    }
 
-    if(user.logInStatus){
+    if (user.logInStatus) {
       // console.log("cdAddSent")
-      if(!!association.length && cardNum.length === 19){
-        console.log('sent')
-      }else{
-        console.log("not sent")
+      //若所有格式正確
+      if (
+        !!association.length &&
+        cardNum.length === 19 &&
+        !!cardHolder.length &&
+        cdMonth.length === 2 &&
+        cdYear.length === 2 &&
+        !!billCity &&
+        !!billPostCode &&
+        !!billAddress.length
+      ) {
+        const data = {
+          association: association,
+          cdNumber: cardNum,
+          cdHolder: cardHolder,
+          cdMonth: cdMonth,
+          cdYear: cdYear,
+          billAddressCity: billCity,
+          billAddressPostCode: billPostCode,
+          billAddressDistrict: billDistrict,
+          billAddressStreet: billAddress,
+        };
+
+        //向後端請求新增
+        const response = await fetch(
+          "http://localhost:3030/users/creditcardadd",
+          {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(data),
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+        const obj = await response.json();
+        console.log(obj);
+
+        //reset user
+        obj.logInStatus ? userLogin(obj.userInfo) : userLogOut();
+
+        if (obj.success) {
+          if (obj.logInStatus) {
+            // 若有改變
+            if (obj.newCreditCardList) {
+              setCreditCardList(obj.newCreditCardList);
+              setOpen(false);
+              //重新產生新的component，以便清空欄位
+              setCreditCardFormState(creditCardFormState + 1);
+              handleAlertOpen(
+                "新增成功",
+                "新增信用卡已可在付款資訊頁面查詢",
+                false,
+                false
+              );
+            }
+
+            // 若無增加
+            if (obj.message && obj.message === "NOTHING_ADDED") {
+              console.log(obj.message);
+              handleAlertOpen("無任何新增", "信用卡資訓可在付款資訊頁面查詢", false, false);
+            }
+          }
+        } else {
+          if (!obj.success) {
+            handleAlertOpen("請先登入", "二秒後跳轉至首頁", true, true);
+            setOpen(false);
+            setTimeout(() => {
+              history.push("/");
+            }, 2000);
+          }
+        }
+      } else {
+        const newArray = [];
+
+        //有錯誤的，加在陣列
+        if (!association.length) {
+          newArray.push("creditCardAssociation");
+        }
+        if (cardNum.length !== 19) {
+          newArray.push("creditCardNumber");
+        }
+        if (!cardHolder.length) {
+          newArray.push("creditCardHolder");
+        }
+        if (cdMonth.length < 2 || cdYear.length < 2) {
+          newArray.push("creditCardExpiration");
+        }
+        if (!billCity || !billPostCode || !billAddress.length) {
+          newArray.push("creditCardAddress");
+        }
+        //若有任何錯誤
+        if (newArray.length) {
+          setErrMessage(newArray);
+        }
+
+        console.log("not sent");
       }
-
-
-    }else{
-      console.log("not log in")
+    } else {
+      console.log("not log in");
+      setOpen(false);
+      handleAlertOpen("請先登入，方可查詢", "二秒後跳轉至首頁");
+      setTimeout(() => {
+        history.push("/");
+      }, 2000);
     }
     // handleClose();
   };
@@ -108,11 +225,20 @@ const FormDialog = function (props) {
             請務必填妥所有資訊*
           </DialogContentText>
           <div className="credit-card-add-form d-flex flex-wrap">
-            <div className="credit-card-add-block credit-card-add-association flex-grow">
+            <div className="credit-card-add-block credit-card-add-association">
               <CreditCardAssociation
                 association={association}
                 setAssociation={setAssociation}
               />
+              <div
+                className={`invisible-error-bar  ${
+                  errMessage.findIndex((el) => {
+                    return el === "creditCardAssociation";
+                  }) !== -1
+                    ? "error-bar"
+                    : ""
+                }`}
+              ></div>
             </div>
             <div className="credit-card-add-block credit-card-add-card-number">
               <CreditCardNumber
@@ -126,6 +252,15 @@ const FormDialog = function (props) {
                 setCardNumberThird={setCardNumberThird}
                 setCardNumbeForth={setCardNumbeForth}
               />
+              <div
+                className={`invisible-error-bar  ${
+                  errMessage.findIndex((el) => {
+                    return el === "creditCardNumber";
+                  }) !== -1
+                    ? "error-bar"
+                    : ""
+                }`}
+              ></div>
             </div>
             <div className="credit-card-add-block credit-card-add-card-holder">
               <FormControl>
@@ -140,6 +275,15 @@ const FormDialog = function (props) {
                   onChange={handleCardHolderChange}
                 />
               </FormControl>
+              <div
+                className={`invisible-error-bar  ${
+                  errMessage.findIndex((el) => {
+                    return el === "creditCardHolder";
+                  }) !== -1
+                    ? "error-bar"
+                    : ""
+                }`}
+              ></div>
             </div>
             <div className="credit-card-add-block credit-card-add-expiration">
               <CreditCardExpiration
@@ -148,6 +292,15 @@ const FormDialog = function (props) {
                 setCdMonth={setCdMonth}
                 setCdYear={setCdYear}
               />
+              <div
+                className={`invisible-error-bar  ${
+                  errMessage.findIndex((el) => {
+                    return el === "creditCardExpiration";
+                  }) !== -1
+                    ? "error-bar"
+                    : ""
+                }`}
+              ></div>
             </div>
             <div className="credit-card-add-block credit-card-add-bill-address">
               <Address
@@ -159,10 +312,26 @@ const FormDialog = function (props) {
                 setPostCode={setBillPostCode}
                 setAddress={setBillAddress}
               />
+              <div
+                className={`invisible-error-bar  ${
+                  errMessage.findIndex((el) => {
+                    return el === "creditCardAddress";
+                  }) !== -1
+                    ? "error-bar"
+                    : ""
+                }`}
+              ></div>
             </div>
           </div>
         </DialogContent>
         <DialogActions className="credit-card-add-btns">
+          <div
+            className={`incomplete-message ${
+              errMessage.length ? "incomplete-active" : ""
+            }`}
+          >
+            *有未填欄位
+          </div>
           <Button onClick={handleClose} color="primary">
             取消
           </Button>
@@ -184,4 +353,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FormDialog);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(FormDialog)
+);
