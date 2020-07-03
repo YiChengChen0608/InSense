@@ -1,6 +1,8 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import "./cartItem.scss";
+
+import { removeItem } from "../../Redux/cart/cartAction";
 
 const CartItem = ({ cartItem: { itemimg, itemName, itemPrice, quantity } }) => {
   return (
@@ -11,11 +13,15 @@ const CartItem = ({ cartItem: { itemimg, itemName, itemPrice, quantity } }) => {
       <div className="item-details">
         <span className="name">{itemName}</span>
         <span className="price">
-          {quantity} x {itemPrice}
+          {quantity} x NT$ {itemPrice}
         </span>
       </div>
     </div>
   );
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch) => ({
+  removeItem: (item) => dispatch(removeItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CartItem);

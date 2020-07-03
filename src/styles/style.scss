@@ -20,80 +20,80 @@ $Libre: "Libre Baskerville", serif;
 $Frank: "Frank Ruhl Libre", serif;
 
 * {
-  font-family: $Roboto;
+    font-family: $Roboto;
 }
 /* css property */
 
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .d-flex {
-  display: flex;
+    display: flex;
 }
 
 .display-none {
-  display: none;
+    display: none;
 }
 .flex-wrap {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 .flex-grow {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 .flex-direction-column {
-  flex-direction: column;
+    flex-direction: column;
 }
 .flex-direction-row {
-  flex-direction: row;
+    flex-direction: row;
 }
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 .justify-content-center {
-  justify-content: center;
+    justify-content: center;
 }
 .justify-content-between {
-  justify-content: space-between;
+    justify-content: space-between;
 }
 .justify-content-around {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 .justify-content-evenly {
-  justify-content: space-evenly;
+    justify-content: space-evenly;
 }
 .justify-content-end {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 .align-items-center {
-  align-items: center;
+    align-items: center;
 }
 .align-items-end {
-  align-items: flex-end;
+    align-items: flex-end;
 }
 .object-fit-cover {
-  object-fit: cover;
+    object-fit: cover;
 }
 .position-relative {
-  position: relative;
+    position: relative;
 }
 .position-absolute {
-  position: absolute;
+    position: absolute;
 }
 .position-fix {
-  position: fixed;
+    position: fixed;
 }
 .position-sticky {
-  position: sticky;
+    position: sticky;
 }
 /* share style */
 
 .main-container {
-  min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
 }
 
 .container {
-  width: 1140px;
-  max-width: 100%;
-  margin: 0 auto;
+    width: 1140px;
+    max-width: 100%;
+    margin: 0 auto;
 }

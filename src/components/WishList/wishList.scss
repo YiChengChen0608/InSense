@@ -1,10 +1,11 @@
 @import "../../styles/style.scss";
 .list-container {
-    width: 72%;
+    width: 90%;
     margin-bottom: 32px;
     color: $main-black;
 
     .list-title {
+        padding-left: 32px;
         color: $main-black;
         font-weight: $title-font-weight;
         font-size: $title-font-size;

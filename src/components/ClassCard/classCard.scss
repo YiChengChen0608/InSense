@@ -24,30 +24,38 @@
             padding: 16px;
             margin-right: 8px;
         }
+        .card-name,.countPeople {
+            margin: 0;
+            margin-bottom: 16px;
+            color: $main-black;
+        }
+        .countPeople{
+          padding-top:3px;
+          font-size: 12px;
+        }
     }
-    .card-name,.countPeople {
-        margin: 0;
-        margin-bottom: 16px;
-        color: $main-black;
+    .class-card-tile{
+      color:$main-black;
     }
-    .countPeople{
-      padding-top:3px;
-      font-size: 12px;
-    }
-
     .card-btn {
         display: block;
         color: $main-scarlet;
         text-decoration: none;
         border: 1px solid $main-scarlet;
-        padding: 8px 0;
+        padding: 10px 0;
+        margin:8px 0;
         cursor: pointer;
         &:hover{
           color:$sub-white;
           border: 1px solid $main-orange;
           background: $main-orange;
         }
-       
+       &.cantClick{
+        pointer-events: none;
+        background: $main-orange;
+        color:$sub-white;
+        border:transparent;
+       }
     }
     .card-block{
         position: absolute;

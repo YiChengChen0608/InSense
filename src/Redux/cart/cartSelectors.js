@@ -3,6 +3,17 @@
 import { createSelector } from "reselect";
 
 const selectCart = (state) => state.cart;
+const selectUser = (state) => state.user;
+
+export const selectUserInfo = createSelector(
+  [selectUser],
+  (user) => user.userInfo
+);
+
+export const selectUserLogin = createSelector(
+  [selectUser],
+  (user) => user.logInStatus
+);
 
 export const selectCartItems = createSelector(
   [selectCart],
@@ -23,18 +34,6 @@ export const selectCartItemsCount = createSelector(
       0
     )
 );
-
-//小計 未完成
-// export const selectCartSubtotal = createSelector(
-//   [selectCartItems],
-//   (cartItems) =>
-//     cartItems.reduce(
-//       (accumalatedQuantity, cartItem) =>
-//         accumalatedQuantity +
-//         cartItem.itemId.quantity * cartItem.itemId.itemPrice,
-//       0
-//     )
-// );
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce(

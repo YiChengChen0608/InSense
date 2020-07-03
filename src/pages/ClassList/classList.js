@@ -13,26 +13,19 @@ const ClassList = ({ user, userLogin, userLogOut }) => {
   const [bookInfo, setBookInfo] = useState([]);
 
   const fetchClassData = async () => {
-    const res = await fetch("http://localhost:3030/class", {
-      credentials: "include",
-    });
-    const data = await res.json();
-    console.log(data);
-    return data;
-  };
+    const res = await fetch('http://localhost:3030/class', { credentials: 'include' })
+    const data = await res.json()
+    return data
+  }
 
   useEffect(() => {
     (async () => {
-      const data = await fetchClassData();
-      setClassInfo(data.classInfo);
-      setBookInfo(data.bookInfo);
-    })();
-  }, []);
-
-  useEffect(() => {
-    user.logInStatus ? userLogin(user.userInfo) : userLogOut();
-  }, [user.logInStatus]);
-
+      user.logInStatus ? userLogin(user.userInfo) : userLogOut();
+      const data = await fetchClassData()
+      setClassInfo(data.classInfo)
+      setBookInfo(data.bookInfo)
+    })()
+  }, [user.logInStatus])
   return (
     <>
       <ClassHead
