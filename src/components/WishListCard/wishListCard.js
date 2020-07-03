@@ -63,7 +63,7 @@ const WishListCard = (props) => {
                         <p className="list-card-size ">{itemSize}</p>
                     </div>
                     <div className="list-card-price-container">
-                        <p>{itemPrice}</p>
+                        <p>NT$ {itemPrice}</p>
                     </div>
                 </div>
                 <div className="btns">

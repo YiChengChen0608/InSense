@@ -57,7 +57,7 @@ const WishList = (props) => {
                                     itemId={el.itemId}
                                     itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                                     itemName={el.itemName}
-                                    itemPrice={`NT$ ${el.itemPrice}`}
+                                    itemPrice={el.itemPrice}
                                 />
                             );
                         })

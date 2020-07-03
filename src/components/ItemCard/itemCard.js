@@ -5,24 +5,13 @@ import { FiShoppingCart } from "react-icons/fi";
 
 import SavedItems from "../SavedItems/savedItems";
 
-import SubmitButton from "../SubmitButton/submitButton";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/cart/cartAction";
 // import { addItemToCart } from '../../Redux/cart/cartUtils';
 
 const ItemCard = (props) => {
-  const {
-    name,
-    itemName,
-    itemimg,
-    itemPrice,
-    itemId,
-    itemWishList,
-    setitemWishList,
-    addItem,
-    wish,
-  } = props;
+  const { name, itemName, itemimg, itemPrice, itemId, addItem, wish } = props;
 
   return (
     <>
@@ -35,7 +24,13 @@ const ItemCard = (props) => {
           <div className="card-img">
             <img src={itemimg} alt="" />
             <div className="item-button-container">
-              <a className="cart-anchor" onClick={() => addItem(props)}>
+              <a
+                className="cart-anchor"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addItem(props);
+                }}
+              >
                 <FiShoppingCart className="cart-button" />
               </a>
             </div>
@@ -51,8 +46,8 @@ const ItemCard = (props) => {
             itemId={itemId}
             name={name}
             wish={wish}
-            // itemWishList={itemWishList}
-            // setitemWishList={setitemWishList}
+          // itemWishList={itemWishList}
+          // setitemWishList={setitemWishList}
           />
         </div>
       </div>

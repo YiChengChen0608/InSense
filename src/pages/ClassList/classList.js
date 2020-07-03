@@ -26,6 +26,8 @@ const ClassList = ({ user, userLogin, userLogOut }) => {
       setBookInfo(data.bookInfo)
     })()
   }, [user.logInStatus])
+
+
   return (
     <>
       <ClassHead

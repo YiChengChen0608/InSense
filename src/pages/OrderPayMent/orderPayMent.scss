@@ -64,6 +64,12 @@
       justify-content: space-between;
       padding:16px 32px 32px;
       margin-top:8px;
+      .credit-card-association{
+        .MuiFormControl-root{
+          margin:0;
+          margin-top: 8px;
+        }
+      }
       .subcontent-payment-title{
         margin-bottom:16px;
         label{
@@ -71,19 +77,26 @@
           cursor: pointer;
         }
         .order-payment-circle{
-          padding-right: 8px;
+          padding-right: 4px;
         }
       }
       .MuiFormControl-root{
         flex: 1 0 0;
-        margin:20px 0 ;
       }
       .subcontent-date{
         margin-top:32px;
         .MuiFormControl-root{
-          &:nth-child(1){
-          margin-right:20px;
+          margin-bottom: 0;
+          text-align: center;
+          .MuiInput-input{
+            margin: 0 auto;
           }
+        }
+      }
+      .credit-card-number{
+        margin:20px 0 20px;
+        .MuiFormControl-root{
+          margin-bottom: 0;
         }
       }
     }
@@ -94,10 +107,33 @@
       padding:0 32px;
       margin-bottom: 32px;
       padding-right: 0;
+      .address-container{
+        margin-bottom: 32px;
+        .group{
+          margin:0;
+          margin-top:30px ;
+          input{
+            margin:0;
+          }
+        }
+      }
+      .payment-safe-code{
+        p{
+          margin: 0;
+          padding-top:18px;
+        }
+      }
       .credit-card-checkedBtn{
+        width: 100%;
         cursor: pointer;
         .order-payment-square{
+
           padding-right: 8px;
+          width: 24px;
+        }
+        p{
+          margin: 0;
+          letter-spacing: .5px;
         }
       }
     }
