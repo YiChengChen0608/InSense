@@ -33,9 +33,14 @@
       }
     }
 
-    .product-img,
-    .product-subtotal {
+    .product-img {
       text-align: center;
+    }
+
+    .product-price,
+    .product-subtotal {
+      text-align: left;
+      margin-left: -15px;
     }
   }
 

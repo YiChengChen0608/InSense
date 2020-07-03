@@ -64,6 +64,12 @@
       justify-content: space-between;
       padding:16px 32px 32px;
       margin-top:8px;
+      .credit-card-association{
+        .MuiFormControl-root{
+          margin:0;
+          margin-top: 8px;
+        }
+      }
       .subcontent-payment-title{
         margin-bottom:16px;
         label{
@@ -76,7 +82,6 @@
       }
       .MuiFormControl-root{
         flex: 1 0 0;
-        margin:30px 0 20px;
       }
       .subcontent-date{
         margin-top:32px;
@@ -89,7 +94,7 @@
         }
       }
       .credit-card-number{
-        margin:20px 0 40px;
+        margin:20px 0 20px;
         .MuiFormControl-root{
           margin-bottom: 0;
         }
@@ -102,6 +107,16 @@
       padding:0 32px;
       margin-bottom: 32px;
       padding-right: 0;
+      .address-container{
+        margin-bottom: 32px;
+        .group{
+          margin:0;
+          margin-top:30px ;
+          input{
+            margin:0;
+          }
+        }
+      }
       .payment-safe-code{
         p{
           margin: 0;

@@ -10,7 +10,9 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
+import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
+
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
@@ -26,6 +28,9 @@ const ItemList = (props) => {
   //拿到網址上的 ":brandName"參數
   const brandOrCategory = useParams().brandOrCategory;
   const name = useParams().Name;
+
+  //filter toggle
+  const [filterToggle, setFilterToggle] = useState(false);
 
   //僅做擷取商品資料用途
   const fetchCardData = async (brandOrCategory, name) => {
@@ -48,6 +53,10 @@ const ItemList = (props) => {
     const dataWish = await res.json();
     console.log("dataWish", dataWish);
     return dataWish;
+  };
+
+  const handleOpenFilter = () => {
+    setFilterToggle(true);
   };
 
   //一開始載入
@@ -81,15 +90,10 @@ const ItemList = (props) => {
 
         if (logInStatus) {
           setItemWishList(wishListData.wishList);
-
         }
       })();
     }
-    //若已轉為登出
-    if (!user.logInStatus) {
-      setItemWishList([]);
-    }
-  }, [user.logInStatus, name]);
+  }, [user.logInStatus, name])
 
   return (
     <>
@@ -99,17 +103,17 @@ const ItemList = (props) => {
             ? itemHeadData[0].brandBanner
               ? itemHeadData[0].brandBanner
               : itemHeadData[0].itemCategoryBanner
-              ? itemHeadData[0].itemCategoryBanner
-              : ""
+                ? itemHeadData[0].itemCategoryBanner
+                : ""
             : ""
-        }.png`}
+          }.png`}
         Name={
           itemHeadData.length
             ? itemHeadData[0].brandName
               ? itemHeadData[0].brandName
               : itemHeadData[0].itemCategoryName
-              ? itemHeadData[0].itemCategoryName
-              : ""
+                ? itemHeadData[0].itemCategoryName
+                : ""
             : ""
         }
         Discription={
@@ -121,34 +125,53 @@ const ItemList = (props) => {
         }
       />
       {console.log("itemWishList", itemWishList)}
-      <ItemBrandFilter />
+
       <MainContainer>
+        <div className="filter-btn-container d-flex">
+          <div className="filter-btn-group">
+            <div className="filter-btn" onClick={handleOpenFilter}>
+              Refine your search
+                        </div>
+          </div>
+          <div>
+            <div className="filter-btn">Order by</div>
+          </div>
+        </div>
+        <ItemCategoryFilter
+          otherClass={!filterToggle ? "filter-bar-close" : ""}
+          filterToggle={filterToggle}
+          setFilterToggle={setFilterToggle}
+          brandOrCategory={brandOrCategory}
+          name={name}
+        />
+
+        {/* <ItemBrandFilter /> */}
         <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
-                return (
-                  <ItemCard
-                    key={el.itemId}
-                    itemId={el.itemId}
-                    itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
-                    itemName={el.itemName}
-                    itemPrice={el.itemPrice}
-
-                    name={name}
-                    wish={
-                      itemWishList.findIndex((eachWish) => {
-                        return el.itemId === eachWish;
-                      }) < 0
-                        ? false
-                        : true
-                    }
-                    //   itemWishList={itemWishList}
-                    //   setitemWishList={setitemWishList}
-                  />
-                );
-              })
+              return (
+                <ItemCard
+                  key={el.itemId}
+                  itemId={el.itemId}
+                  itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
+                  itemName={el.itemName}
+                  itemPrice={el.itemPrice}
+                  name={name}
+                  wish={
+                    itemWishList.findIndex((eachWish) => {
+                      return el.itemId === eachWish;
+                    }) < 0
+                      ? false
+                      : true
+                  }
+                //   itemWishList={itemWishList}
+                //   setitemWishList={setitemWishList}
+                />
+              );
+            })
             : ""}
           {/* {itemCardData[0].items.map((el, index) => {
+
                     return (
                         <ItemCard
                             id={el.id}

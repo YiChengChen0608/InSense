@@ -19,7 +19,7 @@ const WishListCard = (props) => {
                 <div className="list-card-info flex-grow">
                     <div className="list-card-head d-flex">
                         <h4 className="list-card-title ">
-                            BYREDO 詩性既視 淡香精
+                            BYREDO 詩性既視淡香精
                             {/* {props.itemName} */}
                         </h4>
                     </div>

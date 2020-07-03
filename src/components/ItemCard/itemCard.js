@@ -5,24 +5,13 @@ import { FiShoppingCart } from "react-icons/fi";
 
 import SavedItems from "../SavedItems/savedItems";
 
-import SubmitButton from "../SubmitButton/submitButton";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/cart/cartAction";
 // import { addItemToCart } from '../../Redux/cart/cartUtils';
 
 const ItemCard = (props) => {
-  const {
-    name,
-    itemName,
-    itemimg,
-    itemPrice,
-    itemId,
-    itemWishList,
-    setitemWishList,
-    addItem,
-    wish,
-  } = props;
+  const { name, itemName, itemimg, itemPrice, itemId, addItem, wish } = props;
 
   return (
     <>
