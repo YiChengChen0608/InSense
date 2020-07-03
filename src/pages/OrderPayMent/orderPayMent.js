@@ -40,7 +40,7 @@ const OrderPayMent = ({
   console.log("上一張表單傳的值", history.location.state);
   const orderDelivery = history.location.state;
 
-  const [payment, setPayment] = useState("Credit");
+  // const [payment, setPayment] = useState("Credit");
   const [saveCreditCard, setSaveCreditCard] = useState(false);
   const [agree, setAgree] = useState(false);
   //持卡人
@@ -77,9 +77,9 @@ const OrderPayMent = ({
   const handleChange = (event) => {
     // console.log(event.target.name);
     switch (event.target.name) {
-      case "payment":
-        setPayment(event.target.value);
-        break;
+      // case "payment":
+      //   setPayment(event.target.value);
+      //   break;
       case "cdHolder":
         setcdHolder(event.target.value);
         break;
@@ -104,7 +104,7 @@ const OrderPayMent = ({
     setSafeCode(insertNum)
   }
   const paymentdata = {
-    payment: payment,
+    // payment: payment,
     // saveCreditCard: saveCreditCard,
     // safeCode: safeCode,
     userId: UserInfo.userId,
@@ -116,7 +116,7 @@ const OrderPayMent = ({
     association: association,
     billAddressCity: billCity,
     billAddressPostCode: billPostCode,
-    billAddressDistrict: billCity,
+    billAddressDistrict: billDistrict,
     billAddressStreet: billAddress,
     isDefault: isDefault,
   };
@@ -162,7 +162,7 @@ const OrderPayMent = ({
           <img src="/images/class/class1.jpg" />
         </div>
         <div className="order-payment-subcontent subcontent-center">
-          <div className="d-flex subcontent-payment-title">
+          {/* <div className="d-flex subcontent-payment-title">
             付款方式*：
             <label className="d-flex flex-grow align-items-center">
               <input
@@ -209,7 +209,7 @@ const OrderPayMent = ({
                 )}
               Stripe
             </label>
-          </div>
+          </div> */}
 
           {/* 卡別 */}
           <CreditCardAssociation
