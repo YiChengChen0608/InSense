@@ -31,3 +31,11 @@
     z-index: 99;
     background-color: rgba(201, 201, 201, 0.5);
 }
+.filter-box {
+    height: 300px;
+    h4 {
+        font-weight: 300;
+        color: $main-black;
+        text-align: center;
+    }
+}

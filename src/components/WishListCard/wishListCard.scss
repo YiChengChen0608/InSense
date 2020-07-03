@@ -1,9 +1,19 @@
 @import "../../styles/style.scss";
 
 .list-card-container {
-    width: 420px;
+    width: 660px;
     border: 1px solid #dadada;
     margin: 6px 8px;
+    transition: 0.4s;
+    height: 130px;
+
+    &.delete-success {
+        height: 0;
+        border: 0px solid transparent;
+        overflow: hidden;
+        margin-top: -6px;
+        margin-bottom: -6px;
+    }
 
     .list-card-img {
         width: 130px;
@@ -19,10 +29,12 @@
             // width: 200px;
 
             .list-card-title {
+                text-decoration: none;
                 font-weight: 400;
+                font-size: 14px;
                 color: $main-black;
                 margin: 18px 0 18px;
-                font-size: 14px;
+                padding-left: 18px;
             }
         }
         .list-card-size-container {
@@ -56,16 +68,17 @@
             margin-top: 52px;
 
             button {
+                outline: transparent;
                 font-size: 14px;
                 width: 108px;
                 height: 34px;
-                line-height: 36px;
-                background-color: $main-orange;
+                line-height: 34px;
+                background-color: rgba(247, 182, 108, 0.9);
                 border: $main-orange solid 1px;
                 color: $main-black;
                 &:hover {
-                    line-height: 40px;
-                    border: $main-scarlet solid 1px;
+                    background-color: $main-orange;
+                    color: $main-black;
                 }
             }
         }

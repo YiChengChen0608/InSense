@@ -1,79 +1,79 @@
 import React, { useState, useEffect } from "react";
 // import { connect } from "react-redux";
 import "./wishListCard.scss";
+import { Link } from "react-router-dom";
 
 //react-icon
 import { FiX } from "react-icons/fi";
 
 //component
 import SubmitButton from "../SubmitButton/submitButton";
+import { connect } from "react-redux";
+import { addItem } from "../../Redux/cart/cartAction";
 
 const WishListCard = (props) => {
+    const { itemId, itemimg, itemName, itemSize, itemPrice, addItem } = props;
+
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    //cancelWish
+    const cancelWish = () => {
+        (async () => {
+            const res = await fetch(
+                `http://localhost:3030/users/deletewish/${itemId}`,
+                {
+                    method: "DELETE",
+                    credentials: "include",
+                }
+            );
+            const deleteWish = await res.json();
+
+            console.log(deleteWish);
+
+            if (deleteWish.success) {
+                setDeleteSuccess(true);
+            }
+        })();
+    };
+
     return (
         <>
-            <div className="list-card-container d-flex">
+            <div
+                className={`list-card-container d-flex  ${
+                    deleteSuccess ? "delete-success" : ""
+                }`}
+            >
                 <div className="list-card-img">
-                    <img src="/images/items/P0001.png" alt="商品圖片" />
-                    {/* <img src={itemimg} alt="商品圖片" /> */}
+                    <img
+                        // src={`http://localhost:3030/images/items/${itemimg}.png`}
+                        src={itemimg}
+                        alt="商品圖片"
+                    />
                 </div>
                 <div className="list-card-info flex-grow">
-                    <div className="list-card-head d-flex">
-                        <h4 className="list-card-title ">
-                            BYREDO 詩性既視淡香精
-                            {/* {props.itemName} */}
-                        </h4>
-                    </div>
+                    <Link
+                        to={`/itemdetail/${itemId}`}
+                        className="item-detail-url text-center"
+                        role="button"
+                    >
+                        <div className="list-card-head d-flex">
+                            <h4 className="list-card-title ">{itemName}</h4>
+                        </div>
+                    </Link>
                     <div className="list-card-size-container">
-                        <p className="list-card-size ">
-                            50ml{/* {props.itemSize} */}
-                        </p>
+                        <p className="list-card-size ">{itemSize}</p>
                     </div>
                     <div className="list-card-price-container">
-                        <p>
-                            NT$ 4800
-                            {/* {props.itemPrice} */}
-                        </p>
+                        <p>{itemPrice}</p>
                     </div>
                 </div>
                 <div className="btns">
                     <div className="btn-del d-flex justify-content-end">
-                        <FiX className="del-icon" />
+                        <FiX className="del-icon" onClick={cancelWish} />
                     </div>
                     <div className="btn-add-cart">
-                        <SubmitButton>加入購物車</SubmitButton>
-                    </div>
-                </div>
-            </div>
-            <div className="list-card-container d-flex">
-                <div className="list-card-img">
-                    <img src="/images/items/P0001.png" alt="商品圖片" />
-                    {/* <img src={itemimg} alt="商品圖片" /> */}
-                </div>
-                <div className="list-card-info flex-grow">
-                    <div className="list-card-head d-flex">
-                        <h4 className="list-card-title ">
-                            BYREDO 詩性既視 淡香精
-                            {/* {props.itemName} */}
-                        </h4>
-                    </div>
-                    <div className="list-card-size-container">
-                        <p className="list-card-size ">
-                            50ml{/* {props.itemSize} */}
-                        </p>
-                    </div>
-                    <div className="list-card-price-container">
-                        <p>
-                            NT$ 4800
-                            {/* {props.itemPrice} */}
-                        </p>
-                    </div>
-                </div>
-                <div className="btns">
-                    <div className="btn-del d-flex justify-content-end">
-                        <FiX className="del-icon" />
-                    </div>
-                    <div className="btn-add-cart">
-                        <SubmitButton>加入購物車</SubmitButton>
+                        <SubmitButton onClick={() => addItem(props)}>
+                            加入購物車
+                        </SubmitButton>
                     </div>
                 </div>
             </div>
@@ -90,4 +90,8 @@ const WishListCard = (props) => {
 // const mapDispatchToProps = (dispatch) => {
 //     return bindActionCreators({ userLogin, userLogOut }, dispatch);
 // };
-export default WishListCard;
+const mapDispatchToProps = (dispatch) => ({
+    addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(WishListCard);

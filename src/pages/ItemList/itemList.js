@@ -208,6 +208,13 @@ const ItemList = (props) => {
                     );
                 })} */}
                 </div>
+                {itemCardData.length ? (
+                    ""
+                ) : (
+                    <div className="filter-box">
+                        <h4>Sorry, no items were found.</h4>
+                    </div>
+                )}
             </MainContainer>
         </>
     );
