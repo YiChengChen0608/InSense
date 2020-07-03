@@ -26,10 +26,8 @@ import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
 
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 
-// import SignIn from "./pages/SignIn/SignIn";
-// import TestUI from "./pages/TestUI/testUI";
+import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
-// import SignIn from "./pages/SignIn/SignIn";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 import CheckoutPage from "./pages/Checkout/chechout";
 
@@ -53,6 +51,9 @@ function App() {
             </Route>
             <Route path="/itemdetail/:itemId?">
               <ItemDetails />
+            </Route>
+            <Route path="/testUI">
+              <TestUI />
             </Route>
             <Route path="/orders">
               <Route path="/orders/checkout">
