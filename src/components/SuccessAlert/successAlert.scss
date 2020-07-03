@@ -1,0 +1,19 @@
+@import "../../styles/style.scss";
+
+#alert-dialog-slide-title {
+  h2 {
+    font-weight: 400;
+  }
+}
+
+#alert-dialog-slide-description {
+  font-weight: 400;
+}
+
+.success-alert.MuiButton-root {
+  color: $main-black;
+
+  &:hover {
+    color: $main-scarlet;
+  }
+}

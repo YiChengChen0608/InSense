@@ -17,6 +17,8 @@ const ItemCategoryFilter = (props) => {
         filterToggle,
         setFilterToggle,
         otherClass,
+        originalCardData,
+        setItemCardData,
     } = props;
 
     //category
@@ -31,8 +33,6 @@ const ItemCategoryFilter = (props) => {
     const [freshSelected, setFreshSelected] = useState(false);
     const [warmSelected, setWarmSelected] = useState(false);
     const [woodySelected, setWoodySelected] = useState(false);
-
-    // const [filterToggle, setFilterToggle] = useState(false);
 
     const filterSelect = (e) => {
         // console.log(e.currentTarget);
@@ -74,43 +74,93 @@ const ItemCategoryFilter = (props) => {
         }
     };
 
-    const filterSend = async () => {
-        const filterList = {
-            bodyWashSelected,
-            lotionsOilsSelected,
-            handsCareSelected,
-            perfumeSelected,
-            hairMistSelected,
-            homeScentsSelected,
-            floralSelected,
-            freshSelected,
-            warmSelected,
-            woodySelected,
-        };
-        const res = await fetch(
-            `http://localhost:3030/itemlist/${brandOrCategory}/${name}`,
-            {
-                method: "POST",
-                credentials: "include",
-                body: JSON.stringify(filterList),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-        const data = await res.json();
-        console.log(data);
+    //filter
+    useEffect(() => {
+        console.log(originalCardData);
+        const filterCategoryArray = [];
+        bodyWashSelected && filterCategoryArray.push(4);
+        lotionsOilsSelected && filterCategoryArray.push(5);
+        handsCareSelected && filterCategoryArray.push(6);
+        perfumeSelected && filterCategoryArray.push(7);
+        hairMistSelected && filterCategoryArray.push(8);
+        homeScentsSelected && filterCategoryArray.push(3);
+        console.log("Category", filterCategoryArray);
+
+        const filterFragranceArray = [];
+        floralSelected && filterFragranceArray.push(1);
+        freshSelected && filterFragranceArray.push(2);
+        warmSelected && filterFragranceArray.push(3);
+        woodySelected && filterFragranceArray.push(4);
+        console.log("Fragrance", filterFragranceArray);
+
+        if (!filterCategoryArray.length && !filterFragranceArray.length) {
+            console.log("original", originalCardData);
+            setItemCardData(originalCardData);
+        } else {
+            const newCardData = originalCardData.filter((item) => {
+                //先判斷有沒有在category
+                const itemCategoryId = item.itemCategoryId;
+                const findCategory = filterCategoryArray.length
+                    ? filterCategoryArray.findIndex((el) => {
+                          return itemCategoryId.toString() === el.toString()
+                              ? true
+                              : false;
+                      })
+                    : 1;
+                // if (findCategory > -1) return true;//union聯集
+
+                //再判斷有沒有在fragrance
+                const fragranceId = item.fragranceId;
+                const findFragrance = filterFragranceArray.length
+                    ? filterFragranceArray.findIndex((el) => {
+                          return fragranceId.toString() === el.toString()
+                              ? true
+                              : false;
+                      })
+                    : 1;
+                // if (findFragrance > -1) return true;//union聯集
+                if (findCategory > -1 && findFragrance > -1) return true;
+            });
+            console.log("newCardData", newCardData);
+            setItemCardData(newCardData);
+        }
+    }, [
+        bodyWashSelected,
+        lotionsOilsSelected,
+        handsCareSelected,
+        perfumeSelected,
+        hairMistSelected,
+        homeScentsSelected,
+        floralSelected,
+        freshSelected,
+        warmSelected,
+        woodySelected,
+    ]);
+
+    const filterClear = () => {
+        setBodyWashSelected(false);
+        setLotionsOilsSelected(false);
+        setHandsCareSelected(false);
+        setPerfumeSelected(false);
+        setHairMistSelected(false);
+        setHomeScentsSelected(false);
+        setFloralSelected(false);
+        setFreshSelected(false);
+        setWarmSelected(false);
+        setWoodySelected(false);
     };
+
+    useEffect(() => {
+        filterClear();
+    }, [name]);
 
     return (
         <>
-            <section className={`filter-bar position-absolute ${otherClass}`}>
+            <section
+                className={`filter-bar-cat position-absolute ${otherClass}`}
+            >
                 <div className="filter-wrapper">
                     <div className="filter-bar-element">
-                        {/* <button className="filter-bar-opener" label="Filter">
-                            Filter
-                        </button> */}
                         <section className="filter filter-bar-layer layer-opened">
                             <div className="filter-layer-header d-flex">
                                 <span
@@ -246,12 +296,12 @@ const ItemCategoryFilter = (props) => {
                                         )}
                                         <p>木質香調</p>
                                     </div>
-                                    <div className="btn-submit-box">
+                                    <div className="btn-clear-box">
                                         <button
-                                            className="btn-submit"
-                                            onClick={filterSend}
+                                            className="btn-clear"
+                                            onClick={filterClear}
                                         >
-                                            Submit
+                                            Clear All
                                         </button>
                                     </div>
                                 </div>

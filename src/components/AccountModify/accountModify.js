@@ -241,7 +241,7 @@ const AccountModify = (props) => {
                   onChange={genderChange}
                 ></input>
                 <label
-                  for="modify-radio-woman"
+                  htmlFor="modify-radio-woman"
                   className="d-flex align-items-center"
                 >
                   {gender === "woman" ? (
@@ -260,7 +260,7 @@ const AccountModify = (props) => {
                   onChange={genderChange}
                 ></input>
                 <label
-                  for="modify-radio-man"
+                  htmlFor="modify-radio-man"
                   className=" d-flex align-items-center"
                 >
                   {gender === "man" ? (
