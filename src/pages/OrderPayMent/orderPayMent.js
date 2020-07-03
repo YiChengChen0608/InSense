@@ -13,8 +13,6 @@ import axios from "axios";
 
 //radio checkbox icon
 import {
-  FiCircle,
-  FiCheckCircle,
   FiSquare,
   FiCheckSquare,
 } from "react-icons/fi";
@@ -35,9 +33,9 @@ const OrderPayMent = ({
   selectUserInfo,
 }) => {
   const UserInfo = { ...selectUserInfo };
-  console.log(selectCartItems)
-  console.log("selectUserLogin", UserInfo.userId);
-  console.log("上一張表單傳的值", history.location.state);
+  // console.log(selectCartItems)
+  // console.log("selectUserLogin", UserInfo.userId);
+  // console.log("上一張表單傳的值", history.location.state);
   const orderDelivery = history.location.state;
 
   // const [payment, setPayment] = useState("Credit");
@@ -70,16 +68,10 @@ const OrderPayMent = ({
 
   const [isDefault, setisDefault] = useState(0);
 
-  // const changePayment = (e) => {
-  //   setPayment(e.target.value);
-  // };
 
   const handleChange = (event) => {
     // console.log(event.target.name);
     switch (event.target.name) {
-      // case "payment":
-      //   setPayment(event.target.value);
-      //   break;
       case "cdHolder":
         setcdHolder(event.target.value);
         break;
@@ -88,6 +80,7 @@ const OrderPayMent = ({
         break;
     };
   }
+
   const changeSafeCode = (e) => {
     //先取出數字陣列
     const inputNumList = e.target.value.match(/\d+/g);
@@ -121,22 +114,23 @@ const OrderPayMent = ({
     isDefault: isDefault,
   };
 
-  console.log(
-    "paymentdata",
-    paymentdata,
-    selectCartItems,
-    selectCartTotal,
-    orderDelivery
-  );
+  // console.log(
+  //   "paymentdata",
+  //   paymentdata,
+  //   selectCartItems,
+  //   selectCartTotal,
+  //   orderDelivery
+  // );
 
   const addordersToSever = async () => {
-    axios.post(`http://localhost:3030/orders/orderList`, {
+    const res = await axios.post(`http://localhost:3030/orders/orderList`, {
       paymentdata: paymentdata,
       selectCartItems: selectCartItems,
       selectCartTotal: selectCartTotal,
       orderDelivery: orderDelivery,
     });
-    // history.push('/orders/orderdetail')
+    const { data } = res
+    history.push(`/orders/orderdetail/${data.orderId}`)
   };
 
   return (

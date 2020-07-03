@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import './orderDetail.scss'
 import MainContainer from '../../components/mainContainer'
 import OrderProductCard from '../../components/OrderProductCard/orderProductCard'
-const OrderDeatil = () => {
-  const [orderDetail, setOrderDetail] = useState([])
+import { withRouter } from 'react-router-dom'
+
+const OrderDeatil = ({ match }) => {
+  const [orderDetail, setOrderDetail] = useState({})
 
   const fetchOrderDetailData = async () => {
-    const response = await fetch(`http://localhost:3030/orders/ordersdetail`, {
+    const response = await fetch(`http://localhost:3030/orders/orderdetail/${match.params.orderId}`, {
       credentials: 'include'
     })
     const data = await response.json()
@@ -18,39 +20,38 @@ const OrderDeatil = () => {
       setOrderDetail(data)
     })()
   }, [])
+
+  const { orderId, deliveryData, orderItems, creditCardData, totalPrice } = { ...orderDetail }
   console.log(orderDetail)
   return (
     <MainContainer>
-      <a className='go-back-btn' onClick={(e) => (e.preventDefault())} href='' role='button'>回到訂單紀錄</a>
-      <h2 className='order-title'>訂單編號：9487945</h2>
+      <h2 className='order-title'>訂單編號：{orderId && orderId}</h2>
       <div className='d-flex order-detail-container'>
         <div className='order-detail-subContainer'>
-          <ul>配送方式
-            <li>黑貓宅急便</li>
-          </ul>
           <ul>配送地址
-            <li>王小明<br />
-                10648<br />
-                台北市大安區<br />
-                泰順街38巷26號4F</li>
+            <li>{deliveryData && (deliveryData.userLastName + deliveryData.userFirstName)}<br />
+              {deliveryData && deliveryData.userPostCode}<br />
+              {deliveryData && (deliveryData.userCity + deliveryData.userDistrict)}<br />
+              {deliveryData && deliveryData.userAddress}</li>
           </ul>
           <ul>聯絡電話
-            <li>0900000000</li>
+            <li>{deliveryData && deliveryData.userPhone}</li>
           </ul>
         </div>
         <div className='order-detail-subContainer'>
           <ul>付款方式
-            <li>信用卡<br />
-            MasterCard 1234<br />
-            期限:12/2022</li>
+            <li>
+              {creditCardData && creditCardData[0].association}<br />
+              {creditCardData && creditCardData[0].cdNumber}<br />
+            期限:{creditCardData && creditCardData[0].cdMonth}/{creditCardData && creditCardData[0].cdYear}</li>
           </ul>
         </div>
         <div className='order-detail-subContainer'>
           <ul>帳單地址
-            <li>王小明<br />
-                10648<br />
-                台北市大安區<br />
-                泰順街38巷26號4F</li>
+            <li>{creditCardData && creditCardData[0].cdHolder}<br />
+              {creditCardData && creditCardData[0].billAddressPostCode}<br />
+              {creditCardData && (creditCardData[0].billAddressCity + creditCardData[0].billAddressDistrict)}<br />
+              {creditCardData && creditCardData[0].billAddressStreet}</li>
           </ul>
         </div>
         <div className='order-detail-subContainer'>
@@ -58,25 +59,21 @@ const OrderDeatil = () => {
           <div className='order-price-cotainer'>
             <div className='d-flex justify-content-between order-price-content'>
               <p>商品小計</p>
-              <p>6800</p>
+              <p>{totalPrice && totalPrice}</p>
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>運費</p>
-              <p>80</p>
-            </div>
-            <div className='d-flex justify-content-between order-price-content'>
-              <p>折扣</p>
-              <p>-60</p>
+              <p>-80</p>
             </div>
           </div>
           <div className='order-totalPrice-container'>
             <div className='d-flex justify-content-between order-price-content'>
               <p>總金額</p>
-              <p>6800</p>
+              <p>{totalPrice && (totalPrice - 80)}</p>
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>刷卡金額</p>
-              <p>6800</p>
+              <p>{totalPrice && (totalPrice - 80)}</p>
             </div>
           </div>
         </div>
@@ -88,10 +85,11 @@ const OrderDeatil = () => {
         <p>單價</p>
         <p>小計</p>
       </div>
-      <OrderProductCard />
+      {orderItems && orderItems.map(item => <OrderProductCard key={item.itemId} brand={item.name} itemName={item.itemName} itemId={item.itemId} itemSize={item.itemSize} quantity={item.quantity} itemPrice={item.itemPrice} itemImg={item.itemimg} />)}
+
       <a className='go-back-btn' onClick={(e) => (e.preventDefault())} href='' role='button'>回到訂單紀錄</a>
     </MainContainer>
   )
 }
 
-export default OrderDeatil
+export default withRouter(OrderDeatil)

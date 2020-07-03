@@ -120,7 +120,7 @@ const OrderDelivery = (props) => {
   return (
     <>
       <MainContainer>
-        <div className="registration-container">
+        <div className="order-registration-container">
           <div className="text-center position-relative order-payment-head">
             <div className="position-absolute order-payment-title registration-title">
               寄送資訊
