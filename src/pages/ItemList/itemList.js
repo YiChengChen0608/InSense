@@ -10,14 +10,13 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
-import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
-
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 import WishList from "../../components/WishList/wishList";
 const ItemList = (props) => {
+
     //Redux
     const { user, userLogin, userLogOut } = props;
 
