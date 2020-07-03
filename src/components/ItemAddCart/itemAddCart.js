@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./itemAddCart.scss";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
@@ -13,10 +13,10 @@ import {
   selectUserLogin,
 } from "../../Redux/cart/cartSelectors";
 
-const ItemAddCart = (props) => {
-  const { itemName, itemSize, itemPrice, itemId, itemimg, addQuantity } = props;
+const ItemAddCart = (item) => {
+  const { itemName, itemSize, itemPrice, itemId, itemimg, addQuantity } = item;
   const [quantity, setQuantity] = useState(1);
-  const totalDisplay = (
+  const quantityDisplay = (
     <>
       <div>
         <FiMinus
@@ -45,7 +45,7 @@ const ItemAddCart = (props) => {
         <div className="total">
           <p className="label">數量</p>
           <div className="total-control d-flex align-items-center">
-            {totalDisplay}
+            {quantityDisplay}
           </div>
         </div>
         <div className="item-add-cart">
@@ -53,7 +53,7 @@ const ItemAddCart = (props) => {
             type="submit"
             title="Add to Cart"
             className="btn-cart"
-            onClick={() => addQuantity(props, quantity)}
+            onClick={() => addQuantity(item, quantity)}
           >
             加入購物車
           </button>
