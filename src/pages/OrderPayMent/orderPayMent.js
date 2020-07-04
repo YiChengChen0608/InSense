@@ -10,6 +10,7 @@ import CreditCardExpiration from '../../components/CreditCardExpiration/creditCa
 import CreditCardAssociation from "../../components/CreditCardAssociation/creditCardAssociation";
 import { clearCart } from '../../Redux/cart/cartAction'
 import Address from '../../components/Address/address'
+import InquiryAlert from '../../components/InquiryAlert/inquiryAlert'
 import axios from "axios";
 
 //radio checkbox icon
@@ -37,9 +38,11 @@ const OrderPayMent = ({
   const UserInfo = { ...selectUserInfo };
 
   const orderDelivery = history.location.state;
+  const [getOrderDelivery, setGetOrderDelivery] = useState(orderDelivery)
 
   const [saveCreditCard, setSaveCreditCard] = useState(false);
   const [agree, setAgree] = useState(false);
+
   //持卡人
   const [cdHolder, setcdHolder] = useState("");
 
@@ -67,6 +70,21 @@ const OrderPayMent = ({
 
   const [isDefault, setisDefault] = useState(0);
 
+  //取得信用卡資訊
+  const [getCreditCardInfo, setGetCreditCardInfo] = useState({})
+
+  //打開詢問付款
+  const [openInquiry, setOpenInquiry] = useState(false);
+  const [inquiryTitle, setInquiryTitle] = useState("title");
+  const [inquiryContext, setInquiryContext] = useState("context");
+  const handleInquiryOpen = () => {
+    setInquiryTitle("確認付款");
+    setInquiryContext("按下確認按鈕即送出訂單");
+    setOpenInquiry(true);
+  };
+  const handleInquiryClose = () => {
+    setOpenInquiry(false);
+  };
 
   const handleChange = (event) => {
     switch (event.target.name) {
@@ -108,12 +126,18 @@ const OrderPayMent = ({
     isDefault: isDefault,
   };
 
+  const getSavedCreditCardInfo = async () => {
+    const res = await fetch(`http://localhost:3030/orders/getCreditCardInfo`, { credentials: 'include' })
+    const data = await res.json()
+    return data
+  }
+
   const addordersToSever = async () => {
     const res = await axios.post(`http://localhost:3030/orders/orderList`, {
       paymentdata: paymentdata,
       selectCartItems: selectCartItems,
       selectCartTotal: selectCartTotal,
-      orderDelivery: orderDelivery,
+      orderDelivery: getOrderDelivery,
     });
     const { data } = res
     return data
@@ -125,10 +149,34 @@ const OrderPayMent = ({
     clearCart()
     history.push(`/orders/orderdetail/${data.orderId}`)
   }
-
-  useEffect(async () => {
-
+  //當saveCreditCard 改變時 從資料庫撈資料或變成空物件
+  useEffect(() => {
+    (async () => {
+      if (saveCreditCard) {
+        const data = await getSavedCreditCardInfo()
+        setGetCreditCardInfo(data)
+      } else {
+        setGetCreditCardInfo({})
+      }
+    })()
   }, [saveCreditCard])
+
+  //取得預設的credit card 資料
+  useEffect(() => {
+    const { creditCardInfo } = { ...getCreditCardInfo }
+    setassociation(creditCardInfo && creditCardInfo.association)
+    setCardNumberFirst(creditCardInfo ? creditCardInfo.cdNumber.split('-')[0] : '')
+    setCardNumberSecond(creditCardInfo ? creditCardInfo.cdNumber.split('-')[1] : '')
+    setCardNumberThird(creditCardInfo ? creditCardInfo.cdNumber.split('-')[2] : '')
+    setCardNumbeForth(creditCardInfo ? creditCardInfo.cdNumber.split('-')[3] : '')
+    setcdMonth(creditCardInfo ? creditCardInfo.cdMonth : '')
+    setcdYear(creditCardInfo ? creditCardInfo.cdYear : '')
+    setcdHolder(creditCardInfo ? creditCardInfo.cdHolder : '')
+    setBillCity(creditCardInfo && creditCardInfo.billAddressCity)
+    setBillDistrict(creditCardInfo && creditCardInfo.billAddressDistrict)
+    setBillPostCode(creditCardInfo && creditCardInfo.billAddressPostCode)
+    setBillAddress(creditCardInfo && creditCardInfo.billAddressStreet)
+  }, [getCreditCardInfo])
 
   return (
     <MainContainer>
@@ -153,54 +201,6 @@ const OrderPayMent = ({
           <img src="/images/class/class1.jpg" />
         </div>
         <div className="order-payment-subcontent subcontent-center">
-          {/* <div className="d-flex subcontent-payment-title">
-            付款方式*：
-            <label className="d-flex flex-grow align-items-center">
-              <input
-                className="display-none"
-                name="payment"
-                type="radio"
-                value="Credit"
-                onChange={handleChange}
-              />
-              {payment === "Credit" ? (
-                <FiCheckCircle className="order-payment-circle" />
-              ) : (
-                  <FiCircle className="order-payment-circle" />
-                )}
-              Credit
-            </label>
-            <label className="d-flex flex-grow align-items-center">
-              <input
-                className="display-none"
-                name="payment"
-                type="radio"
-                value="Paypal"
-                onChange={handleChange}
-              />
-              {payment === "Paypal" ? (
-                <FiCheckCircle className="order-payment-circle" />
-              ) : (
-                  <FiCircle className="order-payment-circle" />
-                )}
-              Paypal
-            </label>
-            <label className="d-flex flex-grow align-items-center">
-              <input
-                className="display-none"
-                name="payment"
-                type="radio"
-                value="Stripe"
-                onChange={handleChange}
-              />
-              {payment === "Stripe" ? (
-                <FiCheckCircle className="order-payment-circle" />
-              ) : (
-                  <FiCircle className="order-payment-circle" />
-                )}
-              Stripe
-            </label>
-          </div> */}
 
           {/* 卡別 */}
           <CreditCardAssociation
@@ -241,6 +241,7 @@ const OrderPayMent = ({
           <FormControl>
             <InputLabel htmlFor="my-input">持有人*</InputLabel>
             <Input
+              value={cdHolder}
               name="cdHolder"
               onChange={handleChange}
               id="my-input"
@@ -267,10 +268,20 @@ const OrderPayMent = ({
           <a
             className="confirm-btn"
             href="#"
-            onClick={confirmToPay}
+            onClick={handleInquiryOpen}
           >
             確認付款
           </a>
+          <InquiryAlert
+            openInquiry={openInquiry}
+            handleInquiryClose={handleInquiryClose}
+            inquiryTitle={inquiryTitle}
+            inquiryContext={inquiryContext}
+            leftButton={"取消"}
+            rightButton={"確認"}
+            leftButtonFunc={handleInquiryClose}
+            rightButtonFunc={confirmToPay}
+          />
         </div>
       </div>
     </MainContainer>

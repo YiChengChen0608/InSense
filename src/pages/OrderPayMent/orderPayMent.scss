@@ -22,6 +22,8 @@
 .order-payment-content{
   min-height: 420px;
   margin-bottom: 48px;
+  color:$main-black;
+
   .MuiFormControl-root{
     .MuiFormLabel-root.Mui-focused {
       color: $main-black;
@@ -86,6 +88,7 @@
       .subcontent-date{
         margin-top:32px;
         .MuiFormControl-root{
+          margin-top: 8px;
           margin-bottom: 0;
           text-align: center;
           .MuiInput-input{
