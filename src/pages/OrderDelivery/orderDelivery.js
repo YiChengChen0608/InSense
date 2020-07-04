@@ -10,9 +10,9 @@ import { withRouter } from "react-router-dom";
 import {
   selectCartItems,
   selectCartTotal,
+  selectUserInfo
 } from "../../Redux/cart/cartSelectors";
 
-import { clearCart } from "../../Redux/cart/cartAction";
 //react-icon
 import {
   FiCircle,
@@ -36,7 +36,7 @@ import { FaPhone } from "react-icons/fa";
 
 const OrderDelivery = (props) => {
   //Redux
-  const { user, userLogin, history, clearCart } = props;
+  const { user, userLogin, history, selectUserInfo } = props;
 
   //gender
   const [gender, setGender] = useState("");
@@ -95,8 +95,10 @@ const OrderDelivery = (props) => {
   };
 
   const registrationSent = async () => {
+    const UserInfo = { ...selectUserInfo }
     const data = {
       // 會員帳號
+      userId: UserInfo.userId,
       userAccount: email,
       userEmail: email,
       userPhone: phone,
@@ -117,7 +119,7 @@ const OrderDelivery = (props) => {
   return (
     <>
       <MainContainer>
-        <div className="registration-container">
+        <div className="order-registration-container">
           <div className="text-center position-relative order-payment-head">
             <div className="position-absolute order-payment-title registration-title">
               寄送資訊
@@ -160,8 +162,8 @@ const OrderDelivery = (props) => {
                     {gender === "woman" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                      <FiCircle className="registration-select-circle" />
-                    )}
+                        <FiCircle className="registration-select-circle" />
+                      )}
                     <p>女性</p>
                   </label>
                   <input
@@ -179,8 +181,8 @@ const OrderDelivery = (props) => {
                     {gender === "man" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                      <FiCircle className="registration-select-circle" />
-                    )}
+                        <FiCircle className="registration-select-circle" />
+                      )}
                     <p>男性</p>
                   </label>
                 </div>
@@ -287,7 +289,6 @@ const OrderDelivery = (props) => {
             >
               前往付款
             </Button>
-            <Button onClick={() => clearCart()}>清除購物車</Button>
           </div>
         </div>
       </MainContainer>
@@ -298,11 +299,9 @@ const OrderDelivery = (props) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
+  selectUserInfo: selectUserInfo
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  clearCart: () => dispatch(clearCart()),
-});
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OrderDelivery)
+  connect(mapStateToProps)(OrderDelivery)
 );

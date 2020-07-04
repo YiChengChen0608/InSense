@@ -26,8 +26,8 @@ const ItemInfo = (props) => {
                 className="saved-icon"
                 itemId={props.itemId}
                 wish={props.wish}
-                // itemWishList={props.itemWishList}
-                // setitemWishList={props.setitemWishList}
+              // itemWishList={props.itemWishList}
+              // setitemWishList={props.setitemWishList}
               />
             </div>
           </div>

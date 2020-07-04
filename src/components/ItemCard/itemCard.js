@@ -23,7 +23,14 @@ const ItemCard = (props) => {
           <div className="card-img">
             <img src={itemimg} alt="" />
             <div className="item-button-container">
-              <a className="cart-anchor" onClick={() => addItem(props)}>
+              <a
+                className="cart-anchor"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addItem(props);
+                }}
+                href=""
+              >
                 <FiShoppingCart className="cart-button" />
               </a>
             </div>

@@ -11,21 +11,27 @@ import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
+import ItemCategoryFilter from '../../components/ItemCategoryFilter/itemCategoryFilter'
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 import WishList from "../../components/WishList/wishList";
 const ItemList = (props) => {
+
   //Redux
   const { user, userLogin, userLogOut } = props;
 
   //localstate
+  const [originalCardData, setOriginalCardData] = useState([]);
   const [itemCardData, setItemCardData] = useState([]);
   const [itemHeadData, setItemHeadData] = useState([]);
   const [itemWishList, setItemWishList] = useState([]);
   //拿到網址上的 ":brandName"參數
   const brandOrCategory = useParams().brandOrCategory;
   const name = useParams().Name;
+
+  //filter toggle
+  const [filterToggle, setFilterToggle] = useState(false);
 
   //僅做擷取商品資料用途
   const fetchCardData = async (brandOrCategory, name) => {
@@ -50,6 +56,10 @@ const ItemList = (props) => {
     return dataWish;
   };
 
+  const handleOpenFilter = () => {
+    setFilterToggle(true);
+  };
+
   //一開始載入
   useEffect(() => {
     console.log("changed");
@@ -60,16 +70,19 @@ const ItemList = (props) => {
       const headData = rawData[0]; //標題資料
       const cardData = rawData[1]; //卡片資料
       setItemHeadData(headData);
+      setOriginalCardData(cardData);
       setItemCardData(cardData);
+      console.log("cardData", cardData)
     })();
     // console.log("born");
+    setFilterToggle(false);
   }, [name]);
 
   //登入/登出/載入該頁時，取得願望清單
   useEffect(() => {
     if (user.logInStatus) {
       (async () => {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         const wishListData = await fetchWishList(brandOrCategory, name);
         const logInStatus = wishListData.logInStatus;
         const userInfo = wishListData.userInfo;
@@ -84,31 +97,37 @@ const ItemList = (props) => {
         }
       })();
     }
-    //若已轉為登出
-    if (!user.logInStatus) {
-      setItemWishList([]);
-    }
   }, [user.logInStatus, name]);
 
   return (
     <>
+      {filterToggle ? (
+        <div
+          className="cover"
+          onClick={() => {
+            setFilterToggle(false);
+          }}
+        ></div>
+      ) : (
+          ""
+        )}
       <ItemHead
         Banner={`http://localhost:3030/images/banner/${
           itemHeadData.length
             ? itemHeadData[0].brandBanner
               ? itemHeadData[0].brandBanner
               : itemHeadData[0].itemCategoryBanner
-              ? itemHeadData[0].itemCategoryBanner
-              : ""
+                ? itemHeadData[0].itemCategoryBanner
+                : ""
             : ""
-        }.png`}
+          }.png`}
         Name={
           itemHeadData.length
             ? itemHeadData[0].brandName
               ? itemHeadData[0].brandName
               : itemHeadData[0].itemCategoryName
-              ? itemHeadData[0].itemCategoryName
-              : ""
+                ? itemHeadData[0].itemCategoryName
+                : ""
             : ""
         }
         Discription={
@@ -120,31 +139,62 @@ const ItemList = (props) => {
         }
       />
       {console.log("itemWishList", itemWishList)}
-      <ItemBrandFilter />
+
       <MainContainer>
+        <div className="filter-btn-container d-flex">
+          <div className="filter-btn-group">
+            <div className="filter-btn" onClick={handleOpenFilter}>
+              Refine your search
+                        </div>
+          </div>
+          <div>
+            <div className="filter-btn">Order by</div>
+          </div>
+        </div>
+        {brandOrCategory === "brand" ? (
+          <ItemCategoryFilter
+            setItemCardData={setItemCardData}
+            originalCardData={originalCardData}
+            otherClass={!filterToggle ? "filter-bar-close" : ""}
+            filterToggle={filterToggle}
+            setFilterToggle={setFilterToggle}
+            brandOrCategory={brandOrCategory}
+            name={name}
+          />
+        ) : (
+            <ItemBrandFilter
+              setItemCardData={setItemCardData}
+              originalCardData={originalCardData}
+              otherClass={!filterToggle ? "filter-bar-close" : ""}
+              filterToggle={filterToggle}
+              setFilterToggle={setFilterToggle}
+              brandOrCategory={brandOrCategory}
+              name={name}
+            />
+          )}
         <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
-                return (
-                  <ItemCard
-                    key={el.itemId}
-                    itemId={el.itemId}
-                    itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
-                    itemName={el.itemName}
-                    itemPrice={el.itemPrice}
-                    name={name}
-                    wish={
-                      itemWishList.findIndex((eachWish) => {
-                        return el.itemId === eachWish;
-                      }) < 0
-                        ? false
-                        : true
-                    }
-                    //   itemWishList={itemWishList}
-                    //   setitemWishList={setitemWishList}
-                  />
-                );
-              })
+              return (
+                <ItemCard
+                  key={el.itemId}
+                  itemId={el.itemId}
+                  itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
+                  itemName={el.itemName}
+                  itemPrice={el.itemPrice}
+                  name={name}
+                  wish={
+                    itemWishList.findIndex((eachWish) => {
+                      return el.itemId === eachWish;
+                    }) < 0
+                      ? false
+                      : true
+                  }
+                //   itemWishList={itemWishList}
+                //   setitemWishList={setitemWishList}
+                />
+              );
+            })
             : ""}
           {/* {itemCardData[0].items.map((el, index) => {
                     return (
@@ -159,6 +209,13 @@ const ItemList = (props) => {
                     );
                 })} */}
         </div>
+        {itemCardData.length ? (
+          ""
+        ) : (
+            <div className="filter-box">
+              <h4>Sorry, no items were found.</h4>
+            </div>
+          )}
       </MainContainer>
     </>
   );

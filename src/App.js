@@ -65,7 +65,7 @@ function App() {
               <Route path="/orders/orderpayment">
                 <OrderPayMent />
               </Route>
-              <Route path="/orders/orderdetail">
+              <Route path="/orders/orderdetail/:orderId">
                 <OrderDetail />
               </Route>
             </Route>
