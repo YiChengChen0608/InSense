@@ -6,11 +6,7 @@ import ItemAddCart from "../ItemAddCart/itemAddCart";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  clearItemFromCart,
-  addItem,
-  removeItem,
-} from "../../Redux/cart/cartAction";
+import { addItem } from "../../Redux/cart/cartAction";
 
 import {
   selectCartItems,

@@ -8,13 +8,12 @@ import { Input, FormControl, InputLabel } from "@material-ui/core";
 import CreditCardNumber from '../../components/CreditCardNumber/creditCardNumber'
 import CreditCardExpiration from '../../components/CreditCardExpiration/creditCardExpiration'
 import CreditCardAssociation from "../../components/CreditCardAssociation/creditCardAssociation";
+import { clearCart } from '../../Redux/cart/cartAction'
 import Address from '../../components/Address/address'
 import axios from "axios";
 
 //radio checkbox icon
 import {
-  FiCircle,
-  FiCheckCircle,
   FiSquare,
   FiCheckSquare,
 } from "react-icons/fi";
@@ -33,14 +32,12 @@ const OrderPayMent = ({
   selectCartTotal,
   selectUserLogin,
   selectUserInfo,
+  clearCart
 }) => {
   const UserInfo = { ...selectUserInfo };
-  console.log(selectCartItems)
-  console.log("selectUserLogin", UserInfo.userId);
-  console.log("上一張表單傳的值", history.location.state);
+
   const orderDelivery = history.location.state;
 
-  // const [payment, setPayment] = useState("Credit");
   const [saveCreditCard, setSaveCreditCard] = useState(false);
   const [agree, setAgree] = useState(false);
   //持卡人
@@ -53,8 +50,8 @@ const OrderPayMent = ({
   const [cardNumberForth, setCardNumbeForth] = useState("");
 
   //期限
-  const [cdMonth, setcdMonth] = useState("");
-  const [cdYear, setcdYear] = useState("");
+  const [cdMonth, setcdMonth] = useState('');
+  const [cdYear, setcdYear] = useState('');
 
   //安全碼
   const [safeCode, setSafeCode] = useState("");
@@ -70,16 +67,9 @@ const OrderPayMent = ({
 
   const [isDefault, setisDefault] = useState(0);
 
-  // const changePayment = (e) => {
-  //   setPayment(e.target.value);
-  // };
 
   const handleChange = (event) => {
-    // console.log(event.target.name);
     switch (event.target.name) {
-      // case "payment":
-      //   setPayment(event.target.value);
-      //   break;
       case "cdHolder":
         setcdHolder(event.target.value);
         break;
@@ -88,6 +78,7 @@ const OrderPayMent = ({
         break;
     };
   }
+
   const changeSafeCode = (e) => {
     //先取出數字陣列
     const inputNumList = e.target.value.match(/\d+/g);
@@ -104,11 +95,7 @@ const OrderPayMent = ({
     setSafeCode(insertNum)
   }
   const paymentdata = {
-    // payment: payment,
-    // saveCreditCard: saveCreditCard,
-    // safeCode: safeCode,
     userId: UserInfo.userId,
-    // !! missing userId !!
     cdHolder: cdHolder,
     cdMonth: cdMonth,
     cdYear: cdYear,
@@ -121,23 +108,27 @@ const OrderPayMent = ({
     isDefault: isDefault,
   };
 
-  console.log(
-    "paymentdata",
-    paymentdata,
-    selectCartItems,
-    selectCartTotal,
-    orderDelivery
-  );
-
   const addordersToSever = async () => {
-    axios.post(`http://localhost:3030/orders/orderList`, {
+    const res = await axios.post(`http://localhost:3030/orders/orderList`, {
       paymentdata: paymentdata,
       selectCartItems: selectCartItems,
       selectCartTotal: selectCartTotal,
       orderDelivery: orderDelivery,
     });
-    // history.push('/orders/orderdetail')
+    const { data } = res
+    return data
   };
+
+  const confirmToPay = async (e) => {
+    e.preventDefault()
+    const data = await addordersToSever()
+    clearCart()
+    history.push(`/orders/orderdetail/${data.orderId}`)
+  }
+
+  useEffect(async () => {
+
+  }, [saveCreditCard])
 
   return (
     <MainContainer>
@@ -267,7 +258,7 @@ const OrderPayMent = ({
           />
           <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setSaveCreditCard(!saveCreditCard)}>
             {saveCreditCard ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
-            <p>使用已儲存的信用卡資訊</p>
+            <p>使用預設已儲存的信用卡</p>
           </div>
           <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setAgree(!agree)}>
             {agree ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
@@ -276,7 +267,7 @@ const OrderPayMent = ({
           <a
             className="confirm-btn"
             href="#"
-            onClick={(e) => (e.preventDefault(), addordersToSever())}
+            onClick={confirmToPay}
           >
             確認付款
           </a>
@@ -292,4 +283,8 @@ const mapStateToProps = createStructuredSelector({
   selectUserInfo: selectUserInfo,
 });
 
-export default withRouter(connect(mapStateToProps)(OrderPayMent));
+const mapDispatchToProps = (dispatch) => ({
+  clearCart: () => dispatch(clearCart()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderPayMent));

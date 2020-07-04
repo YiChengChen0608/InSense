@@ -10,9 +10,8 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
-import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
-
+import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
@@ -72,6 +71,7 @@ const ItemList = (props) => {
             setItemHeadData(headData);
             setOriginalCardData(cardData);
             setItemCardData(cardData);
+            console.log("cardData", cardData);
         })();
         // console.log("born");
         setFilterToggle(false);
@@ -212,7 +212,8 @@ const ItemList = (props) => {
                     ""
                 ) : (
                     <div className="filter-box">
-                        <h4>Sorry, no items were found.</h4>
+                        <h4>沒有找到符合的商品</h4>
+                        {/* <h4>Sorry, no items were found.</h4> */}
                     </div>
                 )}
             </MainContainer>
