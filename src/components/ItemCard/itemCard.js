@@ -8,7 +8,6 @@ import SavedItems from "../SavedItems/savedItems";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/cart/cartAction";
-// import { addItemToCart } from '../../Redux/cart/cartUtils';
 
 const ItemCard = (props) => {
   const { name, itemName, itemimg, itemPrice, itemId, addItem, wish } = props;
@@ -29,7 +28,9 @@ const ItemCard = (props) => {
                 onClick={(e) => {
                   e.preventDefault();
                   addItem(props);
+
                 }}
+                href=""
               >
                 <FiShoppingCart className="cart-button" />
               </a>

@@ -59,21 +59,21 @@ const OrderDeatil = ({ match }) => {
           <div className='order-price-cotainer'>
             <div className='d-flex justify-content-between order-price-content'>
               <p>商品小計</p>
-              <p>{totalPrice && totalPrice}</p>
+              <p>$ {totalPrice && totalPrice}</p>
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>運費</p>
-              <p>-80</p>
+              <p>$ -80</p>
             </div>
           </div>
           <div className='order-totalPrice-container'>
             <div className='d-flex justify-content-between order-price-content'>
               <p>總金額</p>
-              <p>{totalPrice && (totalPrice - 80)}</p>
+              <p>$ {totalPrice && (totalPrice - 80)}</p>
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>刷卡金額</p>
-              <p>{totalPrice && (totalPrice - 80)}</p>
+              <p>$ {totalPrice && (totalPrice - 80)}</p>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ const OrderDeatil = ({ match }) => {
         <p>單價</p>
         <p>小計</p>
       </div>
-      {orderItems && orderItems.map(item => <OrderProductCard key={item.itemId} brand={item.name} itemName={item.itemName} itemId={item.itemId} itemSize={item.itemSize} quantity={item.quantity} itemPrice={item.itemPrice} itemImg={item.itemimg} />)}
+      {orderItems && orderItems.map(item => <OrderProductCard key={item.itemId} itemName={item.itemName} itemId={item.itemId} itemSize={item.itemSize} quantity={item.quantity} itemPrice={item.itemPrice} itemImg={item.itemimg} />)}
 
       <a className='go-back-btn' onClick={(e) => (e.preventDefault())} href='' role='button'>回到訂單紀錄</a>
     </MainContainer>
