@@ -21,7 +21,7 @@ export default function SuccessAlert(props) {
   const {
     alertName,
     alertContext,
-    openAlert,
+    openAlert = false,
     handleAlertClose,
     alertLinearProgress = false,
     alertAutoClose = false,

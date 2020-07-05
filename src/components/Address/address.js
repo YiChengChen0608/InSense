@@ -139,7 +139,9 @@ const Address = (props) => {
       console.log("newCode", newCode);
       setCitiesSelected(newCode.cityCode);
       setDistrictsSelected(newCode.districtCode);
-      setAddress(myCompleteAddress.myAddress);
+      setAddress(
+        myCompleteAddress.myAddress === null ? "" : myCompleteAddress.myAddress
+      );
     }
   }, [user, cities, props.myPostCode]);
 
