@@ -4,7 +4,7 @@
   min-height: 200px;
   margin-bottom: 15px;
 
-  figure{
+  figure {
     width: 30%;
   }
   img {
@@ -20,6 +20,12 @@
     align-items: flex-start;
     justify-content: center;
     padding: 10px 20px;
+
+    .arrow {
+      padding: 15px;
+      justify-content: right;
+      cursor: pointer;
+    }
 
     .name {
       font-size: 16px;

@@ -158,12 +158,12 @@ const Address = (props) => {
         >
           {cities.length
             ? cities.map((el, index) => {
-                return (
-                  <MenuItem key={el.CityName} value={index}>
-                    {el.CityName}
-                  </MenuItem>
-                );
-              })
+              return (
+                <MenuItem key={el.CityName} value={index}>
+                  {el.CityName}
+                </MenuItem>
+              );
+            })
             : ""}
         </Select>
       </FormControl>
@@ -185,8 +185,8 @@ const Address = (props) => {
               );
             })
           ) : (
-            <MenuItem value="">未選縣市</MenuItem>
-          )}
+              <MenuItem value="">未選縣市</MenuItem>
+            )}
         </Select>
       </FormControl>
       <FormInput

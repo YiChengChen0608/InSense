@@ -13,7 +13,6 @@ import { bindActionCreators } from "redux";
 import { toggleCartHidden } from "../../Redux/cart/cartAction";
 
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
-// import FormInput from "../../components/FormInput/FormInput";
 
 import "./checkout.scss";
 import SubmitButton from "../../components/SubmitButton/submitButton";
@@ -26,6 +25,7 @@ const CheckoutPage = ({
   user,
   userToggleFunc,
   userSelect,
+  clearCart,
 }) => (
   <div className="checkout-page">
     <div className="title">購物車</div>

@@ -101,8 +101,8 @@ const ItemDetails = (props) => {
               }
             />
           ) : (
-            ""
-          )}
+              ""
+            )}
           <ItemInfo
             itemName={itemInfosData.itemName}
             itemSize={itemInfosData.itemSize}

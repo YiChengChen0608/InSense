@@ -6,11 +6,7 @@ import ItemAddCart from "../ItemAddCart/itemAddCart";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  clearItemFromCart,
-  addItem,
-  removeItem,
-} from "../../Redux/cart/cartAction";
+import { addItem } from "../../Redux/cart/cartAction";
 
 import {
   selectCartItems,
@@ -30,8 +26,8 @@ const ItemInfo = (props) => {
                 className="saved-icon"
                 itemId={props.itemId}
                 wish={props.wish}
-                // itemWishList={props.itemWishList}
-                // setitemWishList={props.setitemWishList}
+              // itemWishList={props.itemWishList}
+              // setitemWishList={props.setitemWishList}
               />
             </div>
           </div>

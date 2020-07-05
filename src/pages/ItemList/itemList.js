@@ -10,9 +10,8 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
-import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
-
+import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
@@ -22,6 +21,7 @@ const ItemList = (props) => {
   const { user, userLogin, userLogOut } = props;
 
   //localstate
+  const [originalCardData, setOriginalCardData] = useState([]);
   const [itemCardData, setItemCardData] = useState([]);
   const [itemHeadData, setItemHeadData] = useState([]);
   const [itemWishList, setItemWishList] = useState([]);
@@ -69,9 +69,12 @@ const ItemList = (props) => {
       const headData = rawData[0]; //標題資料
       const cardData = rawData[1]; //卡片資料
       setItemHeadData(headData);
+      setOriginalCardData(cardData);
       setItemCardData(cardData);
+      console.log("cardData", cardData);
     })();
     // console.log("born");
+    setFilterToggle(false);
   }, [name]);
 
   //登入/登出/載入該頁時，取得願望清單
@@ -97,6 +100,16 @@ const ItemList = (props) => {
 
   return (
     <>
+      {filterToggle ? (
+        <div
+          className="cover"
+          onClick={() => {
+            setFilterToggle(false);
+          }}
+        ></div>
+      ) : (
+        ""
+      )}
       <ItemHead
         Banner={`http://localhost:3030/images/banner/${
           itemHeadData.length
@@ -137,15 +150,27 @@ const ItemList = (props) => {
             <div className="filter-btn">Order by</div>
           </div>
         </div>
-        <ItemCategoryFilter
-          otherClass={!filterToggle ? "filter-bar-close" : ""}
-          filterToggle={filterToggle}
-          setFilterToggle={setFilterToggle}
-          brandOrCategory={brandOrCategory}
-          name={name}
-        />
-
-        {/* <ItemBrandFilter /> */}
+        {brandOrCategory === "brand" ? (
+          <ItemCategoryFilter
+            setItemCardData={setItemCardData}
+            originalCardData={originalCardData}
+            otherClass={!filterToggle ? "filter-bar-close" : ""}
+            filterToggle={filterToggle}
+            setFilterToggle={setFilterToggle}
+            brandOrCategory={brandOrCategory}
+            name={name}
+          />
+        ) : (
+          <ItemBrandFilter
+            setItemCardData={setItemCardData}
+            originalCardData={originalCardData}
+            otherClass={!filterToggle ? "filter-bar-close" : ""}
+            filterToggle={filterToggle}
+            setFilterToggle={setFilterToggle}
+            brandOrCategory={brandOrCategory}
+            name={name}
+          />
+        )}
         <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
@@ -155,7 +180,7 @@ const ItemList = (props) => {
                     itemId={el.itemId}
                     itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                     itemName={el.itemName}
-                    itemPrice={`NT$ ${el.itemPrice}`}
+                    itemPrice={el.itemPrice}
                     name={name}
                     wish={
                       itemWishList.findIndex((eachWish) => {
@@ -171,7 +196,6 @@ const ItemList = (props) => {
               })
             : ""}
           {/* {itemCardData[0].items.map((el, index) => {
-
                     return (
                         <ItemCard
                             id={el.id}
@@ -184,6 +208,14 @@ const ItemList = (props) => {
                     );
                 })} */}
         </div>
+        {itemCardData.length ? (
+          ""
+        ) : (
+          <div className="filter-box">
+            <h4>沒有找到符合的商品</h4>
+            {/* <h4>Sorry, no items were found.</h4> */}
+          </div>
+        )}
       </MainContainer>
     </>
   );

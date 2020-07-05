@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import MainContainer from "../../components/mainContainer";
 import FormInput from "../../components/FormInput/FormInput";
 import Address from "../../components/Address/address";
 import "./orderDelivery.scss";
-import { Redirect, withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import {
   selectCartItems,
   selectCartTotal,
+  selectUserInfo
 } from "../../Redux/cart/cartSelectors";
 
 //react-icon
@@ -36,7 +36,7 @@ import { FaPhone } from "react-icons/fa";
 
 const OrderDelivery = (props) => {
   //Redux
-  const { user, userLogin, history } = props;
+  const { user, userLogin, history, selectUserInfo } = props;
 
   //gender
   const [gender, setGender] = useState("");
@@ -95,8 +95,10 @@ const OrderDelivery = (props) => {
   };
 
   const registrationSent = async () => {
+    const UserInfo = { ...selectUserInfo }
     const data = {
       // 會員帳號
+      userId: UserInfo.userId,
       userAccount: email,
       userEmail: email,
       userPhone: phone,
@@ -117,7 +119,7 @@ const OrderDelivery = (props) => {
   return (
     <>
       <MainContainer>
-        <div className="registration-container">
+        <div className="order-registration-container">
           <div className="text-center position-relative order-payment-head">
             <div className="position-absolute order-payment-title registration-title">
               寄送資訊
@@ -154,14 +156,14 @@ const OrderDelivery = (props) => {
                     onChange={genderChange}
                   ></input>
                   <label
-                    for="registration-radio-woman"
+                    htmlFor="registration-radio-woman"
                     className="d-flex align-items-center"
                   >
                     {gender === "woman" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                      <FiCircle className="registration-select-circle" />
-                    )}
+                        <FiCircle className="registration-select-circle" />
+                      )}
                     <p>女性</p>
                   </label>
                   <input
@@ -173,14 +175,14 @@ const OrderDelivery = (props) => {
                     onChange={genderChange}
                   ></input>
                   <label
-                    for="registration-radio-man"
+                    htmlFor="registration-radio-man"
                     className=" d-flex align-items-center"
                   >
                     {gender === "man" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                      <FiCircle className="registration-select-circle" />
-                    )}
+                        <FiCircle className="registration-select-circle" />
+                      )}
                     <p>男性</p>
                   </label>
                 </div>
@@ -216,7 +218,7 @@ const OrderDelivery = (props) => {
                   value={lastName}
                   handleChange={handleChange}
                   label="姓氏"
-                  required
+                  required=""
                 />
               </div>
             </div>
@@ -228,7 +230,7 @@ const OrderDelivery = (props) => {
                   value={firstName}
                   handleChange={handleChange}
                   label="名字"
-                  required
+                  required={props.required}
                 />
               </div>
             </div>
@@ -297,6 +299,9 @@ const OrderDelivery = (props) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
+  selectUserInfo: selectUserInfo
 });
 
-export default withRouter(connect(mapStateToProps, null)(OrderDelivery));
+export default withRouter(
+  connect(mapStateToProps)(OrderDelivery)
+);

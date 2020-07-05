@@ -2,19 +2,24 @@
 
 .banner-container {
     position: relative;
-    width: 95%;
-    min-height: 600px;
+    width: 100%;
+    min-height: 730px;
     margin: 36px auto;
     background: url("/images/banner/perfume-main-pic.jpeg");
     background-size: cover;
     div {
         position: absolute;
-        left: 50%;
+        left: 55%;
         top: 30%;
         color: $main-black;
         .banner-title {
             font-size: 32px;
             font-weight: 400;
+            padding-bottom: 20px;
+        }
+        p {
+            letter-spacing: 1px;
+            font-size: 18px;
         }
     }
 }

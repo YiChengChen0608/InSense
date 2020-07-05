@@ -2,8 +2,10 @@
 
 .order-detail-product-card{
   border: 2px solid rgba(85, 85, 85,.6);
+  margin:8px 0 16px;
   figure,p{
     flex:1 0 0;
+    color:$main-black;
     text-align: center;
   }
   figure{
@@ -20,6 +22,7 @@
     width: 30%;
     margin: 0;
     padding: 0;
+    color:$main-black;
     li{
       line-height: 24px;
       text-align: left;

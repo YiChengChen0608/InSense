@@ -12,7 +12,7 @@ import navReducer from "./nav/navReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"],
+  // whitelist: ["cart"],
 };
 
 const rootReducer = combineReducers({

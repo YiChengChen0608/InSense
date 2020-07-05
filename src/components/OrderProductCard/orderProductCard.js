@@ -1,22 +1,21 @@
 import React from 'react'
 import './orderProductCard.scss'
-const OrderProductCard = () => {
+const OrderProductCard = ({ itemName, itemId, itemSize, quantity, itemPrice, itemImg }) => {
   return (
     <div className='d-flex justify-content-center align-items-center order-detail-product-card'>
       <figure>
-        <img src='images/items/P0001.png' />
+        <img src={itemImg} />
       </figure>
       <ul>
         <li>
-          BYREDO<br />
-          北國之春 淡香精<br />
-          P00000<br />
-          100ml
+          {itemName}<br />
+          {itemId}<br />
+          {itemSize}
         </li>
       </ul>
-      <p>1</p>
-      <p>4800</p>
-      <p>4800</p>
+      <p>{quantity}</p>
+      <p>NT$ {itemPrice}</p>
+      <p>NT$ {quantity * itemPrice}</p>
     </div>
   )
 }
