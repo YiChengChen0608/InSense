@@ -88,6 +88,10 @@ const IndexLogin = (props) => {
     props.history.push("/account/registration");
   };
 
+  const redirectPasswordForgot = () => {
+    props.history.push("/account/passwordforgot");
+  };
+
   useEffect(() => {
     // console.log("changed");
   }, [user]);
@@ -116,7 +120,7 @@ const IndexLogin = (props) => {
       <div className="loginFooter text-center">
         <Button onClick={handleLogin}>登入</Button>
         <Button onClick={redirectRegister}>註冊</Button>
-        <Button>忘記密碼</Button>
+        <Button onClick={redirectPasswordForgot}>忘記密碼</Button>
       </div>
       <SuccessAlert
         alertName={alertName}
