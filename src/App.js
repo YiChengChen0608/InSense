@@ -24,9 +24,8 @@ import PasswordForgot from "./pages/PasswordForgot/passwordForgot";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
-
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
-
+import OrderHistory from './pages/OrderHistory/orderHistory'
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
@@ -92,6 +91,9 @@ function App() {
               </Route>
               <Route path="/account/modify">
                 <Modify />
+              </Route>
+              <Route path="/account/orderhistory">
+                <OrderHistory />
               </Route>
             </Route>
             <Route path="/">
