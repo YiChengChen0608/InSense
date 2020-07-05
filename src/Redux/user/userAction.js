@@ -37,7 +37,7 @@ export const userLogInAsync = (
     if (obj.logInStatus) {
       loginSuccess();
     } else {
-      loginFail();
+      loginFail(obj.errorMessage);
     }
 
     //更動redux state

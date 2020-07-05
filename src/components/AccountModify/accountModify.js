@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "./accountModify.scss";
+
+//sha256
+import { sha256 } from 'js-sha256';
 
 //Redux
 import { userLogin, userLogOut } from "../../Redux/user/userAction";
@@ -9,6 +13,7 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 //component
 import FormInput from "../../components/FormInput/FormInput";
 import Address from "../../components/Address/address";
+import SuccessAlert from "../SuccessAlert/successAlert";
 
 //react-icon
 import {
@@ -32,7 +37,7 @@ import {
 
 const AccountModify = (props) => {
   //destructor
-  const { user, userLogin, userLogOut } = props;
+  const { user, userLogin, userLogOut, history } = props;
   //gender
   const [gender, setGender] = useState("");
 
@@ -65,9 +70,38 @@ const AccountModify = (props) => {
     setSelectedDate(date);
   };
 
+  //格式錯誤檢查
+  const [formatError, setFormatError] = useState({});
+
+  //alert
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertName, setAlertName] = useState("");
+  const [alertContext, setAlertContext] = useState("");
+  const [alertLinearProgress, setAlertLinearProgress] = useState(false);
+  const [alertAutoClose, setAlertAutoClose] = useState(false);
+  const [alertDuration, setAlertDuration] = useState("");
+  const handleAlertOpen = (
+    alertName = "alertName",
+    alertContext = "alertContext",
+    alertAutoClose = false,
+    linearProgress = false,
+    duration
+  ) => {
+    setAlertName(alertName);
+    setAlertContext(alertContext);
+    setAlertLinearProgress(linearProgress);
+    setAlertAutoClose(alertAutoClose);
+    setAlertDuration(duration);
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
+  };
+
   //文字欄
   const handleChange = (event) => {
     // console.log(event.target.name);
+    const errorObj = {...formatError};
     switch (event.target.name) {
       case "firstName":
         setFirstName(event.target.value);
@@ -85,14 +119,20 @@ const AccountModify = (props) => {
         setOldPassword(event.target.value);
         break;
       case "newPassword":
+        errorObj.newPassword = event.target.value.length < 5 ? "格式錯誤*" : "";
+        errorObj.newPasswordConfirmed =
+          newPasswordConfirmed !== event.target.value ? "密碼不相同*" : "";
         setNewPassword(event.target.value);
         break;
       case "newPasswordConfirmed":
+        errorObj.newPasswordConfirmed =
+          event.target.value !== newPassword ? "密碼不相同*" : "";
         setNewPasswordConfirmed(event.target.value);
         break;
       default:
         break;
     }
+    setFormatError(errorObj);
   };
 
   //聲明確認
@@ -142,12 +182,14 @@ const AccountModify = (props) => {
       //各種更新狀態
       if (obj.success) {
         console.log("update successfully");
+        setConfirm(false);
+        handleAlertOpen("更新成功", "已可在會員修改頁面查詢", false);
         //   =============== 若成功改變，要彈跳視窗 ===============   //
       } else if (obj.message === "NO_CHANGE") {
         console.log("NO_CHANGE");
+        handleAlertOpen("無任何更新", "送出資料與原資料相同", true, true, 2000);
         //   =============== 若沒有改變，要彈跳視窗 ===============   //
       } else if (!obj.logInStatus) {
-        //   =============== 若檢查後狀態為登出，要彈跳視窗，並跳轉頁面，以及開啟登入頁面 ===============   //
         console.log("logged out");
         userLogOut();
       }
@@ -155,18 +197,42 @@ const AccountModify = (props) => {
     } else {
       // if confirm-box not checked
       console.log("not sent");
+      handleAlertOpen(
+        "未勾選「確認更改」",
+        "請詳細檢閱資料是否正確",
+        false,
+        false
+      );
     }
   };
 
   //送出密碼更改要求
   const passwordSent = async () => {
     //   =============== 要先在前端檢查密碼格式 ===============   //
-    if (newPassword === newPasswordConfirmed) {
+    //檢查各式錯誤
+    const errorObj = {};
+    if (newPassword.length < 5) errorObj.newPassword = "格式錯誤*";
+    if (newPasswordConfirmed !== newPassword)
+      errorObj.newPasswordConfirmed = "密碼不相同*";
+
+    console.log("errorObj", errorObj);
+    setFormatError(errorObj);
+
+    //若格式錯誤
+    if (Object.keys(errorObj).length) {
+      if (newPasswordConfirmed !== newPassword) {
+        handleAlertOpen("確認新密碼錯誤", "請詳細檢查輸入的資訊");
+        // console.log("password not changed");
+      } else if (errorObj.newPassword) {
+        handleAlertOpen("密碼格式錯誤", "請詳細檢查輸入的資訊");
+      }
+    } else {
+      //若無任何格式錯誤
       //   console.log("password changed");
       const data = {
-        oldPassword,
-        newPassword,
-        newPasswordConfirmed,
+        oldPassword: sha256(oldPassword),
+        newPassword: sha256(newPassword),
+        newPasswordConfirmed: sha256(newPasswordConfirmed),
       };
       console.log(data);
 
@@ -188,16 +254,21 @@ const AccountModify = (props) => {
       // ================================== //
       //各種更新狀態
       if (obj.success) {
-        console.log("update successfully");
-        //   =============== 若成功改變，要彈跳視窗 ===============   //
-      } else if (!obj.logInStatus) {
-        //   =============== 若檢查後狀態為登出，要彈跳視窗，並跳轉頁面，以及開啟登入頁面 ===============   //
-        console.log("logged out");
-        userLogOut();
+        // console.log("update successfully");
+        handleAlertOpen("更新成功", "可在會員資料修改頁面查詢");
+      } else {
+        if (!obj.logInStatus) {
+          // console.log("logged out");
+          userLogOut();
+        } else {
+          if (obj.errorMessage === "OLD_PASSWORD_INCORRECT") {
+            errorObj.oldPassword = "密碼錯誤*";
+            setFormatError(errorObj);
+            handleAlertOpen("舊密碼錯誤", "請詳細檢查輸入的資訊");
+          }
+        }
       }
       // ================================== //
-    } else {
-      console.log("password not changed");
     }
   };
 
@@ -206,11 +277,16 @@ const AccountModify = (props) => {
     if (user.logInStatus) {
       setGender(user.userInfo.userGender);
       setSelectedDate(new Date(user.userInfo.userBirthday));
-      setLastName(user.userInfo.userLastName);
-      setFirstName(user.userInfo.userFirstName);
+      setLastName(
+        user.userInfo.userLastName === null ? "" : user.userInfo.userLastName
+      );
+      setFirstName(
+        user.userInfo.userFirstName === null ? "" : user.userInfo.userFirstName
+      );
       setEmail(user.userInfo.userEmail);
-      setMobile(user.userInfo.userMobile);
-      //   setPassword(user.userInfo.userPassword);
+      setMobile(
+        user.userInfo.userMobile === null ? "" : user.userInfo.userMobile
+      );
       setCities(user.userInfo.userCity);
       setDistricts(user.userInfo.userDistrict);
       setPostCode(user.userInfo.userPostCode);
@@ -219,8 +295,13 @@ const AccountModify = (props) => {
   }, [user]);
 
   useEffect(() => {
-    //   console.log('user changed')
-  }, [user]);
+    if (user.logInStatus !== null && !user.logInStatus) {
+      handleAlertOpen("未登入", "一秒鐘後跳轉首頁", true, true, 1000);
+      setTimeout(() => {
+        history.push("/");
+      }, 1500);
+    }
+  }, [user.logInStatus]);
 
   return (
     <>
@@ -303,7 +384,6 @@ const AccountModify = (props) => {
                 value={lastName}
                 handleChange={handleChange}
                 label="姓氏"
-                required
               />
             </div>
           </div>
@@ -315,7 +395,6 @@ const AccountModify = (props) => {
                 value={firstName}
                 handleChange={handleChange}
                 label="名字"
-                required
               />
             </div>
           </div>
@@ -327,7 +406,6 @@ const AccountModify = (props) => {
                 value={email}
                 handleChange={handleChange}
                 label="email"
-                required
               />
             </div>
           </div>
@@ -339,7 +417,6 @@ const AccountModify = (props) => {
                 value={mobile}
                 handleChange={handleChange}
                 label="手機"
-                required
               />
             </div>
           </div>
@@ -378,8 +455,14 @@ const AccountModify = (props) => {
                 value={oldPassword}
                 handleChange={handleChange}
                 label="舊密碼"
-                required
               />
+            </div>
+            <div
+              className={
+                !!formatError.oldPassword ? "error-message" : "display-none"
+              }
+            >
+              <span>{formatError.oldPassword}</span>
             </div>
           </div>
           <div className="password-grid-item password-grid-new-password">
@@ -389,9 +472,15 @@ const AccountModify = (props) => {
                 name="newPassword"
                 value={newPassword}
                 handleChange={handleChange}
-                label="新密碼"
-                required
+                label="新密碼 (須大於五碼*)"
               />
+            </div>
+            <div
+              className={
+                !!formatError.newPassword ? "error-message" : "display-none"
+              }
+            >
+              <span>{formatError.newPassword}</span>
             </div>
           </div>
           <div className="password-grid-item password-grid-new-password-confirm">
@@ -402,8 +491,16 @@ const AccountModify = (props) => {
                 value={newPasswordConfirmed}
                 handleChange={handleChange}
                 label="確認新密碼"
-                required
               />
+            </div>
+            <div
+              className={
+                !!formatError.newPasswordConfirmed
+                  ? "error-message"
+                  : "display-none"
+              }
+            >
+              <span>{formatError.newPasswordConfirmed}</span>
             </div>
           </div>
         </div>
@@ -416,6 +513,15 @@ const AccountModify = (props) => {
             密碼更改
           </Button>
         </div>
+        <SuccessAlert
+          alertName={alertName}
+          alertContext={alertContext}
+          openAlert={openAlert}
+          handleAlertClose={handleAlertClose}
+          alertLinearProgress={alertLinearProgress} //有無時間條
+          alertAutoClose={alertAutoClose} // 自行關閉
+          alertDuration={alertDuration} //時間間隔
+        />
       </div>
     </>
   );
@@ -430,4 +536,6 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AccountModify);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AccountModify)
+);

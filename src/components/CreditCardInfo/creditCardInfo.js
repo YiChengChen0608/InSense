@@ -105,8 +105,11 @@ const CreditCardInfo = (props) => {
     })();
 
     //以防萬一
-    if (!user.logInStatus) {
-      setCreditCardList([]);
+    if (user.logInStatus !== null && !user.logInStatus) {
+      handleAlertOpen("未登入", "一秒鐘後跳轉首頁", true, true, 1000);
+      setTimeout(() => {
+        history.push("/");
+      }, 1500);
     }
   }, [user.logInStatus]);
 

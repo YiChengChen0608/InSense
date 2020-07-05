@@ -21,6 +21,7 @@ import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import PasswordForgot from "./pages/PasswordForgot/passwordForgot";
+import PasswordForgotChange from "./pages/PasswordForgotChange/passwordForgotChange";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
@@ -85,6 +86,9 @@ function App() {
               </Route>
               <Route path="/account/passwordforgot">
                 <PasswordForgot />
+              </Route>
+              <Route path="/account/passwordforgotchange/:userId">
+                <PasswordForgotChange />
               </Route>
               <Route path="/account/registration">
                 <Registration />
