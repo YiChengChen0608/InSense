@@ -21,12 +21,12 @@ import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
 import PasswordForgot from "./pages/PasswordForgot/passwordForgot";
+import PasswordForgotChange from "./pages/PasswordForgotChange/passwordForgotChange";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
-
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
-
+import OrderHistory from './pages/OrderHistory/orderHistory'
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
@@ -87,11 +87,17 @@ function App() {
               <Route path="/account/passwordforgot">
                 <PasswordForgot />
               </Route>
+              <Route path="/account/passwordforgotchange/:userId">
+                <PasswordForgotChange />
+              </Route>
               <Route path="/account/registration">
                 <Registration />
               </Route>
               <Route path="/account/modify">
                 <Modify />
+              </Route>
+              <Route path="/account/orderhistory">
+                <OrderHistory />
               </Route>
             </Route>
             <Route path="/">

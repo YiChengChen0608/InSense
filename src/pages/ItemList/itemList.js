@@ -8,7 +8,6 @@ import { userLogin, userLogOut } from "../../Redux/user/userAction";
 
 //component
 import ItemHead from "../../components/ItemHead/itemHead";
-// import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
 import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
@@ -17,85 +16,86 @@ import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 import WishList from "../../components/WishList/wishList";
 const ItemList = (props) => {
-    //Redux
-    const { user, userLogin, userLogOut } = props;
+  //Redux
+  const { user, userLogin, userLogOut } = props;
 
-    //localstate
-    const [originalCardData, setOriginalCardData] = useState([]);
-    const [itemCardData, setItemCardData] = useState([]);
-    const [itemHeadData, setItemHeadData] = useState([]);
-    const [itemWishList, setItemWishList] = useState([]);
-    //拿到網址上的 ":brandName"參數
-    const brandOrCategory = useParams().brandOrCategory;
-    const name = useParams().Name;
+  //localstate
+  const [originalCardData, setOriginalCardData] = useState([]);
+  const [itemCardData, setItemCardData] = useState([]);
+  const [itemHeadData, setItemHeadData] = useState([]);
+  const [itemWishList, setItemWishList] = useState([]);
+  //拿到網址上的 ":brandName"參數
+  const brandOrCategory = useParams().brandOrCategory;
+  const name = useParams().Name;
 
-    //filter toggle
-    const [filterToggle, setFilterToggle] = useState(false);
+  //filter toggle
+  const [filterToggle, setFilterToggle] = useState(false);
 
-    //僅做擷取商品資料用途
-    const fetchCardData = async (brandOrCategory, name) => {
-        // const brand = "chanel";
-        // console.log(brand);
-        const res = await fetch(
-            `http://localhost:3030/itemlist/${brandOrCategory}/${name}`
-        );
-        const data = await res.json();
-        // console.log("data", data);
-        return data;
-    };
+  //僅做擷取商品資料用途
+  const fetchCardData = async (brandOrCategory, name) => {
+    // const brand = "chanel";
+    // console.log(brand);
+    const res = await fetch(
+      `http://localhost:3030/itemlist/${brandOrCategory}/${name}`
+    );
+    const data = await res.json();
+    // console.log("data", data);
+    return data;
+  };
 
-    //取得願望清單
-    const fetchWishList = async (brandOrCategory, name) => {
-        const res = await fetch(
-            `http://localhost:3030/itemlist/wishlist/${brandOrCategory}/${name}`,
-            { credentials: "include" }
-        );
-        const dataWish = await res.json();
-        console.log("dataWish", dataWish);
-        return dataWish;
-    };
+  //取得願望清單
+  const fetchWishList = async (brandOrCategory, name) => {
+    const res = await fetch(
+      `http://localhost:3030/itemlist/wishlist/${brandOrCategory}/${name}`,
+      { credentials: "include" }
+    );
+    const dataWish = await res.json();
+    console.log("dataWish", dataWish);
+    return dataWish;
+  };
 
-    const handleOpenFilter = () => {
-        setFilterToggle(true);
-    };
+  const handleOpenFilter = () => {
+    setFilterToggle(true);
+  };
 
-    //一開始載入
-    useEffect(() => {
-        console.log("changed");
+  //一開始載入
+  useEffect(() => {
+    console.log("changed");
 
-        (async () => {
-            //1. 獲得資料data
-            const rawData = await fetchCardData(brandOrCategory, name);
-            const headData = rawData[0]; //標題資料
-            const cardData = rawData[1]; //卡片資料
-            setItemHeadData(headData);
-            setOriginalCardData(cardData);
-            setItemCardData(cardData);
-            console.log("cardData", cardData);
-        })();
-        // console.log("born");
-        setFilterToggle(false);
-    }, [name]);
+    (async () => {
+      //1. 獲得資料data
+      const rawData = await fetchCardData(brandOrCategory, name);
+      const headData = rawData[0]; //標題資料
+      const cardData = rawData[1]; //卡片資料
+      setItemHeadData(headData);
+      setOriginalCardData(cardData);
+      setItemCardData(cardData);
+      console.log("cardData", cardData);
+    })();
+    // console.log("born");
+    setFilterToggle(false);
+  }, [name]);
 
-    //登入/登出/載入該頁時，取得願望清單
-    useEffect(() => {
-        if (user.logInStatus) {
-            (async () => {
-                // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                const wishListData = await fetchWishList(brandOrCategory, name);
-                const logInStatus = wishListData.logInStatus;
-                const userInfo = wishListData.userInfo;
+  //登入/登出/載入該頁時，取得願望清單
+  useEffect(() => {
+    if (user.logInStatus) {
+      (async () => {
+        // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        const wishListData = await fetchWishList(brandOrCategory, name);
+        const logInStatus = wishListData.logInStatus;
+        const userInfo = wishListData.userInfo;
 
-                console.log("wishListData", wishListData);
+        console.log("wishListData", wishListData);
 
-                // //reset user
-                logInStatus ? userLogin(userInfo) : userLogOut();
+        // //reset user
+        logInStatus ? userLogin(userInfo) : userLogOut();
 
-                if (logInStatus) {
-                    setItemWishList(wishListData.wishList);
-                }
-            })();
+        if (logInStatus) {
+          setItemWishList(wishListData.wishList);
         }
+      })();
+    }
+ 
     }, [user.logInStatus, name]);
 
     return (
@@ -218,32 +218,32 @@ const ItemList = (props) => {
                         />
                     );
                 })} */}
-                </div>
-                {itemCardData.length ? (
-                    ""
-                ) : (
-                    <div className="filter-box">
-                        <h4>沒有找到符合的商品</h4>
-                        {/* <h4>Sorry, no items were found.</h4> */}
-                    </div>
-                )}
-            </MainContainer>
-        </>
-    );
+        </div>
+        {itemCardData.length ? (
+          ""
+        ) : (
+          <div className="filter-box">
+            <h4>沒有找到符合的商品</h4>
+            {/* <h4>Sorry, no items were found.</h4> */}
+          </div>
+        )}
+      </MainContainer>
+    </>
+  );
 };
 
 //
 
 const mapStateToProps = (store) => {
-    return { user: store.user, userToggle: store.nav };
+  return { user: store.user, userToggle: store.nav };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ userLogin, userLogOut }, dispatch);
+  return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ItemList)
+  connect(mapStateToProps, mapDispatchToProps)(ItemList)
 );
