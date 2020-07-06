@@ -1,0 +1,84 @@
+@import "../../styles/style.scss";
+.filter-bar-cat {
+    transition: ease-in-out 0.5s;
+    width: 480px;
+    height: 360px;
+    background-color: #fdfdfd;
+    // opacity: 0.9;
+    left: 0;
+    top: 777px;
+    z-index: 100;
+
+    .filter-layer-header {
+        margin: 24px 0 0 20px;
+        // margin-bottom: 10px;
+        .close-icon-box {
+            .close-icon {
+                font-size: 20px;
+                padding: 10px;
+                color: $main-black;
+                cursor: pointer;
+            }
+        }
+        h2 {
+            letter-spacing: 0.5px;
+            font-weight: 300;
+            font-size: 16px;
+            margin: 12px;
+            color: $main-black;
+        }
+    }
+    .filter-content {
+        margin-left: 10px;
+        padding-top: 20px;
+        max-width: 260px;
+        .category-name {
+            padding-left: 58px;
+            cursor: pointer;
+
+            .checkbox-container {
+                margin-top: 20px;
+
+                .checkbox {
+                    padding: 10px;
+                    font-size: 20px;
+                    font-weight: 300;
+
+                    margin-top: 10px;
+                    color: $main-black;
+                }
+            }
+            p {
+                letter-spacing: 0.5px;
+                font-weight: 300;
+
+                font-size: 14px;
+                margin: 0px;
+                padding: 0px 0 16px 20px;
+                color: $main-black;
+            }
+        }
+        .btn-clear-box {
+            margin: 20px 0 0 48px;
+            padding-left: 24px;
+            .btn-clear {
+                width: 80px;
+                height: 28px;
+                letter-spacing: 0.9px;
+                font-weight: 400;
+                font-size: 14px;
+                background-color: transparent;
+                color: $main-sky-blue;
+                outline: transparent;
+                border: none;
+                border-bottom: $main-sky-blue solid 1px;
+                cursor: pointer;
+            }
+
+            &:hover .btn-clear {
+                background-color: $main-sky-blue;
+                color: $sub-white;
+            }
+        }
+    }
+}

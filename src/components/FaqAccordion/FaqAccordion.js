@@ -4,6 +4,7 @@ import { FiChevronUp } from "react-icons/fi";
 import FaqAccordionTitle from "./FaqAccordionTitle";
 import FaqAccordionSubtitle from "./FaqAccordionSubtitle";
 import FaqAccordionHead from "../FaqAccordionHead/FaqAccordionHead"
+import MainContainer from '../../components/mainContainer'
 import Nav from "../Nav/nav"
 import Footer from "../Footer/footer"
 
@@ -19,7 +20,6 @@ const FaqAccordion = (props) => {
   const [subtitle, setSubtitle] = useState([]);
   const [id, setId] = useState("");
   const [allClose, setAllClose] = useState([]);
-  const [display, setDisplay] = useState("");
   // -------------------------------------------
   console.log(titleDropDownToggle,"test");
 
@@ -64,9 +64,6 @@ const FaqAccordion = (props) => {
     const res = await fetch(request);
     const data = await res.json();
     // 設定資料
-    console.log(data[1],"data");
-   const test = data[1]
-    setDisplay(test)
     return data;
   }
 
@@ -90,8 +87,7 @@ const FaqAccordion = (props) => {
 
   return (
     <>
-    <Nav />
-
+<MainContainer>
     <FaqAccordionHead />
       <div className="faq-wrapper">
         {title.map((el, item) => [
@@ -119,7 +115,6 @@ const FaqAccordion = (props) => {
                     active={titleDropDownToggle[props.titleId]}
                     value={props.id}
                     id={props.id}
-                    // test={display}
                   />
                 )
               )
@@ -131,7 +126,7 @@ const FaqAccordion = (props) => {
       <div className="bottom d-flex">
         <div className="email">
           <p className="text">與我們聯繫</p>
-          <a className="button" href="insenseofficial2020@gmail.com">
+          <a className="button" href="mailto:insenseofficial2020@gmail.com">
           <p >
           通過電子郵件
           </p>
@@ -143,13 +138,12 @@ const FaqAccordion = (props) => {
           </p>
 
           <p className="tel-number">
-          0800-067-15
+          0800-067-157
           </p>
 
         </div>
       </div>
-
-      <Footer />
+</MainContainer>
       </>
     
   );

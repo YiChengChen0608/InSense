@@ -1,0 +1,34 @@
+.cart-item {
+  width: 100%;
+  display: flex;
+  min-height: 200px;
+  margin-bottom: 15px;
+
+  figure {
+    width: 30%;
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .item-details {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 20px;
+
+    .arrow {
+      padding: 15px;
+      justify-content: right;
+      cursor: pointer;
+    }
+
+    .name {
+      font-size: 16px;
+    }
+  }
+}

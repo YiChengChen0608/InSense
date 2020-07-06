@@ -1,0 +1,73 @@
+@import "../../styles/style.scss";
+
+.checkout-page {
+  width: 65%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px auto 20px;
+  position: relative;
+
+  .title {
+    font-size: 28px;
+    position: absolute;
+    top: -60px;
+    left: 0px;
+  }
+
+  .checkout-header {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+    font-size: 16px;
+
+    .header-block {
+      text-transform: capitalize;
+      width: 30%;
+
+      &:last-child {
+        width: 8%;
+      }
+    }
+
+    .product-img {
+      text-align: center;
+    }
+
+    .product-price,
+    .product-subtotal {
+      text-align: left;
+      margin-left: -15px;
+    }
+  }
+
+  .coupon {
+    margin-top: 30px;
+    margin-right: auto;
+    font-size: 14px;
+  }
+
+  .sum {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 14px;
+  }
+
+  .discount {
+    margin-top: 30px;
+    margin-left: auto;
+    font-size: 14px;
+  }
+
+  .total {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    padding-top: 20px;
+    // border-top: 1px solid $main-black;
+    font-size: 18px;
+  }
+}

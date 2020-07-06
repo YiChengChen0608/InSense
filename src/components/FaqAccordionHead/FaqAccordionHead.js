@@ -4,7 +4,7 @@ import './FaqAccordionHead.scss'
 const FaqAccordionHead = ({ classImgDir, classImg, title, content, content2 }) => {
   return (
     <>
-      <div className="class-head d-flex flex-wrap align-items-center">
+      <div className="class-head flex-wrap align-items-center">
         <div className="headLeft">
           <img className="object-fit-cover" src={`images/faq/aaa.png`} />
         </div>

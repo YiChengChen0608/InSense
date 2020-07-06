@@ -7,14 +7,46 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 //Redux
-import { userLogOutAsync } from "../../Redux/user/userAction";
+import { userLogOut } from "../../Redux/user/userAction";
 
 const AccountRightBar = (props) => {
   //引入Redux
-  const { user, userLogOutAsync } = props;
+  const { user, userLogOut } = props;
 
   const handleLogOut = () => {
-    userLogOutAsync()
+    (async () => {
+      const logOut = { success: false };
+
+      //到後端判斷
+      try {
+        const request = new Request(
+          "http://localhost:3030/users/logout",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: new Headers({
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }),
+          }
+        );
+
+        const response = await fetch(request);
+        const obj = await response.json();
+        console.log("obj", obj);
+
+        //更改logOut
+        logOut.success = true;
+      } catch (e) {
+        console.log(e);
+
+        //錯誤資訊
+        logOut.errorMessage = e;
+      }
+
+      if (logOut.success) userLogOut();
+      console.log(logOut.errorMessage);
+    })();
   };
 
   return (
@@ -23,7 +55,10 @@ const AccountRightBar = (props) => {
       <div className="menu-bar">
         <ul className="accountMenu">
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to="/account/userdashboard"
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
               <p>帳戶資訊</p>
             </Link>
@@ -38,31 +73,55 @@ const AccountRightBar = (props) => {
             </Link>
           </li>
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to="/account/creditcard"
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
               <p>付款資訊</p>
             </Link>
           </li>
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to="/account/orderhistory"
+              className="d-flex align-item-center account-link"
+            >
+              <FiChevronRight className="icon" />
+              <p>訂單記錄</p>
+            </Link>
+          </li>
+          <li className="d-flex align-item-center">
+            <Link
+              to=""
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
               <p>我的優惠券</p>
             </Link>
           </li>
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to="/account/wishlist"
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
               <p>願望清單</p>
             </Link>
           </li>
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to="/account/modify"
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
-              <p>帳戶資訊</p>
+              <p>會員資料更改</p>
             </Link>
           </li>
           <li className="d-flex align-item-center">
-            <Link to="" className="d-flex align-item-center account-link">
+            <Link
+              to=""
+              className="d-flex align-item-center account-link"
+            >
               <FiChevronRight className="icon" />
               <p>客服留言</p>
             </Link>
@@ -84,7 +143,7 @@ const mapStateToProps = (store) => {
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userLogOutAsync }, dispatch);
+  return bindActionCreators({ userLogOut }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountRightBar);

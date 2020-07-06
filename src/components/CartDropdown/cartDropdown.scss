@@ -1,0 +1,58 @@
+@import "../../styles/style.scss";
+
+.cart-dropdown {
+  position: absolute;
+  width: 424px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  right: -426px;
+  top: 0;
+  z-index: 5;
+  transition: 0.5s;
+  font-family: "Roboto", "Noto Sans TC", sans-serif;
+  font-weight: 100;
+
+  .dropdown-header {
+    color: $main-blue;
+    margin-left: 50px;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  > span {
+    font-size: 24px;
+    padding: 16px;
+    cursor: pointer;
+  }
+  .empty-message {
+    font-size: 16px;
+    margin: 50px auto;
+  }
+
+  .cart-items {
+    height: 70%;
+    width: 80%;
+    margin-left: 60px;
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    overflow: scroll;
+    font-size: 14px;
+    color: $main-black;
+
+    .cart-item {
+      .item-details {
+        .name,
+        .price {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+.right-open {
+  right: 0;
+}

@@ -1,0 +1,20 @@
+@import "../../styles/style.scss";
+.list-container {
+    width: 90%;
+    margin-bottom: 60px;
+    color: $main-black;
+
+    .list-title {
+        padding-left: 32px;
+        color: $main-black;
+        font-weight: $title-font-weight;
+        font-size: $title-font-size;
+        margin-top: 0;
+    }
+    .card-group-container {
+        padding-left: 20px;
+        p {
+            padding-left: 18px;
+        }
+    }
+}

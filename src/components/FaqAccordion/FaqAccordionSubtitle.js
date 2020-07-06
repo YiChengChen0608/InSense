@@ -3,65 +3,66 @@ import "./FaqAccordionSubtitle.scss";
 import { FiChevronUp } from "react-icons/fi";
 
 const FaqAccordionSubtitle = (props) => {
-  const {test} =props
+  const { test } = props;
   const [titleDropDownToggle, setTitleDropDownToggle] = useState(false);
   const [contentDropDownToggle, setContentDropDownToggle] = useState(true);
   const [plusMinusCollapsed, setPlusMinusCollapsed] = useState(true);
-  useEffect(()=>{
-    setTitleDropDownToggle(!titleDropDownToggle)
-    props.allClose.forEach(el => {
-if(el){setContentDropDownToggle(false)
-    }
-    else
-    {setContentDropDownToggle(true) } });
 
-  },[props.active])
+  useEffect(() => {
+    setTitleDropDownToggle(!titleDropDownToggle);
+    props.allClose.forEach((el) => {
 
-useEffect(()=>{
-  contentDropDownToggle ? setPlusMinusCollapsed(true):setPlusMinusCollapsed(false)
-},[contentDropDownToggle])
+      // 問題
+      if (el) {
+        setContentDropDownToggle(false);
+      } else {
+        setContentDropDownToggle(true);
+      }
+    });
+  }, [props.active]);
 
-  const clickSubtitle=(e)=>{
-    props.onClickSub(e)
-    
- }
- 
+  useEffect(() => {
+    contentDropDownToggle
+      ? setPlusMinusCollapsed(true)
+      : setPlusMinusCollapsed(false);
+  }, [contentDropDownToggle]);
+
+  //   const clickSubtitle=(e)=>{
+  //     props.onClickSub(e)
+
+  //  }
 
   return (
     <>
       <div className={`content-title-position  `}>
-      <div className={`displayNone`}>
+        <div className={`displayNone`}>
+          <div
+            onClick={() => (
+              setContentDropDownToggle(!contentDropDownToggle),
+              setPlusMinusCollapsed(!plusMinusCollapsed)
+            )}
+            className={`content-title-position content-hidden
+                      ${titleDropDownToggle ? "" : "active1"}
+                      `}
+          >
+            <span
+              className={`plus-minus-toggle  content-title  ${
+                plusMinusCollapsed ? "collapsed" : ""
+              } 
+            `}
+            >
+              {props.subtitle}
+            </span>
+          </div>
+        </div>
 
         <div
-          onClick={() => (
-            setContentDropDownToggle(!contentDropDownToggle),
-            setPlusMinusCollapsed(!plusMinusCollapsed),
-            clickSubtitle()
-          )}
-          className={`content-title-position content-hidden
-                      ${titleDropDownToggle ? '' : 'active1'}
-                      `}
+          className={`content-position content content-hidden ${
+            contentDropDownToggle ? "" : "active2"
+          }`}
         >
-          <span
-            className={`plus-minus-toggle  content-title  ${
-              plusMinusCollapsed ? "collapsed" : ""
-            } 
-            `}
-          >
-            {props.subtitle}
-          </span>
+          <p>{props.subtitleContent} </p>
         </div>
-      </div>
-
-
-
-      <div
-        className={`content-position content content-hidden ${
-          contentDropDownToggle ? "" : "active2"
-        }`}
-      >
-        <p>{props.subtitleContent} </p>
-      </div>
       </div>
     </>
   );

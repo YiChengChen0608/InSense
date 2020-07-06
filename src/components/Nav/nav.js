@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import {
   FiMenu,
   FiSearch,
@@ -10,47 +8,112 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { Link, withRouter } from "react-router-dom";
-import { userToggleFunc, closeSideBar } from '../../Redux/nav/navAction'
+
+//Redux
+import { checkLogin } from "../../Redux/user/userAction";
+import { userToggleFunc, closeSideBar } from "../../Redux/nav/navAction";
+import { toggleCartHidden, toggleCartShow } from "../../Redux/cart/cartAction";
+
 import "./nav.scss";
 import IndexMenuItem from "../IndexMenuItem/indexMenuItem";
 import IndexMenuSideBar from "../IndexMenuSideBar/indexMenuSideBar";
 import IndexRightSideBar from "../IndexRightSideBar/indexRightSideBar";
-import AccountRightBar from "../AccountRightBar/accountRightBar";
 import IndexLogin from "../IndexLogin/indexLogin";
-import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+// import IndexShoppingCart from "../IndexShoppingCart/indexShoppingCart";
+import AccountRightBar from "../AccountRightBar/accountRightBar";
 
-const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
+//import CartIcon to replace FiShoppingCart
+import { connect } from "react-redux";
+// import { selectCurrentUser } from '../../redux/user/userSelectors';
+import CartIcon from "../CartIcon/cartIcon";
+import CartDropdwon from "../CartDropdown/cartDropdown";
+import { bindActionCreators } from "redux";
+
+const Nav = ({
+  location,
+  user,
+  userToggleFunc,
+  closeSideBar,
+  userToggle,
+  checkLogin,
+  hidden,
+  toggleCartHidden,
+  toggleCartShow
+}) => {
   // state change
   // test info
   const menuItem = [
     { itemName: "代理品牌", name: "brand" },
     { itemName: "身體保養", name: "body" },
     { itemName: "個人香氛", name: "self" },
-    { itemName: "室內香氣", name: "indoor" },
+    {
+      itemName: "室內香氣",
+      name: "home-scents",
+      pathUrl: "/itemlist/category/home-scents",
+    },
     { itemName: "體驗課程", name: "class", pathUrl: "/classlist" },
   ];
   const brandItem = [
-    { itemName: "BYREDO", name: "byredo", pathUrl: "/itemlist" },
-    { itemName: "CHANEL", name: "chanel" },
-    { itemName: "DIPTYQUE", name: "diptyque" },
-    { itemName: "Jo Malone London", name: "jomalonelondon" },
-    { itemName: "LeLabo", name: "lelabo" },
+    {
+      itemName: "BYREDO",
+      name: "byredo",
+      pathUrl: "/itemlist/brand/byredo",
+    },
+    {
+      itemName: "CHANEL",
+      name: "chanel",
+      pathUrl: "/itemlist/brand/chanel",
+    },
+    {
+      itemName: "Diptyque",
+      name: "diptyque",
+      pathUrl: "/itemlist/brand/diptyque",
+    },
+    {
+      itemName: "Jo Malone London",
+      name: "jomalone",
+      pathUrl: "/itemlist/brand/jomalone",
+    },
+    {
+      itemName: "LeLabo",
+      name: "lelabo",
+      pathUrl: "/itemlist/brand/lelabo",
+    },
   ];
   const bodyItem = [
-    { itemName: "沐浴清潔", name: "" },
-    { itemName: "乳液與保養油", name: "" },
-    { itemName: "手部保養", name: "" },
+    {
+      itemName: "沐浴清潔",
+      name: "body-wash",
+      pathUrl: "/itemlist/category/body-wash",
+    },
+    {
+      itemName: "乳液與保養油",
+      name: "lotions-oils",
+      pathUrl: "/itemlist/category/lotions-oils",
+    },
+    {
+      itemName: "手部保養",
+      name: "hands-care",
+      pathUrl: "/itemlist/category/hands-care",
+    },
   ];
   const selfItem = [
-    { itemName: "香水", name: "" },
-    { itemName: "髮香噴霧與隨身香水", name: "" },
+    {
+      itemName: "香水",
+      name: "perfume",
+      pathUrl: "/itemlist/category/perfume",
+    },
+    {
+      itemName: "髮香噴霧與隨身香水",
+      name: "hair-mist-travel-size",
+      pathUrl: "/itemlist/category/hair-mist-travel-size",
+    },
   ];
 
   const [subMenu, setSubMenu] = useState([]);
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [subMenuToggle, setSubMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
-  const [cartToggle, setCartToggle] = useState(false);
   const [scrollTop, setScrollTop] = useState(false);
   //  event handler
   let SideBar = (event) => {
@@ -70,17 +133,33 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
     }
   };
 
+  const clickFunction = () => {
+    toggleCartShow()
+    closeSideBar()
+    setBurgerToggle(false)
+  }
+
   useEffect(() => {
+    if (location.pathname !== '/') {
+      setBurgerToggle(false)
+      setSubMenuToggle(false)
+      closeSideBar()
+      toggleCartHidden()
+    }
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
     });
-  }, []);
+    //一開始載入網頁，驗證身份
+    checkLogin();
+  }, [location.pathname]);
 
   return (
     <>
       <nav
         className={`${
-          location.pathname === "/" ? "position-fix" : "position-sticky"
+          location.pathname === "/"
+            ? "position-fix"
+            : "position-sticky"
           } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
           }`}
@@ -93,7 +172,10 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
-              onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}
+              onClick={() =>
+                setBurgerToggle(false) ||
+                setSubMenuToggle(false)
+              }
             >
               <FiX />
             </span>
@@ -113,12 +195,12 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
           <ul>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-              關於我們
-            </li>
+                            關於我們
+                        </li>
             <li className="d-flex align-items-center">
               <FiChevronRight className="chevron-right" />
-              幫助中心
-            </li>
+                            幫助中心
+                        </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -140,11 +222,9 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
           </div>
         </div>
         <div className="leftItem">
-          {/* 漢堡 */}
-          <a onClick={() => setBurgerToggle(true)} role="button">
+          <a onClick={() => (setBurgerToggle(true), closeSideBar(), toggleCartHidden())} role="button">
             <FiMenu />
           </a>
-          {/* 搜尋 */}
           <a
             onClick={() => setSearchToggle(true)}
             role="button"
@@ -153,10 +233,13 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
             <FiSearch />
           </a>
         </div>
-        <p className="index-nav-title">InSense</p>
+        <Link to="/" className="index-logo">
+          <p className="index-nav-title">InSense</p>
+        </Link>
+
         <IndexRightSideBar
-          btnClose={() => closeSideBar() || setCartToggle(false)}
-          state={userToggle || cartToggle}
+          btnClose={() => closeSideBar()}
+          state={userToggle}
         >
           {userToggle ? (
             user.logInStatus ? (
@@ -164,39 +247,48 @@ const Nav = ({ location, user, userToggleFunc, closeSideBar, userToggle }) => {
             ) : (
                 <IndexLogin />
               )
-          ) : cartToggle ? (
-            <IndexShoppingCart />
           ) : (
-                ""
-              )}
+              ""
+            )}
         </IndexRightSideBar>
-        <div className="rightItem">
+        <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
           <a
-            onClick={() => userToggleFunc()}
+            onClick={() => (userToggleFunc(), setBurgerToggle(false), setSubMenuToggle(false), toggleCartHidden())}
             role="button"
             data-name="user"
           >
             <FiUser />
           </a>
-          {/* 購物車 */}
-          <a onClick={() => setCartToggle(true)} role="button">
-            <FiShoppingCart />
-          </a>
+          <CartIcon
+            toggleCartHidden={clickFunction}
+            role="button"
+          />
+          {/* </a> */}
         </div>
+        <CartDropdwon />
       </nav>
     </>
   );
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user, userToggle: store.nav };
+  return { user: store.user, userToggle: store.nav, hidden: store.cart };
 };
 
 //Redux引入函式
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ userToggleFunc, closeSideBar }, dispatch);
+  return bindActionCreators(
+    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden, toggleCartShow },
+    dispatch
+  );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
+//Use the connect function in react-redux project. To prevent update blocking issue, using compose, 看不懂去問
+const compose = (f, g) => (x) => f(g(x));
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Nav);

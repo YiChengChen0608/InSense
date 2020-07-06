@@ -1,0 +1,191 @@
+@import "../../styles/style.scss";
+
+.account-modify-container {
+  flex-grow: 1;
+  .modify-title {
+    font-weight: $title-font-weight;
+    font-size: $title-font-size;
+    margin-top: 0;
+  }
+  .modify-declaration {
+    margin: 36px 0;
+    width: 100px;
+    cursor: pointer;
+    p {
+      margin: 0 0 0 10px;
+      color: $main-black;
+    }
+  }
+  .modify-button {
+    border: 1px solid $main-scarlet;
+    border-radius: 0;
+    color: $main-scarlet;
+    width: 150px;
+    margin-bottom: 36px;
+  }
+  .modify-button:hover {
+    background-color: $main-scarlet;
+    color: $main-white;
+  }
+
+  .modify-grid-container {
+    .modify-grid-item {
+      .modify-item {
+        h4 {
+          font-size: 14px;
+          margin: 12px 0;
+          font-weight: 200;
+        }
+        .modify-gender-select {
+          .modify-select-circle {
+            width: 18px;
+            height: 18px;
+            //   font-weight: 100;
+            stroke-width: 1.5;
+          }
+          label {
+            cursor: pointer;
+            p {
+              font-weight: 200;
+              margin: 0 18px 0 6px;
+            }
+          }
+        }
+        .MuiFormControl-marginNormal {
+          margin: 0;
+        }
+        .group {
+          margin: 0;
+          .form-input {
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            width: calc(100% - 4px);
+          }
+        }
+        .address-container {
+          .group {
+            .form-input {
+              padding: 6px 0 7px 6px;
+            }
+          }
+        }
+      }
+    }
+    display: grid;
+    grid-gap: 30px 36px;
+
+    grid-template-areas:
+      "gender birthday"
+      "last-name first-name"
+      "email mobile"
+      "address address";
+    .modify-grid-gender {
+      grid-area: gender;
+    }
+    .modify-grid-birthday {
+      grid-area: birthday;
+    }
+    .modify-grid-last-name {
+      grid-area: last-name;
+    }
+    .modify-grid-first-name {
+      grid-area: first-name;
+    }
+    .modify-grid-email {
+      grid-area: email;
+    }
+    .modify-grid-mobile {
+      grid-area: mobile;
+    }
+    .modify-grid-password {
+      grid-area: password;
+    }
+    .modify-grid-password-confirm {
+      grid-area: password-confirm;
+    }
+    .modify-grid-address {
+      grid-area: address;
+    }
+  }
+
+  .password-title {
+    margin: 48px 0 32px;
+  }
+  .password-grid-container {
+    margin-bottom: 48px;
+    .password-grid-item {
+      position: relative;
+      .error-message {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        border-bottom: 2px solid $main-orange;
+        top: 28px;
+        color: $main-orange;
+        font-size: 12px;
+        span {
+          // display: block;
+          position: absolute;
+          right: 2%;
+          // width: 100px;
+          top: -15px;
+        }
+      }
+      .password-item {
+        h4 {
+          font-size: 14px;
+          margin: 12px 0;
+          font-weight: 200;
+        }
+        .password-gender-select {
+          .password-select-circle {
+            width: 18px;
+            height: 18px;
+            //   font-weight: 100;
+            stroke-width: 1.5;
+          }
+          label {
+            cursor: pointer;
+            p {
+              font-weight: 200;
+              margin: 0 18px 0 6px;
+            }
+          }
+        }
+        .MuiFormControl-marginNormal {
+          margin: 0;
+        }
+        .group {
+          margin: 0;
+          .form-input {
+            padding: 4px 0 4px 4px;
+            margin: 0;
+            width: calc(100% - 4px);
+          }
+        }
+        .address-container {
+          .group {
+            .form-input {
+              padding: 6px 0 7px 6px;
+            }
+          }
+        }
+      }
+    }
+    display: grid;
+    grid-gap: 30px 36px;
+
+    grid-template-areas:
+      "old-password null"
+      "new-password new-password-confirm";
+    .password-grid-old-password {
+      grid-area: old-password;
+    }
+    .password-grid-new-password {
+      grid-area: new-password;
+    }
+    .password-grid-new-password-confirm {
+      grid-area: new-password-confirm;
+    }
+  }
+}

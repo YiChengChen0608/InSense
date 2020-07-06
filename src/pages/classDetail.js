@@ -6,39 +6,43 @@ import DetailFooter from "../components/ClassDetailFooter/detailFooter";
 import { withRouter } from "react-router-dom";
 
 const ClassDetail = ({ match }) => {
-  const [detail, setDetail] = useState([])
+  const [detail, setDetail] = useState([]);
 
   const fetchClassDetailData = async () => {
-    const res = await fetch(`http://localhost:3030/class/classdetail/${match.params.classid}`)
-    const data = res.json()
-    return data
-  }
+    const res = await fetch(
+      `http://localhost:3030/class/classdetail/${match.params.classid}`
+    );
+    const data = res.json();
+    return data;
+  };
   useEffect(() => {
     (async () => {
-      const data = await fetchClassDetailData()
-      setDetail(data)
-    })()
-  }, [])
+      const data = await fetchClassDetailData();
+      setDetail(data);
+    })();
+  }, []);
 
   return (
     <>
       {detail.map((info, index) => {
         return (
           <React.Fragment key={index}>
-            <ClassHead
-              title={info.className}
-              classImg={info.classImg}
-              classImgDir={'class'}
-            />
             <MainContainer>
+              <ClassHead
+                title={info.className}
+                classImg={info.classImg}
+                classImgDir={"class"}
+              />
               <DetailContent storeInfo={info} />
-              <DetailFooter classTime={info.classTime} />
+              <DetailFooter
+                classTime={info.classTime}
+                classPrice={info.classPrice}
+              />
             </MainContainer>
           </React.Fragment>
-        )
+        );
       })}
     </>
-
   );
 };
 

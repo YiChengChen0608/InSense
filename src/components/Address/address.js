@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+
 import "./address.scss";
 
 import FormInput from "../../components/FormInput/FormInput";
@@ -22,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Address = (props) => {
+  //Redux
+  const user = props.user;
+
   //縣市區
   const [cities, setCities] = useState([]);
   const [address, setAddress] = useState("");
@@ -29,8 +36,8 @@ const Address = (props) => {
   //Select CSS(material UI)
   const classes = useStyles();
   //selected
-  const [citiesSelected, setCitiesSelected] = React.useState("");
-  const [districtsSelected, setDistrictsSelected] = React.useState("");
+  const [citiesSelected, setCitiesSelected] = useState("");
+  const [districtsSelected, setDistrictsSelected] = useState("");
 
   //縣市區選擇
   const addressChange = (event) => {
@@ -38,6 +45,10 @@ const Address = (props) => {
       case "citiesSelected":
         props.setCities && props.setCities(cities[event.target.value].CityName);
         setCitiesSelected(event.target.value);
+        //選完縣市後，將地區還原
+        setDistrictsSelected("");
+        props.setDistricts && props.setDistricts("");
+        props.setPostCode && props.setPostCode("");
         break;
       case "districtsSelected":
         props.setDistricts &&
@@ -77,10 +88,62 @@ const Address = (props) => {
   useEffect(() => {
     (async () => {
       let cities = await getCities();
-      console.log("cities", cities);
+      // console.log("cities", cities);
       setCities(cities);
     })();
   }, []);
+
+  //若有登入，則載入（修改資訊頁才需要）
+  //尋找陣列的key
+  useEffect(() => {
+    // console.log("user", user);
+
+    //若已登入，且找到cities資訊
+    if (user.logInStatus && cities.length) {
+      const myCompleteAddress = { myCity: "", myPostCode: "", myAddress: "" };
+
+      // console.log(props.location.pathname);
+      if (props.location.pathname === "/account/modify") {
+        myCompleteAddress.myCity = user.userInfo.userCity;
+        myCompleteAddress.myPostCode = user.userInfo.userPostCode;
+        myCompleteAddress.myAddress = user.userInfo.userAddress;
+      } else {
+        //可以給地址預設值
+        myCompleteAddress.myCity = !!props.myCity ? props.myCity : "";
+        myCompleteAddress.myPostCode = !!props.myPostCode
+          ? props.myPostCode
+          : "";
+        myCompleteAddress.myAddress = !!props.myAddress ? props.myAddress : "";
+      }
+      const newCode = { cityCode: "", districtCode: "" };
+
+      //尋找城市key
+      cities.forEach((el, index) => {
+        if (el.CityName === myCompleteAddress.myCity) {
+          newCode.cityCode = index;
+        }
+      });
+      // console.log(cities[newCode.cityCode])
+      //尋找地區key
+      if (newCode.cityCode.toString().length) {
+        // console.log(cities[newCode.cityCode].AreaList);
+        cities[newCode.cityCode].AreaList.forEach((el, index) => {
+          if (
+            el.ZipCode.toString() === myCompleteAddress.myPostCode.toString()
+          ) {
+            newCode.districtCode = index;
+          }
+        });
+      }
+
+      console.log("newCode", newCode);
+      setCitiesSelected(newCode.cityCode);
+      setDistrictsSelected(newCode.districtCode);
+      setAddress(
+        myCompleteAddress.myAddress === null ? "" : myCompleteAddress.myAddress
+      );
+    }
+  }, [user, cities, props.myPostCode]);
 
   return (
     <div className="address-container d-flex align-items-end">
@@ -95,8 +158,12 @@ const Address = (props) => {
         >
           {cities.length
             ? cities.map((el, index) => {
-                return <MenuItem value={index}>{el.CityName}</MenuItem>;
-              })
+              return (
+                <MenuItem key={el.CityName} value={index}>
+                  {el.CityName}
+                </MenuItem>
+              );
+            })
             : ""}
         </Select>
       </FormControl>
@@ -112,14 +179,14 @@ const Address = (props) => {
           {citiesSelected !== "" ? (
             cities[citiesSelected].AreaList.map((el, index) => {
               return (
-                <MenuItem value={index}>
+                <MenuItem key={index + el.ZipCode} value={index}>
                   {el.ZipCode} {el.AreaName}
                 </MenuItem>
               );
             })
           ) : (
-            <MenuItem value="">未選縣市</MenuItem>
-          )}
+              <MenuItem value="">未選縣市</MenuItem>
+            )}
         </Select>
       </FormControl>
       <FormInput
@@ -134,4 +201,16 @@ const Address = (props) => {
   );
 };
 
-export default Address;
+const mapStateToProps = (store) => {
+  return { user: store.user };
+};
+
+//Redux引入函式
+//mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({}, dispatch);
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Address)
+);
