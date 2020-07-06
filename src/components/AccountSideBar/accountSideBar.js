@@ -11,7 +11,7 @@ const AccountSideBar = () => {
             <ul className="accountMenu">
                 <li className="d-flex align-item-center">
                     <Link
-                        to="/account/userdashboard"
+                        to="/account"
                         className="d-flex align-item-center account-link"
                     >
                         <FiChevronRight className="icon" />
