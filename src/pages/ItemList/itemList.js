@@ -146,9 +146,9 @@ const ItemList = (props) => {
                             Refine your search
                         </div>
                     </div>
-                    <div>
+                    {/* <div>
                         <div className="filter-btn">Order by</div>
-                    </div>
+                    </div> */}
                 </div>
                 {brandOrCategory === "brand" ? (
                     <ItemCategoryFilter
@@ -181,6 +181,17 @@ const ItemList = (props) => {
                                       itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
                                       itemName={el.itemName}
                                       itemPrice={el.itemPrice}
+                                      listName={
+                                          itemHeadData.length
+                                              ? itemHeadData[0].brandName
+                                                  ? itemHeadData[0].brandName
+                                                  : itemHeadData[0]
+                                                        .itemCategoryName
+                                                  ? itemHeadData[0]
+                                                        .itemCategoryName
+                                                  : ""
+                                              : ""
+                                      }
                                       name={name}
                                       wish={
                                           itemWishList.findIndex((eachWish) => {
