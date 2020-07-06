@@ -198,7 +198,25 @@ const OrderPayMent = ({
       </div>
       <div className="d-flex order-payment-content">
         <div className="order-payment-subcontent subcontent-left">
-          <img src="/images/class/class1.jpg" />
+          <div className='credit-card-demo1'>
+            <CreditCardNumber
+              cardNumberFirst={cardNumberFirst}
+              cardNumberSecond={cardNumberSecond}
+              cardNumberThird={cardNumberThird}
+              cardNumberForth={cardNumberForth}
+              setCardNumberFirst={setCardNumberFirst}
+              setCardNumberSecond={setCardNumberSecond}
+              setCardNumberThird={setCardNumberThird}
+              setCardNumbeForth={setCardNumbeForth}
+            />
+          </div>
+          <div className='credit-card-demo2'>
+            <div className='black-strip'></div>
+            <FormControl>
+              <InputLabel htmlFor="my-input">安全碼*</InputLabel>
+              <Input id="my-input" value={safeCode} onChange={changeSafeCode} aria-describedby="my-helper-text" />
+            </FormControl>
+          </div>
         </div>
         <div className="order-payment-subcontent subcontent-center">
 
