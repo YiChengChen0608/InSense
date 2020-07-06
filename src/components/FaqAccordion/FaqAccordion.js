@@ -1,103 +1,157 @@
 import React, { useState, useEffect } from "react";
 import "./FaqAccordion.scss";
 import { FiChevronUp } from "react-icons/fi";
+import FaqAccordionTitle from "./FaqAccordionTitle";
+import FaqAccordionSubtitle from "./FaqAccordionSubtitle";
+import FaqAccordionHead from "../FaqAccordionHead/FaqAccordionHead"
+import Nav from "../Nav/nav"
+import Footer from "../Footer/footer"
 
+
+// import { addBusinessDays } from "date-fns";
 
 const FaqAccordion = (props) => {
-  const [titleDropDownToggle, setTitleDropDownToggle] = useState(false);
-  const [contentDropDownToggle, setContentDropDownToggle] = useState(false);
-  const [plusMinusCollapsed, setPlusMinusCollapsed] = useState(true);
-  const [arrowIconActive, setArrowIconActive] = useState(false);
-  // const [faq, setFaq] = useState(false);
+  const [titleDropDownToggle, setTitleDropDownToggle] = useState({});
+  const [title, setTitle] = useState([]);
+  // const [titleDropUpToggle, setTitleDropUpToggle] = useState(false);
+  // const [arrowIconActive, setArrowIconActive] = useState(false);
+  const [value, setValue] = useState("");
+  const [subtitle, setSubtitle] = useState([]);
+  const [id, setId] = useState("");
+  const [allClose, setAllClose] = useState([]);
+  const [display, setDisplay] = useState("");
+  // -------------------------------------------
+  console.log(titleDropDownToggle,"test");
 
-  // const fetchFaqData = async () => {
-  //   const res = await fetch('http://localhost:3030/faq')
-  //   const data = await res.json()
-  //   return data
-  // }
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const data = await fetchFaqData()
-  //     setFaq(data)
-  //   })()
-  // }, [])
-
-  // const faqTitle = (props) => {
-  //   return (
-  //     <div className='d-flex class-item text-center'>
-  //       <p>{props.classInfo.classTime}</p>
-  //       <p>{props.classInfo.bookTime}</p>
-  //       <p>{props.classInfo.classCategoryName}</p>
-  //       <p>{props.classInfo.className}</p>
-  //       <p>{props.classInfo.classPrice}</p>
-  //       <p>{props.classInfo.bookQty}</p>
-  //     </div>
-  //   )
-  // }
-
-  // const initialState = [false]
-  // initialState.push(false)
-
-  // return (
-  //   <>
-
-  //   {
-  //     faq.map((item,index )=>{
-  //       return
-  //     })
-  //   }
-
-      <div className="wrapper">
-        <h1
-          onClick={() => (
-            setTitleDropDownToggle(!titleDropDownToggle),
-            setContentDropDownToggle(false),setArrowIconActive(!arrowIconActive)
-          )}
-          className="accordion-header"
-        >
-          我的帳號<FiChevronUp className={`arrow-icon-position arrow-icon ${
-            arrowIconActive ? "arrow-icon-active" : ""
-          }`}
-          />
-        </h1>
+  // const [contentDropDownToggle, setContentDropDownToggle] = useState(true);
+  // const [plusMinusCollapsed, setPlusMinusCollapsed] = useState(true);
 
 
 
-        
 
-        <div className="content-title-position">
-          <div
-            onClick={() => (
-              setContentDropDownToggle(!contentDropDownToggle),
-              setPlusMinusCollapsed(!plusMinusCollapsed)
-            )}
-            className={`content-title-position content-hidden ${
-              titleDropDownToggle ? "active" : ""
-            }`}
-          >
+  const titleAccordion = (e) => {
+    
 
-          
-            <span
-              className={`plus-minus-toggle content-title ${
-                plusMinusCollapsed ? "collapsed" : ""
-              }`}
-            >
-              如何變更您的密碼？
-            </span>
-          </div>
-        </div>
-        <div
-          className={`content-position content content-hidden ${
-            contentDropDownToggle ? "active" : ""
-          }`}
-        >
-          <p>
-            請點選『我的帳戶』中的『變更您的個人資料』即可重新設定，密碼更改完畢後，請再重新登入。
+    //重設state
+    const newObj ={...titleDropDownToggle}
+    newObj[e.target.id] = !titleDropDownToggle[e.target.id]
+
+    setTitleDropDownToggle(newObj)
+    setAllClose(Object.values(titleDropDownToggle))
+    console.log(Object.values(titleDropDownToggle))
+    // setValue(e.target.id)
+    // switch()
+    // setTitleDropDownToggle(!titleDropDownToggle);
+  };
+
+  const subtitleAccordion = (e) =>{
+  
+    // const newObj ={...titleDropDownToggle}
+    // newObj[e.target.id] = !titleDropDownToggle[e.target.id]
+
+    // setTitleDropDownToggle(newObj)
+    
+  }
+
+  async function getData() {
+    const request = new Request("http://localhost:3001/faq", {
+      method: "GET",
+      headers: new Headers({
+        Accept: "application/json",
+        "Content-Type": "appliaction/json",
+      }),
+    });
+    const res = await fetch(request);
+    const data = await res.json();
+    // 設定資料
+    console.log(data[1],"data");
+   const test = data[1]
+    setDisplay(test)
+    return data;
+  }
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+      setTitle(data[0]);
+
+      //initially false
+      const newObj = {};
+      data[0].forEach((el) => {
+        const titleId = el.titleId;
+        newObj[titleId] = false;
+      });
+      setTitleDropDownToggle(newObj);
+      console.log("newObj", newObj);
+// 
+      setSubtitle(data[1]);
+    })();
+  }, []);
+
+  return (
+    <>
+    <Nav />
+
+    <FaqAccordionHead />
+      <div className="faq-wrapper">
+        {title.map((el, item) => [
+          <FaqAccordionTitle
+            onClick={(e) => titleAccordion(e)}
+            key={item}
+            value={el.id}
+            id={el.id}
+            titleId={el.titleId}
+            title={el.title}
+          />,
+          subtitle
+            .filter((subData, item) => subData.titleId === el.titleId)
+            .map(
+              (props, index) => (
+                console.log(value, "+++++1"),
+                (
+                  <FaqAccordionSubtitle
+                    onClickSub={(e)=>subtitleAccordion(e)}
+                    key={index}
+                    allClose={allClose}
+                    subtitle={props.subtitle}
+                    data-title={props.faqTitle}
+                    subtitleContent={props.subtitleContent}
+                    active={titleDropDownToggle[props.titleId]}
+                    value={props.id}
+                    id={props.id}
+                    // test={display}
+                  />
+                )
+              )
+            ),
+        ])}
+      </div>
+      <div className="white-space"></div>
+
+      <div className="bottom d-flex">
+        <div className="email">
+          <p className="text">與我們聯繫</p>
+          <a className="button" href="insenseofficial2020@gmail.com">
+          <p >
+          通過電子郵件
           </p>
+          </a>
+        </div>
+
+        <div className="tel ">
+          <p className="text">透過電話
+          </p>
+
+          <p className="tel-number">
+          0800-067-15
+          </p>
+
         </div>
       </div>
-    </>
+
+      <Footer />
+      </>
+    
   );
 };
 

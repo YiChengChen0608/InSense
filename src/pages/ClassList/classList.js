@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ClassHead from "../../components/ClassHead/classHead";
+import ClassHead from "../../components/ClassHead/FaqAccordionHead";
 import ClassCard from "../../components/ClassCard/classCard";
 import MainContainer from "../../components/mainContainer";
 import "./classList.scss";
