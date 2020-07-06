@@ -5,18 +5,15 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Input, FormControl, InputLabel } from "@material-ui/core";
-import CreditCardNumber from '../../components/CreditCardNumber/creditCardNumber'
-import CreditCardExpiration from '../../components/CreditCardExpiration/creditCardExpiration'
+import CreditCardNumber from "../../components/CreditCardNumber/creditCardNumber";
+import CreditCardExpiration from "../../components/CreditCardExpiration/creditCardExpiration";
 import CreditCardAssociation from "../../components/CreditCardAssociation/creditCardAssociation";
-import { clearCart } from '../../Redux/cart/cartAction'
-import Address from '../../components/Address/address'
+import { clearCart } from "../../Redux/cart/cartAction";
+import Address from "../../components/Address/address";
 import axios from "axios";
 
 //radio checkbox icon
-import {
-  FiSquare,
-  FiCheckSquare,
-} from "react-icons/fi";
+import { FiSquare, FiCheckSquare } from "react-icons/fi";
 
 //redux selector
 import {
@@ -32,7 +29,7 @@ const OrderPayMent = ({
   selectCartTotal,
   selectUserLogin,
   selectUserInfo,
-  clearCart
+  clearCart,
 }) => {
   const UserInfo = { ...selectUserInfo };
 
@@ -50,8 +47,8 @@ const OrderPayMent = ({
   const [cardNumberForth, setCardNumbeForth] = useState("");
 
   //期限
-  const [cdMonth, setcdMonth] = useState('');
-  const [cdYear, setcdYear] = useState('');
+  const [cdMonth, setcdMonth] = useState("");
+  const [cdYear, setcdYear] = useState("");
 
   //安全碼
   const [safeCode, setSafeCode] = useState("");
@@ -67,7 +64,6 @@ const OrderPayMent = ({
 
   const [isDefault, setisDefault] = useState(0);
 
-
   const handleChange = (event) => {
     switch (event.target.name) {
       case "cdHolder":
@@ -76,8 +72,8 @@ const OrderPayMent = ({
       case "isDefault":
         setisDefault(event.target.value);
         break;
-    };
-  }
+    }
+  };
 
   const changeSafeCode = (e) => {
     //先取出數字陣列
@@ -92,8 +88,8 @@ const OrderPayMent = ({
     const insertNum = !!insertRawNum.match(/\d{1,3}/g)
       ? insertRawNum.match(/\d{1,3}/g)[0]
       : "";
-    setSafeCode(insertNum)
-  }
+    setSafeCode(insertNum);
+  };
   const paymentdata = {
     userId: UserInfo.userId,
     cdHolder: cdHolder,
@@ -115,20 +111,20 @@ const OrderPayMent = ({
       selectCartTotal: selectCartTotal,
       orderDelivery: orderDelivery,
     });
-    const { data } = res
-    return data
+    const { data } = res;
+    return data;
   };
 
   const confirmToPay = async (e) => {
-    e.preventDefault()
-    const data = await addordersToSever()
-    clearCart()
-    history.push(`/orders/orderdetail/${data.orderId}`)
-  }
+    e.preventDefault();
+    const data = await addordersToSever();
+    clearCart();
+    history.push(`/orders/orderdetail/${data.orderId}`);
+  };
 
-  useEffect(async () => {
+  // useEffect(async () => {
 
-  }, [saveCreditCard])
+  // }, [saveCreditCard])
 
   return (
     <MainContainer>
@@ -218,16 +214,22 @@ const OrderPayMent = ({
             setCardNumberThird={setCardNumberThird}
             setCardNumbeForth={setCardNumbeForth}
           />
-          <div className='d-flex align-items-center payment-safe-code'>
+          <div className="d-flex align-items-center payment-safe-code">
             <FormControl>
               <InputLabel htmlFor="my-input">安全碼*</InputLabel>
-              <Input id="my-input" value={safeCode} onChange={changeSafeCode} aria-describedby="my-helper-text" />
+              <Input
+                id="my-input"
+                value={safeCode}
+                onChange={changeSafeCode}
+                aria-describedby="my-helper-text"
+              />
             </FormControl>
             <p> (3碼) </p>
           </div>
 
-          <div className='subcontent-date'>到期日期
-            <div className='credit-card-date'>
+          <div className="subcontent-date">
+            到期日期
+            <div className="credit-card-date">
               <CreditCardExpiration
                 cdMonth={cdMonth}
                 cdYear={cdYear}
@@ -237,7 +239,7 @@ const OrderPayMent = ({
             </div>
           </div>
         </div>
-        <div className='order-payment-subcontent subcontent-right'>
+        <div className="order-payment-subcontent subcontent-right">
           <FormControl>
             <InputLabel htmlFor="my-input">持有人*</InputLabel>
             <Input
@@ -256,19 +258,33 @@ const OrderPayMent = ({
             setPostCode={setBillPostCode}
             setAddress={setBillAddress}
           />
-          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setSaveCreditCard(!saveCreditCard)}>
-            {saveCreditCard ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
+          <div
+            className="credit-card-checkedBtn d-flex align-items-center"
+            onClick={() => setSaveCreditCard(!saveCreditCard)}
+          >
+            {saveCreditCard ? (
+              <FiCheckSquare className="order-payment-square" />
+            ) : (
+              <FiSquare className="order-payment-square" />
+            )}
             <p>使用預設已儲存的信用卡</p>
           </div>
-          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setAgree(!agree)}>
-            {agree ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
-            <p>我確認上述資訊完整無誤並同意上述資訊<br />可以被InSense作為商業用途使用</p>
-          </div>
-          <a
-            className="confirm-btn"
-            href="#"
-            onClick={confirmToPay}
+          <div
+            className="credit-card-checkedBtn d-flex align-items-center"
+            onClick={() => setAgree(!agree)}
           >
+            {agree ? (
+              <FiCheckSquare className="order-payment-square" />
+            ) : (
+              <FiSquare className="order-payment-square" />
+            )}
+            <p>
+              我確認上述資訊完整無誤並同意上述資訊
+              <br />
+              可以被InSense作為商業用途使用
+            </p>
+          </div>
+          <a className="confirm-btn" href="#" onClick={confirmToPay}>
             確認付款
           </a>
         </div>
@@ -287,4 +303,6 @@ const mapDispatchToProps = (dispatch) => ({
   clearCart: () => dispatch(clearCart()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderPayMent));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OrderPayMent)
+);

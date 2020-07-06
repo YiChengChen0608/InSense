@@ -26,7 +26,7 @@ import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
 
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 
-import TestUI from "./pages/TestUI/testUI";
+import ErrorPage from "./pages/ErrorPage/errorPage";
 import ShopPage from "./pages/shop/shop.component";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 import CheckoutPage from "./pages/Checkout/chechout";
@@ -52,8 +52,8 @@ function App() {
             <Route path="/itemdetail/:itemId?">
               <ItemDetails />
             </Route>
-            <Route path="/testUI">
-              <TestUI />
+            <Route path="/errorPage">
+              <ErrorPage />
             </Route>
             <Route path="/orders">
               <Route path="/orders/checkout">
