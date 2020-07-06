@@ -24,6 +24,8 @@ import {
   selectUserInfo,
 } from "../../Redux/cart/cartSelectors";
 
+import Button from "@material-ui/core/Button";
+
 const OrderPayMent = ({
   history,
   selectCartItems,
@@ -318,9 +320,9 @@ const OrderPayMent = ({
               可以被InSense作為商業用途使用
             </p>
           </div>
-          <a className="confirm-btn" href="#" onClick={handleInquiryOpen}>
+          <Button className="confirm-btn" href="#" onClick={handleInquiryOpen}>
             確認付款
-          </a>
+          </Button>
           <InquiryAlert
             openInquiry={openInquiry}
             handleInquiryClose={handleInquiryClose}
