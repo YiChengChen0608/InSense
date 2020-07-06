@@ -54,6 +54,7 @@ const CreditCardBlock = (props) => {
   const [openInquiry, setOpenInquiry] = useState(false);
   const [inquiryTitle, setInquiryTitle] = useState("title");
   const [inquiryContext, setInquiryContext] = useState("context");
+  const [deleteSuccesful, setDeleteSuccesful] = useState(false); //讓已刪除的有動畫效果
   const handleInquiryOpen = () => {
     setInquiryTitle("確認刪除");
     setInquiryContext("將永遠刪除此付款方式");
@@ -215,7 +216,10 @@ const CreditCardBlock = (props) => {
       if (rawData.logInStatus) {
         // 若有改變
         if (rawData.newCreditCardList) {
-          setCreditCardList(rawData.newCreditCardList);
+          setDeleteSuccesful(true);
+          setTimeout(() => {
+            setCreditCardList(rawData.newCreditCardList);
+          }, 2500);
           handleAlertOpen("刪除成功", "已可在付款資訊頁查詢", true, true, 2500);
           console.log(openInquiry);
         }
@@ -232,7 +236,7 @@ const CreditCardBlock = (props) => {
         }
       }
       //不管如何，都要關閉
-      // handleInquiryClose();
+      handleInquiryClose();
     } else {
       if (!rawData.logInStatus) {
         handleAlertOpen(
@@ -270,7 +274,9 @@ const CreditCardBlock = (props) => {
   return (
     <>
       <div
-        className={`credit-card-block-container d-flex align-items-center ${otherClass}`}
+        className={`credit-card-block-container d-flex align-items-center ${otherClass} ${
+          deleteSuccesful ? "deleteShrink" : ""
+        }`}
       >
         <div className="block-default d-flex justify-content-center">
           {isDefault ? (

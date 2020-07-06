@@ -11,13 +11,12 @@ import ItemHead from "../../components/ItemHead/itemHead";
 // import MyBreadcrumb from "../../components/MyBreadCrumb/myBreadCrumb";
 // import ItemCardData from "./itemCard.data";
 import ItemBrandFilter from "../../components/ItemBrandFilter/itemBrandFilter";
-import ItemCategoryFilter from '../../components/ItemCategoryFilter/itemCategoryFilter'
+import ItemCategoryFilter from "../../components/ItemCategoryFilter/itemCategoryFilter";
 import MainContainer from "../../components/mainContainer";
 import ItemCard from "../../components/ItemCard/itemCard";
 import "./itemList.scss";
 import WishList from "../../components/WishList/wishList";
 const ItemList = (props) => {
-
   //Redux
   const { user, userLogin, userLogOut } = props;
 
@@ -72,7 +71,7 @@ const ItemList = (props) => {
       setItemHeadData(headData);
       setOriginalCardData(cardData);
       setItemCardData(cardData);
-      console.log("cardData", cardData)
+      console.log("cardData", cardData);
     })();
     // console.log("born");
     setFilterToggle(false);
@@ -109,25 +108,25 @@ const ItemList = (props) => {
           }}
         ></div>
       ) : (
-          ""
-        )}
+        ""
+      )}
       <ItemHead
         Banner={`http://localhost:3030/images/banner/${
           itemHeadData.length
             ? itemHeadData[0].brandBanner
               ? itemHeadData[0].brandBanner
               : itemHeadData[0].itemCategoryBanner
-                ? itemHeadData[0].itemCategoryBanner
-                : ""
+              ? itemHeadData[0].itemCategoryBanner
+              : ""
             : ""
-          }.png`}
+        }.png`}
         Name={
           itemHeadData.length
             ? itemHeadData[0].brandName
               ? itemHeadData[0].brandName
               : itemHeadData[0].itemCategoryName
-                ? itemHeadData[0].itemCategoryName
-                : ""
+              ? itemHeadData[0].itemCategoryName
+              : ""
             : ""
         }
         Discription={
@@ -145,7 +144,7 @@ const ItemList = (props) => {
           <div className="filter-btn-group">
             <div className="filter-btn" onClick={handleOpenFilter}>
               Refine your search
-                        </div>
+            </div>
           </div>
           <div>
             <div className="filter-btn">Order by</div>
@@ -162,39 +161,39 @@ const ItemList = (props) => {
             name={name}
           />
         ) : (
-            <ItemBrandFilter
-              setItemCardData={setItemCardData}
-              originalCardData={originalCardData}
-              otherClass={!filterToggle ? "filter-bar-close" : ""}
-              filterToggle={filterToggle}
-              setFilterToggle={setFilterToggle}
-              brandOrCategory={brandOrCategory}
-              name={name}
-            />
-          )}
+          <ItemBrandFilter
+            setItemCardData={setItemCardData}
+            originalCardData={originalCardData}
+            otherClass={!filterToggle ? "filter-bar-close" : ""}
+            filterToggle={filterToggle}
+            setFilterToggle={setFilterToggle}
+            brandOrCategory={brandOrCategory}
+            name={name}
+          />
+        )}
         <div className="item-list-container d-flex flex-wrap ">
           {itemCardData.length
             ? itemCardData.map((el, index) => {
-              return (
-                <ItemCard
-                  key={el.itemId}
-                  itemId={el.itemId}
-                  itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
-                  itemName={el.itemName}
-                  itemPrice={el.itemPrice}
-                  name={name}
-                  wish={
-                    itemWishList.findIndex((eachWish) => {
-                      return el.itemId === eachWish;
-                    }) < 0
-                      ? false
-                      : true
-                  }
-                //   itemWishList={itemWishList}
-                //   setitemWishList={setitemWishList}
-                />
-              );
-            })
+                return (
+                  <ItemCard
+                    key={el.itemId}
+                    itemId={el.itemId}
+                    itemimg={`http://localhost:3030/images/items/${el.itemImg}.png`}
+                    itemName={el.itemName}
+                    itemPrice={el.itemPrice}
+                    name={name}
+                    wish={
+                      itemWishList.findIndex((eachWish) => {
+                        return el.itemId === eachWish;
+                      }) < 0
+                        ? false
+                        : true
+                    }
+                    //   itemWishList={itemWishList}
+                    //   setitemWishList={setitemWishList}
+                  />
+                );
+              })
             : ""}
           {/* {itemCardData[0].items.map((el, index) => {
                     return (
@@ -212,10 +211,11 @@ const ItemList = (props) => {
         {itemCardData.length ? (
           ""
         ) : (
-            <div className="filter-box">
-              <h4>Sorry, no items were found.</h4>
-            </div>
-          )}
+          <div className="filter-box">
+            <h4>沒有找到符合的商品</h4>
+            {/* <h4>Sorry, no items were found.</h4> */}
+          </div>
+        )}
       </MainContainer>
     </>
   );

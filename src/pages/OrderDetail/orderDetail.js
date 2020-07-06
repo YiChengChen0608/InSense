@@ -8,7 +8,7 @@ const OrderDeatil = ({ match }) => {
   const [orderDetail, setOrderDetail] = useState({})
 
   const fetchOrderDetailData = async () => {
-    const response = await fetch(`http://localhost:3030/orders/orderdetail/${match.params.orderId}`, {
+    const response = await fetch(`http://localhost:3030/orders/orderdetail/${match.params.orderid}`, {
       credentials: 'include'
     })
     const data = await response.json()

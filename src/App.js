@@ -20,6 +20,8 @@ import OrderDetail from "./pages/OrderDetail/orderDetail";
 import ClassPage from "./pages/ClassPage/classPage";
 import ClassList from "./pages/ClassList/classList";
 import Registration from "./pages/Registration/registration";
+import PasswordForgot from "./pages/PasswordForgot/passwordForgot";
+import PasswordForgotChange from "./pages/PasswordForgotChange/passwordForgotChange";
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
@@ -34,6 +36,7 @@ import CheckoutPage from "./pages/Checkout/chechout";
 function App() {
   return (
     <Router>
+      {/* <PersistGate persistor={persistor}> */}
       <>
         <Nav />
         <MainContent>
@@ -65,7 +68,7 @@ function App() {
               <Route path="/orders/orderpayment">
                 <OrderPayMent />
               </Route>
-              <Route path="/orders/orderdetail/:orderId">
+              <Route path="/orders/orderdetail/:orderid">
                 <OrderDetail />
               </Route>
             </Route>
@@ -85,6 +88,12 @@ function App() {
               <Route path="/account/wishlist">
                 <MyWishList />
               </Route>
+              <Route path="/account/passwordforgot">
+                <PasswordForgot />
+              </Route>
+              <Route path="/account/passwordforgotchange/:userId">
+                <PasswordForgotChange />
+              </Route>
               <Route path="/account/registration">
                 <Registration />
               </Route>
@@ -99,6 +108,7 @@ function App() {
         </MainContent>
         <Footer />
       </>
+      {/* </PersistGate> */}
     </Router>
   );
 }

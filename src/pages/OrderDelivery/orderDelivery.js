@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 import {
   selectCartItems,
   selectCartTotal,
-  selectUserInfo
+  selectUserInfo,
 } from "../../Redux/cart/cartSelectors";
 
 //react-icon
@@ -32,7 +32,6 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { FaPhone } from "react-icons/fa";
 
 const OrderDelivery = (props) => {
   //Redux
@@ -95,7 +94,7 @@ const OrderDelivery = (props) => {
   };
 
   const registrationSent = async () => {
-    const UserInfo = { ...selectUserInfo }
+    const UserInfo = { ...selectUserInfo };
     const data = {
       // 會員帳號
       userId: UserInfo.userId,
@@ -162,8 +161,8 @@ const OrderDelivery = (props) => {
                     {gender === "woman" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                        <FiCircle className="registration-select-circle" />
-                      )}
+                      <FiCircle className="registration-select-circle" />
+                    )}
                     <p>女性</p>
                   </label>
                   <input
@@ -181,8 +180,8 @@ const OrderDelivery = (props) => {
                     {gender === "man" ? (
                       <FiCheckCircle className="registration-select-circle" />
                     ) : (
-                        <FiCircle className="registration-select-circle" />
-                      )}
+                      <FiCircle className="registration-select-circle" />
+                    )}
                     <p>男性</p>
                   </label>
                 </div>
@@ -283,7 +282,7 @@ const OrderDelivery = (props) => {
           </div>
           <div className="">
             <Button
-              className="registration-button"
+              className="orderDelivery-button"
               variant="outlined"
               onClick={registrationSent}
             >
@@ -299,9 +298,7 @@ const OrderDelivery = (props) => {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
-  selectUserInfo: selectUserInfo
+  selectUserInfo: selectUserInfo,
 });
 
-export default withRouter(
-  connect(mapStateToProps)(OrderDelivery)
-);
+export default withRouter(connect(mapStateToProps)(OrderDelivery));
