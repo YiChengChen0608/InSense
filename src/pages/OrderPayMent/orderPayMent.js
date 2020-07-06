@@ -320,7 +320,11 @@ const OrderPayMent = ({
               可以被InSense作為商業用途使用
             </p>
           </div>
-          <Button className="confirm-btn" href="#" onClick={handleInquiryOpen}>
+          <Button
+            className="MuiButtonBase-root MuiButton-root MuiButton-outlined confirm-btn"
+            href="#"
+            onClick={handleInquiryOpen}
+          >
             確認付款
           </Button>
           <InquiryAlert
