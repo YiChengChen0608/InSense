@@ -4,7 +4,7 @@ import MainContainer from '../../components/mainContainer'
 import OrderProductCard from '../../components/OrderProductCard/orderProductCard'
 import { withRouter } from 'react-router-dom'
 
-const OrderDeatil = ({ match }) => {
+const OrderDeatil = ({ match, history }) => {
   const [orderDetail, setOrderDetail] = useState({})
 
   const fetchOrderDetailData = async () => {
@@ -25,6 +25,22 @@ const OrderDeatil = ({ match }) => {
   console.log(orderDetail)
   return (
     <MainContainer>
+      <div className="text-center position-relative order-payment-head">
+        <div className="position-absolute order-payment-title">訂單明細</div>
+        <div className="order-payment-step">
+          <a href="#" onClick={(e) => e.preventDefault()}>
+            寄送資訊{" "}
+          </a>{" "}
+          ＞
+          <a href="#" onClick={(e) => e.preventDefault()} >
+            付款資訊{" "}
+          </a>{" "}
+          ＞
+          <a href="#" onClick={(e) => e.preventDefault()} style={{ color: '#d94f06' }}>
+            訂單明細
+          </a>
+        </div>
+      </div>
       <h2 className='order-title'>訂單編號：{orderId && orderId}</h2>
       <div className='d-flex order-detail-container'>
         <div className='order-detail-subContainer'>
@@ -87,7 +103,7 @@ const OrderDeatil = ({ match }) => {
       </div>
       {orderItems && orderItems.map(item => <OrderProductCard key={item.itemId} itemName={item.itemName} itemId={item.itemId} itemSize={item.itemSize} quantity={item.quantity} itemPrice={item.itemPrice} itemImg={item.itemimg} />)}
 
-      <a className='go-back-btn' onClick={(e) => (e.preventDefault())} href='' role='button'>回到訂單紀錄</a>
+      <a className='go-back-btn' onClick={(e) => (e.preventDefault(), history.push(`/account/orderhistory`))} href='' role='button'>回到訂單紀錄</a>
     </MainContainer>
   )
 }

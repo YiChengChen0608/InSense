@@ -15,7 +15,7 @@ import { toggleCartHidden } from "../../Redux/cart/cartAction";
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
 import "./checkout.scss";
-import SubmitButton from "../../components/SubmitButton/submitButton";
+import Button from "@material-ui/core/Button";
 
 const CheckoutPage = ({
   cartItems,
@@ -27,31 +27,31 @@ const CheckoutPage = ({
   userSelect,
   clearCart,
 }) => (
-  <div className="checkout-page">
-    <div className="title">購物車</div>
-    <div className="checkout-header">
-      <div className="header-block product-img">
-        <span>商品</span>
+    <div className="checkout-page">
+      <div className="title">購物車</div>
+      <div className="checkout-header">
+        <div className="header-block product-img">
+          <span>商品</span>
+        </div>
+        <div className="header-block">
+          <span>商品名稱</span>
+        </div>
+        <div className="header-block product-qty">
+          <span>數量</span>
+        </div>
+        <div className="header-block product-price">
+          <span>價格</span>
+        </div>
+        <div className="header-block product-subtotal">
+          <span>小計</span>
+        </div>
       </div>
-      <div className="header-block">
-        <span>商品名稱</span>
-      </div>
-      <div className="header-block product-qty">
-        <span>數量</span>
-      </div>
-      <div className="header-block product-price">
-        <span>價格</span>
-      </div>
-      <div className="header-block product-subtotal">
-        <span>小計</span>
-      </div>
-    </div>
-    {cartItems.map((cartItem) => (
-      <CheckoutItem key={cartItem.itemId} cartItem={cartItem} />
-    ))}
+      {cartItems.map((cartItem) => (
+        <CheckoutItem key={cartItem.itemId} cartItem={cartItem} />
+      ))}
 
-    {/* 優惠卷欄位 */}
-    {/* <div className="coupon">
+      {/* 優惠卷欄位 */}
+      {/* <div className="coupon">
       <FormInput
         type="text"
         name="coupon"
@@ -63,23 +63,26 @@ const CheckoutPage = ({
     </div>
     <div className="sum">${total}</div>
     <div className="discount">折扣: -100</div> */}
-    <div className="total">總計: NT${total}</div>
-    <SubmitButton
-      inverted={true}
-      onClick={(e) => {
-        if (!userSelect) {
-          console.log(userSelect);
-          e.preventDefault();
-          userToggleFunc();
-        } else {
-          history.push("/orders/orderDelivery");
-        }
-      }}
-    >
-      確認訂單
-    </SubmitButton>
-  </div>
-);
+      <div className="total">總計: NT$ {total}</div>
+      <Button
+        className="checkout-button"
+        variant="outlined"
+        inverted={true}
+        onClick={(e) => {
+          if (!userSelect) {
+            console.log(userSelect);
+            e.preventDefault();
+            e.stopPropagation();
+            userToggleFunc();
+          } else {
+            history.push("/orders/orderDelivery");
+          }
+        }}
+      >
+        確認訂單
+    </Button>
+    </div>
+  );
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ toggleCartHidden, userToggleFunc }, dispatch);
 };

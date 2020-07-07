@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import CartItem from "../CartItem/cartItem";
-import SubmitButton from "../SubmitButton/submitButton";
 import "./cartDropdown.scss";
 import { FiX } from "react-icons/fi";
 import { bindActionCreators } from "redux";
@@ -13,6 +12,7 @@ import {
 } from "../../Redux/cart/cartSelectors";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
   return (
@@ -29,17 +29,22 @@ const CartDropdwon = ({ cartItems, hidden, toggleCartHidden, history }) => {
             ))}
           </>
         ) : (
-          <span className="empty-message">購物車現在太空囉</span>
+          <span className="empty-message">購物車現在太空囉~</span>
         )}
       </div>
-      <SubmitButton
-        inverted={true}
-        onClick={() => {
-          history.push("/orders/checkout");
-        }}
-      >
-        前往購物車
-      </SubmitButton>
+      <div className="cart-button">
+        <Button
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined success-alert"
+          tabindex="0"
+          type="button"
+          onClick={() => {
+            history.push("/orders/checkout");
+          }}
+        >
+          <span className="MuiButton-label">前往購物車</span>
+          <span className="MuiTouchRipple-root"></span>
+        </Button>
+      </div>
     </div>
   );
 };

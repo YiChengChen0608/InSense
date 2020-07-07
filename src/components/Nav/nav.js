@@ -162,6 +162,7 @@ const Nav = ({
         setBurgerToggle(false)
         setSubMenuToggle(false)
       }
+
       if (userToggle || toggle.hidden) {
         if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
           closeSideBar()
@@ -220,10 +221,6 @@ const Nav = ({
               <FiChevronRight className="chevron-right" />
                             關於我們
                         </li>
-            <li className="d-flex align-items-center">
-              <FiChevronRight className="chevron-right" />
-                            幫助中心
-                        </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -249,9 +246,9 @@ const Nav = ({
             <FiMenu />
           </a>
           <a
-            onClick={() => setSearchToggle(true)}
             role="button"
             data-name="search"
+            style={{ opacity: '0', cursor: 'auto' }}
           >
             <FiSearch />
           </a>

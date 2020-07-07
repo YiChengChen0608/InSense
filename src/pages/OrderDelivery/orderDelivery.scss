@@ -20,19 +20,40 @@
     }
   }
 
-  .registration-button {
+  .orderDelivery-button {
     border: 1px solid $main-scarlet;
     border-radius: 0;
     color: $main-scarlet;
-    width: 150px;
-    margin-bottom: 36px;
+    width: 160px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+    font-family: $Roboto;
   }
-  .registration-button:hover {
+  .orderDelivery-button:hover {
     background-color: $main-scarlet;
     color: $main-white;
   }
   .registration-grid-container {
     .registration-grid-item {
+      position: relative;
+      .error-message {
+        position: absolute;
+        width: 100%;
+        height: 0;
+        border-bottom: 2px solid $main-orange;
+        top: 28px;
+        color: $main-orange;
+        font-size: 12px;
+        span {
+          // display: block;
+          position: absolute;
+          right: 2%;
+          // width: 100px;
+          top: -15px;
+        }
+      }
       .registration-item {
         h4 {
           font-size: 14px;
