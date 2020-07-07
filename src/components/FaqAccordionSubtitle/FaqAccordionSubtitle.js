@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./FaqAccordionSubtitle.scss";
-import { FiChevronUp } from "react-icons/fi";
+
 
 const FaqAccordionSubtitle = (props) => {
   const { test } = props;
@@ -27,10 +27,6 @@ const FaqAccordionSubtitle = (props) => {
       : setPlusMinusCollapsed(false);
   }, [contentDropDownToggle]);
 
-  //   const clickSubtitle=(e)=>{
-  //     props.onClickSub(e)
-
-  //  }
 
   return (
     <>

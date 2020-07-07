@@ -1,31 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./FaqAccordion.scss";
-import { FiChevronUp } from "react-icons/fi";
-import FaqAccordionTitle from "./FaqAccordionTitle";
-import FaqAccordionSubtitle from "./FaqAccordionSubtitle";
-import FaqAccordionHead from "../FaqAccordionHead/FaqAccordionHead"
+import FaqAccordionTitle from "../../components/FaqAccordionTitle/FaqAccordionTitle";
+import FaqAccordionSubtitle from "../../components/FaqAccordionSubtitle/FaqAccordionSubtitle";
+import FaqAccordionHead from "../../components/FaqAccordionHead/FaqAccordionHead"
 import MainContainer from '../../components/mainContainer'
-import Nav from "../Nav/nav"
-import Footer from "../Footer/footer"
 
-
-// import { addBusinessDays } from "date-fns";
 
 const FaqAccordion = (props) => {
   const [titleDropDownToggle, setTitleDropDownToggle] = useState({});
   const [title, setTitle] = useState([]);
-  // const [titleDropUpToggle, setTitleDropUpToggle] = useState(false);
-  // const [arrowIconActive, setArrowIconActive] = useState(false);
   const [value, setValue] = useState("");
   const [subtitle, setSubtitle] = useState([]);
   const [id, setId] = useState("");
   const [allClose, setAllClose] = useState([]);
-  // -------------------------------------------
-  console.log(titleDropDownToggle,"test");
-
-  // const [contentDropDownToggle, setContentDropDownToggle] = useState(true);
-  // const [plusMinusCollapsed, setPlusMinusCollapsed] = useState(true);
-
+  
+  
 
 
 
@@ -39,22 +28,16 @@ const FaqAccordion = (props) => {
     setTitleDropDownToggle(newObj)
     setAllClose(Object.values(titleDropDownToggle))
     console.log(Object.values(titleDropDownToggle))
-    // setValue(e.target.id)
-    // switch()
-    // setTitleDropDownToggle(!titleDropDownToggle);
+    
   };
 
   const subtitleAccordion = (e) =>{
   
-    // const newObj ={...titleDropDownToggle}
-    // newObj[e.target.id] = !titleDropDownToggle[e.target.id]
-
-    // setTitleDropDownToggle(newObj)
     
   }
 
   async function getData() {
-    const request = new Request("http://localhost:3001/faq", {
+    const request = new Request("http://localhost:3030/faq", {
       method: "GET",
       headers: new Headers({
         Accept: "application/json",

@@ -29,8 +29,9 @@ import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 import OrderHistory from './pages/OrderHistory/orderHistory'
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
-import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
+import FaqAccordion from "./pages/FaqAccordion/FaqAccordion";
 import CheckoutPage from "./pages/Checkout/chechout";
+import MyCoupon from "./components/MyCoupon/MyCoupon";
 
 function App() {
   return (
@@ -99,10 +100,15 @@ function App() {
               <Route path="/account/orderhistory">
                 <OrderHistory />
               </Route>
+              <Route path="/account/MyCoupon">
+                <MyCoupon />
+              </Route>
             </Route>
             <Route path="/">
               <IndexPage />
             </Route>
+
+            
           </Switch>
         </MainContent>
         <Footer />
