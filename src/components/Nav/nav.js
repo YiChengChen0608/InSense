@@ -36,7 +36,7 @@ const Nav = ({
   closeSideBar,
   userToggle,
   checkLogin,
-  hidden,
+  toggle,
   toggleCartHidden,
   toggleCartShow
 }) => {
@@ -152,6 +152,29 @@ const Nav = ({
     //一開始載入網頁，驗證身份
     checkLogin();
   }, [location.pathname]);
+
+  useEffect(() => {
+    const leftSideBar = document.querySelector('.menu-item')
+    const cartDropdown = document.querySelector('.cart-dropdown')
+    const rightSideBar = document.querySelector('.right-side-bar')
+    window.addEventListener("click", (e) => {
+      if (e.offsetX >= (+leftSideBar.clientWidth - +leftSideBar.offsetLeft)) {
+        setBurgerToggle(false)
+        setSubMenuToggle(false)
+      }
+      if (userToggle || toggle.hidden) {
+        if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
+          closeSideBar()
+        }
+      }
+      if (toggle.hidden) {
+        if (e.screenX <= +rightSideBar.offsetLeft - rightSideBar.clientWidth) {
+          toggleCartHidden()
+        }
+      }
+    })
+
+  }, [toggle, userToggle])
 
   return (
     <>
@@ -273,7 +296,7 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user, userToggle: store.nav, hidden: store.cart };
+  return { user: store.user, userToggle: store.nav, toggle: store.cart };
 };
 
 //Redux引入函式

@@ -66,15 +66,15 @@
       position: relative;
       transform-style: preserve-3d;
       transition: all .5s;
-      // &:active{
-      //   transform: rotateY(180deg);
-      //   -webkit-transform: rotateY(180deg);
-      // }
+      &.rotateActive{
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+      }
       .credit-card-demo1{
         position: absolute;
         width: 342px;
         height: 200px;
-        background-image: linear-gradient(0.35turn, #262626, #8a8c8c, #131313);
+        background-image: linear-gradient(0.45turn, #636161, #a3a5a5, #5e5c5c);
         border-radius: 10px;
         backface-visibility: hidden;
         .credit-card-number{
@@ -96,7 +96,7 @@
           }
           .MuiInput-root{
             input{
-              color:#fbff00;
+              color:$main-orange;
               font-size: 20px;
               font-family: 'Teko', sans-serif;
             }

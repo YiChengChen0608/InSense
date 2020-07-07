@@ -73,6 +73,9 @@ const OrderPayMent = ({
   //取得信用卡資訊
   const [getCreditCardInfo, setGetCreditCardInfo] = useState({})
 
+  //控制翻牌
+  const [rotateCard, setRotateCard] = useState(false)
+
   //打開詢問付款
   const [openInquiry, setOpenInquiry] = useState(false);
   const [inquiryTitle, setInquiryTitle] = useState("title");
@@ -161,6 +164,16 @@ const OrderPayMent = ({
     })()
   }, [saveCreditCard])
 
+  useEffect(() => {
+    const input = document.querySelector('.payment-safe-code .MuiFormControl-root .MuiInputBase-root input')
+    input.addEventListener('focus', function () {
+      setRotateCard(true)
+    })
+    input.addEventListener('blur', function () {
+      setRotateCard(false)
+    })
+  }, [])
+
   //取得預設的credit card 資料
   useEffect(() => {
     const { creditCardInfo } = { ...getCreditCardInfo }
@@ -197,7 +210,7 @@ const OrderPayMent = ({
         </div>
       </div>
       <div className="d-flex order-payment-content">
-        <div className="order-payment-subcontent subcontent-left">
+        <div className={`order-payment-subcontent subcontent-left ${rotateCard ? 'rotateActive' : ''}`}>
           <div className='credit-card-demo1'>
             <CreditCardNumber
               cardNumberFirst={cardNumberFirst}
