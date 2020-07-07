@@ -30,7 +30,6 @@ import AccountDashboard from "./pages/AccountDashboard/accountDashboard";
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 import ErrorPage from "./pages/ErrorPage/errorPage";
 import OrderHistory from './pages/OrderHistory/orderHistory'
-import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
 import FaqAccordion from "./components/FaqAccordion/FaqAccordion";
 import CheckoutPage from "./pages/Checkout/chechout";
