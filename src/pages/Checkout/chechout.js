@@ -15,7 +15,7 @@ import { toggleCartHidden } from "../../Redux/cart/cartAction";
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
 import "./checkout.scss";
-import SubmitButton from "../../components/SubmitButton/submitButton";
+import Button from "@material-ui/core/Button";
 
 const CheckoutPage = ({
   cartItems,
@@ -64,7 +64,9 @@ const CheckoutPage = ({
     <div className="sum">${total}</div>
     <div className="discount">折扣: -100</div> */}
     <div className="total">總計: NT${total}</div>
-    <SubmitButton
+    <Button
+      className="checkout-button"
+      variant="outlined"
       inverted={true}
       onClick={(e) => {
         if (!userSelect) {
@@ -77,7 +79,7 @@ const CheckoutPage = ({
       }}
     >
       確認訂單
-    </SubmitButton>
+    </Button>
   </div>
 );
 const mapDispatchToProps = (dispatch) => {
