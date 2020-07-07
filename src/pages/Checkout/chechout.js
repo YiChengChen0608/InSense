@@ -16,6 +16,7 @@ import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
 import "./checkout.scss";
 import Button from "@material-ui/core/Button";
+import SubmitButton from "../../components/SubmitButton/submitButton"
 
 const CheckoutPage = ({
   cartItems,
@@ -102,17 +103,9 @@ const CheckoutPage = ({
       
     </div>
     <div className="sum">${total}</div>
-<<<<<<< HEAD
     <div className="discount">折扣:{DisCountValue} </div>
     <div className="total">總計: NT${total - DisCountValue}</div>
     <SubmitButton
-=======
-    <div className="discount">折扣: -100</div> */}
-    <div className="total">總計: NT${total}</div>
-    <Button
-      className="checkout-button"
-      variant="outlined"
->>>>>>> f98e5fd34b3fd6dfa73dc4fb2e5ce1aa6b7e6963
       inverted={true}
       onClick={(e) => {
         if (!userSelect) {
@@ -125,7 +118,7 @@ const CheckoutPage = ({
       }}
     >
       確認訂單
-    </Button>
+    </SubmitButton>
   </div>
 )};
 const mapDispatchToProps = (dispatch) => {
