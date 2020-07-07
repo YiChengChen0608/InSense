@@ -25,6 +25,8 @@ import PasswordForgotChange from "./pages/PasswordForgotChange/passwordForgotCha
 import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
+import AccountDashboard from "./pages/AccountDashboard/accountDashboard";
+
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
 import ErrorPage from "./pages/ErrorPage/errorPage";
 import OrderHistory from './pages/OrderHistory/orderHistory'
@@ -79,6 +81,9 @@ function App() {
               <ShopPage />
             </Route>
             <Route path="/account">
+              <Route path="/account" exact>
+                <AccountDashboard />
+              </Route>
               <Route path="/account/classpage">
                 <ClassPage />
               </Route>
