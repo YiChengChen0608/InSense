@@ -9,10 +9,10 @@
     margin: 0 0 30px;
     padding-top: 48px;
   }
-  .registration-declaration{
+  .registration-declaration {
     margin: 36px 0;
     cursor: pointer;
-    p{
+    p {
       margin: 0 0 0 10px;
       color: $main-black;
     }
@@ -31,7 +31,7 @@
   .registration-grid-container {
     .registration-grid-item {
       position: relative;
-      .error-message{
+      .error-message {
         position: absolute;
         width: 100%;
         height: 0;
@@ -39,7 +39,7 @@
         top: 28px;
         color: $main-orange;
         font-size: 12px;
-        span{
+        span {
           // display: block;
           position: absolute;
           right: 2%;
@@ -125,5 +125,4 @@
       grid-area: address;
     }
   }
-  
 }

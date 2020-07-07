@@ -28,7 +28,6 @@ const ItemCard = (props) => {
                 onClick={(e) => {
                   e.preventDefault();
                   addItem(props);
-
                 }}
                 href=""
               >
@@ -47,8 +46,6 @@ const ItemCard = (props) => {
             itemId={itemId}
             name={name}
             wish={wish}
-          // itemWishList={itemWishList}
-          // setitemWishList={setitemWishList}
           />
         </div>
       </div>

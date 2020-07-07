@@ -26,6 +26,7 @@ import Modify from "./pages/Modify/modify";
 import CreditCard from "./pages/CreditCard/creditCard";
 import OrderPayMent from "./pages/OrderPayMent/orderPayMent";
 import OrderDelivery from "./pages/OrderDelivery/orderDelivery";
+import ErrorPage from "./pages/ErrorPage/errorPage";
 import OrderHistory from './pages/OrderHistory/orderHistory'
 import TestUI from "./pages/TestUI/testUI";
 import ShopPage from "./pages/shop/shop.component";
@@ -53,6 +54,9 @@ function App() {
             </Route>
             <Route path="/itemdetail/:itemId?">
               <ItemDetails />
+            </Route>
+            <Route path="/errorPage">
+              <ErrorPage />
             </Route>
             <Route path="/orders">
               <Route path="/orders/checkout">
