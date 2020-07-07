@@ -70,4 +70,21 @@
     // border-top: 1px solid $main-black;
     font-size: 18px;
   }
+
+  .checkout-button {
+    border: 1px solid $main-scarlet;
+    border-radius: 0;
+    color: $main-scarlet;
+    width: 160px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+    font-family: $Roboto;
+  }
+
+  .checkout-button:hover {
+    background-color: $main-scarlet;
+    color: $main-white;
+  }
 }

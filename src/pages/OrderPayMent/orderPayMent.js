@@ -5,19 +5,16 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Input, FormControl, InputLabel } from "@material-ui/core";
-import CreditCardNumber from '../../components/CreditCardNumber/creditCardNumber'
-import CreditCardExpiration from '../../components/CreditCardExpiration/creditCardExpiration'
+import CreditCardNumber from "../../components/CreditCardNumber/creditCardNumber";
+import CreditCardExpiration from "../../components/CreditCardExpiration/creditCardExpiration";
 import CreditCardAssociation from "../../components/CreditCardAssociation/creditCardAssociation";
-import { clearCart } from '../../Redux/cart/cartAction'
-import Address from '../../components/Address/address'
-import InquiryAlert from '../../components/InquiryAlert/inquiryAlert'
+import { clearCart } from "../../Redux/cart/cartAction";
+import Address from "../../components/Address/address";
+import InquiryAlert from "../../components/InquiryAlert/inquiryAlert";
 import axios from "axios";
 
 //radio checkbox icon
-import {
-  FiSquare,
-  FiCheckSquare,
-} from "react-icons/fi";
+import { FiSquare, FiCheckSquare } from "react-icons/fi";
 
 //redux selector
 import {
@@ -27,18 +24,20 @@ import {
   selectUserInfo,
 } from "../../Redux/cart/cartSelectors";
 
+import Button from "@material-ui/core/Button";
+
 const OrderPayMent = ({
   history,
   selectCartItems,
   selectCartTotal,
   selectUserLogin,
   selectUserInfo,
-  clearCart
+  clearCart,
 }) => {
   const UserInfo = { ...selectUserInfo };
 
   const orderDelivery = history.location.state;
-  const [getOrderDelivery, setGetOrderDelivery] = useState(orderDelivery)
+  const [getOrderDelivery, setGetOrderDelivery] = useState(orderDelivery);
 
   const [saveCreditCard, setSaveCreditCard] = useState(false);
   const [agree, setAgree] = useState(false);
@@ -53,8 +52,8 @@ const OrderPayMent = ({
   const [cardNumberForth, setCardNumbeForth] = useState("");
 
   //期限
-  const [cdMonth, setcdMonth] = useState('');
-  const [cdYear, setcdYear] = useState('');
+  const [cdMonth, setcdMonth] = useState("");
+  const [cdYear, setcdYear] = useState("");
 
   //安全碼
   const [safeCode, setSafeCode] = useState("");
@@ -71,7 +70,7 @@ const OrderPayMent = ({
   const [isDefault, setisDefault] = useState(0);
 
   //取得信用卡資訊
-  const [getCreditCardInfo, setGetCreditCardInfo] = useState({})
+  const [getCreditCardInfo, setGetCreditCardInfo] = useState({});
 
   //打開詢問付款
   const [openInquiry, setOpenInquiry] = useState(false);
@@ -94,8 +93,8 @@ const OrderPayMent = ({
       case "isDefault":
         setisDefault(event.target.value);
         break;
-    };
-  }
+    }
+  };
 
   const changeSafeCode = (e) => {
     //先取出數字陣列
@@ -110,8 +109,8 @@ const OrderPayMent = ({
     const insertNum = !!insertRawNum.match(/\d{1,3}/g)
       ? insertRawNum.match(/\d{1,3}/g)[0]
       : "";
-    setSafeCode(insertNum)
-  }
+    setSafeCode(insertNum);
+  };
   const paymentdata = {
     userId: UserInfo.userId,
     cdHolder: cdHolder,
@@ -127,10 +126,12 @@ const OrderPayMent = ({
   };
 
   const getSavedCreditCardInfo = async () => {
-    const res = await fetch(`http://localhost:3030/orders/getCreditCardInfo`, { credentials: 'include' })
-    const data = await res.json()
-    return data
-  }
+    const res = await fetch(`http://localhost:3030/orders/getCreditCardInfo`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  };
 
   const addordersToSever = async () => {
     const res = await axios.post(`http://localhost:3030/orders/orderList`, {
@@ -139,44 +140,52 @@ const OrderPayMent = ({
       selectCartTotal: selectCartTotal,
       orderDelivery: getOrderDelivery,
     });
-    const { data } = res
-    return data
+    const { data } = res;
+    return data;
   };
 
   const confirmToPay = async (e) => {
-    e.preventDefault()
-    const data = await addordersToSever()
-    clearCart()
-    history.push(`/orders/orderdetail/${data.orderId}`)
-  }
+    e.preventDefault();
+    const data = await addordersToSever();
+    clearCart();
+    history.push(`/orders/orderdetail/${data.orderId}`);
+  };
   //當saveCreditCard 改變時 從資料庫撈資料或變成空物件
   useEffect(() => {
     (async () => {
       if (saveCreditCard) {
-        const data = await getSavedCreditCardInfo()
-        setGetCreditCardInfo(data)
+        const data = await getSavedCreditCardInfo();
+        setGetCreditCardInfo(data);
       } else {
-        setGetCreditCardInfo({})
+        setGetCreditCardInfo({});
       }
-    })()
-  }, [saveCreditCard])
+    })();
+  }, [saveCreditCard]);
 
   //取得預設的credit card 資料
   useEffect(() => {
-    const { creditCardInfo } = { ...getCreditCardInfo }
-    setassociation(creditCardInfo && creditCardInfo.association)
-    setCardNumberFirst(creditCardInfo ? creditCardInfo.cdNumber.split('-')[0] : '')
-    setCardNumberSecond(creditCardInfo ? creditCardInfo.cdNumber.split('-')[1] : '')
-    setCardNumberThird(creditCardInfo ? creditCardInfo.cdNumber.split('-')[2] : '')
-    setCardNumbeForth(creditCardInfo ? creditCardInfo.cdNumber.split('-')[3] : '')
-    setcdMonth(creditCardInfo ? creditCardInfo.cdMonth : '')
-    setcdYear(creditCardInfo ? creditCardInfo.cdYear : '')
-    setcdHolder(creditCardInfo ? creditCardInfo.cdHolder : '')
-    setBillCity(creditCardInfo && creditCardInfo.billAddressCity)
-    setBillDistrict(creditCardInfo && creditCardInfo.billAddressDistrict)
-    setBillPostCode(creditCardInfo && creditCardInfo.billAddressPostCode)
-    setBillAddress(creditCardInfo && creditCardInfo.billAddressStreet)
-  }, [getCreditCardInfo])
+    const { creditCardInfo } = { ...getCreditCardInfo };
+    setassociation(creditCardInfo && creditCardInfo.association);
+    setCardNumberFirst(
+      creditCardInfo ? creditCardInfo.cdNumber.split("-")[0] : ""
+    );
+    setCardNumberSecond(
+      creditCardInfo ? creditCardInfo.cdNumber.split("-")[1] : ""
+    );
+    setCardNumberThird(
+      creditCardInfo ? creditCardInfo.cdNumber.split("-")[2] : ""
+    );
+    setCardNumbeForth(
+      creditCardInfo ? creditCardInfo.cdNumber.split("-")[3] : ""
+    );
+    setcdMonth(creditCardInfo ? creditCardInfo.cdMonth : "");
+    setcdYear(creditCardInfo ? creditCardInfo.cdYear : "");
+    setcdHolder(creditCardInfo ? creditCardInfo.cdHolder : "");
+    setBillCity(creditCardInfo && creditCardInfo.billAddressCity);
+    setBillDistrict(creditCardInfo && creditCardInfo.billAddressDistrict);
+    setBillPostCode(creditCardInfo && creditCardInfo.billAddressPostCode);
+    setBillAddress(creditCardInfo && creditCardInfo.billAddressStreet);
+  }, [getCreditCardInfo]);
 
   return (
     <MainContainer>
@@ -198,7 +207,7 @@ const OrderPayMent = ({
       </div>
       <div className="d-flex order-payment-content">
         <div className="order-payment-subcontent subcontent-left">
-          <div className='credit-card-demo1'>
+          <div className="credit-card-demo1">
             <CreditCardNumber
               cardNumberFirst={cardNumberFirst}
               cardNumberSecond={cardNumberSecond}
@@ -210,6 +219,16 @@ const OrderPayMent = ({
               setCardNumbeForth={setCardNumbeForth}
             />
           </div>
+          <div className="credit-card-demo2">
+            <div className="black-strip"></div>
+            <FormControl>
+              <InputLabel htmlFor="my-input">安全碼*</InputLabel>
+              <Input
+                id="my-input"
+                value={safeCode}
+                onChange={changeSafeCode}
+                aria-describedby="my-helper-text"
+              />
           <div className='credit-card-demo2'>
             <div className='black-strip'></div>
             <FormControl>
@@ -219,7 +238,6 @@ const OrderPayMent = ({
           </div>
         </div>
         <div className="order-payment-subcontent subcontent-center">
-
           {/* 卡別 */}
           <CreditCardAssociation
             association={association}
@@ -236,16 +254,22 @@ const OrderPayMent = ({
             setCardNumberThird={setCardNumberThird}
             setCardNumbeForth={setCardNumbeForth}
           />
-          <div className='d-flex align-items-center payment-safe-code'>
+          <div className="d-flex align-items-center payment-safe-code">
             <FormControl>
               <InputLabel htmlFor="my-input">安全碼*</InputLabel>
-              <Input id="my-input" value={safeCode} onChange={changeSafeCode} aria-describedby="my-helper-text" />
+              <Input
+                id="my-input"
+                value={safeCode}
+                onChange={changeSafeCode}
+                aria-describedby="my-helper-text"
+              />
             </FormControl>
             <p> (3碼) </p>
           </div>
 
-          <div className='subcontent-date'>到期日期
-            <div className='credit-card-date'>
+          <div className="subcontent-date">
+            到期日期
+            <div className="credit-card-date">
               <CreditCardExpiration
                 cdMonth={cdMonth}
                 cdYear={cdYear}
@@ -255,7 +279,7 @@ const OrderPayMent = ({
             </div>
           </div>
         </div>
-        <div className='order-payment-subcontent subcontent-right'>
+        <div className="order-payment-subcontent subcontent-right">
           <FormControl>
             <InputLabel htmlFor="my-input">持有人*</InputLabel>
             <Input
@@ -275,21 +299,39 @@ const OrderPayMent = ({
             setPostCode={setBillPostCode}
             setAddress={setBillAddress}
           />
-          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setSaveCreditCard(!saveCreditCard)}>
-            {saveCreditCard ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
+          <div
+            className="credit-card-checkedBtn d-flex align-items-center"
+            onClick={() => setSaveCreditCard(!saveCreditCard)}
+          >
+            {saveCreditCard ? (
+              <FiCheckSquare className="order-payment-square" />
+            ) : (
+              <FiSquare className="order-payment-square" />
+            )}
             <p>使用預設已儲存的信用卡</p>
           </div>
-          <div className='credit-card-checkedBtn d-flex align-items-center' onClick={() => setAgree(!agree)}>
-            {agree ? <FiCheckSquare className='order-payment-square' /> : <FiSquare className='order-payment-square' />}
-            <p>我確認上述資訊完整無誤並同意上述資訊<br />可以被InSense作為商業用途使用</p>
+          <div
+            className="credit-card-checkedBtn d-flex align-items-center"
+            onClick={() => setAgree(!agree)}
+          >
+            {agree ? (
+              <FiCheckSquare className="order-payment-square" />
+            ) : (
+              <FiSquare className="order-payment-square" />
+            )}
+            <p>
+              我確認上述資訊完整無誤並同意上述資訊
+              <br />
+              可以被InSense作為商業用途使用
+            </p>
           </div>
-          <a
-            className="confirm-btn"
+          <Button
+            className="MuiButtonBase-root MuiButton-root MuiButton-outlined confirm-btn"
             href="#"
             onClick={handleInquiryOpen}
           >
             確認付款
-          </a>
+          </Button>
           <InquiryAlert
             openInquiry={openInquiry}
             handleInquiryClose={handleInquiryClose}
@@ -316,4 +358,6 @@ const mapDispatchToProps = (dispatch) => ({
   clearCart: () => dispatch(clearCart()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderPayMent));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OrderPayMent)
+);
