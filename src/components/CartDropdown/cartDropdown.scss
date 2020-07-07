@@ -17,7 +17,7 @@
 
   .dropdown-header {
     color: $main-blue;
-    margin-left: 50px;
+    margin-left: 45px;
     font-size: 24px;
     font-weight: 300;
   }
@@ -33,7 +33,7 @@
   }
 
   .cart-items {
-    height: 70%;
+    height: 60%;
     width: 80%;
     margin-left: 60px;
     display: flex;
@@ -50,6 +50,26 @@
           margin-bottom: 10px;
         }
       }
+    }
+  }
+  .cart-button {
+    margin: 30px auto;
+  }
+
+  .cart-button .success-alert {
+    border: 1px solid $main-scarlet;
+    border-radius: 0;
+    color: $main-scarlet;
+    width: 200px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+    font-family: $Roboto;
+
+    &:hover {
+      background-color: $main-scarlet;
+      color: $main-white;
     }
   }
 }
