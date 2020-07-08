@@ -6,11 +6,12 @@ import {
   selectCartItems,
   selectCartTotal,
   selectUserLogin,
+  selectCouponCode
 } from "../../Redux/cart/cartSelectors";
 
 import { userToggleFunc } from "../../Redux/nav/navAction";
 import { bindActionCreators } from "redux";
-import { toggleCartHidden } from "../../Redux/cart/cartAction";
+import { toggleCartHidden, addCouponCode } from "../../Redux/cart/cartAction";
 
 import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
@@ -27,11 +28,12 @@ const CheckoutPage = ({
   userToggleFunc,
   userSelect,
   clearCart,
+  addCouponCode
 }) => {
-  const [couponCode, setCouponCode] = useState();
   const [codeValue, setCodeValue] = useState();
   const [Data, setData] = useState([]);
   const [DisCountValue, setDiscountValue] = useState(0);
+  const [Disabled, setDisabled] = useState(false)
 
   async function getData() {
     const request = new Request("http://localhost:3030/coupon", {
@@ -56,11 +58,13 @@ const CheckoutPage = ({
 
 
   useEffect(() => {
-    Data.filter(
-      (el) => (el.couponCode.toString() === codeValue)).forEach((element) => setDiscountValue(element.couponDiscount));
-  }, [couponCode, codeValue, DisCountValue, Data]);
-
-
+    const currentData = Data.filter((el) => (el.couponCode === codeValue))
+    if (currentData.length > 0) {
+      currentData.forEach((element) => setDiscountValue(element.couponDiscount));
+      setDisabled(true)
+      addCouponCode(codeValue)
+    }
+  }, [Data]);
 
   return (
     <div className="checkout-page">
@@ -93,10 +97,10 @@ const CheckoutPage = ({
           className="code-input"
           type="text"
           name="coupon"
-          // value="4EVER5566"
-          // handleChange={handleChange}
+          value={codeValue}
           label="折扣碼"
           onChange={(e) => setCodeValue(e.target.value)}
+          disabled={Disabled}
         />
       </div>
       <div className="sum">小計： ${total}</div>
@@ -124,13 +128,14 @@ const CheckoutPage = ({
   );
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ toggleCartHidden, userToggleFunc }, dispatch);
+  return bindActionCreators({ toggleCartHidden, userToggleFunc, addCouponCode }, dispatch);
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
   userSelect: selectUserLogin,
+  couponCode: selectCouponCode
 });
 
 export default withRouter(
