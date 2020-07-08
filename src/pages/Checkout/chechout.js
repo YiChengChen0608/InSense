@@ -16,6 +16,7 @@ import CheckoutItem from "../../components/CheckoutItem/checkoutItem";
 
 import "./checkout.scss";
 import Button from "@material-ui/core/Button";
+import SubmitButton from "../../components/SubmitButton/submitButton"
 
 const CheckoutPage = ({
   cartItems,

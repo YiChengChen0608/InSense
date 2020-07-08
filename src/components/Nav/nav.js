@@ -38,7 +38,7 @@ const Nav = ({
   checkLogin,
   toggle,
   toggleCartHidden,
-  toggleCartShow
+  toggleCartShow,
 }) => {
   // state change
   // test info
@@ -134,17 +134,17 @@ const Nav = ({
   };
 
   const clickFunction = () => {
-    toggleCartShow()
-    closeSideBar()
-    setBurgerToggle(false)
-  }
+    toggleCartShow();
+    closeSideBar();
+    setBurgerToggle(false);
+  };
 
   useEffect(() => {
-    if (location.pathname !== '/') {
-      setBurgerToggle(false)
-      setSubMenuToggle(false)
-      closeSideBar()
-      toggleCartHidden()
+    if (location.pathname !== "/") {
+      setBurgerToggle(false);
+      setSubMenuToggle(false);
+      closeSideBar();
+      toggleCartHidden();
     }
     window.addEventListener("scroll", function () {
       this.scrollY > 0 ? setScrollTop(true) : setScrollTop(false);
@@ -190,25 +190,20 @@ const Nav = ({
     <>
       <nav
         className={`${
-          location.pathname === "/"
-            ? "position-fix"
-            : "position-sticky"
-          } nav d-flex justify-content-between align-items-center ${
+          location.pathname === "/" ? "position-fix" : "position-sticky"
+        } nav d-flex justify-content-between align-items-center ${
           scrollTop || location.pathname !== "/" ? "scroll-down" : ""
-          }`}
+        }`}
       >
         {/* Menu  */}
         <div
           className={`position-absolute menu-item d-flex align-items-center justify-content-around ${
             burgerToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="menu-title position-absolute d-flex align-items-center">
             <span
-              onClick={() =>
-                setBurgerToggle(false) ||
-                setSubMenuToggle(false)
-              }
+              onClick={() => setBurgerToggle(false) || setSubMenuToggle(false)}
             >
               <FiX />
             </span>
@@ -226,10 +221,12 @@ const Nav = ({
             })}
           </ul>
           <ul>
-            <li className="d-flex align-items-center">
-              <FiChevronRight className="chevron-right" />
-                            關於我們
-                        </li>
+            <Link className="menu-link" to="/FaqAccordion">
+              <li className="d-flex align-items-center">
+                <FiChevronRight className="chevron-right" />
+                FAQ
+              </li>
+            </Link>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -237,7 +234,7 @@ const Nav = ({
         <div
           className={`position-absolute search-block ${
             searchToggle ? "left-side-bar-open" : ""
-            }`}
+          }`}
         >
           <div className="search-title position-absolute d-flex align-items-center">
             <span onClick={() => setSearchToggle(false)}>
@@ -251,7 +248,12 @@ const Nav = ({
           </div>
         </div>
         <div className="leftItem">
-          <a onClick={() => (setBurgerToggle(true), closeSideBar(), toggleCartHidden())} role="button">
+          <a
+            onClick={() => (
+              setBurgerToggle(true), closeSideBar(), toggleCartHidden()
+            )}
+            role="button"
+          >
             <FiMenu />
           </a>
           <a
@@ -266,33 +268,32 @@ const Nav = ({
           <p className="index-nav-title">InSense</p>
         </Link>
 
-        <IndexRightSideBar
-          btnClose={() => closeSideBar()}
-          state={userToggle}
-        >
+        <IndexRightSideBar btnClose={() => closeSideBar()} state={userToggle}>
           {userToggle ? (
             user.logInStatus ? (
               <AccountRightBar />
             ) : (
-                <IndexLogin />
-              )
+              <IndexLogin />
+            )
           ) : (
-              ""
-            )}
+            ""
+          )}
         </IndexRightSideBar>
         <div className="rightItem d-flex align-items-center">
           {/* 會員登入 */}
           <a
-            onClick={() => (userToggleFunc(), setBurgerToggle(false), setSubMenuToggle(false), toggleCartHidden())}
+            onClick={() => (
+              userToggleFunc(),
+              setBurgerToggle(false),
+              setSubMenuToggle(false),
+              toggleCartHidden()
+            )}
             role="button"
             data-name="user"
           >
             <FiUser />
           </a>
-          <CartIcon
-            toggleCartHidden={clickFunction}
-            role="button"
-          />
+          <CartIcon toggleCartHidden={clickFunction} role="button" />
           {/* </a> */}
         </div>
         <CartDropdwon />
@@ -309,7 +310,13 @@ const mapStateToProps = (store) => {
 //mapDispatchToProps
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { userToggleFunc, closeSideBar, checkLogin, toggleCartHidden, toggleCartShow },
+    {
+      userToggleFunc,
+      closeSideBar,
+      checkLogin,
+      toggleCartHidden,
+      toggleCartShow,
+    },
     dispatch
   );
 };
