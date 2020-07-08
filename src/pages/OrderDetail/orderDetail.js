@@ -79,17 +79,17 @@ const OrderDeatil = ({ match, history }) => {
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>運費</p>
-              <p>$ -80</p>
+              <p>$ +80</p>
             </div>
           </div>
           <div className='order-totalPrice-container'>
             <div className='d-flex justify-content-between order-price-content'>
               <p>總金額</p>
-              <p>$ {totalPrice && (totalPrice - 80)}</p>
+              <p>$ {totalPrice && (totalPrice + 80)}</p>
             </div>
             <div className='d-flex justify-content-between order-price-content'>
               <p>刷卡金額</p>
-              <p>$ {totalPrice && (totalPrice - 80)}</p>
+              <p>$ {totalPrice && (totalPrice + 80)}</p>
             </div>
           </div>
         </div>
