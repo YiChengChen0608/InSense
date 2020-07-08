@@ -49,7 +49,7 @@ const IndexSubscribe = () => {
   return (
     <div className="index-subscribe-container text-center">
       <p>訂閱我們送新客優惠券</p>
-      <div>
+      <div className='email-input'>
         <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="text" placeholder="your email address*" />
       </div>
       <a className="button-link" onClick={sendEmail} role="button">
