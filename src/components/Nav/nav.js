@@ -157,7 +157,7 @@ const Nav = ({
     const leftSideBar = document.querySelector('.menu-item')
     const cartDropdown = document.querySelector('.cart-dropdown')
     const rightSideBar = document.querySelector('.right-side-bar')
-    window.addEventListener("click", (e) => {
+    const clickFunction = (e) => {
       if (e.offsetX >= (+leftSideBar.clientWidth - +leftSideBar.offsetLeft)) {
         setBurgerToggle(false)
         setSubMenuToggle(false)
@@ -166,6 +166,7 @@ const Nav = ({
       if (userToggle || toggle.hidden) {
         if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
           closeSideBar()
+
         }
       }
       if (toggle.hidden) {
@@ -173,9 +174,17 @@ const Nav = ({
           toggleCartHidden()
         }
       }
-    })
+    }
 
-  }, [toggle, userToggle])
+    if (toggle.hidden || userToggle) {
+      window.addEventListener("click", clickFunction)
+    } else {
+      console.log(123)
+      window.removeEventListener("click", clickFunction)
+    }
+
+    console.log(toggle.hidden, userToggle)
+  }, [toggle.hidden, userToggle])
 
   return (
     <>

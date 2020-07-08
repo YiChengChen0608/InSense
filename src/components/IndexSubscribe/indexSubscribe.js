@@ -9,9 +9,9 @@ const indexSubscribe = () => {
       <div>
         <input type="text" placeholder="your email address*" />
       </div>
-      <Link className="button-link" role="button">
+      <a className="button-link" role="button">
         SUBSCRIBE
-            </Link>
+            </a>
     </div>
   );
 };
