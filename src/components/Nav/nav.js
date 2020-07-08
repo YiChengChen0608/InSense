@@ -154,37 +154,36 @@ const Nav = ({
   }, [location.pathname]);
 
   useEffect(() => {
-    const leftSideBar = document.querySelector('.menu-item')
-    const cartDropdown = document.querySelector('.cart-dropdown')
-    const rightSideBar = document.querySelector('.right-side-bar')
+    const leftSideBar = document.querySelector(".menu-item");
+    const cartDropdown = document.querySelector(".cart-dropdown");
+    const rightSideBar = document.querySelector(".right-side-bar");
     const clickFunction = (e) => {
-      if (e.offsetX >= (+leftSideBar.clientWidth - +leftSideBar.offsetLeft)) {
-        setBurgerToggle(false)
-        setSubMenuToggle(false)
+      if (e.offsetX >= +leftSideBar.clientWidth - +leftSideBar.offsetLeft) {
+        setBurgerToggle(false);
+        setSubMenuToggle(false);
       }
 
       if (userToggle || toggle.hidden) {
-        if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
-          closeSideBar()
-
+        if (e.screenX <= +cartDropdown.offsetLeft - +cartDropdown.clientWidth) {
+          closeSideBar();
         }
       }
       if (toggle.hidden) {
         if (e.screenX <= +rightSideBar.offsetLeft - rightSideBar.clientWidth) {
-          toggleCartHidden()
+          toggleCartHidden();
         }
       }
-    }
+    };
 
     if (toggle.hidden || userToggle) {
-      window.addEventListener("click", clickFunction)
+      window.addEventListener("click", clickFunction);
     } else {
-      console.log(123)
-      window.removeEventListener("click", clickFunction)
+      console.log(123);
+      window.removeEventListener("click", clickFunction);
     }
 
-    console.log(toggle.hidden, userToggle)
-  }, [toggle.hidden, userToggle])
+    console.log(toggle.hidden, userToggle);
+  }, [toggle.hidden, userToggle]);
 
   return (
     <>
@@ -227,11 +226,6 @@ const Nav = ({
                 FAQ
               </li>
             </Link>
-<<<<<<< HEAD
-
-      
-=======
->>>>>>> 0d73dc62b9cacda255e0bf6c8f99716c2487013f
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -264,7 +258,7 @@ const Nav = ({
           <a
             role="button"
             data-name="search"
-            style={{ opacity: '0', cursor: 'auto' }}
+            style={{ opacity: "0", cursor: "auto" }}
           >
             <FiSearch />
           </a>
