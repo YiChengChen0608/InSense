@@ -65,8 +65,8 @@ const WishList = (props) => {
         }
       })();
     } else {
-      setMyWishList([]);
       if (user.logInStatus !== null) {
+        setMyWishList([]);
         handleAlertOpen("未登入", "一秒鐘後跳轉首頁", true, true, 1000);
         setTimeout(() => {
           history.push("/");
@@ -120,4 +120,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ userLogin, userLogOut }, dispatch);
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WishList));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(WishList)
+);
