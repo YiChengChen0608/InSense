@@ -6,7 +6,7 @@
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 24px;
+        font-size: 28px;
         color: $main-blue;
     }
     .order-payment-step {
@@ -15,6 +15,7 @@
         a {
             text-decoration: none;
             color: $main-black;
+            cursor: auto;
         }
 
     }
@@ -44,32 +45,34 @@
             object-fit: cover;
             width: 100%;
         }
-        .confirm-btn {
-            display: block;
-            padding: 16px 0;
-            text-align: center;
-            text-decoration: none;
-            width: 75%;
-            font-size: 20px;
-            color: $main-scarlet;
-            border: 1px solid $main-scarlet;
-            &:hover {
-                background: $main-orange;
-                color: $sub-white;
-                border: 1px solid transparent;
-            }
+        .confirm-btn{
+          display: block;
+          padding:8px 0;
+          text-align: center;
+          text-decoration: none;
+          width: 90%;
+          font-size: 20px;
+          color:$main-scarlet;
+          border: 1px solid $main-scarlet;
+          border-radius: 0;
+          font-weight: 300;
+          &:hover{
+            background: $main-scarlet;
+            color :$sub-white;
+            border: 1px solid transparent;
+          }
         }
         &.subcontent-left {
-            margin-top: 32px;
-            margin-right: 18px;
-            padding: 0;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: all 0.5s;
-            // &:active{
-            //   transform: rotateY(180deg);
-            //   -webkit-transform: rotateY(180deg);
-            // }
+          margin-top: 32px;
+          margin-right: 18px;
+          padding:0;
+          position: relative;
+          transform-style: preserve-3d;
+          transition: all .5s;
+          &.rotateActive{
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+          }
             .credit-card-demo1 {
                 position: absolute;
                 width: 342px;
@@ -84,7 +87,7 @@
                 backface-visibility: hidden;
                 .credit-card-number {
                     position: absolute;
-                    bottom: 20%;
+                    bottom: 30%;
                     left: 50%;
                     backface-visibility: hidden;
                     transform: translateX(-50%);
@@ -107,6 +110,26 @@
                             font-family: "Teko", sans-serif;
                         }
                     }
+                }
+                .credit-card-expiration{
+                  position: absolute;
+                  right:7%;
+                  bottom: 10%;
+                  
+                  .MuiInputLabel-root {
+                    display: none;
+                }
+                  .MuiInput-underline {
+                    &:before {
+                        border-bottom: 0;
+                    }
+                    input{
+                      color:gold;
+                    }
+                }
+                  p{
+                    display: none;
+                  }
                 }
             }
             .credit-card-demo2 {
@@ -164,17 +187,17 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 0 32px 32px;
-
-            .payment-safe-code {
-                .MuiInput-input {
-                    &:focus-within
-                        ~ .order-payment-subcontent
-                        .subcontent-left {
-                        transform: rotateY(180deg);
-                        -webkit-transform: rotateY(180deg);
-                    }
-                }
+            .error-message{
+              position: absolute;
+              color: $main-orange;
+              font-size: 12px;
             }
+              .credit-card-number {
+                margin: 10px 0 0;
+                .MuiFormControl-root {
+                    margin-bottom: 0;
+                }
+              }
             .credit-card-association {
                 .MuiFormControl-root {
                     margin: 0;
@@ -194,8 +217,14 @@
             .MuiFormControl-root {
                 flex: 1 0 0;
             }
+            .payment-safe-code{
+              p{
+                margin-bottom: 0;
+                color:#555555b6;
+              }
+            }
             .subcontent-date {
-                margin-top: 32px;
+                margin-top: 20px;
                 .MuiFormControl-root {
                     margin-top: 8px;
                     margin-bottom: 0;
@@ -203,12 +232,6 @@
                     .MuiInput-input {
                         margin: 0 auto;
                     }
-                }
-            }
-            .credit-card-number {
-                margin: 20px 0 20px;
-                .MuiFormControl-root {
-                    margin-bottom: 0;
                 }
             }
         }
@@ -230,6 +253,11 @@
                         margin: 0;
                     }
                 }
+            }
+            .error-message{
+              position: absolute;
+              color: $main-orange;
+              font-size: 12px;
             }
             .credit-card-checkedBtn {
                 width: 100%;
