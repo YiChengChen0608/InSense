@@ -22,6 +22,7 @@ import {
   selectCartTotal,
   selectUserLogin,
   selectUserInfo,
+  selectCouponCode
 } from "../../Redux/cart/cartSelectors";
 
 import Button from "@material-ui/core/Button";
@@ -32,10 +33,11 @@ const OrderPayMent = ({
   selectCartTotal,
   selectUserLogin,
   selectUserInfo,
+  selectCouponCode,
   clearCart,
 }) => {
   const UserInfo = { ...selectUserInfo };
-
+  console.log(selectCartTotal)
   const orderDelivery = history.location.state;
   const [getOrderDelivery, setGetOrderDelivery] = useState(orderDelivery);
 
@@ -168,6 +170,7 @@ const OrderPayMent = ({
       selectCartItems: selectCartItems,
       selectCartTotal: selectCartTotal,
       orderDelivery: getOrderDelivery,
+      selectCouponCode: selectCouponCode
     });
     const { data } = res;
     return data;
@@ -439,6 +442,7 @@ const mapStateToProps = createStructuredSelector({
   selectCartTotal: selectCartTotal,
   selectUserLogin: selectUserLogin,
   selectUserInfo: selectUserInfo,
+  selectCouponCode: selectCouponCode
 });
 
 const mapDispatchToProps = (dispatch) => ({
