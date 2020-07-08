@@ -227,11 +227,6 @@ const Nav = ({
                 FAQ
               </li>
             </Link>
-<<<<<<< HEAD
-
-      
-=======
->>>>>>> 0d73dc62b9cacda255e0bf6c8f99716c2487013f
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
