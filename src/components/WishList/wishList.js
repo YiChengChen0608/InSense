@@ -93,8 +93,8 @@ const WishList = (props) => {
               );
             })
           ) : (
-            <p>沒有收藏商品</p>
-          )}
+              <p>沒有收藏商品</p>
+            )}
         </div>
       </div>
       <SuccessAlert

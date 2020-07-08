@@ -2,8 +2,8 @@
 
 
 .class-head {
-  width: 100%;
-  margin-bottom: 32px;
+  width: 960px;
+  margin: 0 auto 32px auto;
 
   .headLeft {
     width: 100%;
@@ -18,7 +18,10 @@
   .headRight {
     padding-top: 16px;
     padding-left: 24px;
-    margin: 0 0 0 13px;
+    height: 200px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
 
     .headTitle {
       margin-bottom: 0;
@@ -30,9 +33,29 @@
       color: $main-blue;
       line-height: 16px;
       letter-spacing: .8px;
+      font-size: 14px;
     }
   }
 }
+
+
+
+.faq-header {
+  font-size: 24px;
+  border: 1px solid $main-gray;
+  background: rgba(230, 230, 230, .6);
+  width: 960px;
+  height: 80px;
+  margin: 80px auto 26px auto;
+  display: flex;
+  align-items: center;
+
+  p {
+    color: $main-black;
+    margin: 0 0 0 40px;
+  }
+}
+
 
 @media (max-width:768px) {
   .class-head {

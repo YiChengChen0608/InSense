@@ -36,7 +36,7 @@ const Nav = ({
   closeSideBar,
   userToggle,
   checkLogin,
-  hidden,
+  toggle,
   toggleCartHidden,
   toggleCartShow
 }) => {
@@ -153,6 +153,30 @@ const Nav = ({
     checkLogin();
   }, [location.pathname]);
 
+  useEffect(() => {
+    const leftSideBar = document.querySelector('.menu-item')
+    const cartDropdown = document.querySelector('.cart-dropdown')
+    const rightSideBar = document.querySelector('.right-side-bar')
+    window.addEventListener("click", (e) => {
+      if (e.offsetX >= (+leftSideBar.clientWidth - +leftSideBar.offsetLeft)) {
+        setBurgerToggle(false)
+        setSubMenuToggle(false)
+      }
+
+      if (userToggle || toggle.hidden) {
+        if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
+          closeSideBar()
+        }
+      }
+      if (toggle.hidden) {
+        if (e.screenX <= +rightSideBar.offsetLeft - rightSideBar.clientWidth) {
+          toggleCartHidden()
+        }
+      }
+    })
+
+  }, [toggle, userToggle])
+
   return (
     <>
       <nav
@@ -197,10 +221,6 @@ const Nav = ({
               <FiChevronRight className="chevron-right" />
                             關於我們
                         </li>
-            <li className="d-flex align-items-center">
-              <FiChevronRight className="chevron-right" />
-                            幫助中心
-                        </li>
           </ul>
         </div>
         <IndexMenuSideBar subMenu={subMenu} state={subMenuToggle} />
@@ -226,9 +246,9 @@ const Nav = ({
             <FiMenu />
           </a>
           <a
-            onClick={() => setSearchToggle(true)}
             role="button"
             data-name="search"
+            style={{ opacity: '0', cursor: 'auto' }}
           >
             <FiSearch />
           </a>
@@ -273,7 +293,7 @@ const Nav = ({
 };
 
 const mapStateToProps = (store) => {
-  return { user: store.user, userToggle: store.nav, hidden: store.cart };
+  return { user: store.user, userToggle: store.nav, toggle: store.cart };
 };
 
 //Redux引入函式
