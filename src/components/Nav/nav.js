@@ -155,30 +155,29 @@ const Nav = ({
   }, [location.pathname]);
 
   useEffect(() => {
-    const leftSideBar = document.querySelector('.menu-item')
-    const cartDropdown = document.querySelector('.cart-dropdown')
-    const rightSideBar = document.querySelector('.right-side-bar')
+    const leftSideBar = document.querySelector(".menu-item");
+    const cartDropdown = document.querySelector(".cart-dropdown");
+    const rightSideBar = document.querySelector(".right-side-bar");
     const clickFunction = (e) => {
-      if (e.offsetX >= (+leftSideBar.clientWidth - +leftSideBar.offsetLeft)) {
-        setBurgerToggle(false)
-        setSubMenuToggle(false)
+      if (e.offsetX >= +leftSideBar.clientWidth - +leftSideBar.offsetLeft) {
+        setBurgerToggle(false);
+        setSubMenuToggle(false);
       }
 
       if (userToggle || toggle.hidden) {
-        if (e.screenX <= (+cartDropdown.offsetLeft - +cartDropdown.clientWidth)) {
-          closeSideBar()
-
+        if (e.screenX <= +cartDropdown.offsetLeft - +cartDropdown.clientWidth) {
+          closeSideBar();
         }
       }
       if (toggle.hidden) {
         if (e.screenX <= +rightSideBar.offsetLeft - rightSideBar.clientWidth) {
-          toggleCartHidden()
+          toggleCartHidden();
         }
       }
-    }
+    };
 
     if (toggle.hidden || userToggle) {
-      window.addEventListener("click", clickFunction)
+      window.addEventListener("click", clickFunction);
     } else {
       window.removeEventListener("click", clickFunction)
     }
@@ -258,7 +257,7 @@ const Nav = ({
           <a
             role="button"
             data-name="search"
-            style={{ opacity: '0', cursor: 'auto' }}
+            style={{ opacity: "0", cursor: "auto" }}
           >
             <FiSearch />
           </a>
