@@ -183,7 +183,7 @@ const OrderDelivery = (props) => {
         history.push("/orders/orderpayment", {
           data: data,
         });
-      }, 3000);
+      }, 1500);
 
     }
   };
