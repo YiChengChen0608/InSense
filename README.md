@@ -37,6 +37,10 @@
   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/filter%E5%8A%9F%E8%83%BD.png" height="360" />
   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%83%B9%E6%A0%BCfilter.png" height="180" />
 ### 訂單系統 (CRD)<br />
++ 寄送資訊 <br />
++ 付款資訊 <br />
++ 訂單詳細頁 <br />
+  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%A8%82%E5%96%AE%E8%A9%B3%E7%B4%B0.png" height="360" />
 ### 優惠券訂閱系統<br />
 ### 課程預約系統<br />
  + 預約前與預約後 <br />
