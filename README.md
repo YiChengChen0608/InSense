@@ -15,7 +15,7 @@
 ## 功能說明
 
 ### 首頁<br />
-  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/Menu.png" width="720" />
+  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/index.png" width="720" />
 
 ### 會員系統 (CRUD)<br />
 + 登入頁 <br /> 
