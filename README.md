@@ -31,9 +31,11 @@
  + 加進願望清單 <br />
    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/saveItem.png" width="320" /><br /> 
  + 願望清單詳細頁 <br />
-### 購物車系統 <br />
 ### 商品資訊<br />
++ 商品頁面 <br />
 + 篩選系統 <br />
+  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/filter%E5%8A%9F%E8%83%BD.png" height="360" />
+  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%83%B9%E6%A0%BCfilter.png" height="180" />
 ### 訂單系統 (CRD)<br />
 ### 優惠券訂閱系統<br />
 ### 課程預約系統<br />
