@@ -16,6 +16,7 @@
 ### 功能說明
 
 + 會員系統 (CRUD)<br />
+<img src="https://github.com/YiChengChen0608/InSense/tree/master/public/images/readmeImg/Menu.png" />
 + 購物車系統 <br />
 + 願望清單系統 (database)<br />
 + 篩選系統<br />
