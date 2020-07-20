@@ -22,13 +22,13 @@
 <div style="display:flex">
     <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/logging.png" height="540" />
     <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/logged.png" height="540" />
-</div> <br /> <br /> 
+</div> 
 
 #### 忘記密碼 <br /> <br /> 
    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%BF%98%E8%A8%98%E5%AF%86%E7%A2%BC.png" width="360" /><br /> <br /> 
 
 #### 帳戶資訊
-   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%B8%B3%E6%88%B6%E8%B3%87%E8%A8%8A.png" width="720" /><br /> <br /> 
+   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%B8%B3%E6%88%B6%E8%B3%87%E8%A8%8A.png" width="720" /><br /> 
 
 #### 預先儲存付款資訊 <br /> 
    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%84%B2%E5%AD%98%E4%BB%98%E6%AC%BE%E8%B3%87%E8%A8%8A.png" width="640" /><br /> <br /> 
