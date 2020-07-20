@@ -10,8 +10,6 @@
 + 編輯器技術: vscode<br />
 
 
-
-
 ## 功能說明
 
 ### 首頁<br />
@@ -25,7 +23,12 @@
    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E5%B8%B3%E6%88%B6%E8%B3%87%E8%A8%8A.png" width="720" /><br /> 
 
 ### 購物車系統 <br />
+ + 加入商品 <br />
+ + 購物車詳細頁 <br />
+   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%B3%BC%E7%89%A9%E8%BB%8A%E8%A9%B3%E7%B4%B0%E9%A0%81.png" width="720" /><br /> 
+ 
 ### 願望清單系統 (database)<br />
+### 購物車系統 <br />
 ### 商品資訊<br />
 + 篩選系統 <br />
 ### 訂單系統 (CRD)<br />
