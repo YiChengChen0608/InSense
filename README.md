@@ -33,8 +33,10 @@
 ### 願望清單系統 (database)<br />
 協作者：#LucianoKJ &nbsp;#ReiYu01
  + 加進願望清單 <br />
-   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/saveItem.png" width="320" /><br /> 
+   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/saveItem.png" width="180" /><br /> 
  + 願望清單詳細頁 <br />
+   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E9%A1%98%E6%9C%9B%E6%B8%85%E5%96%AE%E8%A9%B3%E7%B4%B0.png" width="720" /><br /> 
+ 
 ### 商品資訊<br />
 協作者：#LucianoKJ &nbsp;#ReiYu01
 + 商品頁面 <br />
