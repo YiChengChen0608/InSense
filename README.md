@@ -12,7 +12,8 @@
 
 ## 功能說明
 
-### 首頁<br />
+### 首頁 <br />
+協作者：#CTC076  #LucianoKJ  #peggychenpw  #ReiYu01  #YiChengChen0608
   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/index.png" width="720" />
 
 ### 會員系統 (CRUD)<br />
@@ -42,6 +43,8 @@
 + 訂單詳細頁 <br />
   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%A8%82%E5%96%AE%E8%A9%B3%E7%B4%B0.png" height="360" />
 ### 優惠券訂閱系統<br />
++ 優惠券取得<br />
+  <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/subscri.png" height="180" />
 ### 課程預約系統<br />
  + 預約前與預約後 <br />
     <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%AA%B2%E7%A8%8B%E5%8D%A1%E7%89%87.png" height="360" />
