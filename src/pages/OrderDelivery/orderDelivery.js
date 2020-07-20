@@ -150,7 +150,7 @@ const OrderDelivery = (props) => {
     if (!lastName.length) errorObj.lastName = "未填*";
     if (!firstName.length) errorObj.firstName = "未填*";
     if (email.indexOf("@") < 1) errorObj.email = "格式錯誤*";
-    if (!phone.length) errorObj.phone = "格式錯誤*";
+    if (phone.length < 10 || phone.length > 10) errorObj.phone = "格式錯誤*";
 
     setFormatError(errorObj)
 
