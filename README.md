@@ -31,12 +31,10 @@
 ### 訂單系統 (CRD)<br />
 ### 優惠券訂閱系統<br />
 ### 課程預約系統<br />
-#### 預約前與預約後 <br />
-<div style="display:flex">
+ + 預約前與預約後 <br />
     <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%AA%B2%E7%A8%8B%E5%8D%A1%E7%89%87.png" height="360" />
-    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%AA%B2%E7%A8%8B%E5%8D%A1%E7%89%87(%E9%A0%90%E7%B4%84%E5%BE%8C).png" height="360" />
-</div>
-
+    <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/%E8%AA%B2%E7%A8%8B%E5%8D%A1%E7%89%87(%E9%A0%90%E7%B4%84%E5%BE%8C).png"  height="360" />
+ + 課程詳細頁
 
 
 
