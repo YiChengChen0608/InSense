@@ -13,7 +13,7 @@
 ## 功能說明
 
 ### 首頁 <br />
-協作者：#CTC076  #LucianoKJ  #peggychenpw  #ReiYu01  #YiChengChen0608
+協作者：#CTC076 &nbsp;  #LucianoKJ &nbsp; #peggychenpw &nbsp; #ReiYu01 &nbsp; #YiChengChen0608
   <img src="https://github.com/YiChengChen0608/InSense/blob/master/public/images/readmeImg/index.png" width="720" />
 
 ### 會員系統 (CRUD)<br />
