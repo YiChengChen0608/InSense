@@ -1,5 +1,7 @@
 # 資策會MFEE07大專題`（前端 React.js）`
 
+此部份僅為前端程式碼，後端程式碼連結為：https://github.com/YiChengChen0608/InSense_Node
+
 ## 第四組 香氛電商平台
 
 + 基礎技術: HTML5+ sass<br />
